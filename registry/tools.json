@@ -3631,10 +3631,10 @@
             },
             "question": "Which mapped school objects in the central study disk have a modeled library route within 1200 m, and what changes under one declared link closure?",
             "data_access": "public_reproducible",
-            "harvest_manifest": "cases/two-city-walking/evidence/amsterdam/harvest.json",
-            "native_evidence": "cases/two-city-walking/evidence/amsterdam/native.json",
-            "mcp_evidence": "cases/two-city-walking/evidence/amsterdam/mcp.json",
-            "reproduction_evidence": "cases/two-city-walking/evidence/agents.json"
+            "harvest_manifest": "cases/two-city-walking/evidence/issue-39/amsterdam/harvest.json",
+            "native_evidence": "cases/two-city-walking/evidence/issue-39/amsterdam/native.json",
+            "mcp_evidence": "cases/two-city-walking/evidence/issue-39/amsterdam/mcp.json",
+            "reproduction_evidence": "cases/two-city-walking/evidence/issue-39/agents.json"
           },
           "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
         },
@@ -3665,10 +3665,10 @@
             },
             "question": "Which mapped school objects in the central study disk have a modeled library route within 1200 m, and what changes under one declared link closure?",
             "data_access": "public_reproducible",
-            "harvest_manifest": "cases/two-city-walking/evidence/helsinki/harvest.json",
-            "native_evidence": "cases/two-city-walking/evidence/helsinki/native.json",
-            "mcp_evidence": "cases/two-city-walking/evidence/helsinki/mcp.json",
-            "reproduction_evidence": "cases/two-city-walking/evidence/agents.json"
+            "harvest_manifest": "cases/two-city-walking/evidence/issue-39/helsinki/harvest.json",
+            "native_evidence": "cases/two-city-walking/evidence/issue-39/helsinki/native.json",
+            "mcp_evidence": "cases/two-city-walking/evidence/issue-39/helsinki/mcp.json",
+            "reproduction_evidence": "cases/two-city-walking/evidence/issue-39/agents.json"
           },
           "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
         }

@@ -40,3 +40,26 @@ class WalkingEvidence(unittest.TestCase):
         for city in ["helsinki", "amsterdam"]:
             self.assertEqual(reviews[city + ":hermes"]["status"], "failed_factual_narrative_review")
             self.assertEqual(reviews[city + ":codex"]["status"], "passed_for_declared_brief")
+
+    def test_issue39_artifact_hashes_and_prior_csvs_remain_exact(self):
+        folder=CASE/"evidence/issue-39"
+        reproduction=json.loads((folder/"reproduction.json").read_text(encoding="utf-8"))
+        for city in reproduction["cities"]:
+            for name,key in [("baseline.csv","baseline_csv_sha256"),("closure.csv","closure_csv_sha256"),("map.png","map_sha256")]:
+                self.assertEqual(sha(folder/city["city"]/name),city[key])
+            for name in ["baseline.csv","closure.csv"]:
+                self.assertEqual(sha(folder/city["city"]/name),sha(CASE/"evidence"/city["city"]/name))
+
+    def test_issue39_four_host_claims_and_hash_bound_reviews(self):
+        folder=CASE/"evidence/issue-39"
+        agents=json.loads((folder/"agents.json").read_text(encoding="utf-8"))
+        reviews=json.loads((folder/"narrative-review.json").read_text(encoding="utf-8"))["reviews"]
+        self.assertEqual(agents["task_template_sha256"],sha(CASE/"agent-task-issue-39.md"))
+        self.assertEqual(len(agents["hosts"]),4)
+        for host in agents["hosts"]:
+            key=host["city"]+":"+host["host"]
+            self.assertEqual(host["answer_sha256"],sha(folder/host["city"]/(host["host"]+"-answer.md")))
+            self.assertEqual(host["narrative_review"],reviews[key])
+            self.assertEqual(host["machine_claims"]["status"],"passed")
+            self.assertEqual(host["machine_claims"]["mismatched_fields"],[])
+            self.assertTrue(host["diagnostic_tool_results_match_native"])

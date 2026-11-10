@@ -1,0 +1,11 @@
+{
+  "host": "hermes",
+  "city": "amsterdam",
+  "capability": "walking",
+  "exit_code": 0,
+  "started_at": "2026-11-10T14:28:56.578040+00:00",
+  "elapsed_seconds": 231.533,
+  "submitted_prompt_sha256": "fc05832b8e401a144ab4fbb35f1c9451c37a05aac62de7cf027c73c15ae26177",
+  "task_path": "cases/two-city-walking/agent-task-issue-39.md",
+  "task_template_sha256": "17d050115b3696397f6e9f760860ba82a2179553945403a1d58e1fc03a8464f3"
+}

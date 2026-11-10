@@ -31,11 +31,13 @@ docker compose --profile walking run --rm walking-harvest harvest --mode snapsho
 docker compose --profile walking run --rm walking-harvest harvest --mode snapshot --city amsterdam
 docker compose --profile walking run --rm walking test --city helsinki
 docker compose --profile walking run --rm walking test --city amsterdam
-docker compose --profile walking run --rm --entrypoint python walking -m unittest urban_mcp_walking.test_contracts -v
+docker compose --profile walking run --rm --entrypoint python walking -m unittest urban_mcp_walking.test_contracts urban_mcp_walking.test_runtime -v
 python -m unittest discover -s tests
 ```
 
 The native suite independently joins every CSV row with the exact keyed route export, compares the full diagnostics through MCP, checks the known threshold-identity and overlapping-path regressions, and verifies that baseline/closure CSV bytes remain identical to the original experiment. Synthetic regressions separately test exact-boundary crossings, rerouting, lost reachability, unchanged unreachable objects, reverse directions/parallel keys, avoiding alternatives and invalid evidence.
+
+The suite also issues three simultaneous cold MCP graph/catalog inspections under the existing 3 GB memory cap. Reentrant cache synchronization prevents duplicate graph deserialization; a separate threaded regression requires exactly one load. The earlier saturated attempt and its correction are recorded in `evidence/issue-39/runtime-failure.json`.
 
 ## Repeat the blind host tests
 
@@ -54,6 +56,21 @@ The Linux Hermes config generator uses GNU `env -C <repo>` before Docker to esta
 
 ## Acceptance record
 
-Native/MCP and host evidence is being collected for this version. Consult the [master test record](../../MASTER_TEST_RECORD.md) for completed stages. Do not replace the first experiment's failed narrative verdicts with the outcome of a new answer.
+Both final city suites pass: **84 checks in Helsinki and 83 in Amsterdam**, exercising all 15 tools/resources/prompt, plus seven Docker integrity/concurrency regressions. The repository suite has 32 tests, including nine diagnostic regressions and versioned evidence-integrity checks. [The two-city CI run passed](https://github.com/polisplexity/urban-mcp/actions/runs/42834941975).
+
+All four final Codex/Hermes city runs operate the 15 tools, reproduce native artifacts and full diagnostic responses, and pass the independently checked JSON claim fields. Helsinki reports the exact five crossings and six affected objects still within; Amsterdam reports zero crossings and five affected objects still within. Both selected two-path regression results explicitly use the closed pair in each city, with an empty avoiding-rank list.
+
+Read the [new evidence and prose qualifications](evidence/issue-39/README.md). Codex's observed briefs pass review. Hermes's targeted classification/membership claims now pass, while additional commentary remains qualified and unsuitable for autonomous municipal recommendations. The original failed v1 narratives remain unchanged. Consult the [master record](../../MASTER_TEST_RECORD.md) for the combined test history.
+
+After restoring and running both cities, collect/review without overwriting v1:
+
+```sh
+python tools/collect_walking_evidence.py --workspace "$URBAN_MCP_WALKING_WORKDIR" --output cases/two-city-walking/evidence/issue-39
+# Export the public traces, answers and full selected tool responses to each
+# private host evidence directory; use the exporters' --results-dir option.
+python tools/review_walking_agents.py --codex-suffix issue39-final --hermes-suffix issue39-final --evidence-dir cases/two-city-walking/evidence/issue-39 --task cases/two-city-walking/agent-task-issue-39.md --diagnostics
+```
+
+The suffixes above refer to the final published run labels; use new labels and point each fresh Hermes profile at its corresponding new workspace when contributing a reproduction. Narrative reviews are bound to observed answer hashes and must be renewed for a new answer; do not copy an old review onto it.
 
 The study remains limited to the same central disks and assumptions. Public admission, entrances, barriers, directional foot rules, winter conditions, wheelchair suitability, observed journey times and citywide service adequacy remain unverified. OSM-derived data remains ODbL-1.0, © OpenStreetMap contributors.

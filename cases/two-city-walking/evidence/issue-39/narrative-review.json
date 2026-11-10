@@ -1,0 +1,36 @@
+{
+  "reviewed_on": "2026-11-10",
+  "reviewer": "Primary implementing agent, checked against native CSVs, keyed routes and full selected MCP responses; not municipal field validation",
+  "reviews": {
+    "helsinki:codex": {
+      "answer_sha256": "a9c9059176b622e3c87cc74cf72ca4e7058f98b0eb274927513204f4c01a8225",
+      "status": "passed_for_declared_brief",
+      "targeted_diagnostic_claims": "passed",
+      "checked": ["all five crossing IDs, before/after distances and flags", "all six affected origins still within threshold", "both regression path ranks use the reverse-direction closed keyed edge", "23 shared keyed edges/physical links", "zero scenario paths use the closed pair", "unreachable objects and study/source assumptions", "receipts and explicit absence of agent GraphML reload/prompt retrieval"]
+    },
+    "amsterdam:codex": {
+      "answer_sha256": "f6ae2b36f5caeb8df249d9fbf0a35c7f5aeefda38955ab66afbaa7aa8ffe2d15",
+      "status": "passed_for_declared_brief",
+      "targeted_diagnostic_claims": "passed",
+      "checked": ["zero crossings and all five affected origins still within", "both regression paths use the same closed keyed edge", "11 shared keyed edges/physical links", "actual closure reroute distinguished from original-graph alternatives", "baseline/scenario counts, receipts, denominator and limitations"]
+    },
+    "helsinki:hermes": {
+      "answer_sha256": "96d44383377a60d2a2a98cd3036afee4bcb6ce491910feb97f8b4662758eefa0",
+      "status": "passed_targeted_diagnostics_with_broader_prose_qualifications",
+      "targeted_diagnostic_claims": "passed",
+      "broader_prose_status": "not_admitted_without_review",
+      "checked": ["all five exact crossing IDs and six non-crossing affected IDs", "both route ranks explicitly blocked by the declared link", "correct baseline/scenario membership sets", "full exported diagnostic responses and compact JSON match native evidence"],
+      "qualifications": ["Incorrectly identifies the outside-buffer quality flag as a library point; the flag concerns all harvested features and all 31 accepted libraries pass the buffer/snap rule", "Claims main-component membership/isolation for specific unreachable objects without checking that membership", "Extrapolates a narrow physical shortcut/no close parallel from graph evidence without field verification", "Full answer exceeds the requested compact brief format"],
+      "acceptance_limit": "Issue-39 classification and membership claims pass; additional commentary is not accepted as an autonomous municipal recommendation"
+    },
+    "amsterdam:hermes": {
+      "answer_sha256": "ebfea695dae3548e2d8bf84f6e573fe2a604b9b695c3ffdfbdf3f71e4770b4f1",
+      "status": "passed_targeted_diagnostics_with_broader_prose_qualifications",
+      "targeted_diagnostic_claims": "passed",
+      "broader_prose_status": "not_admitted_without_review",
+      "checked": ["zero crossing IDs and all five non-crossing affected IDs", "both original-graph alternatives correctly described as using the removed pair", "closure reroute remains separate", "full exported diagnostic responses and compact JSON match native evidence"],
+      "qualifications": ["Incorrectly suggests reducing the speed assumption changes the share within a distance threshold; speed only changes estimated_minutes in this recipe", "Speculates about a Westpoort/buffer-edge spatial cluster without a cluster or district-membership analysis", "Refers to a topology check by the export operation; export returns a receipt, while native protocol tests perform the separate GraphML round trip", "Full answer exceeds the requested compact brief format"],
+      "acceptance_limit": "Issue-39 classification and membership claims pass; additional commentary is not accepted as an autonomous municipal recommendation"
+    }
+  }
+}

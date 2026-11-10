@@ -43,6 +43,9 @@ def main():
         records.append({"city": city, "checks_passed": checks["checks_passed"], "tool_count": 15,
                         "manifest_sha256": digest(manifest), "implementation_sha256": checks["implementation_sha256"],
                         "baseline_csv_sha256": digest(out / "baseline.csv"), "closure_csv_sha256": digest(out / "closure.csv"), "map_sha256": digest(out / "map.png")})
+        native=json.loads((out/"native.json").read_text(encoding="utf-8"))
+        if native.get("diagnostics_sha256"):
+            records[-1]["diagnostics_sha256"]=native["diagnostics_sha256"]
     audit = json.loads(args.audit.read_text())
     if not any("same_node_set" in o for o in audit["observations"]):
         raise ValueError("Re-run the audit with the bounded-area native comparison")
@@ -52,6 +55,10 @@ def main():
     canonical_sha = hashlib.sha256(canonical).hexdigest()
     if any(r["implementation_sha256"] != canonical_sha for r in records):
         raise ValueError("Executing engine bytes differ from the committed canonical source")
+    if any("diagnostics_sha256" in r for r in records):
+        canonical_diagnostics=subprocess.check_output(["git","show","HEAD:urban_mcp_walking/diagnostics.py"],cwd=ROOT)
+        if any(r.get("diagnostics_sha256")!=hashlib.sha256(canonical_diagnostics).hexdigest() for r in records):
+            raise ValueError("Executing diagnostics bytes differ from committed canonical source")
     document = {"method": "Fresh public-release restoration in Docker followed by native oracle and MCP stdio subprocess checks in both cities",
                 "code_commit_observed": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
                 "canonical_engine_sha256": canonical_sha, "runtime_lock_sha256": digest(ROOT / "adapters/walking/runtime.lock.txt"),

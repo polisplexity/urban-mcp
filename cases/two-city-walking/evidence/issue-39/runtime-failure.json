@@ -1,0 +1,16 @@
+{
+  "attempt": "initial issue-39 Codex Helsinki run before cache synchronization",
+  "engine_sha256": "3e12edf6c6658a572d53b5e16aefd689265d9109d6deb97ade2a936ea0eb3eb1",
+  "observed": {
+    "completed_case_calls": ["walking_status", "harvest_walking_data"],
+    "concurrent_cold_requests": ["walking_feature_catalog", "walking_graph_info", "walking_feature_catalog"],
+    "container_memory_sample": "3 GiB / 3 GiB",
+    "container_cpu_sample_percent": 23.95,
+    "baseline_completed": false,
+    "action": "Stopped only the owned stalled test CLI/container; no successful workflow admission"
+  },
+  "diagnosis": "Plain functools.lru_cache permits concurrent execution of the same cold miss. Multiple graph deserializations under the sandbox memory cap explain the observed saturation. This diagnosis is supported by source inspection and the added threaded regression, not by a runtime count of each old deserialization.",
+  "fix": "Reentrant synchronization around cached graph loading and preparation. Native numerical algorithms, snapshots, memory cap and routing rules remain unchanged.",
+  "verification": ["Synthetic three-thread cold-load test requires exactly one deserialization and shared object identity", "Real stdio MCP suite performs concurrent cold graph/school/library inspections under the existing resource limits", "All final city/host runs repeat from fresh workspaces on the corrected runtime"],
+  "limits": "This records one observed bounded test failure and its correction, not universal load or concurrency certification."
+}

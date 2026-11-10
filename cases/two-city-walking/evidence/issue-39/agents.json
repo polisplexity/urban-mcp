@@ -1,0 +1,387 @@
+{
+  "task": "cases/two-city-walking/agent-task-issue-39.md",
+  "task_template_sha256": "17d050115b3696397f6e9f760860ba82a2179553945403a1d58e1fc03a8464f3",
+  "task_contains_expected_numerical_answers": false,
+  "workspaces": "Independent and initially empty for each city/host; original host authentication only",
+  "hosts": [
+    {
+      "city": "helsinki",
+      "host": "codex",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 34,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "0091c35f0e99e41afc05fbe362248dd901e7a08b94519a841ae4413fe9950a1f",
+        "closure_csv_sha256": "04ec8cec8305ad8cc144b06ae9131d22ac8d30a4d2d5c5611ac34c0718834b9d",
+        "map_sha256": "e81a86642bd1500f0f712608e736d96f90a99b58d451621cb880e13338f16ad5",
+        "graphml_sha256": "2ea8f1570dfea012a77bd7a7ab0f1042e73660c06e6454cadd8df5f63de495d5",
+        "graphml_export_run_id": "agent-baseline"
+      },
+      "answer_sha256": "a9c9059176b622e3c87cc74cf72ca4e7058f98b0eb274927513204f4c01a8225",
+      "answer_word_count": 730,
+      "diagnostic_tool_results_match_native": true,
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "helsinki",
+          "crossed_threshold_origin_ids": [
+            "node/8862204483",
+            "node/8862204485",
+            "way/1038696462",
+            "way/38192458",
+            "way/592362656"
+          ],
+          "affected_still_within_origin_ids": [
+            "node/1017984829",
+            "way/128161235",
+            "way/139225450",
+            "way/34069317",
+            "way/37295003",
+            "way/37296704"
+          ],
+          "newly_unreachable_origin_ids": [],
+          "baseline_routes_using_closed_link_origin_ids": [
+            "node/1017984829",
+            "node/8862204483",
+            "node/8862204485",
+            "way/1038696462",
+            "way/128161235",
+            "way/139225450",
+            "way/34069317",
+            "way/37295003",
+            "way/37296704",
+            "way/38192458",
+            "way/592362656"
+          ],
+          "scenario_routes_using_closed_link_origin_ids": [],
+          "route_origin_id": "node/1017984829",
+          "path_membership": [
+            {
+              "rank": 1,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            },
+            {
+              "rank": 2,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            }
+          ],
+          "path_ranks_avoiding_declared_closed_links": []
+        },
+        "mismatched_fields": []
+      },
+      "narrative_review": {
+        "answer_sha256": "a9c9059176b622e3c87cc74cf72ca4e7058f98b0eb274927513204f4c01a8225",
+        "status": "passed_for_declared_brief",
+        "targeted_diagnostic_claims": "passed",
+        "checked": [
+          "all five crossing IDs, before/after distances and flags",
+          "all six affected origins still within threshold",
+          "both regression path ranks use the reverse-direction closed keyed edge",
+          "23 shared keyed edges/physical links",
+          "zero scenario paths use the closed pair",
+          "unreachable objects and study/source assumptions",
+          "receipts and explicit absence of agent GraphML reload/prompt retrieval"
+        ]
+      }
+    },
+    {
+      "city": "helsinki",
+      "host": "hermes",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 23,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "0091c35f0e99e41afc05fbe362248dd901e7a08b94519a841ae4413fe9950a1f",
+        "closure_csv_sha256": "04ec8cec8305ad8cc144b06ae9131d22ac8d30a4d2d5c5611ac34c0718834b9d",
+        "map_sha256": "e81a86642bd1500f0f712608e736d96f90a99b58d451621cb880e13338f16ad5",
+        "graphml_sha256": "2ea8f1570dfea012a77bd7a7ab0f1042e73660c06e6454cadd8df5f63de495d5",
+        "graphml_export_run_id": "agent-baseline"
+      },
+      "answer_sha256": "96d44383377a60d2a2a98cd3036afee4bcb6ce491910feb97f8b4662758eefa0",
+      "answer_word_count": 2108,
+      "diagnostic_tool_results_match_native": true,
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "helsinki",
+          "crossed_threshold_origin_ids": [
+            "node/8862204483",
+            "node/8862204485",
+            "way/1038696462",
+            "way/38192458",
+            "way/592362656"
+          ],
+          "affected_still_within_origin_ids": [
+            "node/1017984829",
+            "way/128161235",
+            "way/139225450",
+            "way/34069317",
+            "way/37295003",
+            "way/37296704"
+          ],
+          "newly_unreachable_origin_ids": [],
+          "baseline_routes_using_closed_link_origin_ids": [
+            "node/1017984829",
+            "node/8862204483",
+            "node/8862204485",
+            "way/1038696462",
+            "way/128161235",
+            "way/139225450",
+            "way/34069317",
+            "way/37295003",
+            "way/37296704",
+            "way/38192458",
+            "way/592362656"
+          ],
+          "scenario_routes_using_closed_link_origin_ids": [],
+          "route_origin_id": "node/1017984829",
+          "path_membership": [
+            {
+              "rank": 1,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            },
+            {
+              "rank": 2,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            }
+          ],
+          "path_ranks_avoiding_declared_closed_links": []
+        },
+        "mismatched_fields": []
+      },
+      "narrative_review": {
+        "answer_sha256": "96d44383377a60d2a2a98cd3036afee4bcb6ce491910feb97f8b4662758eefa0",
+        "status": "passed_targeted_diagnostics_with_broader_prose_qualifications",
+        "targeted_diagnostic_claims": "passed",
+        "broader_prose_status": "not_admitted_without_review",
+        "checked": [
+          "all five exact crossing IDs and six non-crossing affected IDs",
+          "both route ranks explicitly blocked by the declared link",
+          "correct baseline/scenario membership sets",
+          "full exported diagnostic responses and compact JSON match native evidence"
+        ],
+        "qualifications": [
+          "Incorrectly identifies the outside-buffer quality flag as a library point; the flag concerns all harvested features and all 31 accepted libraries pass the buffer/snap rule",
+          "Claims main-component membership/isolation for specific unreachable objects without checking that membership",
+          "Extrapolates a narrow physical shortcut/no close parallel from graph evidence without field verification",
+          "Full answer exceeds the requested compact brief format"
+        ],
+        "acceptance_limit": "Issue-39 classification and membership claims pass; additional commentary is not accepted as an autonomous municipal recommendation"
+      }
+    },
+    {
+      "city": "amsterdam",
+      "host": "codex",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 27,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "f246dca57b503e73746e272152a63933fcafdc12500b8aa7d14f4cf86c8fe575",
+        "closure_csv_sha256": "83272b7213f3c4d3716981d780d5272a996aea08e891ff2167cd0bc1dde6dcf0",
+        "map_sha256": "5d154ef0b4f47c0260b27b18f079510ffbbb5e8b22a535ccff9efcac4564796d",
+        "graphml_sha256": "c76f0abd5b41962ce4722ad0e969d9fb78bb49b3f05374ab4c760d363837f44e",
+        "graphml_export_run_id": "agent-graphml"
+      },
+      "answer_sha256": "f6ae2b36f5caeb8df249d9fbf0a35c7f5aeefda38955ab66afbaa7aa8ffe2d15",
+      "answer_word_count": 711,
+      "diagnostic_tool_results_match_native": true,
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "amsterdam",
+          "crossed_threshold_origin_ids": [],
+          "affected_still_within_origin_ids": [
+            "node/2725797085",
+            "node/2741066971",
+            "node/4446826076",
+            "way/904127355",
+            "way/904127931"
+          ],
+          "newly_unreachable_origin_ids": [],
+          "baseline_routes_using_closed_link_origin_ids": [
+            "node/2725797085",
+            "node/2741066971",
+            "node/4446826076",
+            "way/904127355",
+            "way/904127931"
+          ],
+          "scenario_routes_using_closed_link_origin_ids": [],
+          "route_origin_id": "node/2741066971",
+          "path_membership": [
+            {
+              "rank": 1,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            },
+            {
+              "rank": 2,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            }
+          ],
+          "path_ranks_avoiding_declared_closed_links": []
+        },
+        "mismatched_fields": []
+      },
+      "narrative_review": {
+        "answer_sha256": "f6ae2b36f5caeb8df249d9fbf0a35c7f5aeefda38955ab66afbaa7aa8ffe2d15",
+        "status": "passed_for_declared_brief",
+        "targeted_diagnostic_claims": "passed",
+        "checked": [
+          "zero crossings and all five affected origins still within",
+          "both regression paths use the same closed keyed edge",
+          "11 shared keyed edges/physical links",
+          "actual closure reroute distinguished from original-graph alternatives",
+          "baseline/scenario counts, receipts, denominator and limitations"
+        ]
+      }
+    },
+    {
+      "city": "amsterdam",
+      "host": "hermes",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 23,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "f246dca57b503e73746e272152a63933fcafdc12500b8aa7d14f4cf86c8fe575",
+        "closure_csv_sha256": "83272b7213f3c4d3716981d780d5272a996aea08e891ff2167cd0bc1dde6dcf0",
+        "map_sha256": "5d154ef0b4f47c0260b27b18f079510ffbbb5e8b22a535ccff9efcac4564796d",
+        "graphml_sha256": "c76f0abd5b41962ce4722ad0e969d9fb78bb49b3f05374ab4c760d363837f44e",
+        "graphml_export_run_id": "agent-baseline"
+      },
+      "answer_sha256": "ebfea695dae3548e2d8bf84f6e573fe2a604b9b695c3ffdfbdf3f71e4770b4f1",
+      "answer_word_count": 1967,
+      "diagnostic_tool_results_match_native": true,
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "amsterdam",
+          "crossed_threshold_origin_ids": [],
+          "affected_still_within_origin_ids": [
+            "node/2725797085",
+            "node/2741066971",
+            "node/4446826076",
+            "way/904127355",
+            "way/904127931"
+          ],
+          "newly_unreachable_origin_ids": [],
+          "baseline_routes_using_closed_link_origin_ids": [
+            "node/2725797085",
+            "node/2741066971",
+            "node/4446826076",
+            "way/904127355",
+            "way/904127931"
+          ],
+          "scenario_routes_using_closed_link_origin_ids": [],
+          "route_origin_id": "node/2741066971",
+          "path_membership": [
+            {
+              "rank": 1,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            },
+            {
+              "rank": 2,
+              "uses_closed_link": true,
+              "avoids_all_declared_closed_links": false
+            }
+          ],
+          "path_ranks_avoiding_declared_closed_links": []
+        },
+        "mismatched_fields": []
+      },
+      "narrative_review": {
+        "answer_sha256": "ebfea695dae3548e2d8bf84f6e573fe2a604b9b695c3ffdfbdf3f71e4770b4f1",
+        "status": "passed_targeted_diagnostics_with_broader_prose_qualifications",
+        "targeted_diagnostic_claims": "passed",
+        "broader_prose_status": "not_admitted_without_review",
+        "checked": [
+          "zero crossing IDs and all five non-crossing affected IDs",
+          "both original-graph alternatives correctly described as using the removed pair",
+          "closure reroute remains separate",
+          "full exported diagnostic responses and compact JSON match native evidence"
+        ],
+        "qualifications": [
+          "Incorrectly suggests reducing the speed assumption changes the share within a distance threshold; speed only changes estimated_minutes in this recipe",
+          "Speculates about a Westpoort/buffer-edge spatial cluster without a cluster or district-membership analysis",
+          "Refers to a topology check by the export operation; export returns a receipt, while native protocol tests perform the separate GraphML round trip",
+          "Full answer exceeds the requested compact brief format"
+        ],
+        "acceptance_limit": "Issue-39 classification and membership claims pass; additional commentary is not accepted as an autonomous municipal recommendation"
+      }
+    }
+  ],
+  "narrative_review": "See narrative-review.md; numerical artifact equality does not establish factual correctness of every sentence"
+}

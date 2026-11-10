@@ -1,0 +1,1826 @@
+{
+  "city": "amsterdam",
+  "transport": "MCP SDK stdio subprocess",
+  "checks": [
+    {
+      "name": "nonempty graph with disconnected components retained",
+      "passed": true,
+      "detail": {
+        "city": "amsterdam",
+        "nodes": 79384,
+        "edges": 176632,
+        "crs": "epsg:4326",
+        "weak_components": 468,
+        "edge_attributes": [
+          "access",
+          "area",
+          "bridge",
+          "est_width",
+          "foot",
+          "highway",
+          "junction",
+          "lanes",
+          "length",
+          "maxspeed",
+          "name",
+          "oneway",
+          "oneway:foot",
+          "osmid",
+          "ref",
+          "reversed",
+          "service",
+          "sidewalk",
+          "surface",
+          "tunnel",
+          "wheelchair",
+          "width"
+        ],
+        "snapshot_manifest_sha256": "3c2c8dce71deeac129471de1e1a0ce3d8fb17de772b5316288a53f4ac3538e34",
+        "acquired_at": "2026-11-10T13:18:41.849586+00:00",
+        "model": "bidirectional unsimplified OSMnx walk"
+      }
+    },
+    {
+      "name": "nonempty municipal denominator and exact row accounting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every municipal row matches independent forward-Dijkstra/library enumeration",
+      "passed": true,
+      "detail": {
+        "origins_checked": 40,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "closure removes every parallel edge in both directions and preserves input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every explicit school state and membership matches independent CSV/keyed-route join",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "crossing IDs and count match actual row booleans",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged unreachable objects remain explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every scenario path avoids the declared closure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "pinned two-city threshold-identity regression",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "baseline CSV is unchanged from the first admitted experiment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "closure CSV is unchanged from the first admitted experiment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "real-city closure produces a measurable detour or reachability loss",
+      "passed": true,
+      "detail": {
+        "city": "amsterdam",
+        "baseline_id": "check-f9a558e6-native",
+        "scenario_id": "check-f9a558e6-native-scenario",
+        "within_before": 22,
+        "within_after": 22,
+        "diagnostics_version": "2.0",
+        "threshold_m": 1200.0,
+        "closed_links": [
+          {
+            "u": 46386552,
+            "v": 12534903767
+          }
+        ],
+        "origin_count": 40,
+        "affected_count": 5,
+        "crossed_threshold_origin_ids": [],
+        "affected_still_within_origin_ids": [
+          "node/2725797085",
+          "node/2741066971",
+          "node/4446826076",
+          "way/904127355",
+          "way/904127931"
+        ],
+        "left_threshold_coverage_origin_ids": [],
+        "newly_unreachable_origin_ids": [],
+        "transition_counts": {
+          "outside_to_outside": 16,
+          "within_to_within": 22,
+          "unreachable_to_unreachable": 2
+        },
+        "baseline_routes_using_closed_link_origin_ids": [
+          "node/2725797085",
+          "node/2741066971",
+          "node/4446826076",
+          "way/904127355",
+          "way/904127931"
+        ],
+        "scenario_routes_using_closed_link_origin_ids": [],
+        "threshold_crossings": [],
+        "affected_origins": [
+          {
+            "origin_id": "node/2725797085",
+            "origin_name": "Voorschool De Kleine Sint Antonius",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 290.6402977159591,
+            "total_m_after": 402.78398300623644,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 112.14368529027735,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2741066971",
+            "origin_name": "De Witte Olifant",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 185.53112451970844,
+            "total_m_after": 513.6787294131672,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 328.1476048934587,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/4446826076",
+            "origin_name": "Reinwardt Academie",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/2742996051",
+            "total_m_before": 1041.5386862625548,
+            "total_m_after": 1132.9656562271632,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 91.42696996460836,
+            "lost_reachability": false,
+            "destination_changed": true,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/904127355",
+            "origin_name": "De Witte Olifant",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 296.87068522146865,
+            "total_m_after": 409.014370511746,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 112.14368529027735,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/904127931",
+            "origin_name": "De Witte Olifant",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 225.33296871506528,
+            "total_m_after": 553.4805736085241,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 328.14760489345883,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          }
+        ],
+        "schools": [
+          {
+            "origin_id": "node/13430642513",
+            "origin_name": "De Burght",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2722023232",
+            "destination_id_after": "node/2722023232",
+            "total_m_before": 1317.992370542107,
+            "total_m_after": 1317.992370542107,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/13668738451",
+            "origin_name": "Pax",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/9139791976",
+            "destination_id_after": "node/9139791976",
+            "total_m_before": 715.24558608659,
+            "total_m_after": 715.24558608659,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2492759886",
+            "origin_name": "Alan Turing School",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/251154465",
+            "destination_id_after": "node/251154465",
+            "total_m_before": 1829.6287553411655,
+            "total_m_after": 1829.6287553411655,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2720810873",
+            "origin_name": "Vinseschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2722023232",
+            "destination_id_after": "node/2722023232",
+            "total_m_before": 1934.4221767694896,
+            "total_m_after": 1934.4221767694896,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2721575710",
+            "origin_name": "Vinseschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/251154465",
+            "destination_id_after": "node/251154465",
+            "total_m_before": 1547.4633414307482,
+            "total_m_after": 1547.4633414307482,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2721830906",
+            "origin_name": "Altra College Centrum",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13672141869",
+            "destination_id_after": "node/13672141869",
+            "total_m_before": 658.5229179531623,
+            "total_m_after": 658.5229179531623,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2725797085",
+            "origin_name": "Voorschool De Kleine Sint Antonius",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 290.6402977159591,
+            "total_m_after": 402.78398300623644,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 112.14368529027735,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2741066971",
+            "origin_name": "De Witte Olifant",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 185.53112451970844,
+            "total_m_after": 513.6787294131672,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 328.1476048934587,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2743477266",
+            "origin_name": "Basisschool Oostelijke Eilanden",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/251154465",
+            "destination_id_after": "node/251154465",
+            "total_m_before": 1829.774218242137,
+            "total_m_after": 1829.774218242137,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2745485974",
+            "origin_name": "Montessorischool de Eilanden",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2788129544",
+            "destination_id_after": "node/2788129544",
+            "total_m_before": 1382.449424099348,
+            "total_m_after": 1382.449424099348,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2809210415",
+            "origin_name": "Obs De Waterkant",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2772298378",
+            "destination_id_after": "node/2772298378",
+            "total_m_before": 1187.8840581956028,
+            "total_m_after": 1187.8840581956028,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/2809428698",
+            "origin_name": "Muziekpakhuis",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/3649480289",
+            "destination_id_after": "node/3649480289",
+            "total_m_before": 706.0321741071997,
+            "total_m_after": 706.0321741071997,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/4007083453",
+            "origin_name": "Theaterkamer",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/3649480289",
+            "destination_id_after": "node/3649480289",
+            "total_m_before": 267.3908372569991,
+            "total_m_after": 267.3908372569991,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/4446826076",
+            "origin_name": "Reinwardt Academie",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/2742996051",
+            "total_m_before": 1041.5386862625548,
+            "total_m_after": 1132.9656562271632,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 91.42696996460836,
+            "lost_reachability": false,
+            "destination_changed": true,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/4571940319",
+            "origin_name": "Instituto Latino",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13672141869",
+            "destination_id_after": "node/13672141869",
+            "total_m_before": 1055.9499738643917,
+            "total_m_after": 1055.9499738643917,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/472445682",
+            "origin_name": "Dr. Rijk Kramerschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2772298378",
+            "destination_id_after": "node/2772298378",
+            "total_m_before": 1171.6487791010065,
+            "total_m_after": 1171.6487791010065,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/507056906",
+            "origin_name": "SOB",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/3649480289",
+            "destination_id_after": "node/3649480289",
+            "total_m_before": 293.1833807652215,
+            "total_m_after": 293.1833807652215,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/6370540398",
+            "origin_name": "Hyperion Lyceum",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/4249153858",
+            "destination_id_after": "node/4249153858",
+            "total_m_before": 834.67979813756,
+            "total_m_after": 834.67979813756,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "node/7629499604",
+            "origin_name": "Theo Thijssen School",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2722023232",
+            "destination_id_after": "node/2722023232",
+            "total_m_before": 1660.636700144056,
+            "total_m_after": 1660.636700144056,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1015909065",
+            "origin_name": "Barlaeus Gymnasium",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13672141869",
+            "destination_id_after": "node/13672141869",
+            "total_m_before": 874.1296028789429,
+            "total_m_after": 874.1296028789429,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1159107433",
+            "origin_name": "Vrijeschool Amsterdam West",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2321844596",
+            "destination_id_after": "node/2321844596",
+            "total_m_before": 772.4641619181273,
+            "total_m_after": 772.4641619181273,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1452336111",
+            "origin_name": "Aldoende",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2742996051",
+            "destination_id_after": "node/2742996051",
+            "total_m_before": 1292.606661955086,
+            "total_m_after": 1292.606661955086,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1463902628",
+            "origin_name": "Cartesius Lyceum",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2321844596",
+            "destination_id_after": "node/2321844596",
+            "total_m_before": 1306.0386236136037,
+            "total_m_after": 1306.0386236136037,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1491563999",
+            "origin_name": "14e Montessorischool De Jordaan",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13672141869",
+            "destination_id_after": "node/13672141869",
+            "total_m_before": 714.0049608282643,
+            "total_m_after": 714.0049608282643,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1491570252",
+            "origin_name": "De Kleine Reus",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2724102746",
+            "destination_id_after": "node/2724102746",
+            "total_m_before": 1052.4590607919051,
+            "total_m_after": 1052.4590607919051,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1491588221",
+            "origin_name": "Unnamed mapped object",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/251154465",
+            "destination_id_after": "node/251154465",
+            "total_m_before": 1821.439462630221,
+            "total_m_after": 1821.439462630221,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1491595296",
+            "origin_name": "Theo Thijssenschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2321844596",
+            "destination_id_after": "node/2321844596",
+            "total_m_before": 1358.6977530102495,
+            "total_m_after": 1358.6977530102495,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1548814499",
+            "origin_name": "Overhoeks",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/4249153858",
+            "destination_id_after": "node/4249153858",
+            "total_m_before": 789.4510977933131,
+            "total_m_after": 789.4510977933131,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/1548815964",
+            "origin_name": "IJpleinschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/4249153858",
+            "destination_id_after": "node/4249153858",
+            "total_m_before": 1339.2298756799369,
+            "total_m_after": 1339.2298756799369,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/221034001",
+            "origin_name": "Cartesius Lyceum",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2321844596",
+            "destination_id_after": "node/2321844596",
+            "total_m_before": 1318.3809990380146,
+            "total_m_after": 1318.3809990380146,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/268453015",
+            "origin_name": "Asvo",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2724145398",
+            "destination_id_after": "node/2724145398",
+            "total_m_before": 1244.5357566764249,
+            "total_m_after": 1244.5357566764249,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/277094727",
+            "origin_name": "Christelijke basisschool Instituut Schreuder",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/324817976",
+            "destination_id_after": "node/324817976",
+            "total_m_before": 841.0557574868843,
+            "total_m_after": 841.0557574868843,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/384984038",
+            "origin_name": "IJpleinschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/4249153858",
+            "destination_id_after": "node/4249153858",
+            "total_m_before": 1321.8508440229598,
+            "total_m_after": 1321.8508440229598,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/427679639",
+            "origin_name": "Marcanti College",
+            "status_before": "unreachable",
+            "status_after": "unreachable",
+            "destination_id_before": null,
+            "destination_id_after": null,
+            "total_m_before": null,
+            "total_m_after": null,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "unreachable_to_unreachable",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": null,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/444339824",
+            "origin_name": "Theo Thijssenschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2722023232",
+            "destination_id_after": "node/2722023232",
+            "total_m_before": 1414.0625132753964,
+            "total_m_after": 1414.0625132753964,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "outside_to_outside",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/44532028",
+            "origin_name": "Huygens College",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/3649480289",
+            "destination_id_after": "node/3649480289",
+            "total_m_before": 391.9913202254545,
+            "total_m_after": 391.9913202254545,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/517314391",
+            "origin_name": "Boekmanschool",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/2742996051",
+            "destination_id_after": "node/2742996051",
+            "total_m_before": 740.4075360257586,
+            "total_m_after": 740.4075360257586,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 0.0,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/670993791",
+            "origin_name": "Westerparkschool",
+            "status_before": "unreachable",
+            "status_after": "unreachable",
+            "destination_id_before": null,
+            "destination_id_after": null,
+            "total_m_before": null,
+            "total_m_after": null,
+            "within_before": false,
+            "within_after": false,
+            "threshold_transition": "unreachable_to_unreachable",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": null,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": false,
+            "baseline_route_uses_closed_link": false,
+            "baseline_closed_edges_used": [],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/904127355",
+            "origin_name": "De Witte Olifant",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 296.87068522146865,
+            "total_m_after": 409.014370511746,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 112.14368529027735,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          },
+          {
+            "origin_id": "way/904127931",
+            "origin_name": "De Witte Olifant",
+            "status_before": "routed",
+            "status_after": "routed",
+            "destination_id_before": "node/13196135282",
+            "destination_id_after": "node/13196135282",
+            "total_m_before": 225.33296871506528,
+            "total_m_after": 553.4805736085241,
+            "within_before": true,
+            "within_after": true,
+            "threshold_transition": "within_to_within",
+            "crossed_threshold": false,
+            "left_threshold_coverage": false,
+            "gained_threshold_coverage": false,
+            "extra_distance_m": 328.14760489345883,
+            "lost_reachability": false,
+            "destination_changed": false,
+            "affected": true,
+            "baseline_route_uses_closed_link": true,
+            "baseline_closed_edges_used": [
+              {
+                "u": 46386552,
+                "v": 12534903767,
+                "key": 0,
+                "length_m": 19.202529624657387
+              }
+            ],
+            "scenario_route_uses_closed_link": false
+          }
+        ],
+        "removed_directed_edges": [
+          [
+            12534903767,
+            46386552,
+            0
+          ],
+          [
+            46386552,
+            12534903767,
+            0
+          ]
+        ],
+        "interpretation": "Hypothetical removal of both directions and every parallel edge for each node pair; not an observed closure"
+      }
+    },
+    {
+      "name": "closure cannot increase threshold coverage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "synthetic regression: actual minimum parallel-edge key is used",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_status / success",
+      "passed": true,
+      "detail": {
+        "seconds": 1.233,
+        "error": null
+      }
+    },
+    {
+      "name": "harvest_walking_data / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.556,
+        "error": null
+      }
+    },
+    {
+      "name": "walking_graph_info / success",
+      "passed": true,
+      "detail": {
+        "seconds": 7.288,
+        "error": null
+      }
+    },
+    {
+      "name": "walking_feature_catalog / success",
+      "passed": true,
+      "detail": {
+        "seconds": 7.372,
+        "error": null
+      }
+    },
+    {
+      "name": "walking_feature_catalog / success",
+      "passed": true,
+      "detail": {
+        "seconds": 7.411,
+        "error": null
+      }
+    },
+    {
+      "name": "parallel cold-start inspections share one graph without resource exhaustion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_graph_info / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.217,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP graph identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_feature_catalog / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.022,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP feature identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_snap / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.111,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP snap distance and node identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nearest-node result agrees with brute-force great-circle distances",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_node / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.003,
+        "error": null
+      }
+    },
+    {
+      "name": "node lookup is original graph data",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_edge / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.002,
+        "error": null
+      }
+    },
+    {
+      "name": "edge lookup retains original length",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_accessibility / success",
+      "passed": true,
+      "detail": {
+        "seconds": 1.332,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP baseline summaries identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_read_artifact / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP accessibility CSV exactly identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_read_artifact / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.014,
+        "error": null
+      }
+    },
+    {
+      "name": "route export pagination is bounded and agrees with native bytes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_accessibility / success",
+      "passed": true,
+      "detail": {
+        "seconds": 2.931,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP closure summaries identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_compare / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.035,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP detour lists identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native/MCP complete school/route diagnostics identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_route / success",
+      "passed": true,
+      "detail": {
+        "seconds": 2.239,
+        "error": null
+      }
+    },
+    {
+      "name": "alternative paths have nondecreasing correct keyed costs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "single-route total matches municipal CSV",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_route / success",
+      "passed": true,
+      "detail": {
+        "seconds": 2.146,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP route ranks, membership and overlap identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "closed-link annotations agree with exact keyed edges",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "both regression alternatives use the closed link",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "overlap counts are backed by independently intersected keyed edges",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_route / success",
+      "passed": true,
+      "detail": {
+        "seconds": 2.243,
+        "error": null
+      }
+    },
+    {
+      "name": "reversing closure-pair orientation preserves diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_isochrone / success",
+      "passed": true,
+      "detail": {
+        "seconds": 0.11,
+        "error": null
+      }
+    },
+    {
+      "name": "isochrone node count and sample match native cutoff including snap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_network_stats / success",
+      "passed": true,
+      "detail": {
+        "seconds": 1.849,
+        "error": null
+      }
+    },
+    {
+      "name": "network statistics match native with positive finite entropy",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_export_graph / success",
+      "passed": true,
+      "detail": {
+        "seconds": 12.885,
+        "error": null
+      }
+    },
+    {
+      "name": "GraphML round trip preserves nodes, keyed edges and lengths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_render_map / success",
+      "passed": true,
+      "detail": {
+        "seconds": 6.878,
+        "error": null
+      }
+    },
+    {
+      "name": "map is a nonempty PNG with reproducible receipt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource walking://case",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource walking://amsterdam/manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource walking://amsterdam/graph",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "municipal prompt is discoverable and explicit about denominator",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "walking_graph_info / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.072,
+        "error": "Error calling tool 'walking_graph_info': city must be helsinki or amsterdam"
+      }
+    },
+    {
+      "name": "harvest_walking_data / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.016,
+        "error": "Error calling tool 'harvest_walking_data': mode must be snapshot or live"
+      }
+    },
+    {
+      "name": "walking_accessibility / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.028,
+        "error": "Error calling tool 'walking_accessibility': run_id must be a simple alphanumeric identifier (max 64 characters)"
+      }
+    },
+    {
+      "name": "walking_accessibility / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.032,
+        "error": "Error calling tool 'walking_accessibility': threshold_m must be finite, positive and at most 1850"
+      }
+    },
+    {
+      "name": "walking_accessibility / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.033,
+        "error": "Error calling tool 'walking_accessibility': speed_kph must be finite, positive and at most 10"
+      }
+    },
+    {
+      "name": "walking_accessibility / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 1.31,
+        "error": "Error calling tool 'walking_accessibility': closure link does not exist in the input graph"
+      }
+    },
+    {
+      "name": "walking_accessibility / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 2.291,
+        "error": "Error calling tool 'walking_accessibility': run_id already exists; choose a new identifier to preserve evidence"
+      }
+    },
+    {
+      "name": "walking_snap / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.017,
+        "error": "Error calling tool 'walking_snap': coordinate is outside the buffered study area"
+      }
+    },
+    {
+      "name": "walking_feature_catalog / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": "Error calling tool 'walking_feature_catalog': amenity must be all, school or library"
+      }
+    },
+    {
+      "name": "walking_route / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.129,
+        "error": "Error calling tool 'walking_route': Unknown feature_id; inspect the feature catalog"
+      }
+    },
+    {
+      "name": "walking_route / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.034,
+        "error": "Error calling tool 'walking_route': k must be 1..3"
+      }
+    },
+    {
+      "name": "walking_node / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.009,
+        "error": "Error calling tool 'walking_node': node_id does not exist in the input graph"
+      }
+    },
+    {
+      "name": "walking_edge / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": "Error calling tool 'walking_edge': edge does not exist in the input graph"
+      }
+    },
+    {
+      "name": "walking_read_artifact / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.034,
+        "error": "Error calling tool 'walking_read_artifact': artifact name is not allowed"
+      }
+    },
+    {
+      "name": "walking_read_artifact / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.034,
+        "error": "Error calling tool 'walking_read_artifact': offset must be nonnegative and limit must be 1..50000"
+      }
+    },
+    {
+      "name": "walking_compare / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.044,
+        "error": "Error calling tool 'walking_compare': Compare an unmodified baseline with a declared closure scenario"
+      }
+    },
+    {
+      "name": "walking_route / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.034,
+        "error": "Error calling tool 'walking_route': closed link does not exist in the input graph"
+      }
+    },
+    {
+      "name": "walking_route / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.035,
+        "error": "Error calling tool 'walking_route': closed_links must be a list of at most ten node pairs"
+      }
+    },
+    {
+      "name": "all exposed tools exercised",
+      "passed": true,
+      "detail": {
+        "advertised": [
+          "harvest_walking_data",
+          "walking_accessibility",
+          "walking_compare",
+          "walking_edge",
+          "walking_export_graph",
+          "walking_feature_catalog",
+          "walking_graph_info",
+          "walking_isochrone",
+          "walking_network_stats",
+          "walking_node",
+          "walking_read_artifact",
+          "walking_render_map",
+          "walking_route",
+          "walking_snap",
+          "walking_status"
+        ],
+        "exercised": [
+          "harvest_walking_data",
+          "walking_accessibility",
+          "walking_compare",
+          "walking_edge",
+          "walking_export_graph",
+          "walking_feature_catalog",
+          "walking_graph_info",
+          "walking_isochrone",
+          "walking_network_stats",
+          "walking_node",
+          "walking_read_artifact",
+          "walking_render_map",
+          "walking_route",
+          "walking_snap",
+          "walking_status"
+        ]
+      }
+    }
+  ],
+  "tools_exercised": [
+    "walking_status",
+    "harvest_walking_data",
+    "walking_graph_info",
+    "walking_feature_catalog",
+    "walking_feature_catalog",
+    "walking_graph_info",
+    "walking_feature_catalog",
+    "walking_snap",
+    "walking_node",
+    "walking_edge",
+    "walking_accessibility",
+    "walking_read_artifact",
+    "walking_read_artifact",
+    "walking_accessibility",
+    "walking_compare",
+    "walking_route",
+    "walking_route",
+    "walking_route",
+    "walking_isochrone",
+    "walking_network_stats",
+    "walking_export_graph",
+    "walking_render_map",
+    "walking_graph_info",
+    "harvest_walking_data",
+    "walking_accessibility",
+    "walking_accessibility",
+    "walking_accessibility",
+    "walking_accessibility",
+    "walking_accessibility",
+    "walking_snap",
+    "walking_feature_catalog",
+    "walking_route",
+    "walking_route",
+    "walking_node",
+    "walking_edge",
+    "walking_read_artifact",
+    "walking_read_artifact",
+    "walking_compare",
+    "walking_route",
+    "walking_route"
+  ],
+  "failures": [],
+  "protocol_version": "2025-11-25",
+  "native_baseline": "check-f9a558e6-native",
+  "native_scenario": "check-f9a558e6-native-scenario",
+  "mcp_baseline": "check-f9a558e6-mcp",
+  "mcp_scenario": "check-f9a558e6-mcp-scenario",
+  "input_manifest_sha256": "3c2c8dce71deeac129471de1e1a0ce3d8fb17de772b5316288a53f4ac3538e34",
+  "implementation_sha256": "a2d4ddf61f6f1ca6ae547b33e6962386281a5412c9d308c831b964d81969153d",
+  "source_attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright",
+  "checks_passed": 83
+}

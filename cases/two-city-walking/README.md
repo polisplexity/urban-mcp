@@ -4,6 +4,8 @@ This case tests a real data-to-engine-to-MCP-to-agent workflow in **two central 
 
 Start with the project [master test record](../../MASTER_TEST_RECORD.md). See the [municipal findings and maps](findings.md), [upstream audit and implementation decisions](upstream-audit.md), [function coverage](functionality.md), [data recipe](recipe.json), [snapshot locks](snapshot.lock.json) and [blind agent task](agent-task.md). Results and host admission are recorded only after execution, in `evidence/`.
 
+The [issue-39 revision](issue-39.md) adds explicit per-school threshold transitions and closed-link route membership, preserves the original numerical results, and repeats the two-city Codex/Hermes tests with a [versioned task](agent-task-issue-39.md). Its evidence is stored separately under `evidence/issue-39/`; the original v1 observations and verdicts remain historical evidence.
+
 ## Scope and inputs
 
 | Item | Helsinki | Amsterdam |
