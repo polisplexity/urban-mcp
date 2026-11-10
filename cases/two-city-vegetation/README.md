@@ -6,10 +6,10 @@ The implementation reuses [JordanGunn/gdal-mcp](https://github.com/JordanGunn/gd
 
 ## Reproduce without an agent account
 
-Use Linux or WSL with Docker Engine/Compose. Until PR #42 is merged, check out its feature branch and record the exact commit. Do not overwrite earlier workspaces or evidence.
+Use Linux or WSL with Docker Engine/Compose. PR #42 is merged; reproduce from `main` and record the exact commit. Do not overwrite earlier workspaces or evidence. The [integration receipt](../../docs/integration/2026-11-10-vegetation-main.json) separates merged-source checks from the original versioned host observations.
 
 ```bash
-git clone --branch feat/two-city-vegetation https://github.com/polisplexity/urban-mcp.git
+git clone --branch main https://github.com/polisplexity/urban-mcp.git
 cd urban-mcp
 git rev-parse HEAD
 export URBAN_MCP_UID="$(id -u)"
@@ -27,6 +27,8 @@ for city in helsinki amsterdam; do
 done
 docker compose --profile vegetation run --rm --entrypoint env vegetation -u GDAL_MCP_WORKSPACES python -m pytest /opt/gdal-mcp/test -q -o cache_dir=/tmp/pytest-cache
 ```
+
+For an existing checkout, first preserve any local changes, then run `git switch main` and `git pull --ff-only origin main`. The snapshot test commands above reproduce the committed observation, rather than acquiring a newer municipal boundary/population revision. Agent tests remain opt-in and use existing private host authentication.
 
 Expected deterministic result: **110 checks in Helsinki, 131 in Amsterdam**, all 21 exposed tools and every resource/prompt family, 12 synthetic categorical/integrity regressions and 69 original-server regressions. Page counts differ because Amsterdam has more zones. The independent native oracle counts class values separately within each polygon window; it does not call the production label/bincount aggregation. It checks every zone/class, strict threshold flags, population reconciliation, paged full summaries and exact original numerical CSV bytes.
 

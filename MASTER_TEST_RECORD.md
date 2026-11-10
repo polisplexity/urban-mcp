@@ -14,9 +14,11 @@ The [required qualification rule](docs/product-qualification.md) separates devel
 
 The [qualification register](registry/product-qualification.json) records `product_qualified=false` for all three capabilities. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed. The destination final repository/release must be named in a later reviewed promotion change.
 
-## Reproduce the integrated source
+## Reproduce the current integrated source
 
-The vegetation work below is an additional development branch, not part of the earlier merged integration receipt. Use its explicit branch/commit instructions until PR #42 is merged.
+PR [#42](https://github.com/polisplexity/urban-mcp/pull/42) is merged into `main` at [6f929fc](https://github.com/polisplexity/urban-mcp/commit/6f929fc3f1c0b2ccd8166496f8fd641c5efa73f5), following #1 → #37 → #38 → #40. There were no merge conflicts. Clone/update `main`, record `git rev-parse HEAD` and follow the English [vegetation Docker/live/snapshot/host guide](cases/two-city-vegetation/README.md), [inventory guide](cases/helsinki-service-inventory/README.md) or [walking diagnostics guide](cases/two-city-walking/issue-39.md). Preserve old workspaces, observations and answer hashes.
+
+The [vegetation integration receipt](docs/integration/2026-11-10-vegetation-main.json) records the reviewed PR head, merge/source equality, CI heads/results and source/evidence fingerprints. Documentation changes after the merge do not create new Codex/Hermes observations. The earlier integration receipt below remains historical evidence for #1–#40. Final-product qualification is still pending independent-person reproduction in a third city.
 
 ## Historical vegetation: two-city evidence, issue #35 / PR #42
 
@@ -40,9 +42,9 @@ Useful failures are retained. Original explicit raster dimensions shrink the foo
 
 Helsinki's population difference of 13,682 remains unresolved. Amsterdam's known zone sum differs by 11, district counts are randomly rounded to five, and Groot water population is unknown; it has actual mapped land and becomes low at 0.40. NoData coverage is not classification confidence. Tree-class area is not fractional canopy; global accuracy is not local validation. These tests do not establish current vegetation, access, heat exposure, causality, every upstream function or independent-person final-product qualification. Issue #41 remains the separate independent walking task.
 
-## Previously integrated source
+## Earlier integration, retained for audit
 
-Use `main` for the combined implementation: RFC #1 → Helsinki inventory #37 → two-city walking #38 → diagnostic revision #40. Record `git rev-parse HEAD` for every independent reproduction. Follow the English [inventory guide](cases/helsinki-service-inventory/README.md), [two-city Docker guide](cases/two-city-walking/README.md), [current walking task/export/review procedure](cases/two-city-walking/issue-39.md) and [agent runbook](docs/agents/day-zero.md). Use fresh data workspaces and new host labels; preserve published observations and failed answers unchanged.
+The earlier combined implementation was RFC #1 → Helsinki inventory #37 → two-city walking #38 → diagnostic revision #40. Vegetation #42 is now included as described above. Record `git rev-parse HEAD` for every independent reproduction. The English [two-city walking Docker guide](cases/two-city-walking/README.md), [walking task/export/review procedure](cases/two-city-walking/issue-39.md) and [agent runbook](docs/agents/day-zero.md) remain applicable. Use fresh workspaces and new host labels; preserve published observations and failed answers unchanged.
 
 Integration checks repeat the deterministic suites. Existing Codex/Hermes observations remain bound to their original task, source and answer hashes; a merge or documentation translation is not a fresh LLM experiment. Historical research, tasks and observed transcripts retain their original language and bytes.
 
