@@ -1,15 +1,465 @@
 {
-  "observed_at": "2026-11-10T21:51:32.618348+00:00",
+  "observed_at": "2026-11-10T22:07:25.881180+00:00",
   "repository": "https://github.com/polisplexity/urban-mcp",
-  "integration_status": "waiting_for_main_ci",
-  "reviewed_pr_head": "fb251f456ac3c0bf4d764ce5a1b13307e9ece3b4",
+  "integration_status": "passed",
   "integrated_main_commit": "aadfde719309e62d04fffd3edc100345d425873d",
-  "reviewed_tree": "c434b9f4660d5328d282b76fde3c429c774ecb08",
-  "merged_tree": "c434b9f4660d5328d282b76fde3c429c774ecb08",
-  "conflicts": "None",
-  "host_runs_repeated_during_integration": false,
-  "host_evidence": "cases/two-city-sumo/evidence/agents.json",
-  "prose_review": "cases/two-city-sumo/evidence/narrative-review.json",
-  "product_qualified": false,
-  "independent_sumo_reproduction": "https://github.com/polisplexity/urban-mcp/issues/44"
+  "documented_main_commit": "3d54c77fefa1cd6327b4b0bdf3cbc319b7b48291",
+  "pull_request": {
+    "baseRefName": "main",
+    "headRefOid": "fb251f456ac3c0bf4d764ce5a1b13307e9ece3b4",
+    "mergeCommit": {
+      "oid": "aadfde719309e62d04fffd3edc100345d425873d"
+    },
+    "mergedAt": "2026-11-10T21:49:38Z",
+    "number": 43,
+    "reviews": [],
+    "state": "MERGED",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:23:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423662/job/130138569910",
+        "name": "municipal",
+        "startedAt": "2026-11-10T21:22:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Helsinki municipal native and MCP case"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:22:54Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423761/job/130138570613",
+        "name": "validate",
+        "startedAt": "2026-11-10T21:22:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Planning contracts and reference data"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:22:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904412926/job/130138533428",
+        "name": "validate",
+        "startedAt": "2026-11-10T21:22:32Z",
+        "status": "COMPLETED",
+        "workflowName": "Planning contracts and reference data"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:25:03Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423801/job/130138569834",
+        "name": "sumo (bologna)",
+        "startedAt": "2026-11-10T21:22:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city historical SUMO native and MCP"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:24:58Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904412916/job/130138534223",
+        "name": "sumo (bologna)",
+        "startedAt": "2026-11-10T21:22:32Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city historical SUMO native and MCP"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:23:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423744/job/130138569728",
+        "name": "vegetation (helsinki)",
+        "startedAt": "2026-11-10T21:22:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city vegetation native and MCP"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:28:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423793/job/130138570035",
+        "name": "walking (helsinki)",
+        "startedAt": "2026-11-10T21:22:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city walking native and MCP"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:40:14Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423801/job/130138570159",
+        "name": "sumo (ingolstadt)",
+        "startedAt": "2026-11-10T21:22:37Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city historical SUMO native and MCP"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:40:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904412916/job/130138534912",
+        "name": "sumo (ingolstadt)",
+        "startedAt": "2026-11-10T21:22:33Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city historical SUMO native and MCP"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:23:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423744/job/130138570201",
+        "name": "vegetation (amsterdam)",
+        "startedAt": "2026-11-10T21:22:37Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city vegetation native and MCP"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-10T21:25:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/polisplexity/urban-mcp/actions/runs/42904423793/job/130138570467",
+        "name": "walking (amsterdam)",
+        "startedAt": "2026-11-10T21:22:37Z",
+        "status": "COMPLETED",
+        "workflowName": "Two-city walking native and MCP"
+      }
+    ],
+    "title": "Add auditable two-city historical SUMO works experiments and MCP reuse",
+    "url": "https://github.com/polisplexity/urban-mcp/pull/43"
+  },
+  "review": {
+    "kind": "Operator-requested primary-agent source/evidence review; not an independent-person qualification review",
+    "reviewed_pr_head": "fb251f456ac3c0bf4d764ce5a1b13307e9ece3b4",
+    "reviewed_tree": "c434b9f4660d5328d282b76fde3c429c774ecb08",
+    "merged_tree": "c434b9f4660d5328d282b76fde3c429c774ecb08",
+    "blocking_findings": [],
+    "conflicts": "None; merge tree is identical to the reviewed PR tree",
+    "scope": [
+      "Exact source harvesting, licenses/hash locks, original-source reuse and explicit operation boundaries",
+      "Native scheduled/cohort state accounting, insertion delay, censoring, teleport exclusions and strict threshold comparisons",
+      "Immutable run IDs, source/path/time guards, owned native process budgets and stdio lifecycle",
+      "Complete observed source/artifact pages, native/host equality, strict JSON claims and explicit failed prose",
+      "Pinned runtime, shared Compose/client compatibility, existing case CI and main-based English runbooks"
+    ],
+    "inline_comments_observed": 0,
+    "host_runs_repeated_during_integration": false,
+    "original_host_source_commit": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf",
+    "host_evidence": "cases/two-city-sumo/evidence/agents.json",
+    "prose_reviews": "cases/two-city-sumo/evidence/narrative-review.json",
+    "limits": "Computational historical-model reproduction only. Preserve both failed Hermes briefs and Ingolstadt native quality events; this merge does not validate current forecasts or final-product promotion."
+  },
+  "ci_on_integrated_main": [
+    {
+      "conclusion": "success",
+      "databaseId": 42908781019,
+      "headSha": "aadfde719309e62d04fffd3edc100345d425873d",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908781019",
+      "workflowName": "Helsinki municipal native and MCP case",
+      "jobs": [
+        {
+          "name": "municipal",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908781019/job/130153621341"
+        }
+      ],
+      "public_log_sha256": "5f44c9f511beb57f500f744d7c63e7ff4931ad27ed5342f4a2d91514edb1b82c",
+      "public_log_count_checks": {
+        "inventory_72_checks": true,
+        "original_69_regressions": true
+      }
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42908780824,
+      "headSha": "aadfde719309e62d04fffd3edc100345d425873d",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780824",
+      "workflowName": "Two-city vegetation native and MCP",
+      "jobs": [
+        {
+          "name": "vegetation (helsinki)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780824/job/130153620351"
+        },
+        {
+          "name": "vegetation (amsterdam)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780824/job/130153620782"
+        }
+      ],
+      "public_log_sha256": "469e55dc39183035acc3f1325552bbc47e50f859f19fc718f6572ff900248a79",
+      "public_log_count_checks": {
+        "helsinki_110_checks": true,
+        "amsterdam_131_checks": true,
+        "twelve_synthetic_regressions_each_job": true,
+        "original_69_regressions_each_job": true
+      }
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42908780877,
+      "headSha": "aadfde719309e62d04fffd3edc100345d425873d",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780877",
+      "workflowName": "Two-city walking native and MCP",
+      "jobs": [
+        {
+          "name": "walking (helsinki)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780877/job/130153620496"
+        },
+        {
+          "name": "walking (amsterdam)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780877/job/130153621120"
+        }
+      ],
+      "public_log_sha256": "faef35e5836afef0b5d5189d076655de4019a79c2137936172103e36498d2217",
+      "public_log_count_checks": {
+        "helsinki_84_checks": true,
+        "amsterdam_83_checks": true
+      }
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42908781018,
+      "headSha": "aadfde719309e62d04fffd3edc100345d425873d",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908781018",
+      "workflowName": "Planning contracts and reference data",
+      "jobs": [
+        {
+          "name": "validate",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908781018/job/130153621180"
+        }
+      ],
+      "public_log_sha256": "3f4dfaa468ac316b352b0c3af5fb0311977a65b449d5a7a520061fe2100c4397",
+      "public_log_count_checks": {
+        "repository_tests_42": true
+      }
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42908780937,
+      "headSha": "aadfde719309e62d04fffd3edc100345d425873d",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780937",
+      "workflowName": "Two-city historical SUMO native and MCP",
+      "jobs": [
+        {
+          "name": "sumo (bologna)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780937/job/130153620786"
+        },
+        {
+          "name": "sumo (ingolstadt)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42908780937/job/130153621081"
+        }
+      ],
+      "public_log_sha256": "bf9a817ca677f2329e3569569774d59df33f5a411a53012f756e2a77610e8246",
+      "public_log_count_checks": {
+        "bologna_80_checks": true,
+        "ingolstadt_73_checks": true,
+        "all_native_protocol_checks_pass": true,
+        "ten_synthetic_regressions_each_job": true,
+        "seven_source_probes_each_job": true
+      }
+    }
+  ],
+  "ci_on_documented_main": [
+    {
+      "conclusion": "success",
+      "databaseId": 42909170966,
+      "headSha": "3d54c77fefa1cd6327b4b0bdf3cbc319b7b48291",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42909170966",
+      "workflowName": "Planning contracts and reference data",
+      "jobs": [
+        {
+          "name": "validate",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42909170966/job/130154960895"
+        }
+      ],
+      "public_log_sha256": "17949bb2d1fba4e1d73d297ac3853a6d56bac08b09b62620005f9d4104e692a9",
+      "public_log_count_checks": {
+        "repository_tests_42": true
+      }
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42909171096,
+      "headSha": "3d54c77fefa1cd6327b4b0bdf3cbc319b7b48291",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42909171096",
+      "workflowName": "Two-city historical SUMO native and MCP",
+      "jobs": [
+        {
+          "name": "sumo (ingolstadt)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42909171096/job/130154961179"
+        },
+        {
+          "name": "sumo (bologna)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42909171096/job/130154961511"
+        }
+      ],
+      "public_log_sha256": "63bdd8954863be8152d6b4fdca91587d5543b86097a12ed9362aab064e5b049f",
+      "public_log_count_checks": {
+        "bologna_80_checks": true,
+        "ingolstadt_73_checks": true,
+        "all_native_protocol_checks_pass": true,
+        "ten_synthetic_regressions_each_job": true,
+        "seven_source_probes_each_job": true
+      }
+    }
+  ],
+  "local_validation": {
+    "metadata_contracts": "passed; 229 tools, 37 source channels, 49 profiles and eight scoped cases",
+    "repository_tests": 42,
+    "synthetic_docker_tests": 10,
+    "isolated_original_method_source_probes": 7,
+    "metadata_docker_preflight": "passed",
+    "case_data_preflight": [
+      {
+        "city": "bologna",
+        "input_manifest_sha256": "222f6219f89468e1c1e3d775a0fbf767cbe5f3916278fef1642b10bb1e15ee3d",
+        "asset_count": 10,
+        "prepared_files_identical_to_reviewed_case": true,
+        "scheduled_vehicles": 8772,
+        "corridor_cohort_vehicles": 1348
+      },
+      {
+        "city": "ingolstadt",
+        "input_manifest_sha256": "6dfdc367fdfc2f9167e5e44112ca1d9e5b976396cee773a4dc3336f1d1c16956",
+        "asset_count": 7,
+        "prepared_files_identical_to_reviewed_case": true,
+        "scheduled_vehicles": 6492,
+        "corridor_cohort_vehicles": 320
+      }
+    ],
+    "scientific_runtime_verified_by_metadata_check": false
+  },
+  "source_sha256": {
+    "adapters/municipal_inventory/Dockerfile": "0b6004f67184e84906f20ee90903df87a99ae746aad96e57015b7c50a569b8db",
+    "adapters/municipal_inventory/UPSTREAM-LICENSE": "395f97a89a38a33ac560bae2fbe1722957cbb8ff384f928dba4cb6865bdbdf85",
+    "adapters/municipal_inventory/apply_compat.py": "67cc49cbfe595a41bd4397e90ef2d6a8e5e0e435871936588da72a7726d1f08f",
+    "adapters/municipal_inventory/upstream-constraints.txt": "176133d08397a21bfa5d2abcae9b9c3ac11656fdb16d5f643f23228f6701cb84",
+    "adapters/sumo/Dockerfile": "532b274853e3d031cc2c67a0187e68657c74efe3f8c4a232e81c41a222b305a2",
+    "adapters/sumo/runtime.lock.txt": "1bfad0c63144e153bdffb793164282ff7abd0d88b3a99c68a7b233455cdb36d2",
+    "adapters/vegetation/Dockerfile": "0ff9b1a4af15367e4631aeca3a41037fce0e8c1fc3f8386758453ac500567be4",
+    "adapters/vegetation/runtime.lock.txt": "435258e8f4bae1e5d304d8f4d472c5324b214c0de13aea4b3af062e9d10dd7d5",
+    "adapters/walking/Dockerfile": "08645b06f283e29e0bac46edadcd4cd8be74ddcfc2a0d8ffdd0b4a88f2bf3a3f",
+    "adapters/walking/requirements.txt": "94ec310d15913470b094881618bf70a53510b3a8903f5a6a8307dce40c756cd7",
+    "adapters/walking/runtime.lock.txt": "5a23839d0542debfe13b11e54ae2a493f0c288dcc4a679a2645fdbdfa09cbd4c",
+    "cases/bologna-sumo/case.json": "68876581f4a69c7d7be072f077fc17afe45e50986114d61f0a1767e358def77b",
+    "cases/ingolstadt-sumo/case.json": "2996f15dcd140d0a70f1a5e118b43fa438d8cfade3afff42c980754fdc68c1e3",
+    "cases/two-city-sumo/recipe.json": "17bff20f00b8afa22588ec05a5f22603bc308c3f0a2916f32e000e5b8b6f606a",
+    "cases/two-city-sumo/snapshot.lock.json": "c4d65da901028f89e846d4d58b2d8a9162c5586ad2c7c5a8d5d516fffc8496f4",
+    "compose.yaml": "0cf74e072d2b3bdfa269df83a39e0590b96469fe4178bc9563242b37fc648391",
+    "planning/backlog.json": "4fab2b6f73fe1dfdba8a517497f7becc2183dadd8211775df0208c355567cda8",
+    "planning/data-profiles.tsv": "f5ee4f3b4224b280475c86a0f0e9fc12dc8ec01df4aa47941e161c5c9e367d2a",
+    "planning/data-sources.tsv": "f035bd4b744d7890e723be86d07abd6c24e1ad179c8ca9c6c8877ac7e717b416",
+    "planning/tool-data-map.tsv": "f203bead62c12a92b374c94bcee368acdb3e82140a828f7d78446a413d5dc859",
+    "registry/data-profiles.json": "4ba0138306e51ad8bdca3f1f2d508224e95955b9255ae9640f5c1f4f987aafae",
+    "registry/product-qualification.json": "09b55107444aee05f93c2d5f12609d06516fac4ab699436579411e838565c005",
+    "registry/sources.json": "a4ab9b7f91d5e3fa0f6f6ffe7482dda21ff19f95a1a8e43231f6b22c718961b9",
+    "registry/tools.json": "fcf077ec2452bc8d3978e346ebe412ed887d96d04358823625519f4073015d6c",
+    "tools/audit_osmnx_upstream.py": "84235f6e9e14b9bed7e7840629e7cf8efeba4d37a9e1cfaf376bfbf4c6edb07b",
+    "tools/audit_sumo_upstream.py": "4a4d83c988cd8e4f2a208a24d921f9aa6a4bec2ef5f5b010ace06bb4fb4857be",
+    "tools/audit_vegetation_upstream.py": "d6c9fdc8e517ae4dc8a255d3a0beb4569a158ad0fe112480b03998582682b59b",
+    "tools/bootstrap_data_maps.py": "3dc90aec95418e4efc111e4135dd3ca9ea431e212085f0ef3ba3018c7a10ca7f",
+    "tools/build_data_registry.py": "f827b8759ebf27b745d502d0ec6856277813b64ae68ab7f1faa91b9491d04353",
+    "tools/build_planning_catalog.py": "9195b2ec10db7015821d4cf64d81db8dd9f415c44d1cabeb06ec4b2b4f4a482e",
+    "tools/check_sumo_live.py": "a2d9740ef8948b8a49d455731b50466cf4593e5f9b7a9c33b3e684b37e2a4887",
+    "tools/client_config.py": "dce1712c074a365fd5e0f8a5a22e47d9b942c2ec73000e6800107c5c7abdf65f",
+    "tools/collect_sumo_evidence.py": "54b7c658e905bc5e5414caa2ab7dc4465ce034b58375fb1a5a0937f848353a8c",
+    "tools/collect_vegetation_evidence.py": "23b9fcf5df6e039ab5fda9e6ad3bc3abbf5c5edfcbfe1ec5edef3ccb9881b6fa",
+    "tools/collect_walking_evidence.py": "8b7d0f7d7ee40fac52a71b9def167f74751e13d0c00cdb655b7b74a3d31fdf89",
+    "tools/export_codex_trace.py": "d0a134807ac4e4e651fdb23cfcba0adae4f73a1a305f5f2c160ebf0b0b8c2b53",
+    "tools/export_hermes_trace.py": "4f49d9707e273da15792fb5771f550b65564af776561bc3b9ea46f02e293f276",
+    "tools/export_sumo_trace.py": "e9253cc03f2f0df605e2b4928dd7eb59cd489d44438a748ae26aca4215f9e65b",
+    "tools/package_sumo_data.py": "30ad8155048be2651cdc51e1cbc2b56f03667112ffff506e35201b29864607d2",
+    "tools/package_vegetation_data.py": "6052897579cf26dba50d677a731565206ce5763b4d55e79cc495e1e13d324632",
+    "tools/package_walking_data.py": "a4a8b940b322b65a331b0f34371aa9bf5b28979f8b50335155dbca05bcb767e0",
+    "tools/public_mcp_results.py": "947d480e38a72685156bfebec7024fbe3ce53ddad216ae3c4456bf0cbaa04300",
+    "tools/reference_case.py": "86c92816cace24137c80485eb6e983d7b6932db7314551dfd4a2ac70ebb8a44f",
+    "tools/review_sumo_agents.py": "999df0897d78e1633149e5ca5d93fdb3e67c10adde8b6e8dace929695b7fa365",
+    "tools/review_vegetation_agents.py": "4ee98de7245aa0abc9704e6616c4d4f63e13321b064d15d894768cff7b457077",
+    "tools/review_walking_agents.py": "71578dda460778a8c74f3ec4ad4d4fae3c062a39b1f1baaa75d02fa1f21842ab",
+    "tools/run_agent_check.py": "4ba5a8f62da68678c02de8da963ab345c38ccdf7664eb49603b8777ebfd7c4a1",
+    "tools/validate.py": "8add4b4b1408084659873c6badf86f34bfce89010b4d5979b491ab8aa4538adb",
+    "urban_mcp_case/__init__.py": "91d2c793362a4edad9382b4de7a605ebc43bcf6f4bcfe11968d2fe167aac46ef",
+    "urban_mcp_case/__main__.py": "2ff86d8662519e754f837c92fd4c054eca5f0a23fedb004bcbf967158adc27e1",
+    "urban_mcp_case/analysis.py": "9fde032309eab69d28b82dd7602e2adad648972ea35cd069cdbe0435fd8d3776",
+    "urban_mcp_case/cli.py": "7eabe40535f815236813734aa71eb1d820465ba1619fd9bb1059e13c92f38e99",
+    "urban_mcp_case/mcp_check.py": "c2edc6e910eabfd86427a59e83d0e7c30a8db41b9b96e1d3826e8f0176d06224",
+    "urban_mcp_case/server.py": "339c2c1271c76077b78903a6731b62bb6fc9d5d7eeb8db6edad42b2809d91620",
+    "urban_mcp_case/sources.py": "168616faa1f7872e42ee234d6bc4aa3a6ba097e780a3e9abc0573f15f1cfc0ed",
+    "urban_mcp_sumo/__init__.py": "6a33bc23e1e37a2fc61fe1e18f531c703f6244ba41b4e954591472c79b6347ec",
+    "urban_mcp_sumo/__main__.py": "5a3f17ad67faa8e4f9574f529eb48cdc5dc84845fbcb7012e9b2c813f6aacca1",
+    "urban_mcp_sumo/checks.py": "f2b2b0ef407c5c1d79382c7f9863f65bdb05a314fe3cce00c6c263a60fa074b8",
+    "urban_mcp_sumo/compat.py": "05a096845c2c0695fe87d557fb69bff3ab424d6f78eda48910231470a6271d49",
+    "urban_mcp_sumo/data.py": "54ac6da2430612772fb3c3a2ddb95f48a479b213280383f4ea95ef9e90540051",
+    "urban_mcp_sumo/engine.py": "16184b4f7a80dfa0bd9425424c621074f031799ffe74f572da7420214e85a6f8",
+    "urban_mcp_sumo/server.py": "014dc2afaaf2f40f17533c150f7b0b312b20d320ac79e25403bbfe7aa1b9f96c",
+    "urban_mcp_sumo/test_contracts.py": "abd0a9c7315a0b9df17e88f4e1526fdf30c7cb7bfd6be7b2d4d7fb9fa57a47a9",
+    "urban_mcp_vegetation/__init__.py": "15fce7c73191f786525d7d22b7be342424f16e086984a86f218eae3bd0649b20",
+    "urban_mcp_vegetation/__main__.py": "70bedb5b2e4699bb0183be058085911410a06a4bff7e893e2855465fb00c397a",
+    "urban_mcp_vegetation/checks.py": "9bf5aa1ba63a33e3c4e4117deec0f29641e2f7089c5c9956d040639b2bbe48fc",
+    "urban_mcp_vegetation/data.py": "83a978aea8334bd60421fec5296b9946ffc730333e26dda0c42641e2c0c16d96",
+    "urban_mcp_vegetation/engine.py": "6ef350b48c2d0b2055866c700d58f0330daf0ef64e0c75e3a59723ced3999b91",
+    "urban_mcp_vegetation/interface.py": "224dd2ae880280859421997cf3342a8f4e910b1b7ed4883586d3c2c41e644874",
+    "urban_mcp_vegetation/server.py": "addd379e62ba233e4615bed965c8040de61430aad6f94260adbd3844fdf226c3",
+    "urban_mcp_vegetation/test_contracts.py": "e91048fd20460f59b11a713bdca80a86b08623aa5d8f1152f78829acab783a21",
+    "urban_mcp_walking/__init__.py": "bc84d76a8091ba9578c36ddd9b584c8a99cf3084f6b7d50fa8f822556a22a160",
+    "urban_mcp_walking/__main__.py": "16279acc4b8d84fd33086dc9d6735d8ca9a98e51968cdc08f273776e4291fbbd",
+    "urban_mcp_walking/checks.py": "a94d0ad443896edd5dadbaee154257554d87c7312b94080b9d314f00960f7eb2",
+    "urban_mcp_walking/data.py": "4026fd03a95069203943eaaee30dbc1d6f6619f021a9c27045de5ee96b009d47",
+    "urban_mcp_walking/diagnostics.py": "ad3a3a462c2a69852c422c0dd44213a897d7dcb04402aa6f31d1c8d73d4e59cf",
+    "urban_mcp_walking/engine.py": "a2d4ddf61f6f1ca6ae547b33e6962386281a5412c9d308c831b964d81969153d",
+    "urban_mcp_walking/server.py": "16fc002d41e667e3b856555f0a0ec33983d89a2727f94c795d8dc68e80ae57de",
+    "urban_mcp_walking/test_contracts.py": "44d0fb6995b7a25a8b63eb94dbe2f7decb96ee2ac54b329bab6c3796a94d538c",
+    "urban_mcp_walking/test_runtime.py": "505e048f412d36f79da6c59a2dc8b75eb7ba87f54cc0205105ef131412854b4c"
+  },
+  "all_observed_case_evidence_files": 278,
+  "all_observed_case_evidence_tree_sha256": "dc17bef17343c217fd1ace482de240b474d0a703bdf5384f82a0e912e1cca775",
+  "documented_main_source_data_and_all_observed_evidence_unchanged": true,
+  "independent_tasks": {
+    "walking": {
+      "assignees": [],
+      "number": 41,
+      "state": "OPEN",
+      "url": "https://github.com/polisplexity/urban-mcp/issues/41"
+    },
+    "historical_sumo": {
+      "assignees": [],
+      "number": 44,
+      "state": "OPEN",
+      "url": "https://github.com/polisplexity/urban-mcp/issues/44"
+    }
+  },
+  "product_qualification": {
+    "register": "registry/product-qualification.json",
+    "all_capabilities_product_qualified": false,
+    "independent_person_third_city": "pending"
+  },
+  "documentation_followup": "README, master, SUMO Docker/live/snapshot/MCP/two-host instructions, agent runbook, roadmap and public contribution task select main. Documentation/integration receipts do not create new LLM or field observations."
 }
