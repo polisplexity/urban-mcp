@@ -16,6 +16,7 @@ COPY --from=native /opt/epa /opt/epa
 ADD --checksum=sha256:e31265cb5d63cf7c3c760e66b0a42e09a7736053754f2cb933f0fe80dfcfc136 https://codeload.github.com/foundanotusedname/pyswmm-mcp/tar.gz/a4db37b45d3b30dcfbd80fc0162a8238e727a80f /tmp/pyswmm-mcp.tar.gz
 RUN mkdir /opt/pyswmm-mcp && tar -xzf /tmp/pyswmm-mcp.tar.gz -C /opt/pyswmm-mcp --strip-components=1 && cp -a /opt/pyswmm-mcp /opt/pyswmm-runtime
 COPY adapters/swmm/patch_linux_watchdog.py /opt/patch_linux_watchdog.py
+COPY adapters/swmm/linux_watchdog.py /opt/swmm-linux-watchdog.py
 RUN python /opt/patch_linux_watchdog.py /opt/pyswmm-runtime > /opt/linux-watchdog-receipt.json && python -m pip install --no-deps /opt/pyswmm-runtime
 ADD --chmod=644 --checksum=sha256:ac1098a1573c59eac6d99216f86edd6ce9701ecbfb3440b0af8cc2c4f69302db https://raw.githubusercontent.com/pyswmm/pyswmm/80b9d558f3f235cc347ac8eb9f03d01fe9c55463/pyswmm/tests/data/model_full_features.inp /opt/fixture/model_full_features.inp
 RUN chmod 755 /opt/fixture

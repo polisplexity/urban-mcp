@@ -96,7 +96,11 @@ async def run(city):
                     for typ in ['node','link','subcatchment','raingage','lid_control']:
                         await call('model_list_objects',{'input_path':input_path,'object_type':typ})
                     short=await call('simulation_run',{'input_path':input_path})
-                    await call('run_summary',{'run_id':short['run_id']})
+                    short_summary=await call('run_summary',{'run_id':short['run_id']})
+                    from swmm_api import read_rpt_file
+                    short_report=read_rpt_file(data.root()/'runs'/short['artifacts']['report'],encoding='cp1252')
+                    for key,reported in [('runoff_error',short_report.runoff_quantity_continuity['Continuity Error (%)']),('flow_routing_error',short_report.flow_routing_continuity['Continuity Error (%)'])]:
+                        check('native short-run mass balance captured before close '+key,abs(short[key]-reported)<=.00051)
                     await call('output_inspect',{'output_path':short['artifacts']['output']})
                     mcp_results={}
                     for name in ['baseline','capacity75']:
@@ -109,6 +113,8 @@ async def run(city):
                         for key in ['nodes','listed_flooding_nodes','nodes_at_or_above_10m3','sum_reported_node_flood_volume_m3','system_flooding_loss_m3','routing_continuity_error_percent','runoff_continuity_error_percent','report_precipitation_mm','warnings']:
                             check('native/MCP '+name+' '+key,result[key]==native[name][key])
                         receipt['mcp'][name]=result
+                        for key,reported in [('runoff_error',result['runoff_continuity_error_percent']),('flow_routing_error',result['routing_continuity_error_percent'])]:
+                            check('native full-run mass balance captured before close '+name+' '+key,abs(result['original_result'][key]-reported)<=.00051)
                     comparison=await call('compare_swmm_runs',{'city':city,'baseline_run_id':mcp_results['baseline']['run_id'],'scenario_run_id':mcp_results['capacity75']['run_id']})
                     receipt['comparison']=comparison
                     for name in ['comparison.csv','comparison.json','nodes.csv','outfalls.csv','summary.json','binding.json']:

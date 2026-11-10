@@ -6,6 +6,10 @@ from pathlib import Path
 import tempfile
 import unittest
 import zipfile
+import multiprocessing as mp
+import os
+import threading
+import time
 from . import data,engine
 
 
@@ -13,6 +17,28 @@ def dmi(start,value=1,valid=True):
     return {'id':start.isoformat(),'geometry':{'coordinates':[10.3304,55.4748]},'properties':{
         'stationId':'06120','parameterId':'acc_precip','timeResolution':'hour','from':start.isoformat(),
         'to':(start+dt.timedelta(hours=1)).isoformat(),'validity':valid,'value':value}}
+
+
+def _watchdog_worker(connection,owner):
+    from pyswmm_mcp.worker import _start_parent_watchdog
+    _start_parent_watchdog(owner);connection.send(os.getpid());connection.close()
+    # PyDLL retains the GIL during this native call; a Python thread watchdog
+    # would be unable to run. The external pidfd watcher must still kill it.
+    import ctypes
+    ctypes.PyDLL(None).sleep(120)
+
+
+def _watchdog_owner(connection):
+    def creator():
+        child=mp.get_context('spawn').Process(target=_watchdog_worker,args=(connection,os.getpid()),daemon=True)
+        child.start()
+    thread=threading.Thread(target=creator);thread.start();thread.join()
+    time.sleep(120)
+
+
+def _alive(pid):
+    try:os.kill(pid,0);return True
+    except ProcessLookupError:return False
 
 
 class Contracts(unittest.TestCase):
@@ -77,6 +103,22 @@ class Contracts(unittest.TestCase):
             'XSECTIONS':[['b','CIRCULAR','1'],['a','CIRCULAR','1'],['huge','CIRCULAR','5']]}
         target=engine.select_target(src)
         self.assertEqual(target['conduit_id'],'a');self.assertEqual(target['scenario_diameter_m'],.75)
+
+    def test_linux_worker_survives_creator_thread_exit_then_dies_with_owner_process(self):
+        context=mp.get_context('spawn');parent,child=context.Pipe(duplex=False)
+        owner=context.Process(target=_watchdog_owner,args=(child,));owner.start();child.close();pid=None
+        try:
+            self.assertTrue(parent.poll(10),'Watchdog worker did not report readiness')
+            pid=parent.recv();time.sleep(.5)
+            self.assertTrue(_alive(pid),'Creator-thread exit killed worker while owner process lived')
+            owner.kill();owner.join(5)
+            deadline=time.monotonic()+5
+            while _alive(pid) and time.monotonic()<deadline:time.sleep(.05)
+            self.assertFalse(_alive(pid),'Owner process death left native worker alive')
+        finally:
+            if owner.is_alive():owner.kill();owner.join(5)
+            if pid is not None and _alive(pid):os.kill(pid,9)
+            parent.close()
 
 
 if __name__=='__main__':unittest.main()
