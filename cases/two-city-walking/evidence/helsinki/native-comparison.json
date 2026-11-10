@@ -1,0 +1,78 @@
+{
+  "city": "helsinki",
+  "baseline_id": "check-a1446382-native",
+  "scenario_id": "check-a1446382-native-scenario",
+  "within_before": 45,
+  "within_after": 40,
+  "affected_origins": [
+    {
+      "origin_id": "node/1017984829",
+      "extra_distance_m": 556.3381533973072,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "node/8862204483",
+      "extra_distance_m": 279.4981809680262,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "node/8862204485",
+      "extra_distance_m": 279.4981809680262,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/1038696462",
+      "extra_distance_m": 493.9087061260434,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/128161235",
+      "extra_distance_m": 431.67274525407186,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/139225450",
+      "extra_distance_m": 87.0078868556102,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/34069317",
+      "extra_distance_m": 530.1604877575638,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/37295003",
+      "extra_distance_m": 649.0353461499444,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/37296704",
+      "extra_distance_m": 376.0576694197073,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/38192458",
+      "extra_distance_m": 284.88299122491503,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/592362656",
+      "extra_distance_m": 233.88995931551062,
+      "lost_reachability": false
+    }
+  ],
+  "affected_count": 11,
+  "removed_directed_edges": [
+    [
+      501610897,
+      5912225309,
+      0
+    ],
+    [
+      5912225309,
+      501610897,
+      0
+    ]
+  ],
+  "interpretation": "Hypothetical removal of both directions and every parallel edge for each node pair; not an observed closure"
+}

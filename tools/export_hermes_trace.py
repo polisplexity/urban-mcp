@@ -13,8 +13,11 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--state-db",type=Path,required=True)
     parser.add_argument("--output",type=Path,required=True)
+    parser.add_argument("--task",default="cases/helsinki-service-inventory/agent-task.md")
+    parser.add_argument("--city",choices=["helsinki","amsterdam"],default="helsinki")
+    parser.add_argument("--answer-output",type=Path)
     args=parser.parse_args()
-    task=(Path(__file__).resolve().parents[1]/"cases/helsinki-service-inventory/agent-task.md").read_text(encoding="utf-8").strip()
+    task=(Path(__file__).resolve().parents[1]/args.task).read_text(encoding="utf-8").replace("{{city}}",args.city).strip()
     connection=sqlite3.connect(args.state_db.resolve().as_uri()+"?mode=ro",uri=True)
     connection.row_factory=sqlite3.Row
     selected=None
@@ -40,6 +43,11 @@ def main():
     document={"host":"Hermes","model":selected["model"],"started_at":selected["started_at"],"ended_at":selected["ended_at"],"calls":calls,"note":"A null ended_at is retained as recorded by the host; process exit and artifacts are checked separately. No private configuration or reasoning exported."}
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(document,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    if args.answer_output:
+        final=connection.execute("select content from messages where session_id=? and role='assistant' and (tool_calls is null or tool_calls='' or tool_calls='[]') order by id desc limit 1",(selected["id"],)).fetchone()
+        if final is None:raise ValueError("No final assistant answer recorded")
+        args.answer_output.parent.mkdir(parents=True,exist_ok=True)
+        args.answer_output.write_text(final["content"]+"\n",encoding="utf-8")
     print(json.dumps({"host":"Hermes","model":selected["model"],"calls":len(calls),"tools":sorted(set(str(c["tool"]) for c in calls))}))
 
 

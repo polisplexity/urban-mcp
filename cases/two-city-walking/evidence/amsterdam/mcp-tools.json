@@ -1,0 +1,645 @@
+[
+  {
+    "name": "walking_status",
+    "title": null,
+    "description": "Discover both cities, exact recipe, data readiness, assumptions and limitations.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {},
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "harvest_walking_data",
+    "title": null,
+    "description": "Restore hash-locked public data (snapshot), or explicitly harvest live OSM into a fresh workspace. Never silently refresh. The live route needs network access and may take minutes.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "mode": {
+          "default": "snapshot",
+          "type": "string"
+        }
+      },
+      "required": [
+        "city"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": true
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_graph_info",
+    "title": null,
+    "description": "Graph topology, CRS, acquisition time, components and input identity.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_feature_catalog",
+    "title": null,
+    "description": "Inspect harvested school/library OSM IDs, representative points, access tags and study-core membership. No live API call.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "amenity": {
+          "default": "all",
+          "type": "string"
+        },
+        "core_only": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "city"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_snap",
+    "title": null,
+    "description": "Nearest node and snap distance in meters; reject remote coordinates, flag snaps over the fixed 150 m rule.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "latitude": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "city",
+        "longitude",
+        "latitude"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_accessibility",
+    "title": null,
+    "description": "School-to-nearest-library network analysis. Export CSV, exact keyed routes, summary and report. Include snap connectors in destination choice and totals. New run_id required. A closure {u,v} removes both directions and all parallel edges; no closures means baseline. Threshold <=1850 m; speed is an explicit scenario assumption, never measured.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "threshold_m": {
+          "default": 1200,
+          "type": "number"
+        },
+        "speed_kph": {
+          "default": 4.8,
+          "type": "number"
+        },
+        "closures": {
+          "anyOf": [
+            {
+              "items": {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "city",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_compare",
+    "title": null,
+    "description": "Compare compatible baseline and link-closure runs; identify detours, loss of reachability and threshold changes. Removing edges cannot shorten shortest paths.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "baseline_id": {
+          "type": "string"
+        },
+        "scenario_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "baseline_id",
+        "scenario_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_route",
+    "title": null,
+    "description": "One to three alternative length-shortest paths between harvested feature IDs, with actual parallel-edge keys and endpoint connector distances. Paths are general walking proxies.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "origin_id": {
+          "type": "string"
+        },
+        "destination_id": {
+          "type": "string"
+        },
+        "k": {
+          "default": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "city",
+        "origin_id",
+        "destination_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_isochrone",
+    "title": null,
+    "description": "Reachable graph-node count after subtracting the origin snap connector from the distance budget, with a bounded node sample. Not a coverage polygon or population calculation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "budget_m": {
+          "default": 1200,
+          "type": "number"
+        },
+        "sample_limit": {
+          "default": 20,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "city",
+        "longitude",
+        "latitude"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_network_stats",
+    "title": null,
+    "description": "Components, directed total edge length and orientation entropy. Unsimplified nodes include shape points; do not call them intersections.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_node",
+    "title": null,
+    "description": "Inspect a harvested OSM node and its outgoing neighbors without downloading anything.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "node_id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "city",
+        "node_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_edge",
+    "title": null,
+    "description": "Inspect a specific directed parallel edge and its length/OSM tags.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "u": {
+          "type": "integer"
+        },
+        "v": {
+          "type": "integer"
+        },
+        "key": {
+          "default": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "city",
+        "u",
+        "v"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_export_graph",
+    "title": null,
+    "description": "Export a fresh GraphML copy to the mounted results workspace; verify topology by reloading it. Does not rewrite the input snapshot.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_render_map",
+    "title": null,
+    "description": "Render a baseline/scenario's exact routes and study boundary in the city's metric CRS, with OSM attribution. Output map.png stays in the mounted results directory.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  },
+  {
+    "name": "walking_read_artifact",
+    "title": null,
+    "description": "Read bounded pages from a run's allowlisted outputs. Inspect CSV/report/routes or obtain SHA-256 and size of PNG/GraphML; arbitrary paths are refused.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "name": {
+          "default": "summary.json",
+          "type": "string"
+        },
+        "offset": {
+          "default": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 20000,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "city",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": {
+      "fastmcp": {
+        "tags": []
+      }
+    },
+    "execution": null
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "host": "codex",
+  "city": "helsinki",
+  "capability": "walking",
+  "exit_code": 0,
+  "started_at": "2026-11-10T13:41:04.380624+00:00",
+  "elapsed_seconds": 236.906,
+  "submitted_prompt_sha256": "3701462440e4fb2f3c5c2d92bca7622fe3f3ccf042671359b7af297e784f72ea",
+  "task_template_sha256": "3f870b0139e0c064d6946e80a298c688fafa572ed2e572162b6ae9c4979bc7c1"
+}

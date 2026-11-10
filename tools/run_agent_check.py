@@ -1,6 +1,8 @@
 """Run the public blind task using an installed host and its own authentication.
 
-No provider credential is read, copied, printed or provisioned by this script.
+No provider credential is copied, printed or provisioned by this script.
+Only registered MCP names are retained from the host's configuration,
+to disable unrelated registrations in this process without editing host config.
 Hermes requires an independently configured test profile with this MCP enabled.
 """
 import argparse
@@ -9,8 +11,13 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import re
+import tomllib
+import hashlib
+import time
+from datetime import datetime, timezone
 
-from client_config import NAME, ROOT, server_config
+from client_config import ROOT, server_config, server_name
 
 
 def toml_inline(value):
@@ -25,30 +32,50 @@ def main():
     parser.add_argument("--hermes-home",help="An isolated, already-authenticated Hermes test profile")
     parser.add_argument("--hermes-executable",help="Explicit path when Hermes is not on PATH")
     parser.add_argument("--label",default="trial",help="New label preserves earlier runs and observations")
+    parser.add_argument("--capability",choices=["inventory","walking"],default="inventory")
+    parser.add_argument("--city",choices=["helsinki","amsterdam"],default="helsinki")
     args=parser.parse_args()
     if not args.label.replace("-","").replace("_","").isalnum():raise SystemExit("Use a simple alphanumeric label")
     out=ROOT/".urban-mcp/agent-evidence"/(args.host+"-"+args.label)
     out.mkdir(parents=True,exist_ok=False)
     work=out/"work";work.mkdir()
-    prompt=(ROOT/"cases/helsinki-service-inventory/agent-task.md").read_text(encoding="utf-8")+"\nYour host name is "+args.host+".\n"
+    task="cases/two-city-walking/agent-task.md" if args.capability=="walking" else "cases/helsinki-service-inventory/agent-task.md"
+    prompt=(ROOT/task).read_text(encoding="utf-8").replace("{{city}}",args.city)+"\nYour host name is "+args.host+".\n"
+    name=server_name(args.capability)
     env=dict(os.environ)
+    started_at=datetime.now(timezone.utc).isoformat()
+    started=time.monotonic()
     if args.host=="codex":
         executable=shutil.which("codex")
         if not executable:raise SystemExit("Install/configure Codex CLI with your account first")
-        cfg=server_config(ROOT/".urban-mcp"/("codex-"+args.label),args.wsl_distro)
+        cfg=server_config(ROOT/".urban-mcp"/("codex-"+args.label),args.wsl_distro,args.capability)
         cfg.update(startup_timeout_sec=60,tool_timeout_sec=300,required=True,default_tools_approval_mode="approve")
+        config_path=Path(os.environ.get("CODEX_HOME",str(Path.home()/".codex")))/"config.toml"
+        host_config=tomllib.loads(config_path.read_text(encoding="utf-8")) if config_path.exists() else {}
+        registrations=list(host_config.get("mcp_servers",{}))
+        del host_config
+        overrides=[]
+        for registered_name in registrations:
+            if registered_name!=name:
+                if not re.fullmatch(r"[A-Za-z0-9_-]+",registered_name):
+                    raise ValueError("A registered MCP name cannot be safely represented as a CLI configuration key")
+                overrides.extend(["-c","mcp_servers."+registered_name+".enabled=false"])
+        del registrations
         # Approval is scoped to this case server in this explicitly requested
         # benchmark; the agent shell remains read-only and is forbidden by task.
-        command=[executable,"-a","never","exec","--ephemeral","--json","--skip-git-repo-check","-s","read-only","-C",str(work),"-c","mcp_servers="+toml_inline({NAME:cfg}),"-c",'web_search="disabled"',"-o",str(out/"answer.md"),"-"]
+        command=[executable,"-a","never","exec","--ephemeral","--json","--skip-git-repo-check","-s","read-only","-C",str(work),"-c","mcp_servers="+toml_inline({name:cfg}),*overrides,"-c","features.apps=false","-c","features.plugins=false","-c",'web_search="disabled"',"-o",str(out/"answer.md"),"-"]
         stdin=prompt
     else:
         executable=args.hermes_executable or shutil.which("hermes")
         if not executable or not args.hermes_home:raise SystemExit("Use an installed Hermes and --hermes-home pointing to an isolated configured test profile")
         env["HERMES_HOME"]=str(Path(args.hermes_home).resolve())
-        command=[executable,"chat","-Q","--ignore-rules","--source","tool","-t",NAME,"--max-turns","45","-q",prompt]
+        command=[executable,"chat","-Q","--ignore-rules","--source","tool","-t",name,"--max-turns","45","-q",prompt]
         stdin=None
     with (out/"events.log").open("w",encoding="utf-8") as stdout,(out/"stderr.log").open("w",encoding="utf-8") as stderr:
         result=subprocess.run(command,input=stdin,encoding="utf-8",env=env,cwd=work,stdout=stdout,stderr=stderr,timeout=900)
+    (out/"process.json").write_text(json.dumps({"host":args.host,"city":args.city,"capability":args.capability,"exit_code":result.returncode,
+        "started_at":started_at,"elapsed_seconds":round(time.monotonic()-started,3),"submitted_prompt_sha256":hashlib.sha256(prompt.encode()).hexdigest(),
+        "task_template_sha256":hashlib.sha256((ROOT/task).read_bytes()).hexdigest()},indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"host":args.host,"exit_code":result.returncode,"evidence":str(out),"note":"Exit code alone is not admission: inspect tool calls, compare numeric/table artifacts and review claims."}))
     raise SystemExit(result.returncode)
 

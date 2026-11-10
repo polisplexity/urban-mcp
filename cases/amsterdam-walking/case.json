@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.1.0",
+  "id": "amsterdam-walking",
+  "tool_id": "gboeing--osmnx",
+  "status": "admitted",
+  "data_class": "project_observations",
+  "source_ids": [
+    "osm-overpass",
+    "urban-mcp-snapshots"
+  ],
+  "assets": [
+    {
+      "file": "amsterdam-walking-20261110.zip",
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-walking-20261110/amsterdam-walking-20261110.zip",
+      "source_id": "urban-mcp-snapshots",
+      "sha256": "8480f923237a51d444f4dd5c225cffa23b1203edb0bb2844ac2c2da54e39da23",
+      "bytes": 8358946,
+      "license_status": "reviewed_for_declared_use",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright"
+    }
+  ],
+  "input_binding": {
+    "raw_network": "Recorded Overpass walk query -> OSMnx 2.1.1 public graph_from_polygon -> unsimplified MultiDiGraph, all components retained -> GraphML",
+    "raw_features": "Recorded OSM school/library query -> OSMnx features GeoDataFrame -> filtered input geometries -> projected representative points",
+    "analysis_crs": "EPSG:28992",
+    "storage_crs": "EPSG:4326",
+    "native": "OSMnx 2.1.1 and NetworkX 3.7 public APIs, municipal recipe in urban_mcp_walking.engine",
+    "mcp": "Separately implemented MIT FastMCP 3.4.2 adapter, 15 tools; no unlicensed third-party MCP source redistributed",
+    "scope": "2 km core plus 2 km extra graph buffer; denominator mapped core amenity=school objects; destinations amenity=library excluding access=no/private; max snap 150 m",
+    "distance": "Minimum graph length plus both unverified straight snap connectors; threshold 1200 m; minutes assume 4.8 km/h",
+    "scenario": "Remove both directions and all parallel edges for the explicitly selected node-pair link; hypothetical, not observed works"
+  },
+  "runtime_lock": "adapters/walking/runtime.lock.txt",
+  "engine_status": "verified",
+  "mcp_binding_status": "verified",
+  "expected_result_status": "verified",
+  "ready_to_run": true,
+  "blockers": [],
+  "mcp_tools": [
+    "harvest_walking_data",
+    "walking_accessibility",
+    "walking_compare",
+    "walking_edge",
+    "walking_export_graph",
+    "walking_feature_catalog",
+    "walking_graph_info",
+    "walking_isochrone",
+    "walking_network_stats",
+    "walking_node",
+    "walking_read_artifact",
+    "walking_render_map",
+    "walking_route",
+    "walking_snap",
+    "walking_status"
+  ],
+  "scope": "Only this central study disk, pinned OSM observations, 1200 m school-object/library experiment, documented route/statistics/export operations and hypothetical closure. No complete municipal territory, public admission, population, wheelchair, calibrated time or full OSMnx admission.",
+  "municipal_case": {
+    "municipality": {
+      "country_code": "NL",
+      "geographic_id": "GM0363",
+      "name": "Amsterdam"
+    },
+    "question": "Which mapped school objects in the central study disk have a modeled library route within 1200 m, and what changes under one declared link closure?",
+    "data_access": "public_reproducible",
+    "harvest_manifest": "cases/two-city-walking/evidence/amsterdam/harvest.json",
+    "native_evidence": "cases/two-city-walking/evidence/amsterdam/native.json",
+    "mcp_evidence": "cases/two-city-walking/evidence/amsterdam/mcp.json",
+    "reproduction_evidence": "cases/two-city-walking/evidence/agents.json"
+  },
+  "agent_acceptance": {
+    "codex": "All 15 tools and exact artifacts verified; observed brief passed primary-agent factual review",
+    "hermes": "All 15 tools and exact artifacts verified; free prose failed factual review and is NOT admitted for unsupervised municipal recommendations",
+    "evidence": "cases/two-city-walking/evidence/narrative-review.json"
+  },
+  "admission_meaning": "Reproducible computational workflow for this declared study area and parameters, not authoritative service adequacy or autonomous planning advice"
+}
