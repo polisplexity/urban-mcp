@@ -1,0 +1,230 @@
+repository|profile|note
+APA-Technology-Division/urban-and-regional-planning-resources|none|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+durbanitas/awesome-urban-planning|none|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Ireliya/Awesome-Urban-Planning-Agents|none|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+sacridini/Awesome-Geospatial|none|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+FIWARE/tutorials.Step-by-Step|none|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ProfRino/bonsai-bim-skills|none|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+tsinghua-fib-lab/CityBench|none|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+duckdb/duckdb-spatial|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+geopandas/geopandas|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+geotools/geotools|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+locationtech/jts|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+OSGeo/gdal|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+OSGeo/grass|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+OSGeo/PROJ|vector|An operation requires control coordinates, datum/epoch and grids when applicable; not an arbitrary feature collection.
+qgis/QGIS|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+r-spatial/sf|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+shapely/shapely|vector|Planar geometries and explicitly declared measurement units; no full CRS transformation service is supplied by Shapely.
+JordanGunn/gdal-mcp|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+jjsantos01/qgis_mcp|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+mahdin75/gis-mcp|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+nkarasiak/qgis-mcp|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+piatkowski/qgis-mcp|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+OSGeo/grass-mcp|vector|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+rasterio/rasterio|raster|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+rspatial/terra|raster|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+saga-gis/saga-gis|raster|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+jblindsay/whitebox-tools|raster|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+opengeos/whitebox-python|raster|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+natcap/pygeoprocessing|raster|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+postgis/postgis|spatial-db|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+benchmark-urbanism/cityseer-api|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+gboeing/osmnx|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+msradam/osmnx-mcp|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+jagan-shanmugam/open-streetmap-mcp|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+SpaceGroupUCL/depthmapX|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Project-OSRM/osrm-backend|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+GIScience/openrouteservice|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+valhalla/valhalla|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+eclipse-sumo/sumo|sumo|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+XRDS76354/SUMO-MCP-Server|sumo|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+a-b-street/abstreet|sumo|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+opentripplanner/OpenTripPlanner|transit|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+conveyal/r5|transit|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+conveyal/analysis-backend|transit|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+r5py/r5py|transit|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ipea/r5r|transit|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+MobilityData/gtfs-validator|transit|Only the GTFS feed is required for validation; street graph and trip query belong to routing cases, not this operation.
+ActivitySim/activitysim|demand|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ActivitySim/populationsim|demand|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+matsim-org/matsim-libs|demand|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UDST/synthpop|demand|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CityScope/CS_Mobility_Service|demand|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ipea/accessibility|accessibility|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+USEPA/Stormwater-Management-Model|swmm|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pyswmm/pyswmm|swmm|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+MarkusPic/swmm_api|swmm|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+kLabUM/SWMM-MCP-PUB|swmm|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Zhonghao1995/agentic-swmm-workflow|swmm|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+OpenWaterAnalytics/EPANET|epanet|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+USEPA/EPANET2.2|epanet|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+USEPA/WNTR|epanet|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Deltares/hydromt|flood|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Deltares/hydromt_sfincs|flood|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Deltares/SFINCS|flood|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+GeoscienceAustralia/anuga_core|flood|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Deltares/Delft3D|coastal|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+external:telemac|coastal|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+IfcOpenShell/IfcOpenShell|bim|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+buildingSMART/IDS|bim|Requirements file plus IFC and a selected validator; schema documents are not a standalone solver.
+Show2Instruct/ifc-bonsai-mcp|bim|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+buildingSMART/BCF-XML|bcf|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+FreeCAD/FreeCAD|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+blender/blender|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+compas-dev/compas|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+compas-dev/compas_fab|cad|Simulation-only planning requires robot/backend configuration; no hardware actuation admitted by this inventory.
+DynamoDS/Dynamo|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+openscad/openscad|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+bonninr/freecad_mcp|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+contextform/freecad-mcp|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+neka-nat/freecad-mcp|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+spkane/freecad-addon-robust-mcp-server|cad|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+PixarAnimationStudios/OpenUSD|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+potree/potree|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CesiumGS/3d-tiles-tools|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CesiumGS/cesium|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+gaopengbin/cesium-mcp|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+iTowns/itowns|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+maplibre/maplibre-gl-js|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+keplergl/kepler.gl|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+TerriaJS/terriajs|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+visgl/deck.gl|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+VCityTeam/UD-Viz|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+dtcc-platform/dtcc-viewer|scene|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+3dcitydb/3dcitydb|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+3dcitydb/citydb-tool|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+citygml4j/citygml-tools|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+citygml4j/citygml4j|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+cityjson/cjio|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+dtcc-platform/dtcc-core|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Project-PLATEAU/PLATEAU-Builder|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Project-PLATEAU/PLATEAU-GIS-Converter|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+reearth/reearth-flow|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+tudelft3d/3DCityDB-Tools-for-QGIS|city-model|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+tudelft3d/3dfier|reconstruction|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+OpenFOAM/OpenFOAM-dev|cfd|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+tudelft3d/City4CFD|cfd|Geometry preparation operation may omit solver conditions; simulation requires separate admitted CFD case.
+dtcc-platform/dtcc-sim|cfd|Model/service must be identified before this proposed CFD profile can be accepted as its interface.
+NatLabRockies/EnergyPlus|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+NatLabRockies/OpenStudio|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+NatLabRockies/OpenStudio-HPXML|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ladybug-tools/honeybee-core|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ladybug-tools/honeybee-energy|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ladybug-tools/dragonfly-energy|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+samuelduchesne/archetypal|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+samuelduchesne/geomeppy|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+santoshphilip/eppy|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+RWTH-EBC/TEASER|energy|Produces models (e.g. Modelica) requiring another admitted simulator; EnergyPlus formats are not assumed equivalent.
+anandb/energyplus-mcp-java|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ericmartinpe/EnergyPlus-MCP-epjson|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+idfkit/idfkit-mcp|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+LBNL-ETA/EnergyPlus-MCP|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+RainerGaier/energyplus-mcp-server|energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+architecture-building-systems/CityEnergyAnalyst|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+BETALAB-team/EUReCA|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+KTH-UrbanT/mubes-ubem|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ladybug-tools/dragonfly-core|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+NatLabRockies/ComStock|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+NatLabRockies/resstock|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UCL/simstock|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+urbanopt/urbanopt-cli|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+urbanopt/urbanopt-example-geojson-project|urban-energy|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+external:simstadt|urban-energy|Verify the current open release and workflow-specific inputs; legacy private-repository documentation is inconsistent with the current publisher notice.
+ladybug-tools/ladybug|weather|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ladybug-tools/uwg|weather|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+kunifujiwara/VoxCity|microclimate|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UMEP-dev/solweig|microclimate|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UMEP-dev/SUEWS|microclimate|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UMEP-dev/UMEP|microclimate|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UMEP-dev/UMEP-processing|microclimate|Each Processing algorithm selects a subset of climate inputs; no universal UMEP input bundle is claimed.
+external:palm|microclimate|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+wrf-model/WRF|atmosphere|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+uDALES/u-dales|atmosphere|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+USEPA/CMAQ|air-quality|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CloudCompare/CloudCompare|lidar|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+isl-org/Open3D|lidar|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+PDAL/PDAL|lidar|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+PDAL/python|lidar|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+martibosch/pylandstats|landscape|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+r-spatialecology/landscapemetrics|landscape|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+natcap/invest|ecosystem|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/esda|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/inequality|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/libpysal|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/mgwr|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/momepy|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/segregation|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/spopt|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+pysal/spreg|statistics|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+HPSCIL/Open-Space-Cellular_Automata|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+johanlahti/urban-lu-model|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+LandInsightLab/MUSE|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UDST/choicemodels|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UDST/developer|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UDST/orca|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UDST/urbansim|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UDST/urbansim_defaults|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+UDST/urbansim_templates|land-use|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+consuldemocracy/consuldemocracy|participation|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+decidim/decidim|participation|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+umap-project/umap|participation|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+eclipse-ditto/ditto|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+FIWARE/context.Orion-LD|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+FraunhoferIOSB/FROST-Server|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ScorpioBroker/ScorpioBroker|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+telefonicaid/fiware-orion|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+thingsboard/thingsboard|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CityScope/CS_CityIO|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CityScope/CS_cityscopeJS|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CityScope/CS_CityScoPy|context|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CityScope/CS_Simulation_GAMA|context|CityIO table mapping plus GAML model/population parameters are required; context entities alone cannot run the model.
+dss-extensions/OpenDSSDirect.py|electrical|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+e2nIEE/pandapower|electrical|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+NatLabRockies/REopt_API|electrical|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+oemof/oemof-solph|electrical|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+PyPSA/PyPSA|electrical|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+RWTH-EBC/uesgraphs|electrical|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+urbanopt/urbanopt-reopt-gem|electrical|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CLIMADA-project/climada_petals|risk|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+CLIMADA-project/climada_python|risk|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+gem/oq-engine|risk|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Universite-Gustave-Eiffel/NoiseModelling|noise|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+azavea/raster-vision|imagery|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+opengeos/geoai|imagery|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+opengeos/segment-geospatial|imagery|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+orfeotoolbox/OTB|imagery|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+orfeotoolbox/pyotb|imagery|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+sentinel-hub/sentinelhub-py|imagery|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+torchgeo/torchgeo|imagery|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+stac-utils/pystac|stac|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+stac-utils/pystac-client|stac|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+stac-utils/stac-fastapi|stac|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+sparkgeo/geo-mcp-servers|stac|First split monorepo into actual servers and data contracts; this is a catalog-level starting point only.
+gama-platform/gama|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+mesa/mesa|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+metadriverse/metaurban|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+NetLogo/NetLogo|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+tsinghua-fib-lab/AgentSociety|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+crowddynamics/crowddynamics|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+MengeCrowdSim/Menge|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+PedestrianDynamics/jupedsim|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+svenkreiss/socialforce|social|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+salog0d/UrbanPlannerMCP|social|Requires inspecting the actual model formulas/parameters; a general social profile is not its approved input schema.
+smart-data-models/data-models|schemas|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+Open-EO/openeo-processes|schemas|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ladybug-tools/honeybee-radiance|daylight|Lighting requires sensors/materials/sky recipe, not necessarily HVAC; bind a separate daylight case.
+ckan/ckan|resource-catalog|Dataset/resource catalog; CKAN Action API binding, not STAC conformance, must be mapped explicitly.
+geonetwork/core-geonetwork|resource-catalog|Geographic metadata catalog; use version-specific API/standards, not assumed STAC compatibility.
+GeoNode/geonode|resource-catalog|Use GeoNode resource/project permissions and its native API; generic catalog profile does not assert STAC support.
+geopython/pygeoapi|ogc-service|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+geoserver/geoserver|ogc-service|Collections/maps via native OGC services; do not assume STAC, arbitrary process support or administrative access.
+MapServer/MapServer|ogc-service|Native OGC/mapfile contract; STAC-like catalog fields are not a claim of STAC support.
+specklesystems/speckle-server|object-service|Use authorized project/model/version IDs and native object data, not a STAC contract; instance API binding is pending.
+specklesystems/specklepy|object-service|Dependency of the Speckle connector; native project/object/version contract replaces generic catalog fields.
+Open-EO/openeo-python-client|eo-process|Requires backend capabilities and a process graph; reuse backend jobs/auth rather than inventing a local executor.
+opendatacube/datacube-core|data-cube|Requires configured indexed products and measurement schemas; a STAC query alone is insufficient.
+Deltares/hydromt_wflow|hydrology|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+openstreams/wflow|hydrology|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+AequilibraE/aequilibrae|traffic-assignment|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+ropensci/stplanr|traffic-assignment|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.

@@ -1,0 +1,3 @@
+# Metadata validation only; not the product or engine runtime.
+jsonschema==4.26.0
+PyYAML==6.0.3

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "tool": {
+      "type": "object",
+      "required": ["id", "repository", "url", "category", "kind", "data_profile", "data_note", "execution_role", "original_interface", "proposed_delta", "input_binding_status", "engine_runtime_status", "reference_case_status", "real_city_status", "ready_to_run"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]*$"},
+        "repository": {"type": "string", "minLength": 3},
+        "url": {"type": "string", "minLength": 8},
+        "data_profile": {"type": "string", "minLength": 1},
+        "execution_role": {"enum": ["reference", "dependency", "candidate"]},
+        "input_binding_status": {"enum": ["not_implemented", "verified"]},
+        "engine_runtime_status": {"enum": ["not_verified", "verified"]},
+        "reference_case_status": {"enum": ["not_verified", "verified"]},
+        "real_city_status": {"enum": ["needs_input_review", "verified_for_declared_scope"]},
+        "ready_to_run": {"type": "boolean"},
+        "source_commit_observed": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"}
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["id", "name", "url", "access", "coverage", "provides", "does_not_provide", "evidence", "asset_admission", "download_implemented"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "url": {"type": ["string", "null"]},
+        "asset_admission": {"const": "per_asset_review_required"},
+        "download_implemented": {"type": "boolean"}
+      }
+    },
+    "profile": {
+      "type": "object",
+      "required": ["id", "scope", "requirements", "preparation", "validation", "real_city_blocker", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "scope": {"const": "proposed_representative_case_not_every_operation"},
+        "status": {"const": "needs_operation_binding"},
+        "requirements": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "format_contract", "candidate_sources", "required", "admission_condition"],
+            "properties": {
+              "id": {"type": "string", "minLength": 1},
+              "format_contract": {"type": "string", "minLength": 1},
+              "candidate_sources": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+              "required": {"type": "boolean"},
+              "admission_condition": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    }
+  }
+}

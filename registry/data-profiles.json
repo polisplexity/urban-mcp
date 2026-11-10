@@ -1,0 +1,1780 @@
+{
+  "schema_version": "0.1.0",
+  "profiles": [
+    {
+      "id": "none",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "references",
+          "format_contract": "urls",
+          "candidate_sources": [
+            "standards"
+          ],
+          "required": true,
+          "admission_condition": "verify identity and date"
+        }
+      ],
+      "preparation": "Catalog only; no solver input or invented runtime.",
+      "validation": "Links, provenance and classification.",
+      "real_city_blocker": "Not an executable capability.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "vector",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "features",
+          "format_contract": "GeoPackage/GeoParquet/GeoJSON",
+          "candidate_sources": [
+            "osm",
+            "overture",
+            "inegi-boundaries",
+            "inegi-denue",
+            "operator",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "CRS and IDs explicit with source edition and category coverage reviewed"
+        }
+      ],
+      "preparation": "Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.",
+      "validation": "Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.",
+      "real_city_blocker": "Coverage and domain attributes are not guaranteed by a map.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "raster",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "raster",
+          "format_contract": "GeoTIFF/COG",
+          "candidate_sources": [
+            "cop-dem",
+            "inegi-dem",
+            "landcover",
+            "sentinel",
+            "landsat",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "band meaning, nodata and resolution explicit"
+        }
+      ],
+      "preparation": "Subset/window, harmonize grids only through recorded resampling; preserve original metadata.",
+      "validation": "CRS, affine transform, bands, nodata, coverage, units and resolution.",
+      "real_city_blocker": "An available raster can be unsuitable for the intended analysis.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "spatial-db",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "collection",
+          "format_contract": "database/API reference",
+          "candidate_sources": [
+            "service-instance",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "authorized project and schema"
+        }
+      ],
+      "preparation": "Use typed queries and bounded artifacts; preserve IDs and revision.",
+      "validation": "Role/scope, CRS, geometry column, counts and query limits.",
+      "real_city_blocker": "An instance and authorized data are required.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "roads",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "road_graph",
+          "format_contract": "OSM/PBF/graph tables",
+          "candidate_sources": [
+            "osm",
+            "inegi-rnc",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "direction topology and cost definition with source supporting declared travel mode"
+        }
+      ],
+      "preparation": "Build graph with native tool, preserve graph/source version, project and specify routing profile.",
+      "validation": "Connectivity, direction, intersection semantics, units and source coverage.",
+      "real_city_blocker": "Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "sumo",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "network",
+          "format_contract": "SUMO net.xml",
+          "candidate_sources": [
+            "osm",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "netconvert and junction assumptions recorded"
+        },
+        {
+          "id": "demand",
+          "format_contract": "SUMO routes/trips/OD",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "observed or synthetic status explicit"
+        },
+        {
+          "id": "config",
+          "format_contract": "sumocfg",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "seed, time and vehicle types fixed"
+        }
+      ],
+      "preparation": "Convert network with SUMO tools, prepare demand separately, resolve relative file references and preserve assumptions.",
+      "validation": "Network-route consistency, edge IDs, units, time coverage, vehicle counts and configuration.",
+      "real_city_blocker": "OSM cannot supply calibrated OD demand or signal timings everywhere.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "transit",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "streets",
+          "format_contract": "OSM/PBF",
+          "candidate_sources": [
+            "osm",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "routing coverage known"
+        },
+        {
+          "id": "feed",
+          "format_contract": "GTFS zip",
+          "candidate_sources": [
+            "gtfs",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "publisher rights, service dates and timezone"
+        },
+        {
+          "id": "query",
+          "format_contract": "origin destination and time",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "coordinate order and travel profile explicit"
+        }
+      ],
+      "preparation": "Validate feed, align graph/feed versions, build native graph and retain query date/timezone.",
+      "validation": "GTFS validation, service calendar, stop/street linkage, CRS and transfer assumptions.",
+      "real_city_blocker": "Feeds may be missing, expired or not include realtime information.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "demand",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "population",
+          "format_contract": "aggregate/microdata tables",
+          "candidate_sources": [
+            "inegi-census",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "authorized aggregation and weights"
+        },
+        {
+          "id": "controls",
+          "format_contract": "zone totals and model parameters",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "compatible geography and year"
+        },
+        {
+          "id": "network",
+          "format_contract": "network/zone model",
+          "candidate_sources": [
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "zones and skims compatible"
+        }
+      ],
+      "preparation": "Align zone IDs/years and units; use upstream synthesis/choice model with declared seed and assumptions.",
+      "validation": "Control totals, missingness, joins, weights and model diagnostics.",
+      "real_city_blocker": "Population grids alone do not supply surveys, choice coefficients or OD demand.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "accessibility",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "matrix",
+          "format_contract": "travel time matrix",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "time window, units and modes"
+        },
+        {
+          "id": "opportunities",
+          "format_contract": "destinations and quantities",
+          "candidate_sources": [
+            "osm",
+            "overture",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "counts and taxonomy defined"
+        },
+        {
+          "id": "population",
+          "format_contract": "aggregate weights",
+          "candidate_sources": [
+            "inegi-census",
+            "ghsl",
+            "worldpop",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "same aggregation and period"
+        }
+      ],
+      "preparation": "Align IDs and travel-time definition; select thresholds/impedance without silent defaults.",
+      "validation": "Matrix dimensions, reachable/unreachable coding, weights, time and denominators.",
+      "real_city_blocker": "Travel-time generation and opportunity quality remain separate dependencies.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "swmm",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "model",
+          "format_contract": "SWMM INP",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "nodes, conduits, invert levels, sections, roughness and catchments"
+        },
+        {
+          "id": "rainfall",
+          "format_contract": "series or embedded INP series",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "units, timestep and event explicit"
+        },
+        {
+          "id": "scenario",
+          "format_contract": "parameter changes",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "base revision and physical bounds"
+        }
+      ],
+      "preparation": "Parse/validate INP, check referenced series, use copies for alternatives and preserve declared units.",
+      "validation": "Topology, conduit/node references, catchment coverage, rainfall interval, continuity and native diagnostics.",
+      "real_city_blocker": "Street maps and global DEM do not provide a hydraulic drainage model or design rainfall.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "epanet",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "network",
+          "format_contract": "EPANET INP",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "topology, diameters, elevations, demands, pumps and controls"
+        },
+        {
+          "id": "scenario",
+          "format_contract": "demand/pump/quality parameters",
+          "candidate_sources": [
+            "model-author",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "units and time pattern explicit"
+        }
+      ],
+      "preparation": "Preserve native network and parameter sets, separate hypothetical interventions and measurement provenance.",
+      "validation": "Connectivity, hydraulic units, demand patterns, controls, solver status and mass/energy checks.",
+      "real_city_blocker": "Pipe inventory, demand and operating controls normally require the utility/project owner.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "flood",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "terrain",
+          "format_contract": "terrain raster/mesh",
+          "candidate_sources": [
+            "inegi-dem",
+            "cop-dem",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "terrain versus surface and vertical datum checked"
+        },
+        {
+          "id": "land",
+          "format_contract": "landcover/roughness",
+          "candidate_sources": [
+            "landcover",
+            "soilgrids",
+            "operator",
+            "model-author"
+          ],
+          "required": true,
+          "admission_condition": "classes translated with documented coefficients"
+        },
+        {
+          "id": "forcing",
+          "format_contract": "rainfall/inflow/boundary series",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "event and units fixed"
+        }
+      ],
+      "preparation": "Prepare using native tools/HydroMT, record resampling, grid, boundary conditions and coefficients.",
+      "validation": "Vertical/horizontal CRS, resolution fitness, wet/dry references, timestep and mass balance.",
+      "real_city_blocker": "Coarse surface products and reanalysis do not automatically support street-scale calibrated flood predictions.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "coastal",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "mesh",
+          "format_contract": "bathymetry and computational mesh",
+          "candidate_sources": [
+            "gebco",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "survey accuracy and vertical datum"
+        },
+        {
+          "id": "forcing",
+          "format_contract": "flow/tide/wave series",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "matching boundary/time/units"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "model configuration",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "turbulence, friction and module fixed"
+        }
+      ],
+      "preparation": "Use upstream mesh/case preparation; document boundary mapping and selected solver module.",
+      "validation": "Mesh quality, boundaries, datums, temporal alignment and reference-case diagnostics.",
+      "real_city_blocker": "Global bathymetry is not a harbor survey; field forcing and calibration may be required.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "bim",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "model",
+          "format_contract": "IFC",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "building-samples"
+          ],
+          "required": true,
+          "admission_condition": "schema, GUIDs, units and georeferencing"
+        },
+        {
+          "id": "requirements",
+          "format_contract": "IDS or project constraints",
+          "candidate_sources": [
+            "standards",
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "requirements identify exact model revision"
+        }
+      ],
+      "preparation": "Validate IFC, map only explicit properties, preserve GUIDs and express losses in any conversion.",
+      "validation": "Schema version, units, geometry, references, georeferencing and required fields.",
+      "real_city_blocker": "Public footprints do not provide building systems, materials or a valid IFC model.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "bcf",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "issues",
+          "format_contract": "BCF package",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "building-samples"
+          ],
+          "required": true,
+          "admission_condition": "model revision and element references"
+        },
+        {
+          "id": "model",
+          "format_contract": "IFC/reference",
+          "candidate_sources": [
+            "operator",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "GUID mapping available"
+        }
+      ],
+      "preparation": "Validate schema and references and retain comment/issue authorship and revision.",
+      "validation": "Resolvable components, model version, geometry viewpoint units and permissions.",
+      "real_city_blocker": "Issue data and model access are project-provided.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "cad",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "document",
+          "format_contract": "native CAD/project template",
+          "candidate_sources": [
+            "user-files",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "units and parametric dependencies"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "admitted typed changes",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "bounds and intended result"
+        }
+      ],
+      "preparation": "Open a separate document/session, apply native operations and preserve recompute/save semantics.",
+      "validation": "Native reopen, object identity, dimensions, recompute status and version.",
+      "real_city_blocker": "A geometric object is not a complete engineering/BIM model.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "scene",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "scene",
+          "format_contract": "USD/3D/tiles/artifact refs",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "units, coordinates and source IDs"
+        },
+        {
+          "id": "interaction",
+          "format_contract": "camera/selection request",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "target scene/session explicit"
+        }
+      ],
+      "preparation": "Load through native viewer/converter; map display IDs back to source artifacts.",
+      "validation": "Scene bounds, CRS/transforms, units, selection identity and visual state.",
+      "real_city_blocker": "A renderable scene may omit analysis semantics or source accuracy.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "energy",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "building_model",
+          "format_contract": "IDF/epJSON/HBJSON/HPXML",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "engine-compatible physical model"
+        },
+        {
+          "id": "weather",
+          "format_contract": "EPW/weather reference",
+          "candidate_sources": [
+            "epw",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "location, period, timezone and units"
+        },
+        {
+          "id": "physics",
+          "format_contract": "materials systems occupancy schedules",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "may be embedded in the building model"
+        }
+      ],
+      "preparation": "Use native translator and version transition only where supported; preserve schedules and simulation settings.",
+      "validation": "Model schema/version, closed zones, units, weather coverage, HVAC/schedules and native error reports.",
+      "real_city_blocker": "Footprints and EPW alone cannot determine a complete or calibrated energy model.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "urban-energy",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "buildings",
+          "format_contract": "geometries plus use/age/area",
+          "candidate_sources": [
+            "operator",
+            "overture",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "unknown attributes stay unknown"
+        },
+        {
+          "id": "archetypes",
+          "format_contract": "physical/usage parameters",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "regional validity and uncertainty"
+        },
+        {
+          "id": "weather",
+          "format_contract": "EPW/series",
+          "candidate_sources": [
+            "epw",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "climate period and location"
+        }
+      ],
+      "preparation": "Use the selected UBEM generator; document archetype assignment and geometry-to-building mapping.",
+      "validation": "IDs, building completeness, archetype assumptions, weather, units and aggregation.",
+      "real_city_blocker": "Global building data does not supply local building physics or occupancy.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "weather",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "series",
+          "format_contract": "weather/EPW",
+          "candidate_sources": [
+            "epw",
+            "nasa-power",
+            "era5-land",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "variable definition, interval and status"
+        },
+        {
+          "id": "site",
+          "format_contract": "location and site parameters",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "CRS, altitude and timezone"
+        }
+      ],
+      "preparation": "Translate formats explicitly; record timezone, resampling and observed/modelled/TMY distinction.",
+      "validation": "Coverage, variable units, missing values, calendar and station/grid representativeness.",
+      "real_city_blocker": "TMY and gridded reanalysis are not measurements of a chosen local event.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "microclimate",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "geometry",
+          "format_contract": "terrain buildings vegetation rasters/mesh",
+          "candidate_sources": [
+            "operator",
+            "overture",
+            "inegi-dem",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "spatial scale and heights checked"
+        },
+        {
+          "id": "forcing",
+          "format_contract": "meteorological series",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "epw",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "model-specific variables/timestep"
+        },
+        {
+          "id": "surface",
+          "format_contract": "material and surface parameters",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "no inferred physics without declaration"
+        }
+      ],
+      "preparation": "Prepare with native climate tools; harmonize geometry/forcing at an explicitly accepted resolution.",
+      "validation": "Heights, roughness/materials, shading, temporal completeness, CRS and model-specific balances.",
+      "real_city_blocker": "Heights, vegetation and local forcing may be unavailable; coarse global layers do not remove those requirements.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "atmosphere",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "domain",
+          "format_contract": "mesh/domain/land inputs",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "nested grid and physics configuration"
+        },
+        {
+          "id": "forcing",
+          "format_contract": "atmospheric initial/boundary data",
+          "candidate_sources": [
+            "ncar",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "full required variables and time"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "physics and model configuration",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "compiler/MPI/model compatibility"
+        }
+      ],
+      "preparation": "Keep upstream preprocessing and domain nesting; record forcing source and conversion chain.",
+      "validation": "Domain boundaries, vertical levels, forcing completeness, timestep and reference diagnostics.",
+      "real_city_blocker": "Surface ERA5-Land alone is not a full atmospheric initialization dataset.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "air-quality",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "meteorology",
+          "format_contract": "model-ready meteorological fields",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "selected chemistry/model grid"
+        },
+        {
+          "id": "emissions",
+          "format_contract": "speciated spatial/temporal inventory",
+          "candidate_sources": [
+            "edgar",
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "conversion and sector assumptions"
+        },
+        {
+          "id": "chemistry",
+          "format_contract": "mechanism/boundaries",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "compatible version and units"
+        }
+      ],
+      "preparation": "Use upstream preprocessing, explicit speciation/temporalization and emission-grid mapping.",
+      "validation": "Species, units, grids, meteorological coverage and mass/chemistry diagnostics.",
+      "real_city_blocker": "Global emissions inventory is not automatically a street-level or model-ready local inventory.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "lidar",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "cloud",
+          "format_contract": "LAS/LAZ/PLY/point cloud",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "scale, origin, CRS and acquisition metadata"
+        },
+        {
+          "id": "pipeline",
+          "format_contract": "native processing parameters",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "filters and tolerances explicit"
+        }
+      ],
+      "preparation": "Run native pipeline, subset without losing coordinate metadata and export artifact references.",
+      "validation": "Point count, CRS, precision, classification, transform and known-geometry checks.",
+      "real_city_blocker": "Local survey coverage and acquisition quality are project-specific.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "landscape",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "classes",
+          "format_contract": "categorical raster",
+          "candidate_sources": [
+            "landcover",
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "class scheme, resolution and extent"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "metric definitions/coefficients",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "neighborhood and ecological interpretation"
+        }
+      ],
+      "preparation": "Translate class schemes and grid definition explicitly; preserve metric definition.",
+      "validation": "Class codes, nodata, pixel area, neighborhood, extent and reference metrics.",
+      "real_city_blocker": "Landscape pattern does not automatically establish ecological function or observed biodiversity.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "ecosystem",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "land",
+          "format_contract": "landcover and environmental layers",
+          "candidate_sources": [
+            "landcover",
+            "soilgrids",
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "required model layers"
+        },
+        {
+          "id": "coefficients",
+          "format_contract": "biophysical tables/valuation assumptions",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "local applicability"
+        },
+        {
+          "id": "forcing",
+          "format_contract": "model-specific climate/hydrology",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "explicit selected InVEST model"
+        }
+      ],
+      "preparation": "Select one upstream model, prepare its tables and layers and record assumptions.",
+      "validation": "Each model input specification, coverage, units and reference outputs.",
+      "real_city_blocker": "Coefficients, observations and local validation are not supplied by a generic global raster.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "statistics",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "observations",
+          "format_contract": "spatial tables/geometries",
+          "candidate_sources": [
+            "inegi-census",
+            "ghsl",
+            "worldpop",
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "year, aggregation and variable meaning"
+        },
+        {
+          "id": "weights",
+          "format_contract": "spatial weights/IDs",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "neighborhood/normalization explicit"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "model specification",
+          "candidate_sources": [
+            "model-author",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "seed and inference assumptions"
+        }
+      ],
+      "preparation": "Join by stable IDs, preserve aggregation and specify estimation/permutation settings.",
+      "validation": "Denominators, missingness, ID order, weights, units and diagnostics.",
+      "real_city_blocker": "Aggregate/modelled grids do not establish individual behavior or causal effects.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "land-use",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "zones",
+          "format_contract": "parcels/buildings/zones",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "geography and legal vintage"
+        },
+        {
+          "id": "population",
+          "format_contract": "population/jobs/market tables",
+          "candidate_sources": [
+            "inegi-census",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "compatible years and IDs"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "calibrated model/constraints",
+          "candidate_sources": [
+            "model-author",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "choice/feasibility assumptions"
+        }
+      ],
+      "preparation": "Prepare native model tables/configuration and distinguish observed stock from scenario assumptions.",
+      "validation": "Control totals, joins, IDs, calibration data, constraints and reference forecast.",
+      "real_city_blocker": "Parcel attributes, market data and local coefficients cannot be inferred from map geometry alone.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "participation",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "process",
+          "format_contract": "authorized process/project reference",
+          "candidate_sources": [
+            "service-instance",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "permissions and actual API capabilities"
+        },
+        {
+          "id": "contribution",
+          "format_contract": "explicit contribution with provenance",
+          "candidate_sources": [
+            "user-files",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "authorship and intended submission"
+        }
+      ],
+      "preparation": "Use platform API; keep drafts separate from submissions and link to scenario only when authorized.",
+      "validation": "Process status, scope, identity, receipt and read-back.",
+      "real_city_blocker": "There is no universal public write endpoint or permission to speak/vote for participants.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "context",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "entities",
+          "format_contract": "JSON-LD/SensorThings/twin entities",
+          "candidate_sources": [
+            "service-instance",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "protocol/version and project"
+        },
+        {
+          "id": "observations",
+          "format_contract": "telemetry/events",
+          "candidate_sources": [
+            "service-instance",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "units, time and quality"
+        },
+        {
+          "id": "mapping",
+          "format_contract": "vocabulary/IDs",
+          "candidate_sources": [
+            "standards",
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "semantics and transforms explicit"
+        }
+      ],
+      "preparation": "Query native API and translate only declared models; preserve timestamp/relationship semantics.",
+      "validation": "Schema/context, IDs, scope, units, pagination and temporal ordering.",
+      "real_city_blocker": "An endpoint, credentials and domain mapping may be required; protocols are not automatically equivalent.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "electrical",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "network",
+          "format_contract": "circuit/grid model",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "topology impedance voltage bases and controls"
+        },
+        {
+          "id": "series",
+          "format_contract": "loads/generation",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "units and temporal alignment"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "constraints/costs",
+          "candidate_sources": [
+            "model-author",
+            "operator",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "objective and solver stated"
+        }
+      ],
+      "preparation": "Use native circuit/network model and solver; keep base and intervention separate.",
+      "validation": "Units, connectivity, balance, convergence, feasible constraints and reference solution.",
+      "real_city_blocker": "Mapped lines or buildings do not provide a calibrated electrical model.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "risk",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "hazard",
+          "format_contract": "hazard/event model",
+          "candidate_sources": [
+            "hazard-catalog",
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "probability/intensity and event set"
+        },
+        {
+          "id": "exposure",
+          "format_contract": "assets/population/value",
+          "candidate_sources": [
+            "operator",
+            "ghsl",
+            "worldpop",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "aggregation and valuation"
+        },
+        {
+          "id": "vulnerability",
+          "format_contract": "functions/model configuration",
+          "candidate_sources": [
+            "model-author",
+            "hazard-catalog",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "applicability and uncertainty"
+        }
+      ],
+      "preparation": "Match hazard/exposure definitions and preserve event/revision links.",
+      "validation": "Units, vulnerability domain, spatial/temporal alignment and reference impact.",
+      "real_city_blocker": "Geometry alone cannot determine losses or locally valid vulnerability.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "noise",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "sources",
+          "format_contract": "traffic/activity/emission sources",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "observed versus assumed flows/spectrum"
+        },
+        {
+          "id": "scene",
+          "format_contract": "terrain/buildings/receivers",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "heights materials and coordinates"
+        },
+        {
+          "id": "conditions",
+          "format_contract": "propagation/weather parameters",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "time period and standard specified"
+        }
+      ],
+      "preparation": "Use native noise model and explicit emission preparation; retain receiver IDs.",
+      "validation": "Source units, frequency/period, geometry, receiver location and reference levels.",
+      "real_city_blocker": "A road centerline is not a measured noise source or calibrated acoustic model.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "imagery",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "imagery",
+          "format_contract": "STAC/raster products",
+          "candidate_sources": [
+            "sentinel",
+            "landsat",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "bands, level, acquisition and cloud mask"
+        },
+        {
+          "id": "model",
+          "format_contract": "weights/labels/pipeline",
+          "candidate_sources": [
+            "training-data",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "license and evaluation scope"
+        }
+      ],
+      "preparation": "Subset, normalize and georeference through the selected model pipeline; isolate GPU dependencies.",
+      "validation": "Band order, scale, nodata/clouds, CRS, weights, split leakage and spatial output.",
+      "real_city_blocker": "Available imagery is not ground truth; weights/data may have separate rights or access conditions.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "stac",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "catalog",
+          "format_contract": "STAC API/item collection",
+          "candidate_sources": [
+            "service-instance",
+            "sentinel",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "conformance, pagination and asset links"
+        },
+        {
+          "id": "query",
+          "format_contract": "area/time/bands",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "explicit search limits"
+        }
+      ],
+      "preparation": "Discover capabilities, filter, preserve item/asset versions and resolve authorized assets.",
+      "validation": "Conformance, item IDs, geometry, datetime, asset availability and rights.",
+      "real_city_blocker": "A catalog entry does not prove the asset is downloadable or fit for a model.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "social",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "model",
+          "format_contract": "GAML/NetLogo/Python scenario",
+          "candidate_sources": [
+            "model-author",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "rules, seed, stop conditions and model version"
+        },
+        {
+          "id": "population",
+          "format_contract": "agents/activity/control tables",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "synthetic status and calibration"
+        },
+        {
+          "id": "environment",
+          "format_contract": "network/space/context",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "declared scale and completeness"
+        }
+      ],
+      "preparation": "Keep original model/rules, set reproducible seed and retain assumptions as scenario data.",
+      "validation": "Agent counts, constraints, seed, stop condition and reference trajectory/statistics.",
+      "real_city_blocker": "A framework does not supply validated human behavior; LLM agents may also require external providers and budget.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "schemas",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "schema",
+          "format_contract": "IDS/BCF/NGSI-LD/openEO definitions",
+          "candidate_sources": [
+            "standards",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "exact version and profile"
+        },
+        {
+          "id": "instance",
+          "format_contract": "data/model being validated",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "references and IDs preserved"
+        }
+      ],
+      "preparation": "Use maintained validator and explicit profile, report unresolved references.",
+      "validation": "Schema version, reference resolution, units and semantic requirements where defined.",
+      "real_city_blocker": "Schema validity is not scientific validity or evidence that a backend implements every operation.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "city-model",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "model",
+          "format_contract": "CityGML/CityJSON/3D city database",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "schema, CRS, vertical units, IDs and LoD"
+        },
+        {
+          "id": "mapping",
+          "format_contract": "format/profile selection",
+          "candidate_sources": [
+            "standards",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "losses and consumer requirements explicit"
+        }
+      ],
+      "preparation": "Use original importer/exporter, retain semantic surfaces and identifiers, record conversion losses.",
+      "validation": "Schema, coordinates, topology, LoD, IDs, relationships and native validation.",
+      "real_city_blocker": "Open footprints do not constitute a complete CityGML/CityJSON model.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "reconstruction",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "cloud",
+          "format_contract": "LiDAR/point cloud or elevation source",
+          "candidate_sources": [
+            "operator",
+            "inegi-dem",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "accuracy, classification and vertical datum"
+        },
+        {
+          "id": "footprints",
+          "format_contract": "building/terrain outlines",
+          "candidate_sources": [
+            "operator",
+            "overture",
+            "osm",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "identity, geometry and coverage"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "reconstruction settings",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "desired LoD and tolerances"
+        }
+      ],
+      "preparation": "Align sources and use native reconstruction tools; label reconstructed versus observed attributes.",
+      "validation": "Alignment, point/classification quality, units, watertightness and comparison against control geometry.",
+      "real_city_blocker": "Incomplete heights/footprints and low-resolution elevation can prevent suitable reconstruction.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "cfd",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "geometry",
+          "format_contract": "watertight simulation geometry and mesh",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "domain, mesh quality and scale"
+        },
+        {
+          "id": "conditions",
+          "format_contract": "boundary/initial conditions",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "velocity, turbulence, material and units"
+        },
+        {
+          "id": "solver",
+          "format_contract": "case and numerical configuration",
+          "candidate_sources": [
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "version and convergence criteria"
+        }
+      ],
+      "preparation": "Use native mesher/solver tools; separate geometry preparation from physical case validation.",
+      "validation": "Boundary completeness, mesh metrics, dimensions, timestep, residuals and conservation/reference fields.",
+      "real_city_blocker": "A display scene or OSM model does not provide a valid CFD mesh or calibrated conditions.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "resource-catalog",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "instance",
+          "format_contract": "catalog API and scope",
+          "candidate_sources": [
+            "service-instance",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "native API/version and permissions"
+        },
+        {
+          "id": "query",
+          "format_contract": "resource metadata search",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "geography, date, format and limits"
+        }
+      ],
+      "preparation": "Use the native CKAN/GeoNetwork/GeoNode API; resolve resource links and access terms before ingestion.",
+      "validation": "API version, pagination, resource IDs, license, format and link availability.",
+      "real_city_blocker": "Metadata does not imply a usable downloadable dataset; no STAC conformance is assumed.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "ogc-service",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "instance",
+          "format_contract": "OGC service endpoint/capabilities",
+          "candidate_sources": [
+            "service-instance",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "version, collections, layers and processes"
+        },
+        {
+          "id": "query",
+          "format_contract": "bounded layer/process parameters",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "CRS, extent, dimensions and authorization"
+        }
+      ],
+      "preparation": "Discover native capabilities and select only supported operations; separate querying from administration.",
+      "validation": "Advertised conformance, collection schema, CRS, filters, bounds and result links.",
+      "real_city_blocker": "A configured endpoint and actual provider data are required; process support cannot be inferred.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "object-service",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "instance",
+          "format_contract": "project/model/version API",
+          "candidate_sources": [
+            "service-instance",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "scope, native object protocol and credentials"
+        },
+        {
+          "id": "objects",
+          "format_contract": "native object graph/artifact references",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "IDs, units and version ancestry"
+        }
+      ],
+      "preparation": "Preserve the native object graph, authorize the project and record serialization/conversion losses.",
+      "validation": "Project scope, object IDs, versions, units, permissions and round trip.",
+      "real_city_blocker": "A catalog protocol cannot substitute the native Speckle object/project contract.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "eo-process",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "backend",
+          "format_contract": "openEO backend capabilities",
+          "candidate_sources": [
+            "service-instance",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "auth, processes, formats and limits"
+        },
+        {
+          "id": "graph",
+          "format_contract": "openEO process graph",
+          "candidate_sources": [
+            "model-author",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "supported processes and parameters"
+        },
+        {
+          "id": "collection",
+          "format_contract": "backend collection and query window",
+          "candidate_sources": [
+            "sentinel",
+            "service-instance",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "bands, extent and period"
+        }
+      ],
+      "preparation": "Use native openEO client and backend jobs; validate graph against the configured backend.",
+      "validation": "Backend capabilities, graph validity, bands, quotas, job status and result assets.",
+      "real_city_blocker": "A process definition or STAC listing does not guarantee executable backend coverage.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "data-cube",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "products",
+          "format_contract": "indexed product definitions",
+          "candidate_sources": [
+            "service-instance",
+            "operator",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "measurement names, metadata schema and storage"
+        },
+        {
+          "id": "query",
+          "format_contract": "cube selection",
+          "candidate_sources": [
+            "model-author",
+            "user-files"
+          ],
+          "required": true,
+          "admission_condition": "space, time, bands and grid"
+        }
+      ],
+      "preparation": "Use native Data Cube index/API; align measurements and preserve xarray/grid metadata.",
+      "validation": "Index health, product schema, storage links, units, nodata and coverage.",
+      "real_city_blocker": "Unindexed STAC assets do not automatically form a Data Cube product.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "daylight",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "model",
+          "format_contract": "Honeybee/Radiance scene",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "surfaces, optical materials and scene units"
+        },
+        {
+          "id": "sky",
+          "format_contract": "sky/weather recipe",
+          "candidate_sources": [
+            "epw",
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "time, location and recipe"
+        },
+        {
+          "id": "receivers",
+          "format_contract": "sensor grid and parameters",
+          "candidate_sources": [
+            "model-author",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "orientation, spacing and result units"
+        }
+      ],
+      "preparation": "Use native Radiance/Honeybee recipe and preserve sensor IDs and execution parameters.",
+      "validation": "Scene geometry, material definitions, sky, sensor orientation and known light result.",
+      "real_city_blocker": "A footprint or HVAC model is not a complete daylight scene.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "hydrology",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "catchment",
+          "format_contract": "basin/river/grid model",
+          "candidate_sources": [
+            "operator",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "topology and routing model"
+        },
+        {
+          "id": "land",
+          "format_contract": "terrain/soil/cover",
+          "candidate_sources": [
+            "inegi-dem",
+            "cop-dem",
+            "soilgrids",
+            "landcover",
+            "operator"
+          ],
+          "required": true,
+          "admission_condition": "resolution and parameter conversion"
+        },
+        {
+          "id": "forcing",
+          "format_contract": "rainfall/evaporation series",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "variables, units and timestep"
+        }
+      ],
+      "preparation": "Use the selected hydrological model/plugin; record basin delineation, parameters and forcing conversion.",
+      "validation": "Basin topology, units, temporal completeness, water balance and calibration diagnostics.",
+      "real_city_blocker": "A hydrological runoff model does not automatically produce street inundation depths.",
+      "status": "needs_operation_binding"
+    },
+    {
+      "id": "traffic-assignment",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "network",
+          "format_contract": "transport project and zone network",
+          "candidate_sources": [
+            "operator",
+            "osm",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "costs, direction, capacity and zone connectors"
+        },
+        {
+          "id": "od",
+          "format_contract": "OD demand matrix",
+          "candidate_sources": [
+            "operator",
+            "model-author",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "zone IDs, modes, period and units"
+        },
+        {
+          "id": "parameters",
+          "format_contract": "assignment assumptions",
+          "candidate_sources": [
+            "model-author",
+            "user-files",
+            "upstream-fixture"
+          ],
+          "required": true,
+          "admission_condition": "algorithm, convergence and calibration scope"
+        }
+      ],
+      "preparation": "Use native network/matrix APIs; align zones and demand and retain congestion assumptions.",
+      "validation": "OD/network consistency, demand totals, flows, cost units and convergence.",
+      "real_city_blocker": "Mapped streets do not supply the OD matrix, capacities or observed congestion calibration.",
+      "status": "needs_operation_binding"
+    }
+  ]
+}
