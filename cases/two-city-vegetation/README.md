@@ -52,9 +52,10 @@ Live boundary/population responses can change; they need a new reviewed observat
 
 ## Connect any MCP host
 
-Generate a configuration with a separate initially empty data directory for each host/city. Standard MCP stdio is the interface; the numerical backend is the same in every host.
+Generate a configuration with a separate initially empty data directory for each host/city. Host-side maintenance scripts need Python 3.11+ (CI uses 3.12) and the pinned metadata dependencies below; the numerical runtime stays in Docker. Standard MCP stdio is the interface in every host.
 
 ```bash
+python -m pip install -r requirements-dev.txt
 python tools/client_config.py --capability vegetation --format mcp-json --data-dir .urban-mcp/my-vegetation-host
 python tools/client_config.py --capability vegetation --format codex --data-dir .urban-mcp/my-codex-vegetation
 python tools/client_config.py --capability vegetation --format hermes --data-dir .urban-mcp/my-hermes-vegetation
