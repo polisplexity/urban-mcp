@@ -17,7 +17,8 @@ def digest(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workspace", type=Path, default=ROOT / ".urban-mcp/walking-reproduction")
-    parser.add_argument("--audit", type=Path, default=ROOT / ".urban-mcp/walking/evidence/upstream-audit.json")
+    parser.add_argument("--audit", type=Path, default=CASE / "evidence/upstream-audit.json")
+    parser.add_argument("--output", type=Path, default=CASE / "evidence",help="Use a new versioned directory to preserve prior evidence")
     args = parser.parse_args()
     records = []
     for city in ["helsinki", "amsterdam"]:
@@ -25,10 +26,12 @@ def main():
         checks = json.loads((folder / "mcp.json").read_text())
         if checks["failures"] or checks["checks_passed"] != len(checks["checks"]) or len(set(checks["tools_exercised"])) != 15:
             raise ValueError("Case evidence is incomplete or has failures")
-        out = CASE / "evidence" / city
+        out = args.output / city
         out.mkdir(parents=True, exist_ok=True)
         for name in ["mcp.json", "mcp-tools.json", "native.json", "native-comparison.json"]:
             shutil.copyfile(folder / name, out / name)
+        if (folder/"native-route-diagnostics.json").exists():
+            shutil.copyfile(folder/"native-route-diagnostics.json",out/"native-route-diagnostics.json")
         manifest = args.workspace / "inputs" / city / "manifest.json"
         shutil.copyfile(manifest, out / "harvest.json")
         for key, label in [("native_baseline", "baseline"), ("native_scenario", "closure")]:
@@ -43,7 +46,8 @@ def main():
     audit = json.loads(args.audit.read_text())
     if not any("same_node_set" in o for o in audit["observations"]):
         raise ValueError("Re-run the audit with the bounded-area native comparison")
-    shutil.copyfile(args.audit, CASE / "evidence/upstream-audit.json")
+    if args.audit.resolve()!=(args.output/"upstream-audit.json").resolve():
+        shutil.copyfile(args.audit, args.output/"upstream-audit.json")
     canonical = subprocess.run(["git", "show", "HEAD:urban_mcp_walking/engine.py"], cwd=ROOT, capture_output=True, check=True).stdout
     canonical_sha = hashlib.sha256(canonical).hexdigest()
     if any(r["implementation_sha256"] != canonical_sha for r in records):
@@ -54,7 +58,7 @@ def main():
                 "snapshots": json.loads((CASE / "snapshot.lock.json").read_text()), "cities": records,
                 "synthetic_integrity_regressions": {"suite": "urban_mcp_walking.test_contracts", "tests": 6, "separate_from_city_evidence": True},
                 "limits": "Only the documented operations, two study areas, source observations and parameters. Host evidence and narrative review are recorded separately."}
-    (CASE / "evidence/reproduction.json").write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8", newline="\n")
+    (args.output/"reproduction.json").write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(records, indent=2))
 
 

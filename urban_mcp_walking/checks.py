@@ -72,6 +72,42 @@ async def run(city):
     check("closure removes every parallel edge in both directions and preserves input", len(removed) >= 1 and not changed.has_edge(link["u"], link["v"]) and not changed.has_edge(link["v"], link["u"]) and graph.has_edge(link["u"], link["v"]))
     native_scenario = engine.analyze(city, prefix + "-native-scenario", closures=[link])
     native_comparison = engine.compare(city, native["run_id"], native_scenario["run_id"])
+    result_dir = data.root() / "results" / city
+    with (result_dir / native_scenario["run_id"] / "accessibility.csv").open(encoding="utf-8", newline="") as stream:
+        scenario_rows = {r["origin_id"]: r for r in csv.DictReader(stream)}
+    baseline_rows = {r["origin_id"]: r for r in rows}
+    route_sets = []
+    for run_id in [native["run_id"], native_scenario["run_id"]]:
+        collection = json.loads((result_dir / run_id / "routes.geojson").read_text(encoding="utf-8"))["features"]
+        route_sets.append({f["properties"]["origin_id"]: f["properties"]["edges"] for f in collection})
+    row_errors = []
+    for school in native_comparison["schools"]:
+        key = school["origin_id"]
+        a, b = baseline_rows[key], scenario_rows[key]
+        uses_before = any({e["u"], e["v"]} == {link["u"], link["v"]} for e in route_sets[0].get(key, []))
+        uses_after = any({e["u"], e["v"]} == {link["u"], link["v"]} for e in route_sets[1].get(key, []))
+        state = lambda r: ("within" if r["within_threshold"] == "True" else "outside") if r["status"] == "routed" else r["status"]
+        expected = {"origin_name": a["origin_name"], "status_before": a["status"], "status_after": b["status"],
+                    "destination_id_before": a["destination_id"] or None, "destination_id_after": b["destination_id"] or None,
+                    "total_m_before": float(a["total_m"]) if a["total_m"] else None, "total_m_after": float(b["total_m"]) if b["total_m"] else None,
+                    "within_before": a["within_threshold"] == "True", "within_after": b["within_threshold"] == "True",
+                    "crossed_threshold": a["status"] == b["status"] == "routed" and a["within_threshold"] != b["within_threshold"],
+                    "threshold_transition": state(a) + "_to_" + state(b), "baseline_route_uses_closed_link": uses_before,
+                    "scenario_route_uses_closed_link": uses_after, "destination_changed": a["destination_id"] != b["destination_id"]}
+        if any(school[k] != v for k, v in expected.items()):
+            row_errors.append(key)
+    check("every explicit school state and membership matches independent CSV/keyed-route join", not row_errors and len(native_comparison["schools"]) == len(rows), row_errors)
+    expected_crossings = sorted(k for k, r in baseline_rows.items() if r["status"] == scenario_rows[k]["status"] == "routed" and r["within_threshold"] != scenario_rows[k]["within_threshold"])
+    check("crossing IDs and count match actual row booleans", expected_crossings == native_comparison["crossed_threshold_origin_ids"] and len(expected_crossings) == native["within_threshold"] - native_scenario["within_threshold"])
+    check("unchanged unreachable objects remain explicit", sum(r["threshold_transition"] == "unreachable_to_unreachable" for r in native_comparison["schools"]) == native["unreachable"] > 0)
+    check("every scenario path avoids the declared closure", not native_comparison["scenario_routes_using_closed_link_origin_ids"])
+    expected_ids = ["node/8862204483", "node/8862204485", "way/1038696462", "way/38192458", "way/592362656"] if city == "helsinki" else []
+    check("pinned two-city threshold-identity regression", native_comparison["crossed_threshold_origin_ids"] == expected_ids, expected_ids)
+    if city == "helsinki":
+        indexed = {r["origin_id"]: r for r in native_comparison["schools"]}
+        check("large detour remains within while smaller detour crosses", not indexed["way/37295003"]["crossed_threshold"] and indexed["way/592362656"]["crossed_threshold"] and indexed["way/37295003"]["extra_distance_m"] > indexed["way/592362656"]["extra_distance_m"])
+    check("baseline CSV is unchanged from the first admitted experiment", data.sha(result_dir / native["run_id"] / "accessibility.csv") == data.sha(data.CASE / "evidence" / city / "baseline.csv"))
+    check("closure CSV is unchanged from the first admitted experiment", data.sha(result_dir / native_scenario["run_id"] / "accessibility.csv") == data.sha(data.CASE / "evidence" / city / "closure.csv"))
     check("real-city closure produces a measurable detour or reachability loss", native_comparison["affected_count"] > 0, native_comparison)
     check("closure cannot increase threshold coverage", native_scenario["within_threshold"] <= native["within_threshold"])
 
@@ -135,10 +171,27 @@ async def run(city):
             check("native/MCP closure summaries identical", semantic(scenario) == semantic(native_scenario))
             comparison = await invoke("walking_compare", {"city": city, "baseline_id": baseline["run_id"], "scenario_id": scenario["run_id"]})
             check("native/MCP detour lists identical", comparison["affected_origins"] == native_comparison["affected_origins"])
+            check("native/MCP complete school/route diagnostics identical", {k: v for k, v in comparison.items() if k not in {"baseline_id", "scenario_id"}} == {k: v for k, v in native_comparison.items() if k not in {"baseline_id", "scenario_id"}})
             routed_row = next(r for r in rows if r["status"] == "routed" and float(r["network_m"]) > 0)
             alternatives = await invoke("walking_route", {"city": city, "origin_id": routed_row["origin_id"], "destination_id": routed_row["destination_id"], "k": 2})
             check("alternative paths have nondecreasing correct keyed costs", len(alternatives["paths"]) == 2 and alternatives["paths"][0]["network_m"] <= alternatives["paths"][1]["network_m"] and all(math.isclose(p["network_m"], sum(e["length_m"] for e in p["edges"]), abs_tol=1e-6, rel_tol=0) for p in alternatives["paths"]))
             check("single-route total matches municipal CSV", math.isclose(alternatives["paths"][0]["total_m"], float(routed_row["total_m"]), abs_tol=1e-6, rel_tol=0))
+            diagnostic_origin = "node/1017984829" if city == "helsinki" else "node/2741066971"
+            diagnostic_args = {"city": city, "origin_id": diagnostic_origin, "destination_id": baseline_rows[diagnostic_origin]["destination_id"], "k": 2, "closed_links": [link]}
+            diagnostic_routes = await invoke("walking_route", diagnostic_args)
+            native_routes = engine.route(**diagnostic_args)
+            check("native/MCP route ranks, membership and overlap identical", diagnostic_routes == native_routes)
+            membership_ok = True
+            for path in diagnostic_routes["paths"]:
+                used = [e for e in path["edges"] if {e["u"], e["v"]} == {link["u"], link["v"]}]
+                membership_ok = membership_ok and path["uses_closed_link"] == bool(used) and path["closed_edges_used"] == used and path["avoids_all_declared_closed_links"] == (not used)
+            check("closed-link annotations agree with exact keyed edges", membership_ok)
+            check("both regression alternatives use the closed link", len(diagnostic_routes["paths"]) == 2 and all(p["uses_closed_link"] for p in diagnostic_routes["paths"]) and diagnostic_routes["path_ranks_avoiding_declared_closed_links"] == [])
+            p, q = diagnostic_routes["paths"]
+            shared = {(e["u"], e["v"], e["key"]) for e in p["edges"]} & {(e["u"], e["v"], e["key"]) for e in q["edges"]}
+            check("overlap counts are backed by independently intersected keyed edges", diagnostic_routes["path_overlap"][0]["shared_directed_keyed_edge_count"] == len(shared) > 0 and not diagnostic_routes["path_overlap"][0]["physical_link_disjoint"])
+            reversed_links = await invoke("walking_route", {**diagnostic_args, "closed_links": [{"u": link["v"], "v": link["u"]}]})
+            check("reversing closure-pair orientation preserves diagnostics", reversed_links == diagnostic_routes)
             iso = await invoke("walking_isochrone", position)
             forward = nx.single_source_dijkstra_path_length(graph, snapped["node"], cutoff=1200 - snapped["distance_m"], weight="length")
             check("isochrone node count and sample match native cutoff including snap", iso["reachable_nodes"] == len(forward) > 0 and iso["sample_node_ids"] == sorted(forward)[:20] and iso["max_total_m"] <= 1200)
@@ -173,11 +226,14 @@ async def run(city):
             await invoke("walking_read_artifact", {"city": city, "run_id": baseline["run_id"], "name": "../../manifest.json"}, error="artifact name is not allowed")
             await invoke("walking_read_artifact", {"city": city, "run_id": baseline["run_id"], "limit": 100000}, error="limit must be")
             await invoke("walking_compare", {"city": city, "baseline_id": baseline["run_id"], "scenario_id": baseline["run_id"]}, error="declared closure scenario")
+            await invoke("walking_route", {**diagnostic_args, "closed_links": [{"u": -1, "v": -2}]}, error="closed link does not exist")
+            await invoke("walking_route", {**diagnostic_args, "closed_links": [link] * 11}, error="at most ten")
             check("all exposed tools exercised", set(evidence["tools_exercised"]) == tool_names, {"advertised": sorted(tool_names), "exercised": sorted(set(evidence["tools_exercised"]))})
     evidence.update(native_baseline=native["run_id"], native_scenario=native_scenario["run_id"], mcp_baseline=baseline["run_id"], mcp_scenario=scenario["run_id"], input_manifest_sha256=data.sha(base / "manifest.json"),
                     implementation_sha256=data.sha(Path(engine.__file__)), source_attribution=manifest["attribution"], checks_passed=sum(c["passed"] for c in evidence["checks"]))
     data.dump(out / "native.json", native)
     data.dump(out / "native-comparison.json", native_comparison)
+    data.dump(out / "native-route-diagnostics.json", {"request": diagnostic_args, "result": native_routes})
     data.dump(out / "mcp.json", evidence)
     if evidence["failures"]:
         raise AssertionError(evidence["failures"])

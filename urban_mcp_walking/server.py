@@ -49,14 +49,14 @@ def walking_accessibility(city: str, run_id: str, threshold_m: float = 1200, spe
 
 @mcp.tool(annotations=READ)
 def walking_compare(city: str, baseline_id: str, scenario_id: str) -> dict:
-    """Compare compatible baseline and link-closure runs; identify detours, loss of reachability and threshold changes. Removing edges cannot shorten shortest paths."""
+    """Explicit per-school before/after distance, destination, routed status and threshold booleans. threshold_crossings identifies actual distance-threshold crossings; left_threshold_coverage also includes lost reachability. schools includes unchanged/unreachable objects. Each row identifies whether the baseline/scenario keyed route uses a closed link. Use these fields rather than inferring crossings from detour magnitude. Removing edges cannot shorten shortest paths."""
     return engine.compare(city, baseline_id, scenario_id)
 
 
 @mcp.tool(annotations=READ)
-def walking_route(city: str, origin_id: str, destination_id: str, k: int = 1) -> dict:
-    """One to three alternative length-shortest paths between harvested feature IDs, with actual parallel-edge keys and endpoint connector distances. Paths are general walking proxies."""
-    return engine.route(city, origin_id, destination_id, k)
+def walking_route(city: str, origin_id: str, destination_id: str, k: int = 1, closed_links: list[dict[str, int]] | None = None) -> dict:
+    """One to three length-shortest ORIGINAL-graph paths, exact parallel keys and connector costs. Optional closed_links [{u,v}] annotates each rank with uses_closed_link, exact closed_edges_used and avoids_all_declared_closed_links; it does not remove links or reroute. Both directions/all parallel keys are checked. path_overlap reports shared keyed edges and physical links: k-shortest alternatives may overlap and all may use a closed link. Use walking_accessibility with closures for the actual closure scenario; these are unverified general walking proxies."""
+    return engine.route(city, origin_id, destination_id, k, closed_links)
 
 
 @mcp.tool(annotations=READ)
@@ -129,4 +129,4 @@ def graph_metadata(city: str) -> dict:
 def municipal_walking_review(city: str) -> str:
     """Municipal workflow with assumptions and evidence to inspect before interpreting results."""
     data.city_config(city)
-    return f"Review {city}: discover recipe; restore the snapshot; inspect graph, schools and libraries; run the 1200 m baseline at assumed 4.8 km/h; read the CSV and keyed routes; inspect snap exclusions and disconnected paths; run one declared bidirectional link closure and compare; render/export evidence. Report mapped school objects, never population or pupils. Preserve the core/buffer bounds, input identity, ODbL attribution and all limitations. Make an exploratory municipal recommendation and state what field validation would be needed."
+    return f"Review {city}: discover recipe; restore the snapshot; inspect graph, schools and libraries; run the 1200 m baseline at assumed 4.8 km/h; read the CSV and keyed routes; inspect snap exclusions and disconnected paths; run one declared bidirectional link closure and compare; render/export evidence. Report mapped school objects, never population or pupils. Use walking_compare threshold_crossings and each school's before/after flags to identify actual crossings, not detour size. Request walking_route with closed_links and inspect every path's uses_closed_link and path_overlap before calling any alternative closure-safe. Preserve the core/buffer bounds, input identity, ODbL attribution and all limitations. Make an exploratory municipal recommendation and state what field validation would be needed."
