@@ -15,6 +15,7 @@ from shapely.geometry import LineString
 from src.shared.raster.reproject import Params
 from src.tools.raster.reproject import _reproject
 from src.shared.vector.simplify import simplify
+from src.tools.raster.query import raster_query
 
 
 async def audit():
@@ -41,7 +42,13 @@ async def audit():
         simplify(str(line),folder/"vw.gpkg",5,method="visvalingam")
         equal = bool(gpd.read_file(folder/"dp.gpkg").geometry.geom_equals_exact(gpd.read_file(folder/"vw.gpkg").geometry,1e-9).all())
         assert equal
-        return {"upstream": "JordanGunn/gdal-mcp", "commit": "418f401c7987e388eaaee6ad13289798a1ff69b6", "license": "MIT", "fixture": "Synthetic 100x100 EPSG:3067 raster, 10 m pixels, class 50, plus synthetic metric line; not municipal evidence", "source_sha256": {name:hashlib.sha256(Path('/opt/gdal-mcp/src/'+name).read_bytes()).hexdigest() for name in ['tools/raster/reproject.py','shared/vector/simplify.py']}, "explicit_dimensions_change_footprint": dimensions, "bounds_ignored": bounds, "visvalingam_label_aliases_douglas_peucker": {"source_finding":"The advertised visvalingam branch explicitly calls Shapely simplify, the same Douglas-Peucker implementation; it does not implement a true Visvalingam algorithm.","synthetic_outputs_identical":equal}, "profile_response": "Vegetation profile rejects explicit raster bounds/width/height, continuous categorical interpolation and the Visvalingam label. Uses resolution, nearest/mode and Douglas-Peucker. Original numerical code remains unchanged."}
+        query_fn = getattr(raster_query,'fn',raster_query)
+        query_bounds = [379950,6669950,380050,6670050]
+        await query_fn(str(source),query_bounds,output=str(folder/'partial.tif'))
+        with rasterio.open(folder/'partial.tif') as result:
+            partial = {'requested_bounds':query_bounds,'expected_clipped_bounds':[380000,6669950,380050,6670000],'observed_bounds':list(result.bounds),'observed_shape':[result.height,result.width]}
+        assert partial['observed_bounds'] != partial['expected_clipped_bounds']
+        return {"upstream": "JordanGunn/gdal-mcp", "commit": "418f401c7987e388eaaee6ad13289798a1ff69b6", "license": "MIT", "fixture": "Synthetic 100x100 EPSG:3067 raster, 10 m pixels, class 50, plus synthetic metric line; not municipal evidence", "source_sha256": {name:hashlib.sha256(Path('/opt/gdal-mcp/src/'+name).read_bytes()).hexdigest() for name in ['tools/raster/reproject.py','tools/raster/query.py','shared/vector/simplify.py']}, "explicit_dimensions_change_footprint": dimensions, "bounds_ignored": bounds, "partial_window_wrong_transform":partial, "visvalingam_label_aliases_douglas_peucker": {"source_finding":"The advertised visvalingam branch explicitly calls Shapely simplify, the same Douglas-Peucker implementation; it does not implement a true Visvalingam algorithm.","synthetic_outputs_identical":equal}, "profile_response": "Vegetation profile rejects partial/outside raster windows, explicit raster bounds/width/height, continuous categorical interpolation and the Visvalingam label. Uses bounded source windows, resolution, nearest/mode and Douglas-Peucker. Original numerical code remains unchanged."}
 
 
 if __name__ == "__main__":

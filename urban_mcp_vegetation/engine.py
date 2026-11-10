@@ -19,6 +19,7 @@ from rasterio.transform import from_origin
 from rasterio.warp import reproject
 
 from . import data
+from .interface import MAX_PAGE_CHARACTERS
 
 _LOCK = RLock()
 
@@ -154,13 +155,13 @@ def analyze(city, run_id, threshold=0.2):
     return summary
 
 
-def read_artifact(city, run_id, name="summary.json", offset=0, limit=20000):
+def read_artifact(city, run_id, name="summary.json", offset=0, limit=8000):
     data.city_config(city)
     token(run_id)
     if name not in {"summary.json", "zone_metrics.csv", "class_counts.csv", "zones.geojson", "report.md", "map.png"}:
         raise ValueError("Artifact name is not allowed")
-    if type(offset) is not int or type(limit) is not int or offset < 0 or not 1 <= limit <= 50000:
-        raise ValueError("offset must be nonnegative and limit must be 1..50000")
+    if type(offset) is not int or type(limit) is not int or offset < 0 or not 1 <= limit <= MAX_PAGE_CHARACTERS:
+        raise ValueError("offset must be nonnegative and limit must be 1..12000")
     path = data.root() / "results" / city / run_id / name
     receipt = {"name": name, "bytes": path.stat().st_size, "sha256": data.sha(path)}
     if name == "map.png":

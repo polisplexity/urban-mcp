@@ -1,4 +1,8 @@
 * text=auto eol=lf
+# Preserve exact observed vegetation CSV/answer/process bytes and their hashes.
+cases/two-city-vegetation/evidence/**/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+cases/two-city-vegetation/evidence/**/*-answer.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+cases/two-city-vegetation/evidence/**/*-process.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Observed artifacts must retain the exact bytes named by public SHA-256 receipts.
 cases/two-city-walking/evidence/**/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 cases/two-city-walking/evidence/**/*-answer.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -21,6 +21,8 @@ from rasterio.features import geometry_mask, geometry_window
 from rasterio.windows import Window, bounds as window_bounds
 
 from . import data, engine
+from .interface import public_summary
+from . import interface
 
 
 def payload(result):
@@ -83,6 +85,9 @@ async def run(city):
     check("threshold sensitivity preserves class-count bytes", data.sha(data.root()/"results"/city/baseline["run_id"]/"class_counts.csv") == data.sha(data.root()/"results"/city/sensitivity["run_id"]/"class_counts.csv"))
     check("raising threshold cannot remove a previously low-share zone", not comparison["no_longer_below_threshold_zone_ids"] and set(baseline["low_vegetation_zone_ids"]) <= set(sensitivity["low_vegetation_zone_ids"]))
     check("tree-class metric remains a distinct component", all(r["tree_class_pixels"] <= r["vegetation_pixels"] <= r["valid_land_pixels"] for r in baseline["zones"]))
+    history = data.CASE/"evidence/initial-observations/v1"/city
+    check("bounded transport revision preserves original baseline CSV bytes", data.sha(data.root()/"results"/city/baseline["run_id"]/"zone_metrics.csv") == data.sha(history/"baseline.csv"))
+    check("bounded transport revision preserves original sensitivity CSV bytes", data.sha(data.root()/"results"/city/sensitivity["run_id"]/"zone_metrics.csv") == data.sha(history/"sensitivity.csv"))
     params = StdioServerParameters(command=sys.executable, args=["-m", "urban_mcp_vegetation", "serve"], env=dict(os.environ))
     work = data.root()/"results"/city/(prefix+"-upstream")
     work.mkdir(parents=True)
@@ -114,8 +119,16 @@ async def run(city):
             check("class catalog includes cropland but excludes water", {c["code"] for c in classes["classes"] if c["included_in_vegetation"]} == set(data.recipe()["vegetation_classes"]) and 80 not in classes["vegetation_classes"])
             remote = await invoke("analyze_vegetation", {"city":city,"run_id":prefix+"-mcp"})
             remote_sensitivity = await invoke("analyze_vegetation", {"city":city,"run_id":prefix+"-mcp-sensitivity","threshold":.4})
-            check("complete native/MCP baseline zone diagnostics identical", semantic(remote) == semantic(baseline))
-            check("complete native/MCP sensitivity diagnostics identical", semantic(remote_sensitivity) == semantic(sensitivity))
+            check("complete bounded native/MCP baseline projection identical", semantic(remote) == semantic(public_summary(baseline)))
+            check("complete bounded native/MCP sensitivity projection identical", semantic(remote_sensitivity) == semantic(public_summary(sensitivity)))
+            check("primary diagnostic responses fit the tested host budget without dropping ID sets", all(len(json.dumps(value,ensure_ascii=True))<12000 and "zones" not in value and value["zone_details"]["complete_zone_count"]==baseline["zone_count"] for value in [remote,remote_sensitivity]))
+            summary_chunks, summary_offset = [], 0
+            while True:
+                page = await invoke("read_vegetation_artifact", {"city":city,"run_id":remote["run_id"],"name":"summary.json","offset":summary_offset,"limit":12000})
+                summary_chunks.append(page["text"])
+                if page["next_offset"] is None:break
+                summary_offset = page["next_offset"]
+            check("full paged MCP summary reconstructs every native zone/class record", semantic(json.loads("".join(summary_chunks))) == semantic(baseline))
             remote_compare = await invoke("vegetation_compare", {"city":city,"baseline_id":remote["run_id"],"scenario_id":remote_sensitivity["run_id"]})
             normalize = lambda value: {k:v for k,v in value.items() if k not in {"baseline_id","scenario_id"}}
             check("native/MCP threshold comparison identical", normalize(remote_compare) == normalize(comparison))
@@ -207,6 +220,9 @@ async def run(city):
             await invoke("raster_reproject", {"uri":str(raster),"output":str(work/"bad-dimensions.tif"),"dst_crs":crs,"resampling":"nearest","width":20,"height":20},error="Explicit bounds/width/height")
             await invoke("raster_reproject", {"uri":str(raster),"output":str(work/"bad-bounds.tif"),"dst_crs":crs,"resampling":"nearest","bounds":[0,0,100,100]},error="Explicit bounds/width/height")
             await invoke("raster_convert", {"uri":str(raster),"output":str(work/"bad-cog.tif"),"options":{"driver":"COG","overviews":[2]}},error="Categorical overviews require")
+            with rasterio.open(raster) as source:
+                outside = [source.bounds.left-10,source.bounds.top-10,source.bounds.left+10,source.bounds.top+10]
+            await invoke("raster_query", {"uri":str(raster),"geometry":outside,"output":str(work/"bad-partial.tif")},error="fully within source bounds")
             await invoke("vector_simplify", {"uri":str(metric),"output":str(work/"bad-vw.gpkg"),"tolerance":20,"method":"visvalingam"},error="Visvalingam is not admitted")
             await invoke("vector_info", {"uri":"/etc/passwd"},error="outside")
             resources = (await client.list_resources()).resources
@@ -222,7 +238,7 @@ async def run(city):
             result = await client.get_prompt("municipal_vegetation_review", {"city":city})
             check("municipal workflow prompt", bool(result.messages))
             check("every exposed original and added tool exercised", set(evidence["tools_exercised"]) == names, {"advertised":sorted(names),"exercised":sorted(set(evidence["tools_exercised"]))})
-    evidence.update(checks_passed=sum(c["passed"] for c in evidence["checks"]), native_baseline=baseline["run_id"], native_sensitivity=sensitivity["run_id"], mcp_baseline=remote["run_id"], mcp_sensitivity=remote_sensitivity["run_id"], input_manifest_sha256=data.sha(data.root()/"inputs"/city/"manifest.json"), implementation_sha256=data.sha(Path(engine.__file__)), server_sha256=data.sha(Path(__file__).with_name("server.py")), data_code_sha256=data.sha(Path(data.__file__)))
+    evidence.update(checks_passed=sum(c["passed"] for c in evidence["checks"]), native_baseline=baseline["run_id"], native_sensitivity=sensitivity["run_id"], mcp_baseline=remote["run_id"], mcp_sensitivity=remote_sensitivity["run_id"], input_manifest_sha256=data.sha(data.root()/"inputs"/city/"manifest.json"), implementation_sha256=data.sha(Path(engine.__file__)), server_sha256=data.sha(Path(__file__).with_name("server.py")), data_code_sha256=data.sha(Path(data.__file__)), interface_code_sha256=data.sha(Path(interface.__file__)))
     for filename, value in [("native.json",baseline),("native-sensitivity.json",sensitivity),("native-comparison.json",comparison),("mcp.json",evidence)]:
         data.dump(out/filename,value)
     if evidence["failures"]:

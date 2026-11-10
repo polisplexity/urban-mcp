@@ -1,0 +1,58 @@
+{
+  "code_commit_observed": "f6685232d31285b3cf44eb3253cc8c6e07066089",
+  "runtime_lock_sha256": "435258e8f4bae1e5d304d8f4d472c5324b214c0de13aea4b3af062e9d10dd7d5",
+  "snapshots": {
+    "helsinki": {
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-vegetation-20261110/helsinki-vegetation-20261110.zip",
+      "bytes": 821746,
+      "sha256": "eaf5f9789667ede944e47d4476e23b98c18b88fc9b9f0f098b028238f8ee1796",
+      "manifest_sha256": "e8516c9db08a78f584cc9156c261dd82581ffe3f23fa0dbf9e9fc00636a7da32"
+    },
+    "amsterdam": {
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-vegetation-20261110/amsterdam-vegetation-20261110.zip",
+      "bytes": 1794250,
+      "sha256": "af6c82dd1e272d3b5565af4309cac2870924789ee336bb5760e3e8fd25dcd070",
+      "manifest_sha256": "a559869c14da3edb8de47d946a4e811f497e31c7b5dd40ebc1f1f7832893a502"
+    }
+  },
+  "cities": [
+    {
+      "city": "helsinki",
+      "native_mcp_checks": 102,
+      "tools_exercised": 21,
+      "implementation_sha256": "80c6538ece622cfd3f4ed155866319ee9bbf7fc2b0291d937727426b6fd4479c",
+      "server_sha256": "0933886692109b814bcbee9ac8eaefc1c7c7d60081e1a3bc2e7f42c509a8b895",
+      "data_code_sha256": "83a978aea8334bd60421fec5296b9946ffc730333e26dda0c42641e2c0c16d96",
+      "input_manifest_sha256": "e8516c9db08a78f584cc9156c261dd82581ffe3f23fa0dbf9e9fc00636a7da32",
+      "artifacts": {
+        "baseline.csv": "01cce40cc50532a4eb0b333bcc60e6d171fc879f8b4574f5ce316098e076e139",
+        "sensitivity.csv": "24197695befef59663285e0d52f724a8d3306d1f5892934a829684a353a453a1",
+        "baseline-classes.csv": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+        "sensitivity-classes.csv": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+        "map.png": "1a050047e7bcf329c4c730d872599bf828a50a9c1647df794eb2244e382186cb"
+      }
+    },
+    {
+      "city": "amsterdam",
+      "native_mcp_checks": 116,
+      "tools_exercised": 21,
+      "implementation_sha256": "80c6538ece622cfd3f4ed155866319ee9bbf7fc2b0291d937727426b6fd4479c",
+      "server_sha256": "0933886692109b814bcbee9ac8eaefc1c7c7d60081e1a3bc2e7f42c509a8b895",
+      "data_code_sha256": "83a978aea8334bd60421fec5296b9946ffc730333e26dda0c42641e2c0c16d96",
+      "input_manifest_sha256": "a559869c14da3edb8de47d946a4e811f497e31c7b5dd40ebc1f1f7832893a502",
+      "artifacts": {
+        "baseline.csv": "276b5ea4493135c62a10dfaa0d8bf9609cf6c38eacf4be1c73242b2b9cb0434d",
+        "sensitivity.csv": "5f7cc6dc34cccf20d925201c37ed22e57d391056eaa8eada4806f3e588b5e300",
+        "baseline-classes.csv": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+        "sensitivity-classes.csv": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+        "map.png": "84c5e22dbce61f377c24b4ba255b03ed31b3261dbc1adb44046f76d4b0b048e4"
+      }
+    }
+  ],
+  "synthetic_regressions": {
+    "suite": "urban_mcp_vegetation.test_contracts",
+    "tests": 12,
+    "municipal_observations": false
+  },
+  "limits": "Native/protocol evidence for the declared two cities and operations. Independent host observations and factual reviews are separate; final-product third-city qualification remains pending."
+}

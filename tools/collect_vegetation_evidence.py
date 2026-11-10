@@ -25,7 +25,7 @@ def main():
         checks = json.loads((origin/"mcp.json").read_text(encoding="utf-8"))
         if checks["failures"] or checks["checks_passed"] != len(checks["checks"]) or len(set(checks["tools_exercised"])) != 21:
             raise ValueError("Incomplete or failed case evidence")
-        for field, name in [("implementation_sha256","engine.py"),("server_sha256","server.py"),("data_code_sha256","data.py")]:
+        for field, name in [("implementation_sha256","engine.py"),("server_sha256","server.py"),("data_code_sha256","data.py"),("interface_code_sha256","interface.py")]:
             canonical = subprocess.check_output(["git","show","HEAD:urban_mcp_vegetation/"+name],cwd=ROOT)
             if hashlib.sha256(canonical).hexdigest() != checks[field]:
                 raise ValueError("Executing source differs from committed canonical bytes: "+name)
@@ -41,7 +41,7 @@ def main():
             shutil.copyfile(result/"report.md",output/(label+"-report.md"))
         shutil.copyfile(args.workspace/"results"/city/checks["native_baseline"]/"map.png",output/"map.png")
         records.append({"city":city,"native_mcp_checks":checks["checks_passed"],"tools_exercised":21,
-                        **{key:checks[key] for key in ["implementation_sha256","server_sha256","data_code_sha256","input_manifest_sha256"]},
+                        **{key:checks[key] for key in ["implementation_sha256","server_sha256","data_code_sha256","interface_code_sha256","input_manifest_sha256"]},
                         "artifacts":{name:sha(output/name) for name in ["baseline.csv","sensitivity.csv","baseline-classes.csv","sensitivity-classes.csv","map.png"]}})
     shutil.copyfile(args.workspace/"evidence/upstream-audit.json",args.output/"upstream-audit.json")
     document = {"code_commit_observed":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),"runtime_lock_sha256":sha(ROOT/"adapters/vegetation/runtime.lock.txt"),"snapshots":json.loads((CASE/"snapshot.lock.json").read_text(encoding="utf-8")),"cities":records,"synthetic_regressions":{"suite":"urban_mcp_vegetation.test_contracts","tests":12,"municipal_observations":False},"limits":"Native/protocol evidence for the declared two cities and operations. Independent host observations and factual reviews are separate; final-product third-city qualification remains pending."}

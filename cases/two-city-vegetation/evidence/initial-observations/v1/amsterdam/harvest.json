@@ -1,0 +1,96 @@
+{
+  "case": "two-city-vegetation",
+  "city": "amsterdam",
+  "acquired_at": "2026-11-10T16:46:11.583341+00:00",
+  "recipe_sha256": "8f1742df59fbee88ce5a44e5a67e54903fc14b7291f23abf5a1efd7dc0e6bf13",
+  "zones": 111,
+  "population": {
+    "municipal_population": 934526,
+    "zone_population_sum": 934515,
+    "municipal_minus_zone_population": 11,
+    "population_date": "2025-01-01",
+    "unknown_population_zone_ids": [
+      "WK036399"
+    ]
+  },
+  "source_tiles": [
+    {
+      "file": "source-N51E003.tif",
+      "upstream": {
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E003_Map.tif",
+        "method": "GET",
+        "retrieved_at": "2026-11-10T16:46:06.380714+00:00",
+        "status": 200,
+        "etag": "\"cc4e40cf1c18a535c2708844c35f5da6-7\"",
+        "last_modified": "Wed, 26 Oct 2022 12:52:54 GMT",
+        "bytes": 54556617,
+        "sha256": "33190aed23427fede8bcb6b99d70aa423ba718644cf2c07453cb6ce09ff08464",
+        "file": "ESA_WorldCover_10m_2021_v200_N51E003_Map.tif"
+      },
+      "window": [
+        20721,
+        18803,
+        4596,
+        1886
+      ],
+      "source_nodata": 0.0,
+      "source_bounds": [
+        3.0,
+        51.0,
+        6.0,
+        54.0
+      ],
+      "crop_transform": [
+        8.333333333333333e-05,
+        0.0,
+        4.72675,
+        0.0,
+        -8.333333333333333e-05,
+        52.433083333333336,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "licenses": [
+    {
+      "year": 2021,
+      "version": "v200",
+      "base_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "native_crs": "EPSG:4326",
+      "native_pixel_degrees": 8.333333333333333e-05,
+      "license": "CC-BY-4.0",
+      "attribution": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "manual": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf",
+      "terms": "https://esa-worldcover.org/en/data-access"
+    },
+    {
+      "license": "CC0-1.0",
+      "attribution": "CBS Wijken en Buurten 2025, distributed by PDOK",
+      "terms": "https://creativecommons.org/publicdomain/zero/1.0/deed.nl"
+    }
+  ],
+  "files": {
+    "raw/gemeenten.geojson": {
+      "bytes": 1185366,
+      "sha256": "96128476b431c15bd38e315f32ec0f1c75959054a2b5e61e6e5b9ffb143ee036"
+    },
+    "raw/wijken.geojson": {
+      "bytes": 1530016,
+      "sha256": "e3c49306fb79c4fae737b834e12feda4d4898237727e3b1289ee4bc001516991"
+    },
+    "requests.json": {
+      "bytes": 2396,
+      "sha256": "f4c98d5ba1fab4658dd7cb6ebcfece2302c717ef5d2b918f8832505f1b8e3f6f"
+    },
+    "source-N51E003.tif": {
+      "bytes": 520096,
+      "sha256": "6064673e4d4ac314168d58d5f70f88b4bd2d4b390c5669be35f09596862e9c67"
+    },
+    "zones.geojson": {
+      "bytes": 1553550,
+      "sha256": "8515883233f93c3ee2a6c7f682c033e13672e2519da53d0e1cf1da9ef5673235"
+    }
+  }
+}
