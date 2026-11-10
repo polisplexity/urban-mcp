@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends libx11-6 libxex
 RUN python -m pip install --no-cache-dir -r /opt/sumo-runtime.lock.txt /tmp/eclipse_sumo-1.28.0-py3-none-manylinux_2_28_x86_64.whl && sumo --version
 ADD --checksum=sha256:1f3238d7013f40381ef0d9a21fffae3190da0150782829fb69e920502b48a44c https://codeload.github.com/XRDS76354/SUMO-MCP-Server/tar.gz/6b62a25c1b13751d636309a03e4388594fcd7620 /tmp/sumo-mcp.tar.gz
 RUN mkdir /opt/sumo-mcp && tar -xzf /tmp/sumo-mcp.tar.gz -C /opt/sumo-mcp --strip-components=1
-ENV PYTHONPATH=/opt/urban-mcp:/opt/sumo-mcp/src PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 SUMO_HOME=/usr/local/lib/python3.12/site-packages/sumo MPLCONFIGDIR=/tmp/matplotlib
+ENV PYTHONPATH=/opt/urban-mcp:/opt/sumo-mcp/src PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 SUMO_HOME=/usr/local/lib/python3.12/site-packages/sumo MPLCONFIGDIR=/tmp/matplotlib PROJ_DATA=/usr/local/lib/python3.12/site-packages/sumo/data/proj PROJ_LIB=/usr/local/lib/python3.12/site-packages/sumo/data/proj
 COPY urban_mcp_sumo /opt/urban-mcp/urban_mcp_sumo
 COPY cases/two-city-sumo /opt/urban-mcp/cases/two-city-sumo
 USER 65532:65532

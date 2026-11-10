@@ -171,6 +171,8 @@ def make_run(city, run_id, scenario="baseline", inspection=False):
     end = cfg["begin"]+60 if inspection else cfg["end"]
     node = ET.Element("configuration")
     def options(group, values):
+        if not values:
+            return
         element = ET.SubElement(node,group)
         for key,value in values.items():
             ET.SubElement(element,key,value=str(value))
