@@ -1,6 +1,7 @@
 """Native oracles plus every exposed operation over a real MCP subprocess."""
 from __future__ import annotations
 
+import asyncio
 import csv
 import json
 import math
