@@ -4,6 +4,8 @@ Open infrastructure that lets any MCP-capable agent operate urban open-source to
 
 **Start with the [master test record](MASTER_TEST_RECORD.md): what we tested, why, the evidence and the limits.** Catalog entries remain research until a scoped municipal case passes data, native engine, MCP and independent-host checks.
 
+**Final-product qualification is pending.** Promotion requires a [person outside the original implementation/test team to harvest and reproduce a third city](docs/product-qualification.md), after the first two, with reviewed native/MCP and two-host evidence. Integration into `main` preserves development work; the [qualification register](registry/product-qualification.json) records final-product eligibility separately.
+
 ## Executable cases on main
 
 - [Helsinki service inventory](cases/helsinki-service-inventory/README.md): registered public-library and health-station locations against 2025 district population; original GDAL MCP plus municipal preparation/inventory operations, with Codex/Hermes evidence.

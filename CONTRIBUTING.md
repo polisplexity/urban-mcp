@@ -11,6 +11,12 @@ Contribute a source, reproducible municipal case, interface fix, independent rep
 7. Run the same blind task in independent, initially empty host workspaces. Review tool traces, numerical artifacts and final claims separately from process exit codes. Do not expose credentials, private host configuration, memories or reasoning.
 8. Update the [master test record](MASTER_TEST_RECORD.md), case guide, function matrix and machine-readable evidence. A result is admitted only for its declared operation, inputs, parameters and city scope.
 
+## Independent third-city gate for the final product
+
+Before promoting a transferable capability to a final release or final product repository, a person outside its original implementation/initial test team must harvest and reproduce a **third city** after the initial two, with native/MCP comparisons and separate Codex/Hermes observations. Submit a public evidence PR for maintainer review. Another agent/model launched by the original operator does not satisfy independence.
+
+Follow the [qualification policy](docs/product-qualification.md) and complete the independent-reproduction issue template. Keep the [qualification register](registry/product-qualification.json) and master pending until the review is accepted. Case-scoped `ready_to_run` and integration into `main` remain separate from `product_qualified`. Name and review the final destination and exact source version in a subsequent promotion change.
+
 ## Required checks
 
 ```sh

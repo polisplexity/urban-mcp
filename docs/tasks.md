@@ -1,4 +1,10 @@
-# Tareas públicas
+# Public contribution tasks
+
+## Current qualification priority
+
+[Issue #41: independent third-city walking reproduction](https://github.com/polisplexity/urban-mcp/issues/41) is required before final-product promotion. A person outside the original implementation/initial test team must harvest another city's inputs, run the complete native/MCP case and both hosts, and submit public evidence for review. The [policy](product-qualification.md), [qualification register](../registry/product-qualification.json) and [master](../MASTER_TEST_RECORD.md) keep that stage pending. Initial developer-operated cases and another model run by the same team do not satisfy it.
+
+## Historical planning backlog
 
 El primer caso ejecutable es [Helsinki: bibliotecas y salud](../cases/helsinki-service-inventory/README.md), con cosecha, original/MCP y dos agentes. Las prioridades siguientes son accesibilidad y cobertura vegetal. Cada capacidad se admite con cosecha, resultado municipal y reproducción independiente; SUMO Hello es una referencia técnica auxiliar. Ver [criterios](cases/municipal-first.md) y [plantilla](cases/municipal-case-template.md). Las tareas de familia seleccionan operaciones/casos y datos, no ordenan implementar todo el inventario.
 

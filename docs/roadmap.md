@@ -14,6 +14,8 @@ The [master test record](../MASTER_TEST_RECORD.md) is the current status source.
 
 ## Next contributions
 
+Final-product promotion now requires the [independent third-city gate](product-qualification.md). The priority is [issue #41](https://github.com/polisplexity/urban-mcp/issues/41): a person outside the original implementation/test team harvesting and reproducing walking access in a city other than Helsinki/Amsterdam, with reviewed native/MCP and Codex/Hermes evidence. Current `main` integration and case admission do not satisfy that gate. See the [qualification register](../registry/product-qualification.json).
+
 1. Reproduce the two executable cases and submit artifact hashes plus host/runtime versions.
 2. Improve authoritative school/library inventories, entrances, access/hours and campus identity checks in the walking case.
 3. Add a third city's source contract and independently review the study-boundary assumptions.

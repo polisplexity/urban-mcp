@@ -2,6 +2,17 @@
 
 This is the project entry point for evidence: what we tested, why it matters to a municipality, and how far the evidence supports a claim. A catalog entry, a successful container startup and a tool listing do not establish a working capability.
 
+## Final-product qualification: pending independent reproduction
+
+The [required qualification rule](docs/product-qualification.md) separates development integration from final-product promotion. A person outside the original implementation and initial test team must harvest and reproduce the same capability in a third, distinct city after the first two, with full native/MCP coverage, two-host evidence and an accepted public review. Another model, agent instance or CI runner operated by the original team does not meet that condition.
+
+| Capability | Initial developer-operated cities | Independent third-city review | Final-product promotion |
+| --- | --- | --- | --- |
+| Walking access | Helsinki, Amsterdam | Pending; no independent operator/city/evidence accepted | Blocked |
+| Service inventory | Helsinki; second initial city pending | Pending | Blocked |
+
+The [qualification register](registry/product-qualification.json) records `product_qualified=false` for both. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed by this policy change. The destination final repository/release must be named in a later reviewed promotion change.
+
 ## Reproduce the integrated source
 
 Use `main` for the combined implementation: RFC #1 → Helsinki inventory #37 → two-city walking #38 → diagnostic revision #40. Record `git rev-parse HEAD` for every independent reproduction. Follow the English [inventory guide](cases/helsinki-service-inventory/README.md), [two-city Docker guide](cases/two-city-walking/README.md), [current walking task/export/review procedure](cases/two-city-walking/issue-39.md) and [agent runbook](docs/agents/day-zero.md). Use fresh data workspaces and new host labels; preserve published observations and failed answers unchanged.

@@ -1,0 +1,44 @@
+name: Independent third-city reproduction
+description: Qualify a capability through a person outside the initial implementation/test team.
+title: "Independent third-city reproduction: "
+labels: ["help wanted", "data", "mcp"]
+body:
+  - type: markdown
+    attributes:
+      value: "Read docs/product-qualification.md. Two original cities plus another agent/model run by the same team do not qualify a final product."
+  - type: textarea
+    id: operator
+    attributes:
+      label: Operator identity, role and independence declaration
+      description: Explain how you are outside the original implementation/initial test team; disclose assistance and relevant relationships.
+    validations: {required: true}
+  - type: textarea
+    id: city
+    attributes:
+      label: Capability, initial two cities and third municipality
+      description: Include country/municipal ID, question, study boundary, CRS, units and denominator.
+    validations: {required: true}
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Third-city harvest, rights and immutable inputs
+      description: Exact requests/assets, dates, rights/attribution, sizes/hashes, coverage, failed receipts and snapshot/refresh recipe.
+    validations: {required: true}
+  - type: textarea
+    id: execution
+    attributes:
+      label: Candidate commit, fresh sandbox and native/MCP evidence
+      description: Runtime versions, commands, all-operation coverage, artifact comparisons, invalid inputs, failures/recovery and portability changes.
+    validations: {required: true}
+  - type: textarea
+    id: hosts
+    attributes:
+      label: Codex and Hermes observations and factual review
+      description: Separate mounts, blind task/hash, public calls, artifact/answer hashes, reviewed claims and unsupported features. Keep private configuration and credentials out of Git.
+    validations: {required: true}
+  - type: textarea
+    id: review
+    attributes:
+      label: Reproduction PR and proposed qualification scope
+      description: Link the evidence PR; maintainer review is required before changing product qualification. Disclose missing work rather than marking it passed.
+    validations: {required: true}
