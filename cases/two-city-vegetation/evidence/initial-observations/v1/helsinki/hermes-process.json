@@ -1,0 +1,12 @@
+{
+  "host": "hermes",
+  "city": "helsinki",
+  "capability": "vegetation",
+  "exit_code": 0,
+  "started_at": "2026-11-10T17:09:24.279066+00:00",
+  "elapsed_seconds": 404.454,
+  "submitted_prompt_sha256": "1c6a4d09016c38c564a6444b81d8e09116f2ffaefa4b407808225b2728c6ace7",
+  "task_path": "cases/two-city-vegetation/agent-task.md",
+  "task_template_sha256": "24caad8a585663f5a1c97791302286513782daf94b5557c90ea04415498ba6d1",
+  "code_commit": "f6685232d31285b3cf44eb3253cc8c6e07066089"
+}

@@ -33,7 +33,35 @@ x-walking: &walking
   tmpfs: ["/tmp:rw,noexec,nosuid,size=128m"]
   volumes:
     - ${URBAN_MCP_WALKING_WORKDIR:-./.urban-mcp/walking}:/data
+x-vegetation: &vegetation
+  profiles: [vegetation]
+  image: urban-mcp-vegetation:dev
+  user: "${URBAN_MCP_UID:-65532}:${URBAN_MCP_GID:-65532}"
+  build:
+    context: .
+    dockerfile: adapters/vegetation/Dockerfile
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  cpus: 2
+  mem_limit: 2g
+  pids_limit: 128
+  network_mode: none
+  tmpfs: ["/tmp:rw,noexec,nosuid,size=128m"]
+  volumes:
+    - ${URBAN_MCP_VEGETATION_WORKDIR:-./.urban-mcp/vegetation}:/data
 services:
+  vegetation:
+    <<: *vegetation
+  vegetation-harvest:
+    <<: *vegetation
+    network_mode: bridge
+    command: [harvest]
+  vegetation-mcp:
+    <<: *vegetation
+    network_mode: bridge
+    stdin_open: true
+    command: [serve]
   walking:
     <<: *walking
   walking-harvest:

@@ -1,0 +1,12 @@
+{
+  "host": "hermes",
+  "city": "amsterdam",
+  "capability": "vegetation",
+  "exit_code": 0,
+  "started_at": "2026-11-10T17:33:49.571848+00:00",
+  "elapsed_seconds": 413.726,
+  "submitted_prompt_sha256": "c1755ed706c47a675fe2f1a6b53f776798a716450e09c385d00cc2e84220e821",
+  "task_path": "cases/two-city-vegetation/agent-task-v2.md",
+  "task_template_sha256": "37dee1728e03b2557dc74dc866b9de0134e142b190893bff0b54e1d38fe2cd31",
+  "code_commit": "1f3a7b9f4fcb2b3ead1b22b5d4a96823dd430f34"
+}

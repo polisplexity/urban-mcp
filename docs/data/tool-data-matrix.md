@@ -2,7 +2,7 @@
 
 **Status: proposed requirements, not general operational availability.** Each tool has a profile. These describe a first representative case; every operation needs its own native binding and may use a different subset. Dependencies inherit the parent capability's inputs. GTFS is not mandatory for geometric validation, nor HVAC inputs for a daylight calculation. Historical research descriptions retain their original language.
 
-Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 2 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
+Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 3 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
 
 | Tool | Proposed profile | Status |
 |---|---|---|
@@ -209,7 +209,7 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 | [postgis/postgis](#data-postgis--postgis) | `spatial-db` | candidate; binding pending |
 | [qgis/QGIS](#data-qgis--qgis) | `vector` | candidate; binding pending |
 | [r-spatial/sf](#data-r-spatial--sf) | `vector` | candidate; binding pending |
-| [rasterio/rasterio](#data-rasterio--rasterio) | `raster` | candidate; binding pending |
+| [rasterio/rasterio](#data-rasterio--rasterio) | `raster` | candidate; case-scoped admission |
 | [rspatial/terra](#data-rspatial--terra) | `raster` | candidate; binding pending |
 | [saga-gis/saga-gis](#data-saga-gis--saga-gis) | `raster` | candidate; binding pending |
 | [shapely/shapely](#data-shapely--shapely) | `vector` | dependency; binding pending |
@@ -4180,6 +4180,8 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 
 - **Original interface:** API Python basada en GDAL.
 - **Profile scope:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Scoped executable case:** [amsterdam-vegetation](../../cases/amsterdam-vegetation/README.md); operations: store_justification, raster_convert, raster_info, raster_query, raster_reproject, raster_stats, vector_buffer, vector_clip, vector_convert, vector_info, vector_query, vector_reproject, vector_simplify, vegetation_status, harvest_vegetation_data, prepare_vegetation_data, vegetation_class_catalog, analyze_vegetation, vegetation_compare, read_vegetation_artifact, render_vegetation_map. The generic profile below remains a proposal for other operations.
+- **Scoped executable case:** [helsinki-vegetation](../../cases/helsinki-vegetation/README.md); operations: store_justification, raster_convert, raster_info, raster_query, raster_reproject, raster_stats, vector_buffer, vector_clip, vector_convert, vector_info, vector_query, vector_reproject, vector_simplify, vegetation_status, harvest_vegetation_data, prepare_vegetation_data, vegetation_class_catalog, analyze_vegetation, vegetation_compare, read_vegetation_artifact, render_vegetation_map. The generic profile below remains a proposal for other operations.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
@@ -4188,7 +4190,7 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 - **Preparation required:** Subset/window, harmonize grids only through recorded resampling; preserve original metadata.
 - **Validation required:** CRS, affine transform, bands, nodata, coverage, units and resolution.
 - **Real-city blocker:** An available raster can be unsuitable for the intended analysis.
-- **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
+- **Native binding:** verified only for the linked case and operations; the generic profile does not admit additional operations.
 - **Project critique:** No duplicar GDAL ni cargar rásters completos al contexto del agente.
 - **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.
 

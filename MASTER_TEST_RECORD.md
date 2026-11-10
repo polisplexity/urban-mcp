@@ -10,10 +10,37 @@ The [required qualification rule](docs/product-qualification.md) separates devel
 | --- | --- | --- | --- |
 | Walking access | Helsinki, Amsterdam | Pending; no independent operator/city/evidence accepted | Blocked |
 | Service inventory | Helsinki; second initial city pending | Pending | Blocked |
+| Historical vegetation | Helsinki, Amsterdam, original team | Pending; no independent person/city/evidence accepted | Blocked |
 
-The [qualification register](registry/product-qualification.json) records `product_qualified=false` for both. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed by this policy change. The destination final repository/release must be named in a later reviewed promotion change.
+The [qualification register](registry/product-qualification.json) records `product_qualified=false` for all three capabilities. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed. The destination final repository/release must be named in a later reviewed promotion change.
 
 ## Reproduce the integrated source
+
+The vegetation work below is an additional development branch, not part of the earlier merged integration receipt. Use its explicit branch/commit instructions until PR #42 is merged.
+
+## Historical vegetation: two-city evidence, issue #35 / PR #42
+
+Municipal purpose: identify statistical zones with low **mapped 2021 vegetation share**, and report attached **2025 aggregate population**, to select a bounded local data-validation exercise. [Reproduction guide](cases/two-city-vegetation/README.md), [exact findings and maps](cases/two-city-vegetation/findings.md), [21-operation coverage](cases/two-city-vegetation/functionality.md), [source audit](cases/two-city-vegetation/upstream-audit.md). Source inputs were harvested in both cities and published as [hash-locked data snapshots](https://github.com/polisplexity/urban-mcp/releases/tag/data-vegetation-20261110). WorldCover/Helsinki attribution and CBS CC0 terms remain separate from MIT code licensing.
+
+The numerical backend uses Rasterio 1.4.3, GeoPandas 1.1.1 and NumPy 2.3.3 with pinned GDAL/PROJ libraries. It reuses original GDAL MCP commit `418f401c7987e388eaaee6ad13289798a1ff69b6` and FastMCP 2.12.3; eight new municipal tools join the original 13. Python keeps the existing scientific and MCP runtime together; no agent framework/provider is required by the server. [Exact runtime receipt](cases/two-city-vegetation/evidence/runtime.json).
+
+| Verified stage | Helsinki | Amsterdam | Why |
+| --- | --- | --- | --- |
+| Observed statistical zones / eligible mapped-land zones | 34 / 34 | 111 / 111 | Explicit boundary and water/NoData denominators, no water-label shortcut |
+| Native/stdio-MCP, all 21 tools and resource/prompt families | 110 checks | 131 checks | Independent polygon-window class oracle, complete paged summaries and actual GIS operations |
+| Strict share < 0.20: low zones / known attached population | 2 / 51,906 | 26 / 217,945 | Explicit source IDs, strict flags, no resident-pixel inference |
+| Same-raster sensitivity < 0.40 | 6 / 144,068 | 65 / 557,965 known, one unknown | Threshold sensitivity, not vegetation loss |
+| Codex actual MCP responses, all required CSV pages, CSV/map artifacts and answer JSON | Passed, 56 calls | Passed, 57 calls | Fresh empty city/host mount; no expected numeric answers |
+| Hermes same transport/artifact/JSON checks | Passed, 88 calls | Passed, 93 calls | Fresh isolated profiles using Claude Sonnet 4.6; same agent-neutral MCP |
+| Observed broader prose | Codex factual/length pass; Hermes factual fail | Codex factual pass but length fail; Hermes factual fail | Numerical success does not admit an inaccurate or noncompliant brief |
+
+Twelve Docker categorical/integrity regressions and 69 original-server regressions pass separately. Four repository evidence regressions preserve numerical/answer bytes, complete returned page chains, explicit failed prose and strict claim types. [Native receipts](cases/two-city-vegetation/evidence/reproduction.json), [four host receipts](cases/two-city-vegetation/evidence/agents.json), [answer-hash-bound review and corrections](cases/two-city-vegetation/evidence/narrative-review.json). Host runs launched from `1f3a7b9f4fcb2b3ead1b22b5d4a96823dd430f34`; source fingerprints distinguish executing code from later documentation/evidence commits. Codex CLI 0.167.0-alpha.3.2 and Hermes 0.18.2 were used with existing private authentication.
+
+Useful failures are retained. Original explicit raster dimensions shrink the footprint, explicit bounds are ignored, partial query windows mislocate clipped pixels, and a Visvalingam label runs Douglas–Peucker. This profile rejects these options instead of silently accepting them. Initial middleware ordering/test expectations failed, then were corrected and fully rerun. V1 Hermes Amsterdam analysis payloads were truncated; compact responses and ≤12,000-character artifact pages pass four fresh V2 runs with unchanged numeric CSV/map bytes. Hermes can also mistake consecutive tool-validation errors for server unavailability, requiring documented recovery. [Failure history](cases/two-city-vegetation/evidence/development-failures.json), [superseded observations](cases/two-city-vegetation/evidence/initial-observations/v1/status.json).
+
+Helsinki's population difference of 13,682 remains unresolved. Amsterdam's known zone sum differs by 11, district counts are randomly rounded to five, and Groot water population is unknown; it has actual mapped land and becomes low at 0.40. NoData coverage is not classification confidence. Tree-class area is not fractional canopy; global accuracy is not local validation. These tests do not establish current vegetation, access, heat exposure, causality, every upstream function or independent-person final-product qualification. Issue #41 remains the separate independent walking task.
+
+## Previously integrated source
 
 Use `main` for the combined implementation: RFC #1 → Helsinki inventory #37 → two-city walking #38 → diagnostic revision #40. Record `git rev-parse HEAD` for every independent reproduction. Follow the English [inventory guide](cases/helsinki-service-inventory/README.md), [two-city Docker guide](cases/two-city-walking/README.md), [current walking task/export/review procedure](cases/two-city-walking/issue-39.md) and [agent runbook](docs/agents/day-zero.md). Use fresh data workspaces and new host labels; preserve published observations and failed answers unchanged.
 

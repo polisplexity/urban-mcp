@@ -11,7 +11,9 @@ def decode(value):
         value, _ = json.JSONDecoder().raw_decode(value[start:])
     if not isinstance(value, dict):
         raise ValueError("Selected MCP result is not an object")
-    if "city" in value and ("schools" in value or "paths" in value):
+    if "city" in value and any(key in value for key in ["schools", "paths", "zones", "low_vegetation_zone_ids", "newly_below_threshold_zone_ids"]):
+        return value
+    if value.get("name") in {"summary.json", "zone_metrics.csv", "class_counts.csv", "zones.geojson", "report.md", "map.png"} and "sha256" in value and "bytes" in value:
         return value
     for key in ["structured_content", "structuredContent", "result"]:
         if value.get(key) is not None:
@@ -19,4 +21,4 @@ def decode(value):
     for block in value.get("content", []):
         if block.get("type") == "text":
             return decode(block["text"])
-    raise ValueError("Selected response has no public walking diagnostic payload")
+    raise ValueError("Selected response has no public case diagnostic payload")

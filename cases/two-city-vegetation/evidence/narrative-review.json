@@ -1,0 +1,49 @@
+{
+  "reviews": {
+    "helsinki:codex": {
+      "status": "passed_for_declared_brief",
+      "factual_review": "Source dates, all low IDs/shares/population, denominators, water/NoData, missing counts, reconciliation, sensitivity and tree-class interpretation agree with native evidence. Candidate site review is conditional on current local validation. No causal/access claim is admitted.",
+      "task_constraints": "470 prose words before JSON; within 600-word limit. Codex reports the missing prompt-invocation API honestly.",
+      "issues": [],
+      "answer_sha256": "60fb97a7e946828c8d57f371282e28039772a623d950a9d49714619a3592f816",
+      "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+    },
+    "amsterdam:codex": {
+      "status": "passed_facts_with_length_constraint_failure",
+      "factual_review": "All 26 baseline IDs and 39 additions, attached counts, pooled fractions, source rights/dates, Groot water eligibility/null population and reconciliation agree with native evidence. Next steps require local validation.",
+      "task_constraints": "718 words before JSON, including both complete ID/population tables; exceeds the requested 600-word brief. Factual pass does not override this presentation failure. Codex reports its missing prompt-invocation API.",
+      "issues": [
+        "Requested maximum of 600 prose words exceeded."
+      ],
+      "answer_sha256": "7270344cc820056ebec58681c16161c15217edfdf387e4de92f21274d80129eb",
+      "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+    },
+    "helsinki:hermes": {
+      "status": "failed_factual_narrative_review",
+      "factual_review": "Structured answer JSON and complete artifacts pass, but the observed broader brief is not admitted. Retain the unchanged answer and these corrections.",
+      "task_constraints": "886 words before JSON; exceeds 600.",
+      "issues": [
+        "Vironniemi is described as 19 vegetation pixels of 20425; native counts are 3794/20425, giving 0.18575275397796817.",
+        "Zone populations 13280 and 38626 are called rounded, but the Helsinki recipe declares no rounding rule. The same answer later says the figures are not randomly rounded.",
+        "The brief says boundaries/population are from a 2025 acquisition. Acquisition was 2026-11-10; 2025-12-31 is the population reference date, not a verified boundary-acquisition date.",
+        "Institutional quarters or rounding as causes of the 13682 population gap are speculative and unsupported by these inputs. The difference must remain unresolved.",
+        "The 600-word constraint is exceeded."
+      ],
+      "answer_sha256": "01d6d434f6d02c64fc4aa50311eec65961898a6039d38e0b8d51a4dfc6856d8a",
+      "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+    },
+    "amsterdam:hermes": {
+      "status": "failed_factual_narrative_review",
+      "factual_review": "Structured JSON, full paged CSVs and native artifacts pass. The narrative correctly handles water-zone land eligibility, source classes, sensitivity, rounding and temporal mismatch, but its claim about missing population is unsupported.",
+      "task_constraints": "1089 words before JSON; exceeds 600.",
+      "issues": [
+        "Groot water null population is asserted to mean no residential population registered. The source negative missing sentinel establishes unknown, not zero or absence of residents. At 0.40, 557965 is the sum of known populations with WK036399 still unknown.",
+        "The statement of zero NoData is supported for assigned zone pixels; it must not be generalized to arbitrary pixels outside the zone mask.",
+        "The 600-word constraint is exceeded."
+      ],
+      "answer_sha256": "0d5b8f4d1ae8d863ca6d8dec8dc3b98fb485f7a1947a2d2961274a5ea7b55193",
+      "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+    }
+  },
+  "interpretation": "Artifact/transport/structured-claim success is separate from observed prose correctness and task constraints. Answers are retained verbatim; these reviews do not rewrite them."
+}

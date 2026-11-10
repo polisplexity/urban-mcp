@@ -1,0 +1,809 @@
+{
+  "city": "helsinki",
+  "transport": "MCP SDK real stdio subprocess",
+  "checks": [
+    {
+      "name": "every zone/class/denominator equals independent polygon-window oracle",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "all zones retained including unknown population or all-water",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unknown population stays null and is never a negative sentinel",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "published municipal and zone population reconciliation is explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "strict threshold IDs agree with all actual row fractions / 0.2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "strict threshold IDs agree with all actual row fractions / 0.4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "water and NoData are excluded only from declared land denominator",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all-water and empty classes remain unknown rather than low",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "threshold sensitivity preserves class-count bytes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raising threshold cannot remove a previously low-share zone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tree-class metric remains a distinct component",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bounded transport revision preserves original baseline CSV bytes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bounded transport revision preserves original sensitivity CSV bytes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original 13 tools plus eight municipal tools are exposed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vegetation_status / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.207,
+        "error": null
+      }
+    },
+    {
+      "name": "harvest_vegetation_data / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.114,
+        "error": null
+      }
+    },
+    {
+      "name": "prepare_vegetation_data / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.131,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP preparation receipts identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vegetation_class_catalog / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.003,
+        "error": null
+      }
+    },
+    {
+      "name": "class catalog includes cropland but excludes water",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "analyze_vegetation / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.442,
+        "error": null
+      }
+    },
+    {
+      "name": "analyze_vegetation / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.359,
+        "error": null
+      }
+    },
+    {
+      "name": "complete bounded native/MCP baseline projection identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete bounded native/MCP sensitivity projection identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "primary diagnostic responses fit the tested host budget without dropping ID sets",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": null
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.009,
+        "error": null
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": null
+      }
+    },
+    {
+      "name": "full paged MCP summary reconstructs every native zone/class record",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vegetation_compare / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.009,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP threshold comparison identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.009,
+        "error": null
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": null
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": null
+      }
+    },
+    {
+      "name": "zone_metrics.csv exact native/MCP bytes and complete pagination",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": null
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.01,
+        "error": null
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.011,
+        "error": null
+      }
+    },
+    {
+      "name": "class_counts.csv exact native/MCP bytes and complete pagination",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "render_vegetation_map / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.774,
+        "error": null
+      }
+    },
+    {
+      "name": "native/MCP rendered map bytes identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_info / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.022,
+        "error": null
+      }
+    },
+    {
+      "name": "original vector_info matches source zone count",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_convert / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.196,
+        "error": null
+      }
+    },
+    {
+      "name": "original conversion preserves zone IDs and geometry",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_crs_selection / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.015,
+        "error": null
+      }
+    },
+    {
+      "name": "vector_reproject / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.224,
+        "error": null
+      }
+    },
+    {
+      "name": "original reprojection agrees with native projected geometries",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_buffer / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.301,
+        "error": null
+      }
+    },
+    {
+      "name": "original 100 m buffer agrees with native area",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_clip / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.058,
+        "error": null
+      }
+    },
+    {
+      "name": "original clipping agrees with native zone subset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_query_extent / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.014,
+        "error": null
+      }
+    },
+    {
+      "name": "vector_query / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.054,
+        "error": null
+      }
+    },
+    {
+      "name": "original vector query agrees with native subset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original vector query resource is readable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_simplify / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.273,
+        "error": null
+      }
+    },
+    {
+      "name": "original simplify agrees with native geometry allowing driver single/multipart representation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raster_info / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.026,
+        "error": null
+      }
+    },
+    {
+      "name": "raster_stats / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.24,
+        "error": null
+      }
+    },
+    {
+      "name": "original raster metadata/statistics match native cells",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raster_convert / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.292,
+        "error": null
+      }
+    },
+    {
+      "name": "original COG preserves all categorical pixels and nearest overviews",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_query_extent / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.021,
+        "error": null
+      }
+    },
+    {
+      "name": "raster_query / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.054,
+        "error": null
+      }
+    },
+    {
+      "name": "original raster query matches exact native window",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original raster query resource is readable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_crs_selection / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.015,
+        "error": null
+      }
+    },
+    {
+      "name": "justify_resampling_method / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.013,
+        "error": null
+      }
+    },
+    {
+      "name": "raster_reproject / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.306,
+        "error": null
+      }
+    },
+    {
+      "name": "original nearest reprojection preserves classes with explicit new footprint NoData",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "analyze_vegetation / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.003,
+        "error": "threshold must be a finite fraction in 0..1"
+      }
+    },
+    {
+      "name": "analyze_vegetation / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.134,
+        "error": "run_id already exists; preserve evidence and choose a new ID"
+      }
+    },
+    {
+      "name": "analyze_vegetation / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.003,
+        "error": "run_id must be 1-48 letters, digits, underscores or hyphens"
+      }
+    },
+    {
+      "name": "harvest_vegetation_data / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.002,
+        "error": "Unknown city; inspect vegetation_status for configured cases"
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.002,
+        "error": "Artifact name is not allowed"
+      }
+    },
+    {
+      "name": "read_vegetation_artifact / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.003,
+        "error": "offset must be nonnegative and limit must be 1..12000"
+      }
+    },
+    {
+      "name": "vector_buffer / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.014,
+        "error": "This municipal profile requires a projected CRS in metres; degrees are not metres"
+      }
+    },
+    {
+      "name": "raster_reproject / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.004,
+        "error": "Categorical land-cover classes require nearest or mode; continuous interpolation invents class values"
+      }
+    },
+    {
+      "name": "raster_reproject / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.005,
+        "error": "Explicit bounds/width/height are not admitted: pinned upstream ignores bounds and does not rescale its transform for explicit dimensions. Use resolution instead."
+      }
+    },
+    {
+      "name": "raster_reproject / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.005,
+        "error": "Explicit bounds/width/height are not admitted: pinned upstream ignores bounds and does not rescale its transform for explicit dimensions. Use resolution instead."
+      }
+    },
+    {
+      "name": "raster_convert / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.005,
+        "error": "Categorical overviews require explicit nearest or mode resampling"
+      }
+    },
+    {
+      "name": "raster_query / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.012,
+        "error": "Raster query extent must stay fully within source bounds: pinned upstream clips partial windows but retains the unclipped transform. Choose an inside-source extent."
+      }
+    },
+    {
+      "name": "vector_simplify / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.002,
+        "error": "Visvalingam is not admitted: pinned upstream delegates that label to Douglas-Peucker. Use explicit douglas-peucker."
+      }
+    },
+    {
+      "name": "vector_info / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.001,
+        "error": "Tool 'vector_info' denied: Access denied: Path '/etc/passwd' (resolves to '/etc/passwd') is outside allowed workspaces.\n\nAllowed workspace directories:\n  • /data\n\nTo allow this path, add its parent directory to GDAL_MCP_WORKSPACES:\n  export GDAL_MCP_WORKSPACES=\"/data:/etc\""
+      }
+    },
+    {
+      "name": "resource vegetation://case",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource vegetation://helsinki/manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource vegetation://helsinki/quality",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/all/prepared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/vector/prepared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/raster/prepared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/summary/current",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/by-crs/3067",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://compression/available/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://crs/common/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://glossary/geospatial/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://resampling/available/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://resampling/guide/nearest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fhelsinki%2Fzones.geojson/format",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fhelsinki%2Fzones.geojson/vector",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fhelsinki%2Flandcover.tif/raster",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fhelsinki%2Flandcover.tif/bands/current",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fhelsinki%2Flandcover.tif/statistics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "municipal workflow prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every exposed original and added tool exercised",
+      "passed": true,
+      "detail": {
+        "advertised": [
+          "analyze_vegetation",
+          "harvest_vegetation_data",
+          "prepare_vegetation_data",
+          "raster_convert",
+          "raster_info",
+          "raster_query",
+          "raster_reproject",
+          "raster_stats",
+          "read_vegetation_artifact",
+          "render_vegetation_map",
+          "store_justification",
+          "vector_buffer",
+          "vector_clip",
+          "vector_convert",
+          "vector_info",
+          "vector_query",
+          "vector_reproject",
+          "vector_simplify",
+          "vegetation_class_catalog",
+          "vegetation_compare",
+          "vegetation_status"
+        ],
+        "exercised": [
+          "analyze_vegetation",
+          "harvest_vegetation_data",
+          "prepare_vegetation_data",
+          "raster_convert",
+          "raster_info",
+          "raster_query",
+          "raster_reproject",
+          "raster_stats",
+          "read_vegetation_artifact",
+          "render_vegetation_map",
+          "store_justification",
+          "vector_buffer",
+          "vector_clip",
+          "vector_convert",
+          "vector_info",
+          "vector_query",
+          "vector_reproject",
+          "vector_simplify",
+          "vegetation_class_catalog",
+          "vegetation_compare",
+          "vegetation_status"
+        ]
+      }
+    }
+  ],
+  "tools_exercised": [
+    "vegetation_status",
+    "harvest_vegetation_data",
+    "prepare_vegetation_data",
+    "vegetation_class_catalog",
+    "analyze_vegetation",
+    "analyze_vegetation",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "vegetation_compare",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "render_vegetation_map",
+    "vector_info",
+    "vector_convert",
+    "store_justification",
+    "vector_reproject",
+    "vector_buffer",
+    "vector_clip",
+    "store_justification",
+    "vector_query",
+    "vector_simplify",
+    "raster_info",
+    "raster_stats",
+    "raster_convert",
+    "store_justification",
+    "raster_query",
+    "store_justification",
+    "store_justification",
+    "raster_reproject",
+    "analyze_vegetation",
+    "analyze_vegetation",
+    "analyze_vegetation",
+    "harvest_vegetation_data",
+    "read_vegetation_artifact",
+    "read_vegetation_artifact",
+    "vector_buffer",
+    "raster_reproject",
+    "raster_reproject",
+    "raster_reproject",
+    "raster_convert",
+    "raster_query",
+    "vector_simplify",
+    "vector_info"
+  ],
+  "failures": [],
+  "protocol_version": "2025-06-18",
+  "checks_passed": 110,
+  "native_baseline": "check-ff8f83aa-native",
+  "native_sensitivity": "check-ff8f83aa-native-sensitivity",
+  "mcp_baseline": "check-ff8f83aa-mcp",
+  "mcp_sensitivity": "check-ff8f83aa-mcp-sensitivity",
+  "input_manifest_sha256": "e8516c9db08a78f584cc9156c261dd82581ffe3f23fa0dbf9e9fc00636a7da32",
+  "implementation_sha256": "6ef350b48c2d0b2055866c700d58f0330daf0ef64e0c75e3a59723ced3999b91",
+  "server_sha256": "addd379e62ba233e4615bed965c8040de61430aad6f94260adbd3844fdf226c3",
+  "data_code_sha256": "83a978aea8334bd60421fec5296b9946ffc730333e26dda0c42641e2c0c16d96",
+  "interface_code_sha256": "224dd2ae880280859421997cf3342a8f4e910b1b7ed4883586d3c2c41e644874"
+}

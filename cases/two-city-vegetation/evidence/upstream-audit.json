@@ -1,0 +1,76 @@
+{
+  "upstream": "JordanGunn/gdal-mcp",
+  "commit": "418f401c7987e388eaaee6ad13289798a1ff69b6",
+  "license": "MIT",
+  "fixture": "Synthetic 100x100 EPSG:3067 raster, 10 m pixels, class 50, plus synthetic metric line; not municipal evidence",
+  "source_sha256": {
+    "tools/raster/reproject.py": "60b6c3b27bb1c601b2ad96a01af70378ee1edb33b86404fcaa877146b3787cfc",
+    "tools/raster/query.py": "2bc068c3dbea3f15bec9c60eb4dc7aad49c78fab8aa97996e60251481997e145",
+    "shared/vector/simplify.py": "6cb8d5b3164d622bf8305a9b5a94bb53a3a84769c3a4c22b955ff20e2f229179"
+  },
+  "explicit_dimensions_change_footprint": {
+    "requested_width_height": [
+      20,
+      20
+    ],
+    "expected_preserved_extent": [
+      380000,
+      6669000,
+      381000,
+      6670000
+    ],
+    "observed_bounds": [
+      380000.0,
+      6669800.0,
+      380200.0,
+      6670000.0
+    ],
+    "observed_resolution": [
+      10.0,
+      10.0
+    ]
+  },
+  "bounds_ignored": {
+    "requested_bounds": [
+      380100,
+      6669100,
+      380900,
+      6669900
+    ],
+    "observed_bounds": [
+      380000.0,
+      6669000.0,
+      381000.0,
+      6670000.0
+    ]
+  },
+  "partial_window_wrong_transform": {
+    "requested_bounds": [
+      379950,
+      6669950,
+      380050,
+      6670050
+    ],
+    "expected_clipped_bounds": [
+      380000,
+      6669950,
+      380050,
+      6670000
+    ],
+    "observed_bounds": [
+      379950.0,
+      6670000.0,
+      380000.0,
+      6670050.0
+    ],
+    "observed_shape": [
+      5,
+      5
+    ]
+  },
+  "visvalingam_label_aliases_douglas_peucker": {
+    "source_finding": "The advertised visvalingam branch explicitly calls Shapely simplify, the same Douglas-Peucker implementation; it does not implement a true Visvalingam algorithm.",
+    "synthetic_outputs_identical": true
+  },
+  "profile_response": "Vegetation profile rejects partial/outside raster windows, explicit raster bounds/width/height, continuous categorical interpolation and the Visvalingam label. Uses bounded source windows, resolution, nearest/mode and Douglas-Peucker. Original numerical code remains unchanged."
+}

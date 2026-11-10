@@ -1,0 +1,28 @@
+{
+  "id": "two-city-vegetation",
+  "version": "1.0",
+  "question": "Which administrative zones have low mapped 2021 vegetation share, and how much published 2025 aggregate population is attached to those zones?",
+  "landcover": {"year": 2021, "version": "v200", "base_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/", "native_crs": "EPSG:4326", "native_pixel_degrees": 0.00008333333333333333, "license": "CC-BY-4.0", "attribution": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium", "manual": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf", "terms": "https://esa-worldcover.org/en/data-access"},
+  "resolution_m": 10,
+  "resampling": "nearest",
+  "zone_assignment": "Rasterio pixel-centre polygon rasterization; reject overlapping assigned centres",
+  "nodata": 0,
+  "water_class": 80,
+  "vegetation_classes": [10, 20, 30, 40, 90, 95, 100],
+  "classes": {"10": "Tree cover", "20": "Shrubland", "30": "Grassland", "40": "Cropland", "50": "Built-up", "60": "Bare / sparse vegetation", "70": "Snow and ice", "80": "Permanent water bodies", "90": "Herbaceous wetland", "95": "Mangroves", "100": "Moss and lichen"},
+  "exploratory_threshold": 0.2,
+  "cities": {
+    "helsinki": {"name": "Helsinki", "country_code": "FI", "geographic_id": "091", "analysis_crs": "EPSG:3067", "population_date": "2025-12-31", "district_url": "https://api.hel.fi/servicemap/v2/administrative_division/?type=district&municipality=helsinki&geometry=true&page_size=100", "population_url": "https://stat.hel.fi/api/v1/fi/Aluesarjat/vrm/vaerak/alu_vaerak_004r.px", "licenses": [{"license": "CC-BY-4.0", "attribution": "City of Helsinki Service Map; City of Helsinki Urban Research and Statistics / Statistics Finland", "terms": "https://www.hel.fi/palvelukarttaws/restpages/index_en.html"}]},
+    "amsterdam": {"name": "Amsterdam", "country_code": "NL", "geographic_id": "GM0363", "analysis_crs": "EPSG:28992", "population_date": "2025-01-01", "wfs_url": "https://service.pdok.nl/cbs/wijken-en-buurten-2025/wfs/v1_0", "licenses": [{"license": "CC0-1.0", "attribution": "CBS Wijken en Buurten 2025, distributed by PDOK", "terms": "https://creativecommons.org/publicdomain/zero/1.0/deed.nl"}], "population_note": "District counts are randomly rounded to multiples of five; municipal total and district sum need not match. Negative missing-value sentinels remain null."}
+  },
+  "limits": [
+    "WorldCover is a modeled annual 2021 land-cover classification, not a current tree inventory, canopy percentage, NDVI, park-access measure, cooling effect or air temperature.",
+    "Vegetation includes cropland, grassland, wetlands, shrubland, tree cover and moss/lichen. Tree-class area is not fractional tree canopy.",
+    "Native geographic pixels have latitude-dependent physical size; the nearest-neighbour 10 m local metric grid is an analysis grid, not new source resolution. Boundary pixel-centre area approximates polygon area.",
+    "Land-share denominator excludes class 80 and NoData 0. All-surface share, water and NoData are reported separately. Unknown class codes fail validation.",
+    "The 20% low-vegetation threshold is an exploratory scenario, not a policy standard. Sensitivity changes use the same historical raster, not vegetation change over time.",
+    "2025 aggregate population and acquisition-date boundaries are temporally different from 2021 land cover. Residents are not located within pixels; population in low-share zones is not population without access or exposed to heat.",
+    "Global published classification accuracy is not local validation or per-pixel confidence. The separate InputQuality product is not acquired through this public Map recipe; NoData coverage is not a confidence score.",
+    "Initial-team tests in two cities do not meet the independent third-city final-product qualification rule."
+  ]
+}

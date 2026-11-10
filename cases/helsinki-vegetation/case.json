@@ -1,0 +1,83 @@
+{
+  "schema_version": "0.1.0",
+  "id": "helsinki-vegetation",
+  "tool_id": "rasterio--rasterio",
+  "reused_mcp_tool_id": "jordangunn--gdal-mcp",
+  "status": "admitted",
+  "data_class": "project_observations",
+  "source_ids": [
+    "landcover",
+    "urban-mcp-snapshots",
+    "helsinki-servicemap",
+    "helsinki-statistics"
+  ],
+  "assets": [
+    {
+      "file": "helsinki-vegetation-20261110.zip",
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-vegetation-20261110/helsinki-vegetation-20261110.zip",
+      "sha256": "eaf5f9789667ede944e47d4476e23b98c18b88fc9b9f0f098b028238f8ee1796",
+      "bytes": 821746,
+      "source_id": "urban-mcp-snapshots",
+      "license_status": "reviewed_for_declared_use",
+      "license": "Per-source: WorldCover CC-BY-4.0; Helsinki CC-BY-4.0; CBS CC0-1.0",
+      "attribution": "See cases/two-city-vegetation/LICENSE.md and this city harvest manifest"
+    }
+  ],
+  "input_binding": {
+    "raw": "Exact official Map tile crops + recorded official municipal zone/population responses, hashes and requests",
+    "analysis_crs": "EPSG:3067",
+    "native": "Rasterio 1.4.3 / GDAL with nearest 10 m metric grid, GeoPandas zones, centre assignment, independent per-polygon count oracle",
+    "mcp": "Pinned original GDAL MCP / FastMCP 2.12.3 plus eight explicitly named municipal tools; 21 exposed",
+    "method": "Declared 2021 vegetation classes including cropland; land excludes water/NoData; strict cutoff 0.20 and sensitivity 0.40 on identical inputs",
+    "population": "2025-12-31 aggregate zone population; missing stays null; municipal reconciliation preserved"
+  },
+  "runtime_lock": "adapters/vegetation/runtime.lock.txt",
+  "engine_status": "verified",
+  "mcp_binding_status": "verified",
+  "expected_result_status": "verified",
+  "ready_to_run": true,
+  "blockers": [],
+  "mcp_tools": [
+    "store_justification",
+    "raster_convert",
+    "raster_info",
+    "raster_query",
+    "raster_reproject",
+    "raster_stats",
+    "vector_buffer",
+    "vector_clip",
+    "vector_convert",
+    "vector_info",
+    "vector_query",
+    "vector_reproject",
+    "vector_simplify",
+    "vegetation_status",
+    "harvest_vegetation_data",
+    "prepare_vegetation_data",
+    "vegetation_class_catalog",
+    "analyze_vegetation",
+    "vegetation_compare",
+    "read_vegetation_artifact",
+    "render_vegetation_map"
+  ],
+  "scope": "Only these observed statistical zones, historical classification, explicit methods/operations and parameters; not all Rasterio/GDAL, current canopy, access, thermal exposure or authoritative municipal advice.",
+  "municipal_case": {
+    "municipality": {
+      "country_code": "FI",
+      "geographic_id": "091",
+      "name": "Helsinki"
+    },
+    "question": "Which administrative zones have low mapped 2021 vegetation share, and how much published 2025 aggregate population is attached to those zones?",
+    "data_access": "public_reproducible",
+    "harvest_manifest": "cases/two-city-vegetation/evidence/helsinki/harvest.json",
+    "native_evidence": "cases/two-city-vegetation/evidence/helsinki/native.json",
+    "mcp_evidence": "cases/two-city-vegetation/evidence/helsinki/mcp.json",
+    "reproduction_evidence": "cases/two-city-vegetation/evidence/agents.json"
+  },
+  "agent_acceptance": {
+    "codex": "All 21 tools, full paged CSVs, actual analysis/comparison payloads, artifact hashes and JSON claims pass. passed_for_declared_brief",
+    "hermes": "All 21 tools, full paged CSVs, actual analysis/comparison payloads, artifacts and JSON claims pass; broader narrative fails factual review.",
+    "evidence": "cases/two-city-vegetation/evidence/narrative-review.json"
+  },
+  "admission_meaning": "Reproducible computational workflow for declared data/method, separate from prose correctness, independent-person qualification and final-product promotion"
+}

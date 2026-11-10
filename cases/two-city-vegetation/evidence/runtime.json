@@ -1,0 +1,21 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+  "packages": {
+    "fastmcp": "2.12.3",
+    "mcp": "1.14.0",
+    "rasterio": "1.4.3",
+    "geopandas": "1.1.1",
+    "numpy": "2.3.3",
+    "pandas": "2.3.3",
+    "shapely": "2.1.2",
+    "pyogrio": "0.11.1",
+    "pyproj": "3.7.2",
+    "matplotlib": "3.11.2",
+    "pillow": "13.0.0"
+  },
+  "gdal_rasterio": "3.9.3",
+  "gdal_pyogrio": "3.10.3",
+  "proj_pyproj": "9.5.1",
+  "source": "Observed in the executed pinned vegetation container; library bundles can carry different GDAL versions."
+}

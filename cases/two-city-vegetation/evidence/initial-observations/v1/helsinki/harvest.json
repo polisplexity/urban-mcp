@@ -1,0 +1,144 @@
+{
+  "case": "two-city-vegetation",
+  "city": "helsinki",
+  "acquired_at": "2026-11-10T16:45:58.445663+00:00",
+  "recipe_sha256": "8f1742df59fbee88ce5a44e5a67e54903fc14b7291f23abf5a1efd7dc0e6bf13",
+  "zones": 34,
+  "population": {
+    "municipal_population": 694392,
+    "zone_population_sum": 680710,
+    "municipal_minus_zone_population": 13682,
+    "population_date": "2025-12-31",
+    "unknown_population_zone_ids": []
+  },
+  "source_tiles": [
+    {
+      "file": "source-N57E024.tif",
+      "upstream": {
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N57E024_Map.tif",
+        "method": "GET",
+        "retrieved_at": "2026-11-10T16:45:46.762011+00:00",
+        "status": 200,
+        "etag": "\"ebd05f295ae6756f82d720a21c7e8cae-8\"",
+        "last_modified": "Wed, 26 Oct 2022 12:56:44 GMT",
+        "bytes": 66100445,
+        "sha256": "d356f59d404a9a20d538752343d3ffe1ebc2bc887766326ae1715a1698aee8ef",
+        "file": "ESA_WorldCover_10m_2021_v200_N57E024_Map.tif"
+      },
+      "window": [
+        9369,
+        0,
+        5709,
+        955
+      ],
+      "source_nodata": 0.0,
+      "source_bounds": [
+        24.0,
+        57.0,
+        27.0,
+        60.0
+      ],
+      "crop_transform": [
+        8.333333333333333e-05,
+        0.0,
+        24.78075,
+        0.0,
+        -8.333333333333333e-05,
+        60.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "file": "source-N60E024.tif",
+      "upstream": {
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N60E024_Map.tif",
+        "method": "GET",
+        "retrieved_at": "2026-11-10T16:45:52.724686+00:00",
+        "status": 200,
+        "etag": "\"b5ed92f16853194ea5ee42309d76beef-7\"",
+        "last_modified": "Wed, 26 Oct 2022 12:59:07 GMT",
+        "bytes": 56675542,
+        "sha256": "8d2aae1bcb416cbf58c80c29ee6fbb72d276e0c6fb7f904cb777346368077e8b",
+        "file": "ESA_WorldCover_10m_2021_v200_N60E024_Map.tif"
+      },
+      "window": [
+        9369,
+        32401,
+        5709,
+        3599
+      ],
+      "source_nodata": 0.0,
+      "source_bounds": [
+        24.0,
+        60.0,
+        27.0,
+        63.0
+      ],
+      "crop_transform": [
+        8.333333333333333e-05,
+        0.0,
+        24.78075,
+        0.0,
+        -8.333333333333333e-05,
+        60.29991666666667,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "licenses": [
+    {
+      "year": 2021,
+      "version": "v200",
+      "base_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "native_crs": "EPSG:4326",
+      "native_pixel_degrees": 8.333333333333333e-05,
+      "license": "CC-BY-4.0",
+      "attribution": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "manual": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf",
+      "terms": "https://esa-worldcover.org/en/data-access"
+    },
+    {
+      "license": "CC-BY-4.0",
+      "attribution": "City of Helsinki Service Map; City of Helsinki Urban Research and Statistics / Statistics Finland",
+      "terms": "https://www.hel.fi/palvelukarttaws/restpages/index_en.html"
+    }
+  ],
+  "files": {
+    "raw/districts-0001.json": {
+      "bytes": 368607,
+      "sha256": "f0c9777956c16c577d39f718a629734c899dac5d64ca645a5d7fee1f20469de1"
+    },
+    "raw/population-metadata.json": {
+      "bytes": 15562,
+      "sha256": "1c81aec2e1a5a8ac607906485cdb39e766ae5338bda6b2f92b9a7950da9a6ebd"
+    },
+    "raw/population-query.json": {
+      "bytes": 1443,
+      "sha256": "bfc219310195bc97af34129737d915f5df480db59a105fbe2f5816a19164f849"
+    },
+    "raw/population.json": {
+      "bytes": 3258,
+      "sha256": "b93fa1f650b8329d79146ae8ba1b57f72b05aad7cf9a2fc92b7f3b74c50022f7"
+    },
+    "requests.json": {
+      "bytes": 3427,
+      "sha256": "3a96ae219d2a4fcc0ce7c3cb41b08aa8e1efbf3b119bce0431a2fd71d9774d19"
+    },
+    "source-N57E024.tif": {
+      "bytes": 11478,
+      "sha256": "ecb115e4675c4581bec6000cc9d6926556eaed2f60b09d370de6a749e0b0070b"
+    },
+    "source-N60E024.tif": {
+      "bytes": 610972,
+      "sha256": "2ca147083052bd4c09c85ab3d471adf761a2b5f50da8b6570bb2f94545745e45"
+    },
+    "zones.geojson": {
+      "bytes": 407835,
+      "sha256": "4b898062af20a30da01e625e0e0c32885c7d865fe9014f7d5376ecb01be94fed"
+    }
+  }
+}

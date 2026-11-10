@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "stage": "first Helsinki native/MCP development suite",
+      "initial_source_commit": "0d7c236",
+      "failure": "The negative bilinear raster_reproject test expected the categorical profile rejection, but original reflection middleware requested a resampling justification first.",
+      "observed_error": "Epistemic preflight required for raster_reproject; required justify_resampling_method with method bilinear",
+      "numerical_checks": "Per-zone native oracle, native/MCP baseline and sensitivity diagnostics, categorical exports and remaining protocol checks completed; this failed suite was not admitted.",
+      "correction": "Prepend profile admissibility middleware using the ordered list exposed by pinned FastMCP 2.12.3. Unsupported choices are refused before requesting justification; admitted operations still pass through original path/reflection middleware.",
+      "reverification": "Require the complete suite in both cities on the corrected candidate before admission."
+    },
+    {
+      "stage": "first Amsterdam native/MCP development suite",
+      "failure": "Two overly strict test expectations failed: exact Polygon/MultiPolygon type equality after GeoPackage output, and a reprojection class-domain assertion that excluded newly introduced NoData 0.",
+      "observed_evidence": "Simplified geometries had zero Hausdorff difference but Polygon became an equivalent MultiPolygon in the mixed output layer. Display reprojection added only the declared NoData code 0 around the changed footprint; all other classes matched the source domain.",
+      "correction": "Compare zone IDs and topological geometry equivalence for this driver representation; require nonempty valid output, preserved class domain plus declared NoData 0 and correct destination CRS. Numerical analysis and native geospatial algorithms are unchanged.",
+      "reverification": "Require complete native/MCP suites in both cities; do not admit the failed development run."
+    },
+    {
+      "stage": "version-1 host and boundary review",
+      "failure": "Amsterdam Hermes received primary analysis responses of 165167 and 166092 characters truncated to short invalid-JSON excerpts. A separate synthetic source probe also reproduced mislocated pixels for a partially outside raster_query window.",
+      "observed_evidence": "All four version-1 processes exited 0 and exercised 21 tools; this alone did not establish complete transport evidence. Original 5x5 clipped query output used bounds [379950,6670000,380000,6670050] instead of the clipped source bounds [380000,6669950,380050,6670000].",
+      "correction": "Compact primary analysis projection with complete ID sets, full zone details through pages capped at 12000 characters, explicit rejection of partial/outside source windows, and exact full-summary reconstruction checks. Numerical class accounting and published inputs remain unchanged.",
+      "reverification": "Version-2 public blind task in new workspaces/profiles for both hosts and both cities; exact baseline/sensitivity CSV regression against preserved v1 observations. Historical truncated selected responses are explicitly incomplete, never repaired or relabeled complete."
+    }
+  ]
+}
