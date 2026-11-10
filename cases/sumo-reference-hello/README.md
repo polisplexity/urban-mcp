@@ -1,6 +1,8 @@
-# Primer vertical propuesto: SUMO Hello
+# Referencia técnica auxiliar: SUMO Hello
 
 Estado: **caso propuesto, no ejecutable admitido**. Ejemplo sintético upstream; no representa una ciudad real ni demanda calibrada.
+
+La [aceptación final del proyecto](../../docs/cases/municipal-first.md) requiere un caso municipal con cosecha y reproducción independiente. Completar este ejemplo verifica una referencia técnica y no promueve por sí solo la herramienta a capacidad municipal admitida.
 
 `case.json` identifica seis archivos originales en el commit `9a562c33fc452272ccd1fe5790632ae4e5ba7dc3`, con hashes SHA-256, tamaño y blob. Se verificaron bytes para preparar la propuesta; los archivos no se redistribuyen en Git.
 

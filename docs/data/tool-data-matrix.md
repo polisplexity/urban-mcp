@@ -2222,11 +2222,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No presentarlo como servidor OSM autosuficiente ni inventar disponibilidad de proveedores.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -2240,7 +2240,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -2258,7 +2258,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -2316,7 +2316,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -2334,11 +2334,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No reinventar registro de grafos; un grafo activo global puede requerir revisar aislamiento.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -2371,7 +2371,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -2389,7 +2389,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -2407,7 +2407,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -2868,11 +2868,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No convertir distancia de red o mezcla de usos en impacto causal.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -2886,11 +2886,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No rehacer descarga/topología ni asumir OSM completo o apto para cada simulador.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -3064,11 +3064,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No sumar centralidades homónimas sin explicar diferencia frente a cityseer/OSMnx.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -3222,11 +3222,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No instalarlo junto con OSRM/Valhalla por defecto ni asumir servicios públicos ilimitados.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -3340,11 +3340,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No construir routing ni sumar todos los motores de rutas al perfil base.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -3418,11 +3418,11 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction, topology and cost definition |
+| road_graph | OSM/PBF/graph tables | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [INEGI Red Nacional de Caminos](https://www.inegi.org.mx/programas/rnc/); Municipality, utility, transit agency or project owner (por configurar); Original tool examples/tests (por configurar) | direction topology and cost definition with source supporting declared travel mode |
 
 - **Preparación que hay que resolver:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validación requerida:** Connectivity, direction, intersection semantics, units and source coverage.
-- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed or traffic demand.
+- **Faltante para un caso real:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
 - **Crítica propia del proyecto:** No reconstruir coste/routing ni prometer restricciones no soportadas por el perfil.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
@@ -3964,7 +3964,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -3982,7 +3982,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4000,7 +4000,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4036,7 +4036,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4072,7 +4072,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4090,7 +4090,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4108,7 +4108,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4144,7 +4144,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4162,7 +4162,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
@@ -4234,7 +4234,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
-| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit |
+| features | GeoPackage/GeoParquet/GeoJSON | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); [Overture Maps](https://docs.overturemaps.org/getting-data/); [INEGI Marco Geoestadistico](https://www.inegi.org.mx/temas/mg/); [INEGI DENUE](https://www.inegi.org.mx/servicios/api_denue.html); Municipality, utility, transit agency or project owner (por configurar); Authorized files supplied for the case (por configurar) | CRS and IDs explicit with source edition and category coverage reviewed |
 
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.

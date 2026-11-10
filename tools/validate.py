@@ -56,6 +56,10 @@ def validate_data(tools, sources, profiles, cases, root=ROOT):
                 errors.append(f"Unverified runtime cannot be ready: {tool['id']}")
             if not any(c.get("tool_id") == tool["id"] and c.get("ready_to_run") for c in cases):
                 errors.append(f"Ready tool requires an admitted executable case: {tool['id']}")
+            if tool["real_city_status"] != "verified_for_declared_scope":
+                errors.append(f"Ready tool requires verified municipal scope: {tool['id']}")
+            if not any(c.get("tool_id") == tool["id"] and c.get("ready_to_run") and c.get("data_class") != "upstream_synthetic_example" and c.get("municipal_case", {}).get("data_access") == "public_reproducible" for c in cases):
+                errors.append(f"Ready tool requires a public reproducible municipal case: {tool['id']}")
     for case in cases:
         validate(case, read(root / "schemas/case.schema.json"), f"case:{case.get('id')}")
         if case["tool_id"] not in tool_ids:
@@ -68,6 +72,16 @@ def validate_data(tools, sources, profiles, cases, root=ROOT):
                 errors.append(f"Invalid source/URL in {case['id']}")
         if case["ready_to_run"] and (case["status"] != "admitted" or case["blockers"] or any(case[key] != "verified" for key in ("engine_status", "mcp_binding_status", "expected_result_status")) or any(a["license_status"] != "reviewed_for_declared_use" for a in case["assets"])):
             errors.append(f"Case still has admission blockers: {case['id']}")
+        municipal = case.get("municipal_case")
+        if municipal:
+            if case["data_class"] == "upstream_synthetic_example":
+                errors.append(f"Synthetic upstream fixture is not a municipal case: {case['id']}")
+            if case["ready_to_run"]:
+                for key in ("harvest_manifest", "native_evidence", "mcp_evidence", "reproduction_evidence"):
+                    ref = municipal.get(key, "")
+                    evidence = (root / ref).resolve()
+                    if not ref or not evidence.is_relative_to(root.resolve()) or not evidence.is_file():
+                        errors.append(f"Municipal evidence must be an existing repository file ({key}): {case['id']}")
     return errors
 
 

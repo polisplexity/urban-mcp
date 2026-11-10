@@ -11,6 +11,8 @@ Separa caso de referencia y ciudad real. Para cada entrada obligatoria, identifi
 
 Mapea entradas preparadas a la API/archivo/argumento original y después al esquema MCP efectivamente expuesto. Conserva originales y escenario base. Prefiere funciones/jobs existentes del upstream a otra infraestructura propia.
 
-En este PR, `python tools/validate.py` comprueba la planificación; no ejecuta motores ni acredita disponibilidad. El primer caso propuesto está en `cases/sumo-reference-hello/`. Consulta `docs/data/contracts.md` para las reglas de asset y `docs/agents/day-zero.md` para el criterio de operación del agente.
+En este PR, `python tools/validate.py` comprueba la planificación; no ejecuta motores ni acredita disponibilidad. `cases/sumo-reference-hello/` es una referencia técnica sintética. Consulta `docs/cases/municipal-first.md` para las prioridades y aceptación municipal, `docs/data/contracts.md` para las reglas de asset y `docs/agents/day-zero.md` para la operación del agente.
+
+En un caso municipal, identifica municipio, pregunta y periodo antes de adquirir. Usa la receta real del paquete, conserva recibo de cosecha (filtros/paginación, obtenidos/faltantes/fallidos, versiones y hashes) y separa actualización de reproducción de un snapshot. Nunca incluyas credenciales en el recibo. Comprueba que el resultado responde la pregunta dentro de sus límites y deja instrucciones que otra persona pueda repetir.
 
 Ejecuta solo cuando el caso y su entorno tengan la evidencia/alcance necesarios. Recupera artefactos y diagnósticos, contrasta con el baseline nativo y reporta límites. Si falta algo, informa el dato/contrato/componente preciso y la siguiente acción posible. Nunca declares una ciudad calibrada por completar un ejemplo sintético.

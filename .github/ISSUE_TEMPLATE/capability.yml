@@ -3,7 +3,7 @@ description: Proponer una operación concreta reutilizando el original.
 body:
   - type: textarea
     id: operation
-    attributes: {label: "Herramienta, versión, operación y usuario/caso"}
+    attributes: {label: "Herramienta, versión, operación, pregunta y municipio propuesto"}
     validations: {required: true}
   - type: textarea
     id: reuse
@@ -15,5 +15,5 @@ body:
     validations: {required: true}
   - type: textarea
     id: proof
-    attributes: {label: "Fixture y comparación nativa/MCP que permitirán admitirla"}
+    attributes: {label: "Cosecha, resultado municipal, comparación nativa/MCP y reproducción independiente"}
     validations: {required: true}

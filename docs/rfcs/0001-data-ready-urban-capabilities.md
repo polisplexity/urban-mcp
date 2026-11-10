@@ -2,6 +2,8 @@
 
 Estado: **propuesta abierta**. Fecha: 2026-11-10. No hay elección global de lenguaje, framework MCP o agente.
 
+Actualización: la [construcción guiada por casos municipales](../cases/municipal-first.md) fija el caso municipal y su cosecha como aceptación final. El orden pasa a inventario territorial, accesibilidad y cobertura vegetal. SUMO Hello es una fixture técnica auxiliar, sin reemplazar esa aceptación.
+
 ## Problema
 
 Exponer una función por MCP no vuelve utilizable una herramienta urbana. Un agente puede conocer `run_model` y carecer de red, demanda, meteorología, licencia, configuración o forma de interpretar los resultados. El producto debe mantener la cadena completa desde la fuente hasta una operación comprobada.
@@ -15,7 +17,7 @@ Un **paquete de capacidad** vincula:
 3. Fuentes y assets admitidos, incluidas condiciones de acceso.
 4. Preparación reproducible y binding al motor.
 5. Instalación/ejecución aisladas, utilizando mecanismos originales.
-6. Caso nativo de referencia, prueba MCP y evidencia de operación por un agente.
+6. Caso municipal con cosecha, resultado nativo, prueba MCP y evidencia de operación por un agente; fixtures técnicas auxiliares.
 7. Instrucciones breves, límites y recuperación de errores.
 
 No todos los repositorios necesitan un paquete ejecutable. Bibliotecas, estándares y catálogos siguen siendo dependencias o referencias; alternativas equivalentes se comparan antes de admitirlas.
@@ -62,6 +64,8 @@ La siguiente contribución desagrega cada operación en un manifiesto de capacid
 | native-verified | Caso ejecutado directamente con versión y resultado conocido. |
 | mcp-verified | Mismo caso por un cliente MCP; resultado y errores comprobados. |
 | agent-verified | Otro agente puede completar el flujo y reconocer faltantes/límites. |
+| municipal-case-verified | Caso territorial con datos cosechados, pregunta, método, resultado y límites documentados. |
+| public-municipal-reproducible | Reproducción independiente permitida del caso completo, sin credenciales privadas del autor ni memoria de conversación. |
 
 La disponibilidad se calcula por capacidad, caso y entorno. No es una etiqueta única para toda una herramienta. Un flujo puede estar disponible con fixture y bloqueado para ciudad real.
 
@@ -73,7 +77,7 @@ Operaciones transversales **propuestas, no implementadas**: inspeccionar requisi
 - Entradas de solo lectura, salida por caso, usuario sin privilegios, límites de CPU/memoria/tiempo y limpieza de procesos comprobada.
 - Imágenes/datos/versiones fijados; credenciales inyectadas por el operador y fuera de artefactos y Git.
 - Perfiles distintos para CLI, escritorio, JVM, R, GPU y HPC. Docker es el primer entorno reproducible, no una promesa de que cualquier herramienta cabe o funciona dentro de un contenedor.
-- Primer caso propuesto: SUMO Hello upstream. Ya están identificados seis assets y sus hashes; falta admitir derechos, fijar runtime Docker, registrar baseline nativo y mapear una operación de un MCP existente.
+- Fixture técnica auxiliar: SUMO Hello upstream. Ya están identificados seis assets y sus hashes; falta admitir derechos, fijar runtime Docker, registrar baseline nativo y mapear una operación de un MCP existente. La primera capacidad municipal propuesta es inventario/equipamientos y población.
 - El perfil Docker incluido en esta RFC **solo valida planificación/metadatos y datos de referencia**. No ejecuta SUMO ni prueba un agente científico.
 
 ## MCP, skills y perfil del agente
@@ -92,13 +96,13 @@ No se construye un nuevo solver, un modelo universal de ciudad, un agente obliga
 
 ## Criterio de aceptación del primer vertical
 
-Desde un checkout limpio y las dependencias declaradas, una persona/cliente debe poder: identificar la capacidad; obtener y verificar el caso permitido; preparar entradas; arrancar el original en Docker; ejecutar baseline; hacer lo mismo por MCP; recuperar artefactos con procedencia; detectar un dato faltante o inválido; cerrar/repetir sin estado oculto. Después se repite con un agente y una skill. Registrar plataformas, límites y lo que la evidencia no demuestra.
+Desde un checkout limpio y las dependencias declaradas, una persona/cliente debe poder: identificar la pregunta y territorio municipales; cosechar y verificar los insumos permitidos; preparar entradas; arrancar el original en Docker; ejecutar baseline; hacer lo mismo por MCP; recuperar resultados que respondan la pregunta con procedencia y límites; detectar un dato faltante o inválido; cerrar/repetir sin estado oculto. Después se repite con un agente y una skill y se registra reproducción independiente. Las fixtures técnicas se comprueban por separado. Aplicar los [ocho criterios municipales](../cases/municipal-first.md) y registrar plataformas y lo que la evidencia no demuestra.
 
 ## Preguntas para revisión
 
 1. ¿Qué campos mínimos necesita un manifiesto por operación y cómo expresa entradas condicionales o embebidas?
-2. ¿SUMO Hello ofrece el primer caso más claro o conviene sustituirlo por otra fixture con mejor cobertura/licencia?
-3. ¿Qué MCP SUMO existente cubre el caso sin reescribir control y qué versión requiere?
+2. ¿Qué municipio y categorías de equipamiento ofrecen fuentes suficientes y una pregunta útil para el primer caso público?
+3. ¿Qué interfaz/MCP existente cubre la primera operación y qué brecha real requiere construir? ¿Qué fixture pequeña complementa su prueba municipal?
 4. ¿Qué asset/fuente admite cada capacidad, y qué entradas locales siguen bloqueando un caso real?
 5. ¿Qué contratos y wrappers existentes resuelven preparación/jobs antes de añadir infraestructura propia?
 6. ¿Qué clientes y perfiles deben probarse antes de declarar «agent-verified»?

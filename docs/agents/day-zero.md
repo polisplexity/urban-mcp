@@ -2,6 +2,8 @@
 
 Objetivo de aceptación: un agente nuevo puede completar un caso admitido sin conocer esta conversación. Debe conocer entradas/fuentes disponibles y reconocer qué no puede ejecutar todavía.
 
+La [prueba final es municipal](../cases/municipal-first.md): cosechar datos permitidos, preparar, ejecutar, comprobar y entregar un resultado que responda la pregunta. Una referencia sintética sirve para diagnóstico técnico. La skill guía el trabajo; el paquete debe aportar las recetas de adquisición y ejecución reales.
+
 | Pieza | Función | Límite |
 |---|---|---|
 | MCP | Operaciones, recursos y resultados tipados. | No entrega por sí solo datos completos ni conocimiento de preparación. |

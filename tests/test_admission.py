@@ -31,6 +31,37 @@ class AdmissionTests(unittest.TestCase):
         self.cases[0]["ready_to_run"] = True
         self.assertTrue(any("admission blockers" in e for e in self.errors()))
 
+    def admit_technical_fixture(self):
+        case = self.cases[0]
+        case.update(ready_to_run=True, status="admitted", blockers=[], engine_status="verified", mcp_binding_status="verified", expected_result_status="verified")
+        for asset in case["assets"]:
+            asset["license_status"] = "reviewed_for_declared_use"
+        tool = next(t for t in self.tools if t["id"] == case["tool_id"])
+        tool.update(ready_to_run=True, execution_role="candidate", input_binding_status="verified", engine_runtime_status="verified", reference_case_status="verified", real_city_status="verified_for_declared_scope")
+        return case, tool
+
+    def test_technical_fixture_cannot_promote_municipal_tool(self):
+        self.admit_technical_fixture()
+        self.assertTrue(any("public reproducible municipal case" in e for e in self.errors()))
+
+    def test_municipal_case_requires_evidence_files(self):
+        case, _ = self.admit_technical_fixture()
+        case["data_class"] = "project_observations"
+        case["municipal_case"] = {
+            "municipality": {"country_code": "MX", "geographic_id": "test-only", "name": "Test fixture"},
+            "question": "Test only: is the evidence present?",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "missing-harvest.json",
+            "native_evidence": "missing-native.json",
+            "mcp_evidence": "missing-mcp.json",
+            "reproduction_evidence": "missing-reproduction.md",
+        }
+        self.assertEqual(sum("Municipal evidence" in e for e in self.errors()), 4)
+
+    def test_synthetic_fixture_cannot_claim_municipal_identity(self):
+        self.cases[0]["municipal_case"] = {"data_access": "public_reproducible"}
+        self.assertTrue(any("Synthetic upstream fixture" in e for e in self.errors()))
+
     def test_source_url_cannot_embed_credentials(self):
         self.sources[0]["url"] = "https://example-user:example-value@example.org/data"
         self.assertTrue(any("without credentials" in e for e in self.errors()))

@@ -86,6 +86,34 @@
       "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
     },
     {
+      "id": "inegi-denue",
+      "name": "INEGI DENUE",
+      "url": "https://www.inegi.org.mx/servicios/api_denue.html",
+      "access": "token-api-or-public-download",
+      "coverage": "Mexico; edition, geographic filter and activity dependent",
+      "provides": "establishment identifiers, location and economic classification; evaluate public bulk download separately",
+      "does_not_provide": "complete public service inventory, verified opening hours, service capacity or quality; API requires own token",
+      "evidence": "publisher-reviewed",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": false,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+    },
+    {
+      "id": "inegi-rnc",
+      "name": "INEGI Red Nacional de Caminos",
+      "url": "https://www.inegi.org.mx/programas/rnc/",
+      "access": "public-download-or-service",
+      "coverage": "Mexico; product edition and network mode dependent",
+      "provides": "road network and associated geographic information",
+      "does_not_provide": "complete pedestrian access, local barrier verification, calibrated speeds or travel demand",
+      "evidence": "publisher-page-only",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": false,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+    },
+    {
       "id": "ghsl",
       "name": "Global Human Settlement Layer",
       "url": "https://human-settlement.emergency.copernicus.eu/datasets.php",

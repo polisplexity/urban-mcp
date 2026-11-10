@@ -6,6 +6,20 @@ Una fuente es un canal de adquisición. El asset es el archivo, respuesta o snap
 
 Un endpoint vivo requiere una regla de snapshot y watermark; no basta fijar la URL. Una licencia de código no se propaga automáticamente a datos o pesos. Registrar lo revisado y dejar explícito lo pendiente.
 
+## Receta y recibo de cosecha municipal
+
+Cada paquete declara una receta de adquisición ejecutable y un recibo versionado. Reutilizar descarga/API/binding soportados por la fuente; un conector nuevo se justifica por una brecha concreta. El contrato es común, pero no se exige un framework único para todos los publicadores.
+
+| Parte | Mínimo documentado |
+|---|---|
+| Selección | Municipio/clave, extensión, periodo, categorías/campos y versión de la receta; query/asset exactos con secretos omitidos. |
+| Adquisición | Comando y entorno, autenticación requerida sin valor, paginación/particiones, cuotas, timeout/reintentos acotados y regla de caché/reanudación. |
+| Recibo | Fecha, fuente/edición, archivos/bytes/hashes, peticiones/páginas y registros obtenidos, duplicados, rechazados, fallidos y faltantes. Registrar evidencia de fin de paginación o dejar cobertura incompleta. |
+| Calidad | Cobertura temporal/espacial, esquema/campos, IDs únicos, CRS/unidades, joins sin correspondencia y pruebas de completitud apropiadas. Descargar sin errores no garantiza exhaustividad de la fuente. |
+| Actualización | Reproducir el snapshot fijado y cosechar una nueva edición son operaciones distintas. Nueva adquisición produce nuevo manifiesto/diff; no sobrescribir silenciosamente originales o baseline. |
+
+No registrar URLs completas que contengan tokens, cabeceras de autenticación ni datos del operador no publicables. Un snapshot que ya no pueda adquirirse necesita un archivo permitido o debe declarar la limitación de reproducción. Los datos grandes no necesitan estar en Git; sí deben estar las recetas, manifiestos y evidencias permitidas.
+
 ## Contrato por operación
 
 Los perfiles de este PR describen primeros casos representativos. La contribución por operación debe declarar:

@@ -30,11 +30,13 @@
           "candidate_sources": [
             "osm",
             "overture",
+            "inegi-boundaries",
+            "inegi-denue",
             "operator",
             "user-files"
           ],
           "required": true,
-          "admission_condition": "CRS and IDs explicit"
+          "admission_condition": "CRS and IDs explicit with source edition and category coverage reviewed"
         }
       ],
       "preparation": "Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.",
@@ -95,16 +97,17 @@
           "format_contract": "OSM/PBF/graph tables",
           "candidate_sources": [
             "osm",
+            "inegi-rnc",
             "operator",
             "upstream-fixture"
           ],
           "required": true,
-          "admission_condition": "direction, topology and cost definition"
+          "admission_condition": "direction topology and cost definition with source supporting declared travel mode"
         }
       ],
       "preparation": "Build graph with native tool, preserve graph/source version, project and specify routing profile.",
       "validation": "Connectivity, direction, intersection semantics, units and source coverage.",
-      "real_city_blocker": "Mapped roads do not imply capacity, reliable speed or traffic demand.",
+      "real_city_blocker": "Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.",
       "status": "needs_operation_binding"
     },
     {
