@@ -58,7 +58,7 @@ def verify(city, folder=None):
     cfg = config(city)
     folder = Path(folder) if folder else root()/"inputs"/city
     manifest = json.loads((folder/"manifest.json").read_text(encoding="utf-8"))
-    if manifest["city"] != city or manifest["recipe_sha256"] != sha(CASE/"recipe.json") or manifest["publisher_commit"] != cfg["publisher_commit"]:
+    if manifest["city"] != city or manifest["case"] != recipe()["id"] or manifest["recipe_sha256"] != sha(CASE/"recipe.json") or manifest["publisher_commit"] != cfg["publisher_commit"] or manifest["publisher_repository"] != cfg["publisher_repository"] or manifest["license"] != cfg["license"] or manifest["attribution"] != cfg["attribution"]:
         raise ValueError("Input city/recipe/publisher identity mismatch")
     expected = {a["file"]: a for a in cfg["assets"]}
     if set(manifest["files"]) != set(expected):
@@ -66,7 +66,7 @@ def verify(city, folder=None):
     for name, asset in expected.items():
         path = (folder/name).resolve()
         receipt = manifest["files"][name]
-        if not path.is_relative_to(folder.resolve()) or not path.is_file() or path.stat().st_size != asset["bytes"] or sha(path) != asset["sha256"] or receipt["sha256"] != asset["sha256"]:
+        if not path.is_relative_to(folder.resolve()) or not path.is_file() or path.stat().st_size != asset["bytes"] or sha(path) != asset["sha256"] or any(receipt[k] != asset[k] for k in ["sha256","bytes","url"]):
             raise ValueError("Input integrity failure: "+name)
     return folder, manifest
 
@@ -80,6 +80,24 @@ def status():
         except (OSError, ValueError, KeyError) as exc:
             states[city] = {"verified": False, "reason": str(exc)}
     return {"case": recipe()["id"], "cities": states, "recipe": recipe(), "product_qualified": False}
+
+
+def public_recipe():
+    spec = recipe()
+    return {**{k:v for k,v in spec.items() if k != "cities"}, "cities":{city:{k:v for k,v in cfg.items() if k not in {"assets","limits"}} for city,cfg in spec["cities"].items()}, "complete_asset_catalog":"Read manifest.json or recipe.json through read_sumo_source paging; raw publisher requests and licenses remain available."}
+
+
+def read_source(city, name="manifest.json", offset=0, limit=8000):
+    folder, _ = verify(city)
+    cfg = config(city)
+    licenses = {a["file"] for a in cfg["assets"] if Path(a["file"]).name.upper().startswith("LICENSE")}
+    if name not in {"manifest.json", "recipe.json", cfg["config"], *licenses}:
+        raise ValueError("Source artifact is not allowed")
+    if type(offset) is not int or type(limit) is not int or offset<0 or not 1<=limit<=12000:
+        raise ValueError("Page limit must be 1..12000 and offset nonnegative")
+    path = CASE/"recipe.json" if name=="recipe.json" else folder/name
+    text = path.read_text(encoding="utf-8")
+    return {"name":name,"bytes":path.stat().st_size,"sha256":sha(path),"text":text[offset:offset+limit],"characters":len(text),"next_offset":offset+limit if offset+limit<len(text) else None}
 
 
 def harvest(city, mode="snapshot"):

@@ -7,6 +7,7 @@ import importlib.metadata
 import json
 import math
 from pathlib import Path
+import re
 import subprocess
 from threading import RLock
 import xml.etree.ElementTree as ET
@@ -16,6 +17,24 @@ from . import data
 
 LOCK = RLock()
 MAX_PAGE = 12000
+ACTIVE_PROCESSES = {}
+SHUTTING_DOWN = False
+
+
+def stop_owned_batches():
+    global SHUTTING_DOWN
+    with LOCK:
+        SHUTTING_DOWN = True
+        owned = list(ACTIVE_PROCESSES.values())
+        ACTIVE_PROCESSES.clear()
+    for process in owned:
+        if process.poll() is None:
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=5)
 
 
 def xml_open(path):
@@ -168,6 +187,8 @@ def make_run(city, run_id, scenario="baseline", inspection=False):
 
 
 def trip_rows(city, output):
+    warnings = (output/"sumo-errors.log").read_text(encoding="utf-8")
+    teleported = set(re.findall(r"Teleporting vehicle '([^']+)'", warnings))
     records = {}
     for _, node in ET.iterparse(output/"tripinfo.xml",events=("end",)):
         if node.tag=="tripinfo":
@@ -181,8 +202,8 @@ def trip_rows(city, output):
         raw=records.get(key)
         depart=float(raw["depart"]) if raw else None
         arrival=float(raw["arrival"]) if raw else None
-        state="not_recorded" if raw is None else "undeparted" if depart<0 else "unfinished" if arrival<0 else "arrived"
-        rows.append({**scheduled,"state":state,"depart":depart,"arrival":arrival,**{field:float(raw[field]) if raw and field in raw and state=="arrived" else None for field in ["duration","waitingTime","timeLoss","departDelay","routeLength"]},"vaporized":raw.get("vaporized","") if raw else ""})
+        state="not_recorded" if raw is None else "undeparted" if depart<0 else "unfinished" if arrival<0 else "removed" if raw.get("vaporized","") else "arrived"
+        rows.append({**scheduled,"state":state,"depart":depart,"arrival":arrival,**{field:float(raw[field]) if raw and field in raw and state=="arrived" else None for field in ["duration","waitingTime","timeLoss","departDelay","routeLength"]},"scheduled_to_arrival_s":arrival-scheduled["scheduled_depart"] if state=="arrived" else None,"teleport_warning_seen":key in teleported,"vaporized":raw.get("vaporized","") if raw else ""})
     if set(records)-{r["vehicle_id"] for r in rows}:
         raise ValueError("SUMO output contains unscheduled vehicles")
     return rows
@@ -200,7 +221,11 @@ def summarize(city, run_id):
     complete=[r for r in cohort if r["state"]=="arrived"]
     stats=ET.parse(output/"statistics.xml").getroot()
     native_statistics={child.tag:dict(child.attrib) for child in stats if child.tag!="performance"}
-    summary={**spec,"model_date":quality["model_date"],"target_edge":quality["target_edge"],"scheduled_vehicles":len(rows),"all_scheduled_states":dict(sorted(Counter(r["state"] for r in rows).items())),"corridor_cohort_vehicles":len(cohort),"corridor_cohort_states":{k:sum(r["state"]==k for r in cohort) for k in ["arrived","unfinished","undeparted","not_recorded"]},"completed_cohort_means":{field:sum(r[field] for r in complete)/len(complete) if complete else None for field in ["duration","waitingTime","timeLoss","departDelay"]},"native_statistics":native_statistics,"limits":quality["limits"],"runtime":{name:importlib.metadata.version(name) for name in ["eclipse-sumo","sumolib","traci","mcp"]},"artifacts":["summary.json","all-vehicles.csv","cohort.csv","tripinfo.xml","statistics.xml","simulation-summary.xml","fcd.xml.gz","report.md","map.png (after render)"]}
+    summary={**spec,"model_date":quality["model_date"],"target_edge":quality["target_edge"],"scheduled_vehicles":len(rows),"all_scheduled_states":dict(sorted(Counter(r["state"] for r in rows).items())),"corridor_cohort_vehicles":len(cohort),"corridor_cohort_states":{k:sum(r["state"]==k for r in cohort) for k in ["arrived","unfinished","undeparted","removed","not_recorded"]},"completed_cohort_means":{field:sum(r[field] for r in complete)/len(complete) if complete else None for field in ["duration","waitingTime","timeLoss","departDelay"]},"native_statistics":native_statistics,"limits":quality["limits"],"runtime":{name:importlib.metadata.version(name) for name in ["eclipse-sumo","sumolib","traci","mcp"]},"artifacts":["summary.json","all-vehicles.csv","cohort.csv","tripinfo.xml","statistics.xml","simulation-summary.xml","fcd.xml.gz","report.md","map.png (after render)"]}
+    warnings=(output/"sumo-errors.log").read_text(encoding="utf-8")
+    summary["completed_cohort_means"]["scheduled_to_arrival_s"]=sum(r["scheduled_to_arrival_s"] for r in complete)/len(complete) if complete else None
+    summary["model_quality"]={"native_teleport_events":int(native_statistics["teleports"]["total"]),"native_collisions":int(native_statistics["safety"]["collisions"]),"native_emergency_stops":int(native_statistics["safety"]["emergencyStops"]),"native_emergency_braking":int(native_statistics["safety"]["emergencyBraking"]),"incompatible_signal_program_warning_count":warnings.count("is incompatible with logic at junction"),"teleport_start_log_events":len(re.findall(r"Teleporting vehicle '([^']+)'",warnings)),"corridor_cohort_teleport_warning_vehicles":sum(r["teleport_warning_seen"] for r in cohort),"fresh_field_validation_available":False,"calibration_revalidated":False,"forecast_admitted":False,"interpretation":"Native model events and legacy compatibility warnings require review; no current forecast, physical safety or calibrated intervention claim is admitted. Teleport-identified completed trips are excluded from paired comparison."}
+    summary["model_quality"]["teleport_log_reconciles_native_events"]=summary["model_quality"]["native_teleport_events"]==summary["model_quality"]["teleport_start_log_events"]
     write_csv(output/"all-vehicles.csv",rows)
     write_csv(output/"cohort.csv",cohort,fields=list(rows[0]))
     data.dump(output/"summary.json",summary)
@@ -212,11 +237,24 @@ def run(city, run_id, scenario="baseline"):
     output,spec=make_run(city,run_id,scenario)
     command=[sumolib.checkBinary("sumo"),"-c",spec["config"]]
     try:
-        result=subprocess.run(command,capture_output=True,text=True,timeout=300,cwd=output)
-        (output/"stdout.log").write_text(result.stdout,encoding="utf-8")
-        (output/"stderr.log").write_text(result.stderr,encoding="utf-8")
-        if result.returncode:
-            raise RuntimeError("Native SUMO failed: "+result.stderr[-2000:])
+        with (output/"stdout.log").open("w",encoding="utf-8") as stdout, (output/"stderr.log").open("w",encoding="utf-8") as stderr:
+            with LOCK:
+                if SHUTTING_DOWN:
+                    raise RuntimeError("The server is shutting down; no new native batch is admitted")
+                process=subprocess.Popen(command,stdout=stdout,stderr=stderr,cwd=output)
+                ACTIVE_PROCESSES[process.pid]=process
+            try:
+                code=process.wait(timeout=300)
+            except subprocess.TimeoutExpired:
+                process.terminate()
+                try:process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    process.kill();process.wait(timeout=5)
+                raise RuntimeError("Native SUMO exceeded the 300 s process budget")
+            finally:
+                with LOCK:ACTIVE_PROCESSES.pop(process.pid,None)
+        if code:
+            raise RuntimeError("Native SUMO failed: "+(output/"stderr.log").read_text(encoding="utf-8")[-2000:])
         return summarize(city,run_id)
     except Exception as exc:
         data.dump(output/"failure.json",{"type":type(exc).__name__,"error":str(exc)})
@@ -238,12 +276,17 @@ def compare(city, baseline_id, scenario_id):
     for key in sorted(cohorts[0]):
         a,b=[c[key] for c in cohorts]
         matched=a["state"]==b["state"]=="arrived"
-        delta=float(b["duration"])-float(a["duration"]) if matched else None
-        rows.append({"vehicle_id":key,"baseline_state":a["state"],"works_state":b["state"],"matched_arrived":matched,"travel_time_delta_s":delta,"increased_over_30s":delta>data.recipe()["comparison_threshold_s"] if matched else None})
+        teleported=a["teleport_warning_seen"]=="True" or b["teleport_warning_seen"]=="True"
+        eligible=matched and not teleported
+        # The same scheduled departure cancels. Native arrival/duration output
+        # has finite decimal precision; avoid spurious strict-threshold crossings.
+        delta=round(float(b["arrival"])-float(a["arrival"]),8) if eligible else None
+        rows.append({"vehicle_id":key,"baseline_state":a["state"],"works_state":b["state"],"matched_arrived":matched,"teleport_warning_either_run":teleported,"eligible_paired_comparison":eligible,"in_network_duration_delta_s":round(float(b["duration"])-float(a["duration"]),8) if eligible else None,"insertion_delay_delta_s":round(float(b["departDelay"])-float(a["departDelay"]),8) if eligible else None,"scheduled_to_arrival_delta_s":delta,"increased_over_30s":delta>data.recipe()["comparison_threshold_s"] if eligible else None})
     path=folders[1]/"comparison.csv"
-    write_csv(path,rows,["vehicle_id","baseline_state","works_state","matched_arrived","travel_time_delta_s","increased_over_30s"])
-    deltas=[r["travel_time_delta_s"] for r in rows if r["matched_arrived"]]
-    result={"city":city,"baseline_id":baseline_id,"scenario_id":scenario_id,"target_edge_id":before["target_edge"]["id"],"scheduled_corridor_cohort":len(rows),"baseline_states":before["corridor_cohort_states"],"works_states":after["corridor_cohort_states"],"matched_completed_cohort":len(deltas),"excluded_from_paired_comparison":len(rows)-len(deltas),"mean_matched_travel_time_delta_s":sum(deltas)/len(deltas) if deltas else None,"increased_over_30s":sum(r["increased_over_30s"] is True for r in rows),"decreased_over_30s":sum(v < -30 for v in deltas),"comparison_artifact":"comparison.csv","comparison_sha256":data.sha(path),"limits":"Paired completed-trip differences on the same scheduled corridor cohort and fixed seed; censored trips excluded explicitly. Historical scenario, not an observed causal effect or validated current forecast."}
+    write_csv(path,rows,["vehicle_id","baseline_state","works_state","matched_arrived","teleport_warning_either_run","eligible_paired_comparison","in_network_duration_delta_s","insertion_delay_delta_s","scheduled_to_arrival_delta_s","increased_over_30s"])
+    eligible_rows=[r for r in rows if r["eligible_paired_comparison"]]
+    deltas=[r["scheduled_to_arrival_delta_s"] for r in eligible_rows]
+    result={"city":city,"baseline_id":baseline_id,"scenario_id":scenario_id,"target_edge_id":before["target_edge"]["id"],"scheduled_corridor_cohort":len(rows),"baseline_states":before["corridor_cohort_states"],"works_states":after["corridor_cohort_states"],"matched_completed_cohort":sum(r["matched_arrived"] for r in rows),"eligible_paired_comparison":len(deltas),"excluded_censored_pairs":sum(not r["matched_arrived"] for r in rows),"excluded_teleport_identified_completed_pairs":sum(r["matched_arrived"] and r["teleport_warning_either_run"] for r in rows),"excluded_from_paired_comparison":len(rows)-len(deltas),"mean_matched_scheduled_to_arrival_delta_s":sum(deltas)/len(deltas) if deltas else None,"mean_matched_in_network_duration_delta_s":sum(r["in_network_duration_delta_s"] for r in eligible_rows)/len(eligible_rows) if eligible_rows else None,"mean_matched_insertion_delay_delta_s":sum(r["insertion_delay_delta_s"] for r in eligible_rows)/len(eligible_rows) if eligible_rows else None,"increased_over_30s":sum(r["increased_over_30s"] is True for r in rows),"decreased_over_30s":sum(v < -30 for v in deltas),"baseline_model_quality":before["model_quality"],"works_model_quality":after["model_quality"],"comparison_artifact":"comparison.csv","comparison_sha256":data.sha(path),"limits":"Paired scheduled-to-arrival duration includes insertion delay, unlike in-network duration. Exclude censored or teleport-identified pairs explicitly. Historical same-seed scenario, not an observed causal effect, current calibrated forecast, safety benefit or city ranking."}
     data.dump(folders[1]/"comparison.json",result)
     return result
 

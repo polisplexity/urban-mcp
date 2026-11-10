@@ -1,0 +1,14 @@
+{
+  "bologna": {
+    "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-sumo-20261110/bologna-sumo-20261110.zip",
+    "bytes": 148241,
+    "sha256": "0ed58a87c79233cf41f4f1eb36669415bf372519fdcad21f486fde6455098228",
+    "manifest_sha256": "222f6219f89468e1c1e3d775a0fbf767cbe5f3916278fef1642b10bb1e15ee3d"
+  },
+  "ingolstadt": {
+    "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-sumo-20261110/ingolstadt-sumo-20261110.zip",
+    "bytes": 44957611,
+    "sha256": "b2b3a60a466cdbe1964121ecc85bd5170b159e607015f62c856391047ca055a8",
+    "manifest_sha256": "6dfdc367fdfc2f9167e5e44112ca1d9e5b976396cee773a4dc3336f1d1c16956"
+  }
+}

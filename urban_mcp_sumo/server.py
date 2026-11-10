@@ -12,6 +12,9 @@ import traci
 # The MIT original checkout is installed unmodified at /opt/sumo-mcp/src.
 import server as upstream
 from . import data, engine
+from .compat import install_traci_stderr
+
+install_traci_stderr()
 
 _SERIAL = RLock()
 _owner = None
@@ -38,7 +41,9 @@ async def lifespan(server):
     try:
         yield {}
     finally:
-        await anyio.to_thread.run_sync(cleanup)
+        with anyio.CancelScope(shield=True):
+            await anyio.to_thread.run_sync(engine.stop_owned_batches)
+            await anyio.to_thread.run_sync(cleanup)
 
 
 mcp = FastMCP("urban_mcp_sumo", instructions="Discover sumo_status and the exact recipe. Restore snapshot, prepare, inspect source network/target lane IDs. Run baseline and works30 with new immutable run IDs; compare the same scheduled corridor cohort, fixed seed and horizon. Follow complete comparison CSV pages of at most 12000 characters. Distinguish scheduled, arrived, unfinished, undeparted and not-recorded vehicles; completed-only means need their denominator. These are historical published models, not current observed traffic, freshly revalidated calibration, safety/emissions evidence or city rankings. Original control_simulation is restricted to new baseline inspection runs: connect params={city,run_id}, step params={step:absolute_simulation_time}, disconnect. Inspect the returned begin/end; do not infer step duration from call count. query_simulation_state reuses original vehicle_list, simulation and five vehicle-variable queries. run_analysis describes sample-weighted FCD points, not unique vehicles or mean journey time. Numeric artifacts, answer claims and prose require separate review. Interleave successful status calls between deliberate validation failures if the host uses a failure circuit breaker.", lifespan=lifespan)
@@ -151,13 +156,23 @@ async def run_analysis(fcd_file: str) -> str:
 @mcp.tool()
 async def sumo_status() -> dict:
     """Discover exact supported cities, sources/rights/time windows, fixed-seed method, missing inputs and pending qualification."""
-    return await execute(lambda: {**data.status(), "active_inspection": _owner})
+    return await execute(lambda: {**data.status(), "recipe":data.public_recipe(), "active_inspection": _owner})
 
 
 @mcp.tool()
 async def harvest_sumo_data(city: str, mode: str = "snapshot") -> dict:
     """Restore the locked public snapshot, or reacquire exact pinned original publisher assets in live mode. No random demand or hidden calibration. Fresh workspace required for live acquisition; source failures are preserved."""
-    return await execute(data.harvest, city, mode)
+    def acquire():
+        data.harvest(city,mode)
+        folder,manifest=data.verify(city)
+        return {"city":city,"mode":mode,"publisher_repository":manifest["publisher_repository"],"publisher_commit":manifest["publisher_commit"],"asset_count":len(manifest["files"]),"license":manifest["license"],"input_manifest_sha256":data.sha(folder/"manifest.json"),"source_details":"Read the full manifest.json and publisher license through read_sumo_source pages."}
+    return await execute(acquire)
+
+
+@mcp.tool()
+async def read_sumo_source(city: str, name: str = "manifest.json", offset: int = 0, limit: int = 8000) -> dict:
+    """Read complete source manifest/requests, exact recipe, original config or publisher LICENSE in ≤12000-character pages. Follow next_offset until null. Sources stay hash-verified/read-only; arbitrary files and raw bulk demand are refused."""
+    return await execute(data.read_source,city,name,offset,limit)
 
 
 @mcp.tool()
@@ -175,7 +190,13 @@ async def sumo_network_info(city: str, edge_id: str | None = None) -> dict:
 @mcp.tool()
 async def run_sumo_scenario(city: str, run_id: str, scenario: str = "baseline") -> dict:
     """Run baseline or works30 directly with original SUMO, preserved historical inputs/settings and seed 37. New immutable run ID. Works30 limits only the declared target's eligible passenger lanes to 30 km/h from cohort_begin; connectivity and other speeds remain unchanged. Explicitly report non-completed/undeparted/missing trips and completed-only means, not current traffic, fresh calibration, causal or safety/emission conclusions."""
-    return await execute(engine.run, city, run_id, scenario)
+    # Each native batch owns a separate process/config/output directory. It does
+    # not use the original global TraCI connection; independent batches may run
+    # concurrently within the container's CPU/RAM budget.
+    try:
+        return await anyio.to_thread.run_sync(engine.run, city, run_id, scenario, abandon_on_cancel=True)
+    except (OSError, ValueError, RuntimeError, KeyError) as exc:
+        raise ToolError(str(exc)) from exc
 
 
 @mcp.tool()
@@ -198,12 +219,13 @@ async def render_sumo_map(city: str, run_id: str) -> dict:
 
 @mcp.resource("sumo://case")
 def case_recipe() -> dict:
-    return data.recipe()
+    return data.public_recipe()
 
 
 @mcp.resource("sumo://{city}/manifest")
 def source_manifest(city: str) -> dict:
-    return data.verify(city)[1]
+    folder,manifest=data.verify(city)
+    return {**{k:v for k,v in manifest.items() if k!="requests"},"full_manifest_sha256":data.sha(folder/"manifest.json"),"raw_requests":"Read manifest.json through read_sumo_source paging for complete original request receipts."}
 
 
 @mcp.resource("sumo://{city}/quality")

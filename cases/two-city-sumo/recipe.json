@@ -1,11 +1,11 @@
 {
   "id": "two-city-sumo",
   "version": "1.0",
-  "question": "Under the published historical city models, what changes in cohort completion, waiting/time loss and paired travel time when the most-used eligible corridor edge is limited to 30 km/h for works?",
+  "question": "Under the published historical city models, what changes for trips scheduled through the selected corridor when its eligible passenger lanes are limited to 30 km/h for works?",
   "engine": "Eclipse SUMO 1.28.0",
   "seed": 37,
   "speed_cap_m_s": 8.333333333333334,
-  "edge_selection": "Among edges referenced by evaluated-cohort published routes, choose the one with the largest number of distinct cohort vehicles, at least 100 m length and passenger lane speed above 30 km/h; break ties by source edge ID. Preserve network connectivity and all other lane speeds.",
+  "edge_selection": "Among edges referenced by evaluation-window published routes, choose the one with the largest number of distinct scheduled vehicles, at least 100 m length and passenger lane speed above 30 km/h; break ties by source edge ID. The corridor cohort comprises evaluation-window vehicles whose published routes contain that edge. Preserve connectivity and all other lane speeds.",
   "comparison_threshold_s": 30,
   "cities": {
     "bologna": {
@@ -26,9 +26,9 @@
       ],
       "additional": [
         "bologna/acosta/acosta_vtypes.add.xml",
+        "bologna/acosta/acosta_detectors.add.xml",
         "bologna/acosta/acosta_bus_stops.add.xml",
-        "bologna/acosta/acosta_tls.add.xml",
-        "bologna/acosta/acosta_detectors.add.xml"
+        "bologna/acosta/acosta_tls.add.xml"
       ],
       "config": "bologna/acosta/run.sumocfg",
       "license": "EPL-2.0",
@@ -197,6 +197,7 @@
     "The counterfactual changes only the selected edge lane speeds; it is hypothetical works, not an observed closure or a guaranteed safety/emission benefit.",
     "Scheduled, departed, arrived, unfinished, undeparted, discarded and teleported vehicles must be accounted for. Paired completed-trip differences exclude censored trips and must report that denominator.",
     "Results on different networks/cohorts cannot establish a city ranking. Raw detector validation availability and model uncertainty remain explicit.",
-    "Two original-team cities do not satisfy independent-person third-city final-product qualification."
+    "Two original-team cities do not satisfy independent-person third-city final-product qualification.",
+    "Native teleports, collisions and legacy signal warnings are retained. Teleport-identified completed trips are excluded from paired comparison, and no forecast readiness is inferred from successful replay."
   ]
 }

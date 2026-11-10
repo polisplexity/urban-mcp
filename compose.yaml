@@ -50,7 +50,36 @@ x-vegetation: &vegetation
   tmpfs: ["/tmp:rw,noexec,nosuid,size=128m"]
   volumes:
     - ${URBAN_MCP_VEGETATION_WORKDIR:-./.urban-mcp/vegetation}:/data
+x-sumo: &sumo
+  profiles: [sumo]
+  platform: linux/amd64
+  image: urban-mcp-sumo:dev
+  user: "${URBAN_MCP_UID:-65532}:${URBAN_MCP_GID:-65532}"
+  build:
+    context: .
+    dockerfile: adapters/sumo/Dockerfile
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  cpus: 2
+  mem_limit: 3g
+  pids_limit: 128
+  network_mode: none
+  tmpfs: ["/tmp:rw,noexec,nosuid,size=128m"]
+  volumes:
+    - ${URBAN_MCP_SUMO_WORKDIR:-./.urban-mcp/sumo}:/data
 services:
+  sumo:
+    <<: *sumo
+  sumo-harvest:
+    <<: *sumo
+    network_mode: bridge
+    command: [harvest]
+  sumo-mcp:
+    <<: *sumo
+    network_mode: bridge
+    stdin_open: true
+    command: [serve]
   vegetation:
     <<: *vegetation
   vegetation-harvest:
