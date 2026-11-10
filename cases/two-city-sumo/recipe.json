@@ -1,0 +1,202 @@
+{
+  "id": "two-city-sumo",
+  "version": "1.0",
+  "question": "Under the published historical city models, what changes in cohort completion, waiting/time loss and paired travel time when the most-used eligible corridor edge is limited to 30 km/h for works?",
+  "engine": "Eclipse SUMO 1.28.0",
+  "seed": 37,
+  "speed_cap_m_s": 8.333333333333334,
+  "edge_selection": "Among edges referenced by evaluated-cohort published routes, choose the one with the largest number of distinct cohort vehicles, at least 100 m length and passenger lane speed above 30 km/h; break ties by source edge ID. Preserve network connectivity and all other lane speeds.",
+  "comparison_threshold_s": 30,
+  "cities": {
+    "bologna": {
+      "name": "Bologna",
+      "country_code": "IT",
+      "geographic_id": "037006",
+      "model_date": "Historical 08:00-09:00 morning peak; source publication uses November 2008 observations, not a current observation",
+      "begin": 0,
+      "cohort_begin": 900,
+      "cohort_end": 2700,
+      "depart_end": 3600,
+      "end": 4500,
+      "step_length": 1.0,
+      "network": "bologna/acosta/acosta_buslanes.net.xml",
+      "routes": [
+        "bologna/acosta/acosta.rou.xml",
+        "bologna/acosta/acosta_busses.rou.xml"
+      ],
+      "additional": [
+        "bologna/acosta/acosta_vtypes.add.xml",
+        "bologna/acosta/acosta_bus_stops.add.xml",
+        "bologna/acosta/acosta_tls.add.xml",
+        "bologna/acosta/acosta_detectors.add.xml"
+      ],
+      "config": "bologna/acosta/run.sumocfg",
+      "license": "EPL-2.0",
+      "attribution": "DLR Institute of Transportation Systems, Comune di Bologna and iTETRIS scenario authors",
+      "processing": {},
+      "excluded_optional_files": [
+        "settings.gui.xml"
+      ],
+      "limits": [
+        "This is the Andrea Costa study network, not the whole municipality.",
+        "Modeled historical morning-peak demand derives from supplied VISSIM scenarios and detector observations; simulated vehicle IDs are not observed people or license plates.",
+        "The original paper warns of warm-up needs, small route-choice scope and potentially unrealistic multilane roundabout queues. The chosen warm-up is an explicit experimental setting, not a newly validated duration."
+      ],
+      "publisher_repository": "DLR-TS/sumo-scenarios",
+      "publisher_commit": "79d2e1837a9683617393c69aaf754c6bc812e3f8",
+      "assets": [
+        {
+          "file": "LICENSE",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/LICENSE",
+          "bytes": 14199,
+          "sha256": "721c2da257578bace3332b14d8ea06643d7d26753e7ef25a837b4e904edc0bf5"
+        },
+        {
+          "file": "README.md",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/README.md",
+          "bytes": 658,
+          "sha256": "3b51df28b0488f01c2b44298a7da0ba91b103d7ef36ed758fcb2c65ff94eb75b"
+        },
+        {
+          "file": "bologna/acosta/acosta.rou.xml",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta.rou.xml",
+          "bytes": 1728966,
+          "sha256": "2f61eb2b27af2ef40038943b17a5fc7cad70bfbd042bcca2c12b3a723b0eaf8a"
+        },
+        {
+          "file": "bologna/acosta/acosta_bus_stops.add.xml",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_bus_stops.add.xml",
+          "bytes": 3127,
+          "sha256": "157b84393e39a75f148428256f61d6c2e770d8e327c5ea97394b726e36ca381f"
+        },
+        {
+          "file": "bologna/acosta/acosta_buslanes.net.xml",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_buslanes.net.xml",
+          "bytes": 256993,
+          "sha256": "1d6e736bf524dcfebdda7e4f460fc518ad3d0aa28203ef74d5797b70dff72091"
+        },
+        {
+          "file": "bologna/acosta/acosta_busses.rou.xml",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_busses.rou.xml",
+          "bytes": 60748,
+          "sha256": "71cc87961b9c05a9b76613ef1bb1a253f8340939f77e39668dbc590c9f1c4c0b"
+        },
+        {
+          "file": "bologna/acosta/acosta_detectors.add.xml",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_detectors.add.xml",
+          "bytes": 6799,
+          "sha256": "652c9add3f906d3c6842c28f6487fe5e9a821c5004a7ffbd5a587830cf6d18a8"
+        },
+        {
+          "file": "bologna/acosta/acosta_tls.add.xml",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_tls.add.xml",
+          "bytes": 8036,
+          "sha256": "3a1976d35a5b17db8afc1e44d6b9ba037c8339c5bfbffa65d7e6e6caece15d5c"
+        },
+        {
+          "file": "bologna/acosta/acosta_vtypes.add.xml",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_vtypes.add.xml",
+          "bytes": 2896,
+          "sha256": "506566e9a28c51e9e3a20379894f5511f58089e614e5deb6e6503fd06a4093f9"
+        },
+        {
+          "file": "bologna/acosta/run.sumocfg",
+          "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/run.sumocfg",
+          "bytes": 749,
+          "sha256": "585c860cb458fd62544a475a7acea81d7cf374fe0b422eb708a6a0cd3f6d7b4d"
+        }
+      ]
+    },
+    "ingolstadt": {
+      "name": "Ingolstadt",
+      "country_code": "DE",
+      "geographic_id": "09161000",
+      "model_date": "2020-09-16 demand and hourly traffic-light programs",
+      "begin": 24300,
+      "cohort_begin": 25200,
+      "cohort_end": 25800,
+      "depart_end": 25800,
+      "end": 27000,
+      "step_length": 0.25,
+      "network": "simulation/ingolstadt_24h.net.xml.gz",
+      "routes": [
+        "simulation/motorized_routes_2020-09-16_24h.rou.xml.gz"
+      ],
+      "additional": [
+        "simulation/tlLogics_WAUT_2020-09-16_24h.add.xml"
+      ],
+      "config": "simulation/24h_sim.sumocfg",
+      "license": "Apache-2.0",
+      "attribution": "AUDI AG and Chair of Traffic Engineering and Control, Technical University of Munich; SAVe:, SAVeNoW and KIVI authors",
+      "processing": {
+        "ignore-junction-blocker": "15",
+        "time-to-teleport": "300",
+        "max-depart-delay": "100",
+        "device.rerouting.probability": "0.2"
+      },
+      "excluded_optional_files": [
+        "gui_settings.settings.xml",
+        "ingolstadt.poly.xml.gz"
+      ],
+      "limits": [
+        "A full published road network is loaded with a bounded 06:45-07:10 departure slice; evaluated departures are 07:00-07:10 and the run ends at 07:30.",
+        "The publisher fitted demand to mobility matrices and induction-loop counts and hourly fixed-time programs to observed green times. Raw independent traffic observations are not included here; no fresh calibration or independent field validation is claimed.",
+        "Original pedestrian connectivity is unsuitable; this recipe uses the publisher motorized route file only."
+      ],
+      "publisher_repository": "TUM-VT/sumo_ingolstadt",
+      "publisher_commit": "e0a95deebe200ff81b6705044d66310d6266d42b",
+      "assets": [
+        {
+          "file": "LICENSE.md",
+          "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/LICENSE.md",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        },
+        {
+          "file": "README.md",
+          "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/README.md",
+          "bytes": 4838,
+          "sha256": "8b1adfee7c8fe4fb66d175909b57a79a319f54eab34d9f026d3dece9809bef11"
+        },
+        {
+          "file": "docs/simulation_setup.md",
+          "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/docs/simulation_setup.md",
+          "bytes": 3061,
+          "sha256": "d01d38f180b0fa5dbc1b186381551e0f0ae83f6b205f2fac90c4098669fdc58a"
+        },
+        {
+          "file": "simulation/24h_sim.sumocfg",
+          "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/24h_sim.sumocfg",
+          "bytes": 668,
+          "sha256": "5964b17e93607b3d93778faac132d438202396249c8ec2c8406a489c9294e3dc"
+        },
+        {
+          "file": "simulation/ingolstadt_24h.net.xml.gz",
+          "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/ingolstadt_24h.net.xml.gz",
+          "bytes": 10496318,
+          "sha256": "101412168ec627baa3a56d38226d8a850fee702b90437fb29546d6aadf5a86e7"
+        },
+        {
+          "file": "simulation/motorized_routes_2020-09-16_24h.rou.xml.gz",
+          "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/motorized_routes_2020-09-16_24h.rou.xml.gz",
+          "bytes": 35250242,
+          "sha256": "e2e4fb68fcd326884416612d54d882fdd9e9dd24f84272c288ba1f82e5ad360b"
+        },
+        {
+          "file": "simulation/tlLogics_WAUT_2020-09-16_24h.add.xml",
+          "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/tlLogics_WAUT_2020-09-16_24h.add.xml",
+          "bytes": 105690,
+          "sha256": "deac475b2b17b5471c31fe5b91b39a434065b42bc929f68b764176d5319811f3"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Published real-city models and source data are distinct from raw contemporaneous observations. These are historical scenario experiments, not current traffic forecasts or newly calibrated models.",
+    "Departures, routes, vehicle types and mandatory signal programs are preserved within explicit time slices. Empty-network initialization and fixed warm-up are declared; traffic predating the slice is absent.",
+    "The counterfactual changes only the selected edge lane speeds; it is hypothetical works, not an observed closure or a guaranteed safety/emission benefit.",
+    "Scheduled, departed, arrived, unfinished, undeparted, discarded and teleported vehicles must be accounted for. Paired completed-trip differences exclude censored trips and must report that denominator.",
+    "Results on different networks/cohorts cannot establish a city ranking. Raw detector validation availability and model uncertainty remain explicit.",
+    "Two original-team cities do not satisfy independent-person third-city final-product qualification."
+  ]
+}

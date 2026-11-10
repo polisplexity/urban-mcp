@@ -1,0 +1,23 @@
+# SUMO and existing MCP source review
+
+This is an operation-scoped review, not admission of every SUMO/MCP function. Native, protocol and host evidence are separate stages.
+
+| Original project/revision inspected | Source finding | Decision for this case |
+| --- | --- | --- |
+| [Eclipse SUMO 1.28.0](https://github.com/eclipse-sumo/sumo/tree/daf91b5578901d599ac9af53f49d26eeb9aefc3b), EPL-2.0 | Original C++ simulator and public CLI/TraCI/sumolib supply network loading, vehicle dynamics, signals, output and control | Preserve the original solver; record version/seed/time step and model limitations |
+| [XRDS76354/SUMO-MCP-Server, 6b62a25](https://github.com/XRDS76354/SUMO-MCP-Server/tree/6b62a25c1b13751d636309a03e4388594fcd7620), MIT | Eleven registered tools. `mcp_tools/simulation.py` adds `--random` in simple execution. Connection state is global; repeated connect returns success without changing the active config. Disconnected vehicle listing returns an empty list. Per-step departed/arrived counts are not cumulative | Reuse original version, live control, vehicle queries and FCD analysis functions behind explicit ownership/path/time guards; do not use seedless simple execution as the municipal baseline |
+| [AgentSUMO, 2ad1d91](https://github.com/mw-jeong/AgentSUMO/tree/2ad1d91a02f442218d54f2b1aec25c3b813ed5df), MIT | The standalone MCP is agent/provider-independent. `baseline/simulation_runner.py` deliberately removes all additional files for `policy_type="baseline"`, generates a new config beginning at zero, and sets rerouting probability to 1.0. Those choices can remove required source signal programs and change the published experiment | Useful existing pipeline, but not an unchanged replay of these two historical models. The standalone server does not require an LLM API key; the separate orchestration package is not the reason for exclusion |
+| [shikharvashistha/sumo-mcp, 619abcb](https://github.com/shikharvashistha/sumo-mcp/tree/619abcbcc91cb2ddbfbdc09d25dc7819f4e2551e), MIT | `connect` discards the returned TraCI connection; `get_vehicle_route_edges` returns `getRouteID`, a route identifier rather than an edge sequence | Do not select it as the replay/interface baseline without corrections |
+| Paper-linked `ycycycl/SUMO-MCP` | The GitHub API returned 404 for the referenced repository on 2026-11-10 | Publication is useful context, not an inspected or installed implementation |
+
+The selected profile uses the original MCP project's official Python MCP SDK (`mcp==1.25.0`), not an LLM runtime. Four original function families are re-registered with municipal guards and lifecycle cleanup. New code supplies exact source acquisition/binding, the cohort/counterfactual contract, bounded outputs and independent checks. Original numerical operations are not replaced under native SUMO names.
+
+The other seven original tool families—network/ezdesignX generation, demand synthesis/routing, signal optimization, high-level workflows, RL and seedless simple simulation—are not exposed or admitted by this case. Their presence upstream does not make random demand, generated networks or optimized signal plans municipal observations.
+
+## Data provenance and physical-model limits
+
+[Bologna Acosta](https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta) includes an original street model, demand, vehicle-type distributions, bus routes/stops, signals and detectors. The [publisher paper](https://elib.dlr.de/89354/1/SUMO2014_scenarios.pdf) describes historical morning demand derived from municipal inputs, the need for warm-up and limited route-choice scope. It does not make these current observations.
+
+[TUM Ingolstadt](https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b) publishes a real-city model with demand/green times based on 2020-09-16 inputs. The authors require the WAUT file, describe calibration limitations and note that raw counts must be requested separately. The full published network and bounded departure slice are retained. The publisher tested SUMO 1.19.0; running it with 1.28.0 is a compatibility experiment, not inherited calibration. Prototype 1.28 runs report conflicting legacy signal programs, teleports and collisions. Preserve those events and fail any claim of current forecast or policy-decision readiness; do not silence warnings or silently rewrite the calibration.
+
+Source-level findings above will be distinguished from executed regression probes in the final evidence. Full original source acquisition/inspection stays in ignored workspaces; only reviewed receipts, permitted case data and exact code/license references are published.

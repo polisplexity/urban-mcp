@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "stage": "initial Docker runtime probes",
+      "failure": "The official SUMO wheel could not start on Python slim because libX11.so.6 and then libatomic.so.1 were absent.",
+      "correction": "Install required native shared libraries in the sandbox and verify the native binary before protocol or municipal admission."
+    },
+    {
+      "stage": "initial SDK compatibility probe",
+      "failure": "MCP SDK 1.14.0 with an unconstrained newer Pydantic failed importing eval_type_backport.",
+      "correction": "Use the selected original MCP project's pinned MCP 1.25.0 and Pydantic 2.12.5, and capture the complete tested dependency lock. This is not a project-wide framework migration."
+    },
+    {
+      "stage": "initial native Ingolstadt 1.28.0 experiment",
+      "observation": "The original 1.19-tested model loads and executes, but SUMO reports incompatible legacy signal programs, teleports and collisions. A successful exit is not physical-model validation.",
+      "required_response": "Expose native quality events, distinguish model replay from calibration/forecast readiness, retain warnings and non-completed trips, and review any paired comparison exclusions explicitly."
+    },
+    {
+      "stage": "initial metric design review",
+      "observation": "In-network duration alone omits vehicle insertion delay, which is substantial in the Bologna prototype.",
+      "required_response": "Report in-network duration and scheduled-to-arrival duration separately. State paired-completion and teleport exclusions; never silently drop censored trips."
+    }
+  ],
+  "admission": "Development observations only; final native, protocol and host evidence remain separate."
+}
