@@ -9,6 +9,9 @@ COPY adapters/swmm/runtime.lock.txt /opt/swmm-runtime.lock.txt
 RUN python -m pip install --no-cache-dir -r /opt/swmm-runtime.lock.txt
 COPY --from=native /opt/native /opt/native
 COPY --from=native /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0 /usr/lib/x86_64-linux-gnu/libgomp.so.1
+COPY --from=native /usr/share/doc/libgomp1/copyright /opt/licenses/libgomp1-copyright
+COPY --from=native /usr/share/common-licenses/GPL-3 /opt/licenses/GPL-3
+COPY adapters/swmm/licenses /opt/licenses
 COPY --from=native /opt/epa /opt/epa
 ADD --checksum=sha256:e31265cb5d63cf7c3c760e66b0a42e09a7736053754f2cb933f0fe80dfcfc136 https://codeload.github.com/foundanotusedname/pyswmm-mcp/tar.gz/a4db37b45d3b30dcfbd80fc0162a8238e727a80f /tmp/pyswmm-mcp.tar.gz
 RUN mkdir /opt/pyswmm-mcp && tar -xzf /tmp/pyswmm-mcp.tar.gz -C /opt/pyswmm-mcp --strip-components=1 && cp -a /opt/pyswmm-mcp /opt/pyswmm-runtime
@@ -19,6 +22,7 @@ RUN chmod 755 /opt/fixture
 ENV PYTHONPATH=/opt/urban-mcp PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PATH=/opt/native/bin:$PATH MPLCONFIGDIR=/tmp/matplotlib PYSWMM_MCP_MODEL_ROOT=/data/models PYSWMM_MCP_RUN_ROOT=/data/runs PYSWMM_MCP_MAX_WORKERS=2 PYSWMM_MCP_RETENTION_SECONDS=0 PYSWMM_MCP_MAX_RUNS=0 PYSWMM_MCP_RUN_QUOTA_BYTES=0
 COPY urban_mcp_swmm /opt/urban-mcp/urban_mcp_swmm
 COPY cases/two-city-swmm /opt/urban-mcp/cases/two-city-swmm
+COPY tools/audit_swmm_upstream.py /opt/urban-mcp/tools/audit_swmm_upstream.py
 USER 65532:65532
 WORKDIR /data
 ENTRYPOINT ["python","-m","urban_mcp_swmm"]

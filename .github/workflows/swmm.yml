@@ -1,0 +1,34 @@
+name: Two-city historical SWMM native and MCP
+on:
+  push:
+    paths: ['urban_mcp_swmm/**', 'adapters/swmm/**', 'cases/two-city-swmm/**', 'cases/odense-swmm/**', 'cases/utrecht-swmm/**', 'tools/*swmm*', 'tools/client_config.py', 'tools/run_agent_check.py', 'compose.yaml', '.github/workflows/swmm.yml']
+  pull_request:
+    paths: ['urban_mcp_swmm/**', 'adapters/swmm/**', 'cases/two-city-swmm/**', 'cases/odense-swmm/**', 'cases/utrecht-swmm/**', 'tools/*swmm*', 'tools/client_config.py', 'tools/run_agent_check.py', 'compose.yaml', '.github/workflows/swmm.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  swmm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        city: [odense, utrecht]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare non-root source and evidence mount
+        run: |
+          mkdir -p .urban-mcp/swmm
+          echo "URBAN_MCP_UID=$(id -u)" >> "$GITHUB_ENV"
+          echo "URBAN_MCP_GID=$(id -g)" >> "$GITHUB_ENV"
+      - run: docker compose --profile swmm build swmm
+      - run: docker compose --profile swmm run --rm swmm-harvest harvest --city ${{ matrix.city }} --mode snapshot
+      - name: Synthetic interval, coverage, trace, paging and source-selection contracts
+        run: docker compose --profile swmm run --rm --entrypoint python swmm -m unittest urban_mcp_swmm.test_contracts -v
+      - name: Original PySWMM MCP tests with marked Linux portability patch
+        run: docker compose --profile swmm run --rm --entrypoint python -e PYSWMM_MCP_TEST_MODEL=/opt/fixture/model_full_features.inp swmm -m unittest discover -s /opt/pyswmm-mcp/tests -v
+      - name: Isolated original alternative-method audit, not full alternative servers
+        run: docker compose --profile swmm run --rm --entrypoint python swmm-harvest /opt/urban-mcp/tools/audit_swmm_upstream.py --output /data/evidence/upstream-audit.json
+      - name: Original EPA CLI oracle and all 27 actual stdio MCP operations
+        run: docker compose --profile swmm run --rm swmm test --city ${{ matrix.city }}
