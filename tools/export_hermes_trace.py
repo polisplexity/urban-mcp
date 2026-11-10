@@ -28,7 +28,7 @@ def main():
         if any(task in (row["content"] or "") for row in users):
             selected=session;break
     if selected is None:raise SystemExit("No session matches the public case task; nothing exported")
-    calls=[];by_id={};comparisons=[];routes=[]
+    calls=[];by_id={};comparisons=[];routes=[];analyses=[]
     for message in connection.execute("select role,tool_name,tool_call_id,tool_calls,content from messages where session_id=? order by id",(selected["id"],)):
         if message["tool_calls"]:
             for raw in json.loads(message["tool_calls"]):
@@ -43,7 +43,7 @@ def main():
                 call["response_excerpt"]=content[:800]
                 call["response_recorded"]=True
                 if args.results_dir:
-                    target=comparisons if call["tool"]=="mcp__urban_mcp_walking__walking_compare" else routes if call["tool"]=="mcp__urban_mcp_walking__walking_route" and call["arguments"].get("closed_links") else None
+                    target=comparisons if call["tool"] in {"mcp__urban_mcp_walking__walking_compare","mcp__urban_mcp_vegetation__vegetation_compare"} else analyses if call["tool"]=="mcp__urban_mcp_vegetation__analyze_vegetation" else routes if call["tool"]=="mcp__urban_mcp_walking__walking_route" and call["arguments"].get("closed_links") else None
                     if target is not None:
                         target.append({"arguments":call["arguments"],"result":decode(content)})
     document={"host":"Hermes","model":selected["model"],"started_at":selected["started_at"],"ended_at":selected["ended_at"],"calls":calls,"note":"A null ended_at is retained as recorded by the host; process exit and artifacts are checked separately. No private configuration or reasoning exported."}
@@ -56,7 +56,7 @@ def main():
         args.answer_output.write_text(final["content"]+"\n",encoding="utf-8")
     if args.results_dir:
         args.results_dir.mkdir(parents=True,exist_ok=True)
-        for name,values in [("comparison-results.json",comparisons),("route-results.json",routes)]:
+        for name,values in [("comparison-results.json",comparisons),("route-results.json",routes),("analysis-results.json",analyses)]:
             (args.results_dir/name).write_text(json.dumps(values,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     print(json.dumps({"host":"Hermes","model":selected["model"],"calls":len(calls),"tools":sorted(set(str(c["tool"]) for c in calls))}))
 

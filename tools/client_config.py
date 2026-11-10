@@ -10,7 +10,7 @@ NAME = "urban_mcp_helsinki"
 
 
 def server_name(capability="inventory"):
-    return "urban_mcp_walking" if capability == "walking" else NAME
+    return {"inventory": NAME, "walking": "urban_mcp_walking", "vegetation": "urban_mcp_vegetation"}[capability]
 
 
 def wsl_path(path):
@@ -21,8 +21,8 @@ def wsl_path(path):
 
 
 def server_config(data_dir=None, wsl_distro=None, capability="inventory"):
-    profile, service, variable = ("walking", "walking-mcp", "URBAN_MCP_WALKING_WORKDIR") if capability == "walking" else ("municipal", "municipal-mcp", "URBAN_MCP_WORKDIR")
-    data = Path(data_dir).resolve() if data_dir else ROOT / (".urban-mcp/walking" if capability == "walking" else ".urban-mcp/helsinki")
+    profile, service, variable, default_folder = {"walking": ("walking", "walking-mcp", "URBAN_MCP_WALKING_WORKDIR", "walking"), "inventory": ("municipal", "municipal-mcp", "URBAN_MCP_WORKDIR", "helsinki"), "vegetation": ("vegetation", "vegetation-mcp", "URBAN_MCP_VEGETATION_WORKDIR", "vegetation")}[capability]
+    data = Path(data_dir).resolve() if data_dir else ROOT / ".urban-mcp" / default_folder
     data.mkdir(parents=True, exist_ok=True)
     if wsl_distro:
         command = "wsl.exe"
@@ -42,7 +42,7 @@ def main():
     parser.add_argument("--format", choices=["mcp-json", "codex", "hermes"], default="mcp-json")
     parser.add_argument("--data-dir")
     parser.add_argument("--wsl-distro")
-    parser.add_argument("--capability", choices=["inventory", "walking"], default="inventory")
+    parser.add_argument("--capability", choices=["inventory", "walking", "vegetation"], default="inventory")
     args=parser.parse_args()
     cfg=server_config(args.data_dir,args.wsl_distro,args.capability)
     name=server_name(args.capability)

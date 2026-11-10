@@ -1,0 +1,14 @@
+{
+  "helsinki": {
+    "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-vegetation-20261110/helsinki-vegetation-20261110.zip",
+    "bytes": 821746,
+    "sha256": "eaf5f9789667ede944e47d4476e23b98c18b88fc9b9f0f098b028238f8ee1796",
+    "manifest_sha256": "e8516c9db08a78f584cc9156c261dd82581ffe3f23fa0dbf9e9fc00636a7da32"
+  },
+  "amsterdam": {
+    "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-vegetation-20261110/amsterdam-vegetation-20261110.zip",
+    "bytes": 1794250,
+    "sha256": "af6c82dd1e272d3b5565af4309cac2870924789ee336bb5760e3e8fd25dcd070",
+    "manifest_sha256": "a559869c14da3edb8de47d946a4e811f497e31c7b5dd40ebc1f1f7832893a502"
+  }
+}
