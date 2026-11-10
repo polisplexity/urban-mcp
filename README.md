@@ -1,33 +1,34 @@
 # Urban MCP
 
-Proyecto abierto para mantener cómo agentes y clientes MCP utilizan herramientas de urbanismo: software original, datos de entrada, preparación, instalación, operación y pruebas.
+Open infrastructure that lets any MCP-capable agent operate urban open-source tools with admitted data, installation/startup recipes and reproducible municipal evidence.
 
-**Estado: planificación pública.** El trabajo inicial se discute mediante una RFC y un pull request. Un repositorio investigado no equivale a un adaptador operativo ni a un modelo de ciudad listo.
+**Start with the [master test record: what we tested and why](https://github.com/polisplexity/urban-mcp/blob/fix/walking-threshold-route-evidence/MASTER_TEST_RECORD.md).** It distinguishes source harvesting, native computation, MCP compatibility, agent artifacts and factual narrative review.
 
-La unidad de contribución propuesta es un **paquete de capacidad**: herramienta original + interfaz admitida + requisitos de datos + fuentes y preparación + caso comprobable + guía operativa del agente. Las bibliotecas auxiliares y los estándares se mantienen como dependencias, sin convertirlos automáticamente en servidores MCP.
+## Review the executable work
 
-## Revisar y contribuir
+- **[Explicit threshold crossings and closed-link evidence · PR #40](https://github.com/polisplexity/urban-mcp/pull/40):** exact per-school transitions and per-path closed-edge membership, checked in both cities with Codex and fresh Hermes profiles. [Current interface/reproduction guide](https://github.com/polisplexity/urban-mcp/blob/fix/walking-threshold-route-evidence/cases/two-city-walking/issue-39.md), [versioned evidence and prose qualifications](https://github.com/polisplexity/urban-mcp/blob/fix/walking-threshold-route-evidence/cases/two-city-walking/evidence/issue-39/README.md).
+- **[Helsinki and Amsterdam walking access · PR #38](https://github.com/polisplexity/urban-mcp/pull/38):** central school-to-library experiments, original OSMnx MCP source audit, separately implemented 15-tool adapter, harvested ODbL snapshots and Docker/native/MCP checks in two cities. [Reproduction guide](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/cases/two-city-walking/README.md), [findings and maps](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/cases/two-city-walking/findings.md), [data release](https://github.com/polisplexity/urban-mcp/releases/tag/data-walking-20261110).
+- **[Helsinki service inventory · PR #37](https://github.com/polisplexity/urban-mcp/pull/37):** library/health-station registry locations against district population, original GDAL MCP plus municipal operations, with independent Codex/Hermes evidence. [Case guide](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/cases/helsinki-service-inventory/README.md).
+- **[Public proposal · RFC PR #1](https://github.com/polisplexity/urban-mcp/pull/1):** capability/data contracts and wider research catalog. A catalog listing is not proof of operational readiness.
 
-- **[RFC y pull request #1](https://github.com/polisplexity/urban-mcp/pull/1):** propuesta técnica abierta, todavía sin fusionar ni fijar un framework global.
-- **[Orden de construcción y aceptación municipal](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/cases/municipal-first.md):** inventario de equipamientos/población, accesibilidad peatonal y cobertura vegetal. Cada capacidad debe cosechar datos y demostrar un resultado municipal reproducible.
-- **[Matriz de datos por herramienta](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/data/tool-data-matrix.md):** 229 candidatos, 48 perfiles iniciales y 30 canales de fuentes. Distingue insumos abiertos, datos del operador, preparación y faltantes.
-- **[Tareas para contribuir](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/tasks.md):** 35 tareas en siete hitos, incluyendo los primeros casos municipales e investigación por familias.
-- **[Guía de contribución](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/CONTRIBUTING.md)** y **[roadmap](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/roadmap.md)**.
+The implementation remains in review branches: PR #40 is stacked on PR #38, which is stacked on the inventory branch, which is based on the RFC. This main branch is the public entry point; these links do not imply that the implementation is merged.
 
-La propuesta vive en `rfc/data-ready-capabilities`. Para revisar archivos y comprobaciones desde un clon:
+## What the walking tests establish
+
+The current issue-39 revision passes 84 native/stdio-MCP checks in Helsinki and 83 in Amsterdam across all 15 tools, plus seven Docker integrity/cache regressions. All four final Codex/Hermes runs reproduce native artifacts and pass the independently checked threshold/membership JSON fields. Original baseline/closure CSV bytes are unchanged. Codex's observed briefs pass review; broader Hermes commentary remains qualified. The first experiment's failed narratives are preserved in the versioned record.
+
+These are bounded study disks and mapped facility objects. Public library admission, verified entrances, complete municipal coverage, population, wheelchair access and measured travel times remain unproven. The master record preserves what worked, what failed and why.
+
+## Reproduce and contribute
 
 ```sh
-git switch rfc/data-ready-capabilities
-python -m pip install -r requirements-dev.txt
-python tools/validate.py
-python -m unittest discover -s tests
-docker compose --profile preflight run --rm --build preflight
+git clone --branch fix/walking-threshold-route-evidence https://github.com/polisplexity/urban-mcp.git
+cd urban-mcp
+# Follow cases/two-city-walking/issue-39.md for current Docker, data and MCP commands.
 ```
 
-Este contenedor **solo valida planificación/metadatos**. SUMO Hello es una referencia técnica auxiliar: seis assets upstream fijados por commit/hash, con revisión de referencias y aristas. Todavía faltan admisión del alcance de datos, runtime científico Docker, baseline nativo, comparación MCP y ensayo independiente del agente. No sustituye la aceptación municipal.
+Deterministic checks need no LLM account. Agent testing uses your existing host and private authentication, with an agent-neutral stdio MCP. No proprietary agent or global language/framework is required.
 
-La pregunta y el municipio se definen desde el inicio. La prueba final recorre cosecha, preparación, ejecución nativa/MCP, resultado y reproducción independiente; la [plantilla municipal](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/cases/municipal-case-template.md) guía el expediente. Las fuentes candidatas no significan que ya haya datos suficientes. La [propuesta para agentes y skills](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/agents/day-zero.md) no exige un agente propio ni un archivo SOUL obligatorio.
+[Contribution guide](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/CONTRIBUTING.md), [roadmap](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/docs/roadmap.md), [open tasks](https://github.com/polisplexity/urban-mcp/issues), [resolved evidence-interface issue #39](https://github.com/polisplexity/urban-mcp/issues/39).
 
-El proyecto no exige un proveedor de IA ni un lenguaje único para los motores. La licencia de este repositorio no sustituye la de cada software, dataset, peso o servicio conectado.
-
-Para crecer como proyecto libre, publicamos recetas, procedencia, decisiones, errores útiles y métodos de comprobación. Se puede aportar una fuente, una corrección, una reproducción, una traducción o un caso en otro municipio, conservando autoría y licencias originales.
+New project documentation, tasks, code comments and reports are in English. Historical research and observed transcripts may retain their original language. Repository code is MIT; each upstream tool and dataset retains its own license. Walking data and derived databases remain ODbL-1.0, © OpenStreetMap contributors. Public recipes, provenance, reviewed evidence and useful failures make the work repeatable and open to contribution.
