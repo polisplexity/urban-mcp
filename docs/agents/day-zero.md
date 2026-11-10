@@ -16,9 +16,9 @@ Select a capability and read its requirements progressively rather than loading 
 
 ## Reproduce the implemented cases
 
-Clone `main` and record `git rev-parse HEAD`. Follow the complete data/Docker/MCP instructions in the [Helsinki inventory guide](../../cases/helsinki-service-inventory/README.md), [Helsinki/Amsterdam walking guide](../../cases/two-city-walking/README.md) or [two-city historical vegetation guide](../../cases/two-city-vegetation/README.md). For walking use the [issue-39 task and procedure](../../cases/two-city-walking/issue-39.md); for vegetation use [agent-task-v2.md](../../cases/two-city-vegetation/agent-task-v2.md). Earlier tasks remain historical observations. Deterministic suites require no model account. Host maintenance scripts need Python 3.11+ and `requirements-dev.txt`; GIS engines run in Docker.
+Clone `main` and record `git rev-parse HEAD`. Follow the complete data/Docker/MCP instructions in the [Helsinki inventory guide](../../cases/helsinki-service-inventory/README.md), [Helsinki/Amsterdam walking guide](../../cases/two-city-walking/README.md), [two-city historical vegetation guide](../../cases/two-city-vegetation/README.md) or [historical SUMO guide](../../cases/two-city-sumo/README.md). For walking use the [issue-39 task and procedure](../../cases/two-city-walking/issue-39.md); for vegetation use [agent-task-v2.md](../../cases/two-city-vegetation/agent-task-v2.md); for SUMO use [agent-task.md](../../cases/two-city-sumo/agent-task.md). Earlier tasks remain historical observations. Deterministic suites require no model account. Host maintenance scripts need Python 3.11+ and `requirements-dev.txt`; GIS engines run in Docker.
 
-Generate configuration with `tools/client_config.py --capability inventory|walking|vegetation --format mcp-json|codex|hermes --data-dir <fresh-workspace>`. The alternatives separated by `|` describe choices, not a literal shell command. The generator supplies only the case server. Preserve production host settings and use an independent data mount for each city/host. On Linux, its Hermes output establishes the repository working directory with GNU `env -C` before starting Docker.
+Generate configuration with `tools/client_config.py --capability inventory|walking|vegetation|sumo --format mcp-json|codex|hermes --data-dir <fresh-workspace>`. The alternatives separated by `|` describe choices, not a literal shell command. The generator supplies only the case server. Preserve production host settings and use an independent data mount for each city/host. On Linux, its Hermes output establishes the repository working directory with GNU `env -C` before starting Docker.
 
 For example, after building the walking image and configuring an isolated Hermes profile:
 
@@ -46,7 +46,7 @@ Publish reviewed, scoped evidence and update the master record. Host/model/versi
 ## Historical SUMO profile
 
 The [two-city SUMO guide](../../cases/two-city-sumo/README.md) documents the
-agent-neutral profile proposed in PR #43. Generate a separate configuration
+agent-neutral profile merged on `main` in PR #43. Generate a separate configuration
 with `tools/client_config.py --capability sumo`; use a new mount for each city
 and host. The official SDK FastMCP server reuses four original MCP families
 and adds nine municipal bindings. No model/SOUL/agent framework is required

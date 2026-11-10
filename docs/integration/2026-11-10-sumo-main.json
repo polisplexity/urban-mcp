@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-11-10T21:51:32.618348+00:00",
+  "repository": "https://github.com/polisplexity/urban-mcp",
+  "integration_status": "waiting_for_main_ci",
+  "reviewed_pr_head": "fb251f456ac3c0bf4d764ce5a1b13307e9ece3b4",
+  "integrated_main_commit": "aadfde719309e62d04fffd3edc100345d425873d",
+  "reviewed_tree": "c434b9f4660d5328d282b76fde3c429c774ecb08",
+  "merged_tree": "c434b9f4660d5328d282b76fde3c429c774ecb08",
+  "conflicts": "None",
+  "host_runs_repeated_during_integration": false,
+  "host_evidence": "cases/two-city-sumo/evidence/agents.json",
+  "prose_review": "cases/two-city-sumo/evidence/narrative-review.json",
+  "product_qualified": false,
+  "independent_sumo_reproduction": "https://github.com/polisplexity/urban-mcp/issues/44"
+}

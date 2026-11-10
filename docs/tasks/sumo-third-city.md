@@ -1,6 +1,6 @@
 # Independent third-city historical SUMO reproduction
 
-The initial Bologna/Ingolstadt case is proposed in PR #43. Final-product
+The initial Bologna/Ingolstadt case is available on `main` after merged PR #43. Final-product
 qualification requires a person outside its original implementation and
 initial testing team. A different model/agent launched by that team does not
 meet the [policy](../product-qualification.md). Issue #41 is the separate

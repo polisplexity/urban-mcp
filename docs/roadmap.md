@@ -1,6 +1,6 @@
 # Roadmap by evidence
 
-The [master test record](../MASTER_TEST_RECORD.md) is the current status source. The Helsinki inventory established source harvesting, native geospatial operations, MCP and two-host reproduction. The Helsinki/Amsterdam walking case tests transfer, real network distances and a declared link disruption. [Historical vegetation in both cities](../cases/two-city-vegetation/README.md), merged in PR #42, adds exact categorical counts, aggregate population reconciliation and bounded transport with separately reviewed host prose. Every additional capability must earn its own admission.
+The [master test record](../MASTER_TEST_RECORD.md) is the current status source. The Helsinki inventory established source harvesting, native geospatial operations, MCP and two-host reproduction. The Helsinki/Amsterdam walking case tests transfer, real network distances and a declared link disruption. [Historical vegetation in both cities](../cases/two-city-vegetation/README.md), merged in PR #42, adds exact categorical counts, aggregate population reconciliation and bounded transport with separately reviewed host prose. [Historical SUMO in Bologna/Ingolstadt](../cases/two-city-sumo/README.md), merged in PR #43, adds original MCP reuse, real published model inputs, full trip/censor/teleport accounting and explicit native model-quality limits. Every additional capability must earn its own admission.
 
 | Milestone | Reviewable deliverable | Acceptance |
 | --- | --- | --- |
@@ -16,10 +16,10 @@ The [master test record](../MASTER_TEST_RECORD.md) is the current status source.
 
 Final-product promotion now requires the [independent third-city gate](product-qualification.md). The priority is [issue #41](https://github.com/polisplexity/urban-mcp/issues/41): a person outside the original implementation/test team harvesting and reproducing walking access in a city other than Helsinki/Amsterdam, with reviewed native/MCP and Codex/Hermes evidence. Current `main` integration and case admission do not satisfy that gate. See the [qualification register](../registry/product-qualification.json).
 
-1. Reproduce the implemented inventory, walking or vegetation workflow and submit artifact hashes plus host/runtime versions. Select the exact case/task on `main`.
+1. Reproduce the implemented inventory, walking, vegetation or historical SUMO workflow and submit artifact hashes plus host/runtime versions. Select the exact case/task on `main`.
 2. Improve authoritative school/library inventories, entrances, access/hours and campus identity checks in the walking case.
 3. Add a third city's source contract and independently review the study-boundary assumptions.
 4. Extend the implemented vegetation case with a separately reviewed source/period/city or improve host factual reporting. Preserve source rights, categorical denominators, unknown population and exact native checks; do not relabel historical classification as current canopy or park access.
-5. Advance transport simulation, hydraulic and energy capabilities when real required inputs exist. SUMO Hello remains an auxiliary synthetic reference, not an admitted municipal simulation.
+5. Reproduce historical SUMO in a distinct third city through [issue #44](https://github.com/polisplexity/urban-mcp/issues/44) with an independent person, permitted demand/signals, native/MCP and both hosts. Review/repair source signal compatibility only with explicit evidence and fresh validation; do not infer current forecasts. SUMO Hello remains a separate auxiliary synthetic proposal. Advance hydraulic and energy capabilities when their required real inputs exist.
 
 Choose the next operation by civic need, sufficient data and verifiable native behavior, not repository count. There is no global language/framework decision or universal calendar for unrelated engines. A contributor can take a bounded source, function, case or reproduction task without owning a whole family.

@@ -6,8 +6,11 @@ are limited to **30 km/h** for works? We preserve the original C++ SUMO
 solver, published demand, signals and behavior settings. We add acquisition,
 explicit model binding, a same-seed comparison and reviewable full results.
 
-This development is proposed in [PR #43](https://github.com/polisplexity/urban-mcp/pull/43).
-It is separate from the cases already merged on `main`. See the
+[PR #43](https://github.com/polisplexity/urban-mcp/pull/43) is merged into `main` at
+[`aadfde7`](https://github.com/polisplexity/urban-mcp/commit/aadfde719309e62d04fffd3edc100345d425873d).
+Clone or update `main`, record `git rev-parse HEAD`, and use a fresh data mount.
+The [integration receipt](../../docs/integration/2026-11-10-sumo-main.json) separates
+reviewed source, merge/main CI and original host observations. See the
 [master](../../MASTER_TEST_RECORD.md), [findings](findings.md),
 [operation coverage](functionality.md), [code audit](upstream-audit.md),
 [recipe](recipe.json), [licenses](LICENSE.md) and [snapshot lock](snapshot.lock.json).
@@ -47,7 +50,7 @@ pins Python dependencies. Apt packages come from the base distribution's
 repositories; this is not a claim of a bit-for-bit reproducible whole OS image.
 
 ```sh
-git clone --branch feat/two-city-sumo https://github.com/polisplexity/urban-mcp.git
+git clone --branch main https://github.com/polisplexity/urban-mcp.git
 cd urban-mcp
 git rev-parse HEAD
 export URBAN_MCP_UID="$(id -u)" URBAN_MCP_GID="$(id -g)"
@@ -130,6 +133,10 @@ run a simulation or agent; those remain separate milestones. The public
 with the locked-input experiment while preserving new retrieval timestamps.
 
 ## Connect any MCP host
+
+Host maintenance scripts require Python 3.11+ and the development requirements
+(`python -m pip install -r requirements-dev.txt`). Numerical engines and SDK
+dependencies stay in Docker. The deterministic suite itself needs no model account.
 
 The server is agent/provider-independent. It does not load a model, SOUL,
 memory store or agent framework. A host can discover sources/rights, restore,
