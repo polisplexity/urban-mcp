@@ -27,7 +27,9 @@ Every route total includes origin snap + graph edge lengths + destination snap. 
 Use Docker Engine with the Compose plugin on Linux, macOS or Windows through WSL2. Allow roughly 3 GB RAM per active case container and 1 GB free workspace storage. Concurrent host tests need additional memory/storage. These commands run from this repository checkout:
 
 ```sh
-git switch feat/two-city-walking-accessibility
+git clone --branch main https://github.com/polisplexity/urban-mcp.git
+cd urban-mcp
+git rev-parse HEAD
 # Linux/WSL: map your UID/GID so the non-root container can write the mount.
 export URBAN_MCP_UID="$(id -u)"
 export URBAN_MCP_GID="$(id -g)"
@@ -40,7 +42,10 @@ docker compose --profile walking run --rm walking analyze --city helsinki
 docker compose --profile walking run --rm walking analyze --city amsterdam
 docker compose --profile walking run --rm walking test --city helsinki
 docker compose --profile walking run --rm walking test --city amsterdam
+docker compose --profile walking run --rm --entrypoint python walking -m unittest urban_mcp_walking.test_contracts urban_mcp_walking.test_runtime -v
 ```
+
+For an existing clean checkout, use `git switch main` and `git pull --ff-only` instead of cloning. Save the exact source commit with the new evidence. Use a new workspace path for another independent reproduction; the pinned snapshots reproduce the historical observation, while live acquisition produces new data.
 
 The `walking` container runs with networking disabled, a read-only root filesystem, dropped capabilities and resource limits. `walking-harvest` and `walking-mcp` have outbound network access to restore snapshots or explicitly acquire live inputs. Stdio has no exposed TCP listener. Results stay in the mounted directory under `results/<city>/<run_id>/`; deterministic test receipts go under `evidence/<city>/`. Test run IDs are unique; `analyze` uses `native` and refuses to overwrite an existing result.
 
@@ -78,19 +83,19 @@ These emit the `urban_mcp_walking` server with an isolated writable data mount. 
 For Codex, with its CLI installed and authenticated:
 
 ```sh
-python tools/run_agent_check.py codex --capability walking --city helsinki --label walking-helsinki
-python tools/run_agent_check.py codex --capability walking --city amsterdam --label walking-amsterdam
+python tools/run_agent_check.py codex --capability walking --city helsinki --label walking-helsinki-my-review --task cases/two-city-walking/agent-task-issue-39.md
+python tools/run_agent_check.py codex --capability walking --city amsterdam --label walking-amsterdam-my-review --task cases/two-city-walking/agent-task-issue-39.md
 # Add --wsl-distro Ubuntu-22.04 when launching from Windows.
 ```
 
 For Hermes, create a fresh profile with no inherited skills or memories. Configure only your selected model/provider and this one MCP; keep credentials in the host's private credential store. Give each city an initially empty workspace in the MCP config. Preserve any production Hermes profile/gateway. Then run:
 
 ```sh
-python tools/run_agent_check.py hermes --capability walking --city helsinki --label walking-helsinki --hermes-home /absolute/path/to/isolated-profile
-python tools/run_agent_check.py hermes --capability walking --city amsterdam --label walking-amsterdam --hermes-home /absolute/path/to/another-isolated-profile
+python tools/run_agent_check.py hermes --capability walking --city helsinki --label walking-helsinki-my-review --task cases/two-city-walking/agent-task-issue-39.md --hermes-home /absolute/path/to/isolated-profile
+python tools/run_agent_check.py hermes --capability walking --city amsterdam --label walking-amsterdam-my-review --task cases/two-city-walking/agent-task-issue-39.md --hermes-home /absolute/path/to/another-isolated-profile
 ```
 
-`--hermes-executable` supports an installation outside PATH. A model account is optional for deterministic reproduction; model-host tests use each contributor's own configured authentication. Never commit host configuration, environment files, full private sessions or reasoning. Export only the public task's calls and reviewed answer with `tools/export_hermes_trace.py --task cases/two-city-walking/agent-task.md --city <city> ...`.
+`--hermes-executable` supports an installation outside PATH. The Hermes runner uses the MCP configuration already in the selected profile; generate it with `--data-dir .urban-mcp/hermes-walking-helsinki-my-review` or `.urban-mcp/hermes-walking-amsterdam-my-review` to match each label. It does not rewrite that mount. A model account is optional for deterministic reproduction; model-host tests use each contributor's own configured authentication. Never commit host configuration, environment files, full private sessions or reasoning. Export only the public task's calls and reviewed answer, with the matching `--task cases/two-city-walking/agent-task-issue-39.md` and `--city`. The [current diagnostic guide](issue-39.md) has complete export/review commands. The original task and evidence remain unchanged for historical comparison.
 
 The tested Hermes 0.18.2 Linux launcher does not forward a configured `cwd` to its stdio watchdog. The Linux Hermes configuration generator therefore wraps Docker with `/usr/bin/env -C <absolute-repo> docker ...`. This sets a stable working directory before Compose loads its schema. If startup reports `getwd: no such file or directory`, inspect the host's MCP stderr, preserve the failure and use the generated launcher. Process exit code 0 can still accompany a failed MCP workflow.
 

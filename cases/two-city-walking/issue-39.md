@@ -18,10 +18,12 @@ Declaring links here annotates the original paths; it does not remove links or r
 
 ## Reproduce the computational checks
 
-Use the same prerequisites as the [main case guide](README.md). Start with a new directory:
+Use the same prerequisites as the [main case guide](README.md). Clone `main`, or update an existing clean checkout with `git switch main` and `git pull --ff-only`. Record the source commit and start with a new data directory:
 
 ```sh
-git switch fix/walking-threshold-route-evidence
+git clone --branch main https://github.com/polisplexity/urban-mcp.git
+cd urban-mcp
+git rev-parse HEAD
 export URBAN_MCP_UID="$(id -u)"
 export URBAN_MCP_GID="$(id -g)"
 export URBAN_MCP_WALKING_WORKDIR="$PWD/.urban-mcp/walking-issue39-reproduction"
@@ -35,6 +37,8 @@ docker compose --profile walking run --rm --entrypoint python walking -m unittes
 python -m unittest discover -s tests
 ```
 
+Install `requirements-dev.txt` before the host-side repository tests and maintenance helpers. Keep raw workspaces/logs outside Git; a new reproduction must not overwrite either published evidence version. Run the commands sequentially unless sufficient additional memory is available for independent containers.
+
 The native suite independently joins every CSV row with the exact keyed route export, compares the full diagnostics through MCP, checks the known threshold-identity and overlapping-path regressions, and verifies that baseline/closure CSV bytes remain identical to the original experiment. Synthetic regressions separately test exact-boundary crossings, rerouting, lost reachability, unchanged unreachable objects, reverse directions/parallel keys, avoiding alternatives and invalid evidence.
 
 The suite also issues three simultaneous cold MCP graph/catalog inspections under the existing 3 GB memory cap. Reentrant cache synchronization prevents duplicate graph deserialization; a separate threaded regression requires exactly one load. The earlier saturated attempt and its correction are recorded in `evidence/issue-39/runtime-failure.json`.
@@ -44,15 +48,17 @@ The suite also issues three simultaneous cold MCP graph/catalog inspections unde
 The new [v2 task](agent-task-issue-39.md) supplies no expected numerical answers. It requests a compact JSON claim object in addition to a factual brief, so exact origin sets and per-path booleans can be checked mechanically. Use new host workspaces/profiles and the existing host's authentication; preserve private provider settings outside Git.
 
 ```sh
-python tools/run_agent_check.py codex --capability walking --city helsinki --label walking-helsinki-issue39 --task cases/two-city-walking/agent-task-issue-39.md
-python tools/run_agent_check.py codex --capability walking --city amsterdam --label walking-amsterdam-issue39 --task cases/two-city-walking/agent-task-issue-39.md
+python tools/run_agent_check.py codex --capability walking --city helsinki --label walking-helsinki-my-review --task cases/two-city-walking/agent-task-issue-39.md
+python tools/run_agent_check.py codex --capability walking --city amsterdam --label walking-amsterdam-my-review --task cases/two-city-walking/agent-task-issue-39.md
 # On Windows add --wsl-distro Ubuntu-22.04.
 # For Hermes use the same --task with fresh configured profiles and data mounts:
-python tools/run_agent_check.py hermes --capability walking --city helsinki --label walking-helsinki-issue39 --task cases/two-city-walking/agent-task-issue-39.md --hermes-home /absolute/path/to/fresh-helsinki-profile
-python tools/run_agent_check.py hermes --capability walking --city amsterdam --label walking-amsterdam-issue39 --task cases/two-city-walking/agent-task-issue-39.md --hermes-home /absolute/path/to/fresh-amsterdam-profile
+python tools/run_agent_check.py hermes --capability walking --city helsinki --label walking-helsinki-my-review --task cases/two-city-walking/agent-task-issue-39.md --hermes-home /absolute/path/to/fresh-helsinki-profile
+python tools/run_agent_check.py hermes --capability walking --city amsterdam --label walking-amsterdam-my-review --task cases/two-city-walking/agent-task-issue-39.md --hermes-home /absolute/path/to/fresh-amsterdam-profile
 ```
 
-The Linux Hermes config generator uses GNU `env -C <repo>` before Docker to establish a stable working directory. Export only public-case traces and selected full tool results using the export tools' `--results-dir`, and the Hermes exporter's matching `--task`. Numerical artifacts, machine-readable claims and prose receive separate verdicts. A process exit or an answer corrected by the implementer is not a successful independent host result.
+For each fresh Hermes profile, generate configuration with `python tools/client_config.py --capability walking --format hermes --data-dir .urban-mcp/hermes-walking-<city>-my-review`, replacing `<city>` with the actual city. Add only that MCP block to the independently authenticated profile. The runner does not change its configured mount. The Linux generator uses GNU `env -C <repo>` before Docker to establish a stable working directory.
+
+Use a new suffix if `my-review` already exists. Export only public-case traces and selected full tool results using the export tools' `--results-dir`, and the Hermes exporter's matching `--task`. Numerical artifacts, machine-readable claims and prose receive separate verdicts. A process exit or an answer corrected by the implementer is not a successful independent host result.
 
 ## Acceptance record
 
@@ -62,15 +68,26 @@ All four final Codex/Hermes city runs operate the 15 tools, reproduce native art
 
 Read the [new evidence and prose qualifications](evidence/issue-39/README.md). Codex's observed briefs pass review. Hermes's targeted classification/membership claims now pass, while additional commentary remains qualified and unsuitable for autonomous municipal recommendations. The original failed v1 narratives remain unchanged. Consult the [master record](../../MASTER_TEST_RECORD.md) for the combined test history.
 
-After restoring and running both cities, collect/review without overwriting v1:
+After restoring and running both cities, collect into a new dossier. The following Bash example uses the labels above and keeps private host logs in their ignored locations:
 
 ```sh
-python tools/collect_walking_evidence.py --workspace "$URBAN_MCP_WALKING_WORKDIR" --output cases/two-city-walking/evidence/issue-39
-# Export the public traces, answers and full selected tool responses to each
-# private host evidence directory; use the exporters' --results-dir option.
-python tools/review_walking_agents.py --codex-suffix issue39-final --hermes-suffix issue39-final --evidence-dir cases/two-city-walking/evidence/issue-39 --task cases/two-city-walking/agent-task-issue-39.md --diagnostics
+export REVIEW_DOSSIER="cases/two-city-walking/evidence/my-review"
+python tools/collect_walking_evidence.py --workspace "$URBAN_MCP_WALKING_WORKDIR" --output "$REVIEW_DOSSIER"
+for city in helsinki amsterdam; do
+  codex_evidence=".urban-mcp/agent-evidence/codex-walking-$city-my-review"
+  python tools/export_codex_trace.py --events "$codex_evidence/events.log" --output "$codex_evidence/trace.json" --results-dir "$codex_evidence"
+done
+# Set these to the two actual fresh profiles used above.
+export HELSINKI_HERMES_PROFILE="/absolute/path/to/fresh-helsinki-profile"
+export AMSTERDAM_HERMES_PROFILE="/absolute/path/to/fresh-amsterdam-profile"
+for city in helsinki amsterdam; do
+  if [ "$city" = helsinki ]; then profile="$HELSINKI_HERMES_PROFILE"; else profile="$AMSTERDAM_HERMES_PROFILE"; fi
+  hermes_evidence=".urban-mcp/agent-evidence/hermes-walking-$city-my-review"
+  python tools/export_hermes_trace.py --state-db "$profile/state.db" --task cases/two-city-walking/agent-task-issue-39.md --city "$city" --output "$hermes_evidence/trace.json" --answer-output "$hermes_evidence/answer.md" --results-dir "$hermes_evidence"
+done
+python tools/review_walking_agents.py --codex-suffix my-review --hermes-suffix my-review --evidence-dir "$REVIEW_DOSSIER" --task cases/two-city-walking/agent-task-issue-39.md --diagnostics
 ```
 
-The suffixes above refer to the final published run labels; use new labels and point each fresh Hermes profile at its corresponding new workspace when contributing a reproduction. Narrative reviews are bound to observed answer hashes and must be renewed for a new answer; do not copy an old review onto it.
+The final published observations used the suffix `issue39-final`; these example commands use `my-review` to preserve them. A new dossier initially has no narrative review, so the reviewer reports prose as pending even when artifacts/JSON pass. Review the actual new answers, create an answer-hash-bound `narrative-review.json` following the published structure, and rerun the reviewer before admitting prose. Never copy an old review onto a new answer. On Windows/WSL, run exporters where both repository workspaces and the selected Hermes database are accessible; pass the exact corresponding paths.
 
 The study remains limited to the same central disks and assumptions. Public admission, entrances, barriers, directional foot rules, winter conditions, wheelchair suitability, observed journey times and citywide service adequacy remain unverified. OSM-derived data remains ODbL-1.0, © OpenStreetMap contributors.

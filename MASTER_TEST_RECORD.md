@@ -2,6 +2,12 @@
 
 This is the project entry point for evidence: what we tested, why it matters to a municipality, and how far the evidence supports a claim. A catalog entry, a successful container startup and a tool listing do not establish a working capability.
 
+## Reproduce the integrated source
+
+Use `main` for the combined implementation: RFC #1 → Helsinki inventory #37 → two-city walking #38 → diagnostic revision #40. Record `git rev-parse HEAD` for every independent reproduction. Follow the English [inventory guide](cases/helsinki-service-inventory/README.md), [two-city Docker guide](cases/two-city-walking/README.md), [current walking task/export/review procedure](cases/two-city-walking/issue-39.md) and [agent runbook](docs/agents/day-zero.md). Use fresh data workspaces and new host labels; preserve published observations and failed answers unchanged.
+
+Integration checks repeat the deterministic suites. Existing Codex/Hermes observations remain bound to their original task, source and answer hashes; a merge or documentation translation is not a fresh LLM experiment. Historical research, tasks and observed transcripts retain their original language and bytes.
+
 ## Current walking revision: explicit diagnostic evidence, issue #39
 
 The [v2 interface and reproduction guide](cases/two-city-walking/issue-39.md) documents the implemented correction. `walking_compare` now explicitly identifies every school's before/after distance, destination, threshold booleans, transition and closed-link membership. `walking_route(closed_links=...)` marks every original-graph path's exact closed keyed edges, avoiding flag and overlap. The solver, pinned OSM inputs, distance rules and all original baseline/closure CSV bytes remain unchanged.

@@ -1,39 +1,41 @@
-# Operación del agente desde el primer caso
+# Agent operation from a fresh case workspace
 
-Objetivo de aceptación: un agente nuevo puede completar un caso admitido sin conocer esta conversación. Debe conocer entradas/fuentes disponibles y reconocer qué no puede ejecutar todavía.
+The acceptance goal is that an independently configured agent can complete an admitted municipal case without knowing this conversation. It must discover the available inputs and operations, recognize missing data and report limits. The [master test record](../../MASTER_TEST_RECORD.md) separates native computation, MCP protocol checks, host artifacts and factual answer review.
 
-La [prueba final es municipal](../cases/municipal-first.md): cosechar datos permitidos, preparar, ejecutar, comprobar y entregar un resultado que responda la pregunta. Una referencia sintética sirve para diagnóstico técnico. La skill guía el trabajo; el paquete debe aportar las recetas de adquisición y ejecución reales.
+| Component | Purpose | Limit |
+| --- | --- | --- |
+| MCP | Typed operations, resources and results | A protocol alone does not supply complete data or preparation knowledge |
+| Registry/preflight | Case requirements and missing inputs | A candidate source is not an admitted asset |
+| Agent Skill | Short procedure and case-specific checks | Host loading varies; a skill grants no permission or sandbox |
+| Runbook/prompts/resources | Equivalent route for hosts without skills | Discovery and support must be tested per host |
+| AGENTS.md | Repository contribution rules | Not a scientific execution contract |
+| Optional SOUL.md | Host-specific identity/style | Not an MCP standard or substitute for data, permissions or validation |
+| Agent runtime | User-selected orchestration/model | Not a mandatory dependency of the capability package |
 
-| Pieza | Función | Límite |
-|---|---|---|
-| MCP | Operaciones, recursos y resultados tipados. | No entrega por sí solo datos completos ni conocimiento de preparación. |
-| Registro/preflight | Requisitos, disponibilidad por caso/entorno y faltantes. | Una fuente candidata no autoriza ejecución. |
-| Agent Skill | Procedimiento breve, selección de caso, límites y verificación. | Su carga/uso depende del cliente; no es un sandbox ni permiso adicional. |
-| Runbook/prompts/resources | Ruta equivalente para hosts sin Agent Skills. | Soporte y descubrimiento deben comprobarse. |
-| AGENTS.md | Reglas para contribuir al código/repositorio. | No es un contrato de ejecución científica. |
-| SOUL.md opcional | Identidad o estilo en un runtime que lo admita. | No es estándar MCP, fuente de datos ni sustituto de permisos/validación. |
-| Framework/runtime de agentes | Orquestación/modelo del usuario. | No será dependencia obligatoria del paquete de herramienta. |
+Select a capability and read its requirements progressively rather than loading the entire 229-entry catalog into every session. The repository skill supports an existing host; it does not require a new proprietary agent, framework or provider.
 
-Se propone el formato abierto [Agent Skills](https://agentskills.io/specification), con descubrimiento progresivo. No cargar las 229 fichas ni miles de herramientas en cada sesión: seleccionar capacidad/caso y consultar sus requisitos. La skill distingue la capacidad implementada de Helsinki de las fichas todavía propuestas.
+## Reproduce the implemented cases
 
-## Primer ensayo ejecutado y cómo repetirlo
+Clone `main` and record `git rev-parse HEAD`. Follow the complete data/Docker/MCP instructions in the [Helsinki inventory guide](../../cases/helsinki-service-inventory/README.md) or [Helsinki/Amsterdam walking guide](../../cases/two-city-walking/README.md). For current walking host tests use the [issue-39 task and procedure](../../cases/two-city-walking/issue-39.md), not the earlier v1 task. Deterministic suites require no model account.
 
-[Helsinki](../../cases/helsinki-service-inventory/README.md) incorpora la [misma tarea](../../cases/helsinki-service-inventory/agent-task.md) para Codex CLI y un perfil aislado de Hermes. Usaron el mismo MCP por stdio con workspaces separados y obtuvieron inventarios de bibliotecas/salud comparados con el original. El servidor no importa ninguno de sus SDKs de agente ni sus credenciales. La suite libre sin LLM sigue siendo ejecutable sin cuentas de IA.
+Generate configuration with `tools/client_config.py --capability inventory|walking --format mcp-json|codex|hermes --data-dir <fresh-workspace>`. The alternatives separated by `|` describe choices, not a literal shell command. The generator supplies only the case server. Preserve production host settings and use an independent data mount for each city/host. On Linux, its Hermes output establishes the repository working directory with GNU `env -C` before starting Docker.
 
-La [evidencia](../../cases/helsinki-service-inventory/evidence) registra versiones, llamadas y resultados; los [hallazgos](../../cases/helsinki-service-inventory/findings.md) incluyen acceso distinto a prompts, fricción de schema y una inferencia incorrecta detectada/reprobada antes de precisar el contrato. No basta un exit code o una respuesta convincente.
+For example, after building the walking image and configuring an isolated Hermes profile:
 
 ```sh
-python tools/run_agent_check.py codex --label mi-ensayo
-# Windows con Docker en WSL: añadir --wsl-distro Ubuntu-22.04
-# Hermes: configurar antes un perfil aislado y el MCP con tools/client_config.py.
-python tools/run_agent_check.py hermes --hermes-home /ruta/al/perfil-de-prueba --label mi-ensayo
-python tools/export_hermes_trace.py --state-db /ruta/al/perfil-de-prueba/state.db --output .urban-mcp/agent-evidence/mi-traza.json
+python tools/run_agent_check.py codex --capability walking --city helsinki --label walking-helsinki-my-review --task cases/two-city-walking/agent-task-issue-39.md
+# From Windows with Docker in WSL, add --wsl-distro Ubuntu-22.04.
+python tools/run_agent_check.py hermes --capability walking --city helsinki --label walking-helsinki-my-review --task cases/two-city-walking/agent-task-issue-39.md --hermes-home /absolute/path/to/fresh-profile
 ```
 
-Cada ejecución usa la autenticación existente del host elegido. Los scripts no provisionan claves, no crean conectores de mensajería y no exportan prompts de sistema, razonamiento ni configuración privada. El perfil Hermes de prueba no es el agente de producción del operador. Los permisos del cliente se configuran explícitamente para este servidor de caso; el benchmark Codex autoriza sus herramientas y prohíbe otros conectores/shell en la tarea, verificando luego la traza.
+The Hermes profile must already contain the generated MCP configuration pointing to `.urban-mcp/hermes-walking-helsinki-my-review` and your privately configured model/provider authentication. The runner does not rewrite its data mount. Use another fresh profile/label for Amsterdam. The full walking guide includes export and review commands; do not publish raw host logs.
 
-## Criterio para nuevos ensayos
+## Review evidence and failures
 
-Entregar a un agente independiente el paquete, su skill y una solicitud concreta. Probar caso completo, dato obligatorio ausente, unidad incompatible y fallo del original. Comprobar que produce un artefacto/recibo verificable o informa el bloqueo preciso. No darle la respuesta esperada ni considerar exitoso que solo enumere herramientas.
+Give the host the public blind task without expected answers. Check complete municipal execution, missing required data, incompatible units and native-tool failure. The host must produce a verifiable artifact/receipt or identify the precise blocker. A plausible answer, tools/list response or successful process exit is insufficient.
 
-La aceptación registra host/modelo/versión y soporte de skills/transporte. No promete que todos los clientes cargarán automáticamente un archivo o razonarán igual.
+Record exact source commit, input hashes/rights, host/model/version, task hash, transport, tool coverage, artifacts, errors and recovery. Compare native and MCP results independently, then review the final factual claims. Keep numerical artifacts, structured answer claims and narrative verdicts separate. The current walking evidence admits issue-39 facts from both hosts while preserving broader Hermes prose qualifications and all historical failed answers.
+
+Agent tests use the selected host's existing authentication. Do not create messaging connectors, reuse a production gateway/profile, publish credentials or export system prompts, reasoning or private configuration. The Codex benchmark authorizes only this case's MCP within the requested test and uses a read-only shell policy; the public task forbids unrelated tools and the exporter checks the trace.
+
+Publish reviewed, scoped evidence and update the master record. Host/model/version and skill/transport support belong to the result; no experiment promises identical behavior from every client or model. Historical public tasks and observed transcripts retain their original bytes and language.
