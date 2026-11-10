@@ -54,36 +54,36 @@ def main():
     write("registry/tools.json", tool_document)
     by_profile = {profile["id"]: profile for profile in profiles}
     by_source = {source["id"]: source for source in sources}
-    doc = ["# Matriz inicial de datos por herramienta\n\n",
-        "**Estado: propuesta de requisitos, no disponibilidad operativa.** Cada fila tiene una ficha individual. Los perfiles agrupan datos de un primer caso representativo; cada operación necesita un binding nativo y puede requerir un subconjunto diferente. Las dependencias heredan datos del paquete padre. No se exige GTFS para una validación geométrica ni HVAC para un cálculo de iluminación.\n\n",
-        f"Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. Las fuentes de operador necesitan proyecto y autorización concretos. {sum(t['ready_to_run'] for t in tools)} entrada(s) con alcance admitido por caso; el resto conserva `ready_to_run=false`. La admisión no abarca todas las funciones del upstream.\n\n",
-        "| Herramienta | Perfil propuesto | Estado |\n|---|---|---|\n"]
+    doc = ["# Tool data requirements and admitted scopes\n\n",
+        "**Status: proposed requirements, not general operational availability.** Each tool has a profile. These describe a first representative case; every operation needs its own native binding and may use a different subset. Dependencies inherit the parent capability's inputs. GTFS is not mandatory for geometric validation, nor HVAC inputs for a daylight calculation. Historical research descriptions retain their original language.\n\n",
+        f"Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. {sum(t['ready_to_run'] for t in tools)} entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.\n\n",
+        "| Tool | Proposed profile | Status |\n|---|---|---|\n"]
     for tool in tools:
-        binding = "alcance admitido por caso" if tool["ready_to_run"] else "binding pendiente"
+        binding = "case-scoped admission" if tool["ready_to_run"] else "binding pending"
         doc.append(f"| [{tool['repository']}](#data-{tool['id']}) | `{tool['data_profile']}` | {tool['execution_role']}; {binding} |\n")
     for tool in tools:
         profile = by_profile[tool["data_profile"]]
         doc.append(f"\n<a id=\"data-{tool['id']}\"></a>\n\n## {tool['repository']}\n\n")
-        doc.append(f"- **Interfaz original:** {tool['original_interface']}\n")
-        doc.append(f"- **Alcance de esta ficha:** {tool['execution_role']}. {tool['data_note']}\n")
+        doc.append(f"- **Original interface:** {tool['original_interface']}\n")
+        doc.append(f"- **Profile scope:** {tool['execution_role']}. {tool['data_note']}\n")
         for scope in tool.get("admitted_scope", []):
-            doc.append(f"- **Caso ejecutable delimitado:** [{scope['case_id']}](../../cases/{scope['case_id']}/README.md); operaciones: {', '.join(scope['operations'])}. La ficha genérica siguiente sigue siendo propuesta para otras operaciones.\n")
-        doc.append("\n| Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |\n|---|---|---|---|\n")
+            doc.append(f"- **Scoped executable case:** [{scope['case_id']}](../../cases/{scope['case_id']}/README.md); operations: {', '.join(scope['operations'])}. The generic profile below remains a proposal for other operations.\n")
+        doc.append("\n| Candidate input | Format/contract | Candidate sources | Admission condition |\n|---|---|---|---|\n")
         for req in profile["requirements"]:
             links = []
             for sid in req["candidate_sources"]:
                 source = by_source[sid]
-                links.append(f"[{source['name']}]({source['url']})" if source["url"] else source["name"] + " (por configurar)")
+                links.append(f"[{source['name']}]({source['url']})" if source["url"] else source["name"] + " (configuration required)")
             doc.append(f"| {req['id']} | {req['format_contract']} | {'; '.join(links)} | {req['admission_condition']} |\n")
-        doc.append(f"\n- **Preparación que hay que resolver:** {profile['preparation']}\n")
-        doc.append(f"- **Validación requerida:** {profile['validation']}\n")
-        doc.append(f"- **Faltante para un caso real:** {profile['real_city_blocker']}\n")
+        doc.append(f"\n- **Preparation required:** {profile['preparation']}\n")
+        doc.append(f"- **Validation required:** {profile['validation']}\n")
+        doc.append(f"- **Real-city blocker:** {profile['real_city_blocker']}\n")
         if tool["ready_to_run"]:
-            doc.append("- **Binding nativo:** comprobado únicamente para el caso y operaciones enlazados; la ficha genérica no admite otras operaciones.\n")
+            doc.append("- **Native binding:** verified only for the linked case and operations; the generic profile does not admit additional operations.\n")
         else:
-            doc.append("- **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.\n")
-        doc.append(f"- **Crítica propia del proyecto:** {tool['critical_limit']}\n")
-        doc.append("- **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.\n")
+            doc.append("- **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.\n")
+        doc.append(f"- **Project critique:** {tool['critical_limit']}\n")
+        doc.append("- **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.\n")
     path = ROOT / "docs/data/tool-data-matrix.md"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("".join(doc), encoding="utf-8")

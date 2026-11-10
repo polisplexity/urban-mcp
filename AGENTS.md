@@ -1,6 +1,6 @@
 # Working on Urban MCP
 
-The research registry is a proposal, and the Helsinki municipal reference package has an executable Docker/MCP implementation. Admit only the operations and cases supported by committed evidence; do not generalize their results to the whole registry or every function of GDAL/GeoPandas.
+The research registry is a proposal. The Helsinki inventory and the Helsinki/Amsterdam walking package have executable Docker/MCP implementations. Admit only the operations and cases supported by committed evidence; do not generalize results to the registry, all functions of an engine or entire municipal territories. Keep new code comments, documentation, reports and tasks in English; preserve original source names and historical observed evidence verbatim.
 
 - Preserve the original tool and reuse its supported API/MCP before writing another adapter. The product implementation language is not selected by the Python maintenance utilities.
 - A source page is not an admitted dataset. Record exact assets, rights, versions/hashes, area/time, units/CRS, preparation and unresolved inputs.
@@ -9,4 +9,5 @@ The research registry is a proposal, and the Helsinki municipal reference packag
 - Keep credentials, operator datasets, caches, bulk generated outputs and private product code outside Git. Compact reviewed public evidence and manifests belong in the case; larger permitted data snapshots/artifacts go in versioned releases with attribution.
 - New skills support the user's existing agent; they do not grant additional permissions, require a provider or override host/user instructions.
 - Validate changes with `python tools/validate.py`, `python -m unittest discover -s tests` and the affected case's data preflight. Rebuild generated registries/docs after changing planning TSVs.
-- For Helsinki changes, run the Docker native/MCP suite. Test all exposed tools and resource/prompt families. Agent testing uses independent workspaces and existing host authentication, with no messaging connectors. A tool script passing is not equivalent to a successful LLM workflow; review both traces and conclusions.
+- For inventory changes, run its Docker native/MCP suite. For walking changes, run the snapshot integrity regressions and native/MCP suite for both cities. Test all exposed tools and resource/prompt families. Agent testing uses independent workspaces and existing host authentication, with no messaging connectors. A tool script passing is not equivalent to a successful LLM workflow; review both traces and conclusions.
+- Update MASTER_TEST_RECORD.md with the municipal purpose, versions, evidence, failures and limits. Preserve code/data license boundaries; the evaluated unlicensed OSMnx MCP checkout stays outside Git and images. OSM-derived evidence and snapshots retain ODbL-1.0 attribution.

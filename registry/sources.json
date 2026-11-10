@@ -17,6 +17,21 @@
       "implemented_cases": []
     },
     {
+      "id": "osm-overpass",
+      "name": "OpenStreetMap via public Overpass instances",
+      "url": "https://wiki.openstreetmap.org/wiki/Overpass_API",
+      "access": "public-api",
+      "coverage": "explicit case polygon and separate query timestamps, variable completeness",
+      "provides": "walking ways/nodes and mapped school/library features with request/response receipts under ODbL-1.0",
+      "does_not_provide": "verified entrances, public library admission, opening hours, wheelchair accessibility, population or transactional snapshots",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": false,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
+    },
+    {
       "id": "overture",
       "name": "Overture Maps",
       "url": "https://docs.overturemaps.org/getting-data/",

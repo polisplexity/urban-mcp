@@ -1,0 +1,30 @@
+name: Two-city walking native and MCP
+on:
+  push:
+    paths: ['urban_mcp_walking/**', 'adapters/walking/**', 'cases/two-city-walking/**', 'compose.yaml', '.github/workflows/walking.yml']
+  pull_request:
+    paths: ['urban_mcp_walking/**', 'adapters/walking/**', 'cases/two-city-walking/**', 'compose.yaml', '.github/workflows/walking.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  walking:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        city: [helsinki, amsterdam]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare non-root workspace
+        run: |
+          mkdir -p .urban-mcp/walking
+          echo "URBAN_MCP_UID=$(id -u)" >> "$GITHUB_ENV"
+          echo "URBAN_MCP_GID=$(id -g)" >> "$GITHUB_ENV"
+      - run: docker compose --profile walking build walking
+      - run: docker compose --profile walking run --rm walking-harvest harvest --mode snapshot --city ${{ matrix.city }}
+      - name: Snapshot integrity regressions (synthetic, offline)
+        run: docker compose --profile walking run --rm --entrypoint python walking -m unittest urban_mcp_walking.test_contracts -v
+      - name: Native oracle and all MCP operations (municipal inputs, offline)
+        run: docker compose --profile walking run --rm walking test --city ${{ matrix.city }}
