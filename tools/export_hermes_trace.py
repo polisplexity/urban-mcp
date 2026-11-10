@@ -13,8 +13,10 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--state-db",type=Path,required=True)
     parser.add_argument("--output",type=Path,required=True)
+    parser.add_argument("--task",default="cases/helsinki-service-inventory/agent-task.md")
+    parser.add_argument("--city",choices=["helsinki","amsterdam"],default="helsinki")
     args=parser.parse_args()
-    task=(Path(__file__).resolve().parents[1]/"cases/helsinki-service-inventory/agent-task.md").read_text(encoding="utf-8").strip()
+    task=(Path(__file__).resolve().parents[1]/args.task).read_text(encoding="utf-8").replace("{{city}}",args.city).strip()
     connection=sqlite3.connect(args.state_db.resolve().as_uri()+"?mode=ro",uri=True)
     connection.row_factory=sqlite3.Row
     selected=None

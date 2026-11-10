@@ -1,0 +1,18 @@
+{
+  "helsinki": {
+    "file": "helsinki-walking-20261110.zip",
+    "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-walking-20261110/helsinki-walking-20261110.zip",
+    "sha256": "04173757dc6156748c75cdbe45a334c9b0c38c3b88dac46953fa031a0c90bcba",
+    "bytes": 11333225,
+    "manifest_sha256": "6a71ce0b324b31b95c0baadffc19cb1d711aa34a44db60d699987796981fe673",
+    "license": "ODbL-1.0"
+  },
+  "amsterdam": {
+    "file": "amsterdam-walking-20261110.zip",
+    "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-walking-20261110/amsterdam-walking-20261110.zip",
+    "sha256": "8480f923237a51d444f4dd5c225cffa23b1203edb0bb2844ac2c2da54e39da23",
+    "bytes": 8358946,
+    "manifest_sha256": "3c2c8dce71deeac129471de1e1a0ce3d8fb17de772b5316288a53f4ac3538e34",
+    "license": "ODbL-1.0"
+  }
+}

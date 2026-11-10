@@ -1,38 +1,34 @@
-# Cómo contribuir
+# Contributing
 
-La propuesta inicial está en una RFC/PR. Se puede contribuir a investigar una interfaz, admitir un dataset, preparar un caso o implementar una capacidad. No hace falta instalar todos los motores.
+Contribute a source, reproducible municipal case, interface fix, independent reproduction or new operation. You do not need to install every engine. Use English for new documentation, code comments, tasks and reports; keep source place names and historical evidence verbatim.
 
-1. Elige una tarea o abre una propuesta indicando herramienta, operación concreta y pregunta municipal. Define territorio y fuentes desde el inicio con la [plantilla de caso](docs/cases/municipal-case-template.md).
-2. Revisa `registry/tools.json` y la ficha de datos. Comprueba si un MCP, binding o servicio original ya cubre la operación.
-3. Identifica datos mínimos por operación. Registra fuente original, asset exacto, licencia/atribución, versión/hash, cobertura, unidades y calidad. Separa observaciones, modelos y supuestos.
-4. Documenta las transformaciones y el binding final: qué entrada se convierte en qué archivo, sección, parámetro o argumento del motor. No basta con enlazar un portal.
-5. Construye cosecha reproducible: filtros/paginación, versiones, caché, reintentos y recibo de obtenidos/faltantes/fallidos. Prepara una muestra permitida para CI; el caso municipal completo requiere adquisición reproducible y derechos revisados.
-6. Ejecuta el caso directamente en el original. Conserva comandos, versiones, archivos y resultado de referencia antes de comparar MCP.
-7. Implementa solo el delta que falte; prueba resultado, error relevante, ciclo de vida y recuperación. La skill debe permitir que otro agente identifique datos faltantes sin inventarlos.
-8. Envía PR con evidencia y límites. Marca por separado fuente admitida, datos preparados, motor verificado, MCP verificado y agente verificado. La [aceptación final](docs/cases/municipal-first.md) exige resultado municipal y reproducción independiente: una fixture técnica no la sustituye.
+1. Select a public issue or propose a specific original tool, operation and municipal question. Define the study boundary, denominator, decision and required inputs first.
+2. Inspect the original source/API/MCP before implementing anything. Document existing functions, licensing, concrete gaps and why the chosen runtime fits the native tool.
+3. Admit actual assets: publisher URL/query, rights/attribution, version/hash, coverage/date, units/CRS, quality and unresolved inputs. A discovery portal is not an input dataset.
+4. Document every preparation/binding step. Preserve failed acquisition receipts, reject incomplete/invalid inputs and separate observations from scenario assumptions.
+5. Build a pinned, bounded Docker recipe. Keep bulk caches/private inputs outside Git. Publish only permitted snapshots with their original data license and immutable hashes.
+6. Run the municipal case directly through the native engine. Then compare real MCP calls, artifacts, parameters, errors and lifecycle with that baseline. Exercise every exposed tool and resource/prompt family. Synthetic regressions support specific contracts; they do not replace real-city evidence.
+7. Run the same blind task in independent, initially empty host workspaces. Review tool traces, numerical artifacts and final claims separately from process exit codes. Do not expose credentials, private host configuration, memories or reasoning.
+8. Update the [master test record](MASTER_TEST_RECORD.md), case guide, function matrix and machine-readable evidence. A result is admitted only for its declared operation, inputs, parameters and city scope.
 
-## Comprobaciones de este PR de planificación
+## Required checks
 
 ```sh
 python -m pip install -r requirements-dev.txt
 python tools/validate.py
 python -m unittest discover -s tests
-docker compose --profile preflight run --rm preflight
 ```
 
-Los archivos `planning/*.tsv` son decisiones editables. `registry/` y la matriz Markdown se generan desde ellos. `tools/build_data_registry.py` reconstruye fuentes/perfiles/matriz; `tools/build_planning_catalog.py` solo se usa para importar una nueva revisión pública de investigación con el formato documentado.
+For walking changes, follow [the two-city case](cases/two-city-walking/README.md) and run native/MCP Docker checks in both cities. For service-inventory changes, follow [the Helsinki case](cases/helsinki-service-inventory/README.md), including its original-server regression suite. Live source calls belong in acquisition reviews, not routine CI; CI restores locked permitted snapshots without model credentials.
 
-Para cambios de Helsinki, seguir [el caso ejecutable](cases/helsinki-service-inventory/README.md): construir la imagen, adquirir el snapshot permitido, preparar y ejecutar la suite MCP. Se ensayan todas las funciones expuestas y las familias de recursos/prompts; ampliar parámetros/drivers exige casos nuevos y su contraste nativo. La admisión se deriva de `case.json` y evidencia revisada; no marcar un campo como verificado para hacer pasar CI.
+`planning/*.tsv` contains editable catalog decisions. Rebuild data registries/matrix with `python tools/build_data_registry.py` after changes. `tools/build_planning_catalog.py` imports reviewed research updates; do not mark readiness to make CI pass. Case admission derives from `case.json` and reviewed evidence, not a generic tool's reputation.
 
-## Cómo revisar una propuesta
+## Review questions
 
-- **Datos:** ¿realmente alimentan esa operación? ¿qué falta? ¿qué se transforma y qué se pierde?
-- **Software:** ¿se reutiliza la capacidad original? ¿está justificado el código nuevo y su runtime?
-- **Prueba:** ¿se compara con el original y un resultado conocido? ¿se distinguen datos de referencia y ciudad real?
-- **Operación:** ¿se puede instalar, diagnosticar, detener y volver a usar sin estado oculto?
+- Do these data actually feed this operation, with explicit transformations and omissions?
+- Is the new code limited to a justified gap, while reusing the native solver/API?
+- Can an independent person reproduce the municipal result without the author's credentials?
+- Do the native/protocol/host checks establish the stated claim, including errors and recovery?
+- Are scope, licenses, source completeness and practical decision limits clear?
 
-No subir motores, modelos, pesos o datasets de terceros sin revisar su alcance de distribución. No incorporar datos de productos privados existentes para facilitar una demo pública.
-
-## Crecer como proyecto libre
-
-Publicar también decisiones, errores y métodos de comprobación. Se puede contribuir admitiendo una fuente, reproduciendo un caso, corrigiendo datos/unidades, traduciendo la guía o transfiriendo un caso a otro municipio. Reconocer autoría y atribuciones upstream; el código y los datos conservan sus propias licencias. El recorrido público debe poder repetirse sin credenciales privadas del autor ni proveedor LLM de pago obligatorio.
+Recognize upstream authors and contributors. Do not copy unlicensed source or private product code into an open demo. OSM-derived data remains ODbL even though repository code is MIT. Preserve meaningful failures and explain corrections. Independent reproductions and careful data-quality findings are valuable contributions even when they reveal that a proposed use is not yet supported.

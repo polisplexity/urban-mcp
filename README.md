@@ -1,40 +1,32 @@
 # Urban MCP
 
-Proyecto abierto para mantener cómo agentes y clientes MCP utilizan herramientas de urbanismo: software original, datos de entrada, preparación, instalación, operación y pruebas.
+Open infrastructure that lets any MCP-capable agent operate urban open-source tools with the data, installation recipes and evidence needed to do useful municipal work.
 
-**Estado: catálogo en investigación y primer caso municipal ejecutable.** [Helsinki: inventario de bibliotecas y salud](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/README.md) ya recorre datos públicos, Docker, original, MCP y dos agentes. La admisión se limita a sus operaciones y parámetros comprobados; el resto del catálogo conserva su estado de investigación.
+**Start with the [master test record](MASTER_TEST_RECORD.md): what we tested, why, the evidence and the limits.** Catalog entries remain research until a scoped municipal case passes data, native engine, MCP and independent-host checks.
 
-La unidad de contribución propuesta es un **paquete de capacidad**: herramienta original + interfaz admitida + requisitos de datos + fuentes y preparación + caso comprobable + guía operativa del agente. Las bibliotecas auxiliares y los estándares se mantienen como dependencias, sin convertirlos automáticamente en servidores MCP.
+## Executable cases
 
-## Revisar y contribuir
+- [Helsinki service inventory](cases/helsinki-service-inventory/README.md): public library and health-station registry locations against 2025 district population; original GDAL MCP plus municipal preparation/inventory operations, with Codex and Hermes evidence. [PR #37](https://github.com/polisplexity/urban-mcp/pull/37).
+- [Helsinki and Amsterdam walking access](cases/two-city-walking/README.md): mapped school-to-library routes, snap/disconnection accounting and an explicit link-closure scenario. Includes an OSMnx MCP source audit, separately implemented adapter, harvested ODbL snapshots, Docker recipes, native/protocol checks and blind host tasks. Consult the master record for completed stages.
 
-- **[RFC y pull request #1](https://github.com/polisplexity/urban-mcp/pull/1):** propuesta técnica abierta, todavía sin fusionar ni fijar un framework global.
-- **[Primer caso y comandos para repetir](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/README.md):** Helsinki, 12,455 registros cosechados, 34 distritos y población de 2025; [datos fijados por hash](https://github.com/polisplexity/urban-mcp/releases/tag/data-helsinki-20261110).
-- **[Cobertura por función y origen](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/functionality.md):** MCP original GDAL + seis funciones nuevas para datos/inventario, con prueba de las 19 funciones expuestas.
-- **[Orden de construcción y aceptación municipal](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/cases/municipal-first.md):** inventario de equipamientos/población, accesibilidad peatonal y cobertura vegetal. Cada capacidad debe cosechar datos y demostrar un resultado municipal reproducible.
-- **[Matriz de datos por herramienta](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/data/tool-data-matrix.md):** 229 entradas, 48 perfiles iniciales y 33 canales de fuentes. Distingue alcance admitido por caso, candidatos, datos del operador y faltantes.
-- **[Tareas para contribuir](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/tasks.md):** casos municipales, reproducción e investigación por familias en siete hitos; consultar también las [issues abiertas](https://github.com/polisplexity/urban-mcp/issues).
-- **[Guía de contribución](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/CONTRIBUTING.md)** y **[roadmap](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/roadmap.md)**.
+Use `feat/two-city-walking-accessibility` for the combined implementation. The inventory PR is based on `rfc/data-ready-capabilities`; these branches remain reviewable, not a claim that all work is merged into the default branch. [RFC #1](https://github.com/polisplexity/urban-mcp/pull/1) tracks the wider proposal.
 
-La RFC inicial vive en `rfc/data-ready-capabilities`; la implementación del primer caso, en `feat/helsinki-municipal-inventory`. Para ejecutar:
+## What a contribution contains
+
+A capability package joins the original software/API, the missing interface delta, exact data sources and rights, preparation/binding, a municipal question, reproducible installation/startup, native/MCP comparisons, reviewed host evidence and clear limitations. A portal link, container startup or tool listing alone is insufficient.
+
+The [research registry](registry/tools.json), [data matrix](docs/data/tool-data-matrix.md) and [public tasks](docs/tasks.md) help locate candidate work; their generic requirements are not proof that those tools run. Historical research notes and original earlier agent transcripts may retain their original language. Current project entry points, new capability code/documentation, test tasks and reports are maintained in English; preserve observed evidence verbatim and add an English interpretation when needed.
+
+## Reproduce and contribute
+
+Follow the case's Docker instructions for a deterministic run without an LLM account. For an agent test, configure the same stdio MCP in your existing host; no proprietary agent, model provider or mandatory SOUL framework is required. [Configuration generator](tools/client_config.py), [blind host runner](tools/run_agent_check.py), [contribution guide](CONTRIBUTING.md), [roadmap](docs/roadmap.md).
 
 ```sh
-git switch feat/helsinki-municipal-inventory
-# En Linux/WSL, mapear el usuario propio para el workspace:
-export URBAN_MCP_UID="$(id -u)"
-export URBAN_MCP_GID="$(id -g)"
-mkdir -p .urban-mcp/helsinki
-docker compose --profile municipal build inventory
-docker compose --profile municipal run --rm harvest harvest --mode snapshot
-docker compose --profile municipal run --rm inventory prepare
-docker compose --profile municipal run --rm inventory inventory --service-id 813 --run-id native-library
-docker compose --profile municipal run --rm inventory test
+python -m pip install -r requirements-dev.txt
+python tools/validate.py
+python -m unittest discover -s tests
 ```
 
-El perfil `municipal` ejecuta el caso y sus pruebas reales. El perfil `preflight` sigue validando únicamente planificación/metadatos. SUMO Hello permanece como referencia sintética auxiliar, sin motor/MCP admitidos.
+Each executable case additionally has native/MCP Docker checks. Metadata CI is a separate stage. New families do not inherit another tool's readiness, language or framework choice.
 
-Codex y un perfil aislado de Hermes ejecutaron la misma tarea sin respuestas esperadas, con datos/resultados separados. La [evidencia del caso](https://github.com/polisplexity/urban-mcp/tree/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/evidence) distingue pruebas de protocolo, resultado nativo y comportamiento de los agentes. [Configurar otro cliente](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/tools/client_config.py) no exige un agente propio ni un archivo SOUL obligatorio.
-
-El proyecto no exige un proveedor de IA ni un lenguaje único para los motores. La licencia de este repositorio no sustituye la de cada software, dataset, peso o servicio conectado.
-
-Para crecer como proyecto libre, publicamos recetas, procedencia, decisiones, errores útiles y métodos de comprobación. Se puede aportar una fuente, una corrección, una reproducción, una traducción o un caso en otro municipio, conservando autoría y licencias originales.
+This repository's original code is MIT licensed. Each upstream program and dataset retains its own terms. Walking snapshots and derived databases are ODbL-1.0, with © OpenStreetMap contributors attribution. Keep private product code, credentials, operator data and bulk caches outside Git. Public recipes, source receipts, reviewed evidence and useful failures make it possible for anyone to repeat, inspect and improve the work.
