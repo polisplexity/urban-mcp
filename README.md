@@ -1,41 +1,33 @@
 # Urban MCP
 
-Proyecto abierto para mantener cómo agentes y clientes MCP utilizan herramientas de urbanismo: software original, datos de entrada, preparación, instalación, operación y pruebas.
+Open infrastructure that lets any MCP-capable agent operate urban open-source tools with admitted data, installation/startup recipes and reproducible municipal evidence.
 
-**Estado: catálogo en investigación y primer caso municipal ejecutable.** [Helsinki: inventario de bibliotecas y salud](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/README.md) ya recorre datos públicos, Docker, original, MCP y dos agentes. La admisión se limita a sus operaciones y parámetros comprobados; el resto del catálogo conserva su estado de investigación.
+**Start with the [master test record: what we tested and why](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/MASTER_TEST_RECORD.md).** It distinguishes source harvesting, native computation, MCP compatibility, agent artifacts and factual narrative review.
 
-La unidad de contribución propuesta es un **paquete de capacidad**: herramienta original + interfaz admitida + requisitos de datos + fuentes y preparación + caso comprobable + guía operativa del agente. Las bibliotecas auxiliares y los estándares se mantienen como dependencias, sin convertirlos automáticamente en servidores MCP.
+## Review the executable work
 
-## Revisar y contribuir
+- **[Helsinki and Amsterdam walking access · PR #38](https://github.com/polisplexity/urban-mcp/pull/38):** central school-to-library experiments, original OSMnx MCP source audit, separately implemented 15-tool adapter, harvested ODbL snapshots and Docker/native/MCP checks in two cities. [Reproduction guide](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/cases/two-city-walking/README.md), [findings and maps](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/cases/two-city-walking/findings.md), [data release](https://github.com/polisplexity/urban-mcp/releases/tag/data-walking-20261110).
+- **[Helsinki service inventory · PR #37](https://github.com/polisplexity/urban-mcp/pull/37):** library/health-station registry locations against district population, original GDAL MCP plus municipal operations, with independent Codex/Hermes evidence. [Case guide](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/cases/helsinki-service-inventory/README.md).
+- **[Public proposal · RFC PR #1](https://github.com/polisplexity/urban-mcp/pull/1):** capability/data contracts and wider research catalog. A catalog listing is not proof of operational readiness.
 
-- **[RFC y pull request #1](https://github.com/polisplexity/urban-mcp/pull/1):** propuesta técnica abierta, todavía sin fusionar ni fijar un framework global.
-- **[Implementación Helsinki, PR #37](https://github.com/polisplexity/urban-mcp/pull/37):** código, datos, sandbox, pruebas y evidencia de los dos agentes; abierto para revisión y contribuciones.
-- **[Primer caso y comandos para repetir](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/README.md):** Helsinki, 12,455 registros cosechados, 34 distritos y población de 2025; [datos fijados por hash](https://github.com/polisplexity/urban-mcp/releases/tag/data-helsinki-20261110).
-- **[Cobertura por función y origen](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/functionality.md):** MCP original GDAL + seis funciones nuevas para datos/inventario, con prueba de las 19 funciones expuestas.
-- **[Orden de construcción y aceptación municipal](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/cases/municipal-first.md):** inventario de equipamientos/población, accesibilidad peatonal y cobertura vegetal. Cada capacidad debe cosechar datos y demostrar un resultado municipal reproducible.
-- **[Matriz de datos por herramienta](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/data/tool-data-matrix.md):** 229 entradas, 48 perfiles iniciales y 33 canales de fuentes. Distingue alcance admitido por caso, candidatos, datos del operador y faltantes.
-- **[Tareas para contribuir](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/tasks.md):** casos municipales, reproducción e investigación por familias en siete hitos; consultar también las [issues abiertas](https://github.com/polisplexity/urban-mcp/issues).
-- **[Guía de contribución](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/CONTRIBUTING.md)** y **[roadmap](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/roadmap.md)**.
+The implementation remains in review branches: PR #38 is stacked on the inventory branch, which is based on the RFC. This main branch is the public entry point; these links do not imply that the implementation is merged.
 
-La RFC inicial vive en `rfc/data-ready-capabilities`; la implementación del primer caso, en `feat/helsinki-municipal-inventory`. Para ejecutar:
+## What the walking tests establish
+
+Both city cases pass 62 native/stdio-MCP checks across 15 tools; six separate synthetic regressions test snapshot integrity. Four independent final runs in Codex CLI and fresh Hermes profiles reproduce native numerical artifacts. **Narrative review is separate:** Codex's observed briefs pass the declared review; Hermes prose fails specific per-object threshold/overlapping-route claims. [Read the exact failures and corrections](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/cases/two-city-walking/evidence/narrative-review.md).
+
+These are bounded study disks and mapped facility objects. Public library admission, verified entrances, complete municipal coverage, population, wheelchair access and measured travel times remain unproven. The master record preserves what worked, what failed and why.
+
+## Reproduce and contribute
 
 ```sh
-git switch feat/helsinki-municipal-inventory
-# En Linux/WSL, mapear el usuario propio para el workspace:
-export URBAN_MCP_UID="$(id -u)"
-export URBAN_MCP_GID="$(id -g)"
-mkdir -p .urban-mcp/helsinki
-docker compose --profile municipal build inventory
-docker compose --profile municipal run --rm harvest harvest --mode snapshot
-docker compose --profile municipal run --rm inventory prepare
-docker compose --profile municipal run --rm inventory inventory --service-id 813 --run-id native-library
-docker compose --profile municipal run --rm inventory test
+git clone --branch feat/two-city-walking-accessibility https://github.com/polisplexity/urban-mcp.git
+cd urban-mcp
+# Follow cases/two-city-walking/README.md for Docker, data and MCP commands.
 ```
 
-El perfil `municipal` ejecuta el caso y sus pruebas reales. El perfil `preflight` sigue validando únicamente planificación/metadatos. SUMO Hello permanece como referencia sintética auxiliar, sin motor/MCP admitidos.
+Deterministic checks need no LLM account. Agent testing uses your existing host and private authentication, with an agent-neutral stdio MCP. No proprietary agent or global language/framework is required.
 
-Codex y un perfil aislado de Hermes ejecutaron la misma tarea sin respuestas esperadas, con datos/resultados separados. La [evidencia del caso](https://github.com/polisplexity/urban-mcp/tree/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/evidence) distingue pruebas de protocolo, resultado nativo y comportamiento de los agentes. [Configurar otro cliente](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/tools/client_config.py) no exige un agente propio ni un archivo SOUL obligatorio.
+[Contribution guide](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/CONTRIBUTING.md), [roadmap](https://github.com/polisplexity/urban-mcp/blob/feat/two-city-walking-accessibility/docs/roadmap.md), [open tasks](https://github.com/polisplexity/urban-mcp/issues), [next evidence-interface contribution #39](https://github.com/polisplexity/urban-mcp/issues/39).
 
-El proyecto no exige un proveedor de IA ni un lenguaje único para los motores. La licencia de este repositorio no sustituye la de cada software, dataset, peso o servicio conectado.
-
-Para crecer como proyecto libre, publicamos recetas, procedencia, decisiones, errores útiles y métodos de comprobación. Se puede aportar una fuente, una corrección, una reproducción, una traducción o un caso en otro municipio, conservando autoría y licencias originales.
+New project documentation, tasks, code comments and reports are in English. Historical research and observed transcripts may retain their original language. Repository code is MIT; each upstream tool and dataset retains its own license. Walking data and derived databases remain ODbL-1.0, © OpenStreetMap contributors. Public recipes, provenance, reviewed evidence and useful failures make the work repeatable and open to contribution.
