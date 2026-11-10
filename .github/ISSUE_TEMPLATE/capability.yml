@@ -1,0 +1,19 @@
+name: Capacidad o adaptador
+description: Proponer una operación concreta reutilizando el original.
+body:
+  - type: textarea
+    id: operation
+    attributes: {label: "Herramienta, versión, operación y usuario/caso"}
+    validations: {required: true}
+  - type: textarea
+    id: reuse
+    attributes: {label: "API/MCP existente y brecha que requiere código nuevo"}
+    validations: {required: true}
+  - type: textarea
+    id: data
+    attributes: {label: "Entradas, fuentes, transformaciones y faltantes de operador"}
+    validations: {required: true}
+  - type: textarea
+    id: proof
+    attributes: {label: "Fixture y comparación nativa/MCP que permitirán admitirla"}
+    validations: {required: true}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1.0",
+  "id": "sumo-reference-hello",
+  "tool_id": "eclipse-sumo--sumo",
+  "status": "proposed",
+  "data_class": "upstream_synthetic_example",
+  "source_commit": "9a562c33fc452272ccd1fe5790632ae4e5ba7dc3",
+  "source_repository": "https://github.com/eclipse-sumo/sumo",
+  "assets": [
+    {
+      "file": "hello.net.xml",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/9a562c33fc452272ccd1fe5790632ae4e5ba7dc3/tests/complex/tutorial/hello/data/hello.net.xml",
+      "source_id": "upstream-fixture",
+      "sha256": "6b14913f42681754f65a87e68a9bf193b4a138ac23a65354b1b337c2f551a078",
+      "git_blob_sha": "dd115476b89b3058e791aa8d8f32747fbaf0311e",
+      "bytes": 2289,
+      "license_status": "scope_review_pending"
+    },
+    {
+      "file": "hello.rou.xml",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/9a562c33fc452272ccd1fe5790632ae4e5ba7dc3/tests/complex/tutorial/hello/data/hello.rou.xml",
+      "source_id": "upstream-fixture",
+      "sha256": "deee9bcb53bc628a7ea795313f33628313ecc8a242ea270c0b116fdee1252055",
+      "git_blob_sha": "5050e9bf4cb15204661f74be1150f330b72d7c3a",
+      "bytes": 384,
+      "license_status": "scope_review_pending"
+    },
+    {
+      "file": "hello.sumocfg",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/9a562c33fc452272ccd1fe5790632ae4e5ba7dc3/tests/complex/tutorial/hello/data/hello.sumocfg",
+      "source_id": "upstream-fixture",
+      "sha256": "de97479e66141977ab03e81c3e9cc78fdcd244bf7da83b59d704f9e47c248a1a",
+      "git_blob_sha": "e6db69b38ee44ae4db9da18429283ff7db2b93df",
+      "bytes": 591,
+      "license_status": "scope_review_pending"
+    },
+    {
+      "file": "hello.settings.xml",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/9a562c33fc452272ccd1fe5790632ae4e5ba7dc3/tests/complex/tutorial/hello/data/hello.settings.xml",
+      "source_id": "upstream-fixture",
+      "sha256": "20cee767df5c5f6bd65794c4084e2044444ed59cfc82f46adce114bc0049562d",
+      "git_blob_sha": "44d26ae900a514bf2ec470bee225c22d44c3916b",
+      "bytes": 94,
+      "license_status": "scope_review_pending"
+    },
+    {
+      "file": "hello.nod.xml",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/9a562c33fc452272ccd1fe5790632ae4e5ba7dc3/tests/complex/tutorial/hello/data/hello.nod.xml",
+      "source_id": "upstream-fixture",
+      "sha256": "57c0159930f844e993b827203185ce9e14ca25655cd22fdc2bcf5c4ceb1d7b7a",
+      "git_blob_sha": "402cc5fc1f3837343ee3bc8c07b68d586105b062",
+      "bytes": 297,
+      "license_status": "scope_review_pending"
+    },
+    {
+      "file": "hello.edg.xml",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/9a562c33fc452272ccd1fe5790632ae4e5ba7dc3/tests/complex/tutorial/hello/data/hello.edg.xml",
+      "source_id": "upstream-fixture",
+      "sha256": "4a95e6a76f0ac0f066d0bd7a1fd07b4a1bb2fe56cf3050acd6a8a92489d36981",
+      "git_blob_sha": "82428ad515ff61514e873dfe53cf9a57c0024eb2",
+      "bytes": 257,
+      "license_status": "scope_review_pending"
+    }
+  ],
+  "input_binding": {
+    "configuration": "hello.sumocfg",
+    "network": "hello.net.xml",
+    "demand": "hello.rou.xml"
+  },
+  "engine_status": "not_verified",
+  "mcp_binding_status": "not_implemented",
+  "expected_result_status": "native_baseline_pending",
+  "ready_to_run": false,
+  "blockers": [
+    "Confirm data file license scope and attribution",
+    "Choose and execute matching SUMO runtime in Docker",
+    "Record direct native baseline and resource limits",
+    "Map an existing MCP operation and compare the same case",
+    "Test agent handoff and negative cases"
+  ]
+}

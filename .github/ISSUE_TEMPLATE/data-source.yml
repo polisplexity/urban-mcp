@@ -1,0 +1,19 @@
+name: Fuente o preparación de datos
+description: Admitir un asset o resolver una entrada del motor.
+body:
+  - type: textarea
+    id: asset
+    attributes: {label: "Capacidad/caso, fuente original y asset/query exactos"}
+    validations: {required: true}
+  - type: textarea
+    id: contract
+    attributes: {label: "Formato, CRS/unidades, cobertura, calidad y condiciones de acceso/uso"}
+    validations: {required: true}
+  - type: textarea
+    id: binding
+    attributes: {label: "Preparación, pérdidas y archivo/API/parámetro final del motor"}
+    validations: {required: true}
+  - type: textarea
+    id: verification
+    attributes: {label: "Fingerprint, prueba y bloqueos pendientes"}
+    validations: {required: true}

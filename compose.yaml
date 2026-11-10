@@ -1,0 +1,18 @@
+name: urban-mcp-planning
+services:
+  preflight:
+    profiles: [preflight]
+    build:
+      context: .
+      dockerfile: sandbox/preflight/Dockerfile
+    command: [tools/validate.py]
+    network_mode: none
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 1
+    mem_limit: 128m
+    pids_limit: 64
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=16m"]
+    volumes:
+      - .:/workspace:ro
