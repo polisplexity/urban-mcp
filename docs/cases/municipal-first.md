@@ -2,6 +2,8 @@
 
 Propuesta de la RFC 0001, actualizada el 2026-11-10. El caso municipal se define desde el comienzo; una fixture sintética comprueba partes técnicas y no sustituye la aceptación final.
 
+Implementación del primer caso: [Helsinki, bibliotecas y salud](../../cases/helsinki-service-inventory/README.md). La selección prioriza el ecosistema abierto para crecer hacia gemelos urbanos; la [auditoría](../../cases/helsinki-service-inventory/selection.md) y la [cobertura por función](../../cases/helsinki-service-inventory/functionality.md) explican lo comprobado. Las fuentes mexicanas citadas abajo permanecen como rutas candidatas de transferencia, no como insumos de este caso ejecutado.
+
 ## Orden de construcción
 
 | Orden | Capacidad y herramientas candidatas | Pregunta municipal / salida | Datos a cosechar | Límite que debe quedar visible |
@@ -12,7 +14,7 @@ Propuesta de la RFC 0001, actualizada el 2026-11-10. El caso municipal se define
 | 4 | Tráfico: SUMO y un MCP existente seleccionado. | Comparar una intervención explícita en un cruce/corredor: base, variante e indicadores con alcance de calibración. | Geometría real más aforos/OD/demanda, señales, vehículos y parámetros documentados; cosechar lo público y obtener lo faltante del operador. | OSM no aporta demanda calibrada. Demanda supuesta produce un experimento de escenario, no una validación del tráfico actual. |
 | 5 | Agua/drenaje o energía: elegir SWMM/PySWMM, WNTR/EPANET o EnergyPlus/MCP por modelo disponible. | Una pregunta acotada sobre una red o edificio municipal con entradas suficientes. | Modelo, operación, forzamientos y parámetros/observaciones con procedencia. | Calles/DEM no sustituyen tuberías/cotas/controles; huellas y EPW no completan materiales/HVAC/ocupación. |
 
-Los tres primeros casos comparten artefactos y hacen crecer una base del proyecto. Los casos 4/5 pueden adelantarse si existe un modelo municipal adecuado y un caso reproducible. No se fija todavía municipio: seleccionarlo y auditar fuentes es trabajo inicial, antes del adaptador.
+Los tres primeros casos comparten artefactos y hacen crecer una base del proyecto. Los casos 4/5 pueden adelantarse si existe un modelo municipal adecuado y un caso reproducible. El primer municipio seleccionado es Helsinki. Toda nueva ciudad requiere selección/auditoría de fuentes como trabajo inicial, antes del adaptador.
 
 ## Qué construir en el primer caso
 
@@ -73,4 +75,4 @@ Una fuente modificada genera nueva versión/diff y no reescribe automáticamente
 - [Extractos OSM de México](https://download.geofabrik.de/north-america/mexico.html): seleccionar región/fecha y registrar cobertura/faltantes.
 - [GeoPandas](https://geopandas.org/en/stable/), [OSMnx](https://osmnx.readthedocs.io/en/stable/) y [WorldCover](https://esa-worldcover.org/en): capacidades/formato y periodos del original; seleccionar versiones y assets al implementar.
 
-Estos son canales candidatos. Este documento no informa que ya se hayan cosechado datos municipales ni ejecutado esos análisis.
+Estos canales mexicanos son candidatos. Los datos municipales cosechados y análisis ejecutados de esta entrega se documentan por separado en el caso Helsinki.

@@ -2700,11 +2700,51 @@
       "license_detection": "MIT",
       "license_review": "open_source_license_detected",
       "execution_role": "candidate",
-      "input_binding_status": "not_implemented",
-      "engine_runtime_status": "not_verified",
-      "reference_case_status": "not_verified",
-      "real_city_status": "needs_input_review",
-      "ready_to_run": false
+      "input_binding_status": "verified",
+      "engine_runtime_status": "verified",
+      "reference_case_status": "verified",
+      "real_city_status": "verified_for_declared_scope",
+      "ready_to_run": true,
+      "admitted_scope": [
+        {
+          "case_id": "helsinki-service-inventory",
+          "operations": [
+            "harvest_municipal_sources",
+            "inventory_by_district",
+            "municipal_status",
+            "prepare_municipal_data",
+            "raster_convert",
+            "raster_info",
+            "raster_query",
+            "raster_reproject",
+            "raster_stats",
+            "read_case_artifact",
+            "service_catalog",
+            "store_justification",
+            "vector_buffer",
+            "vector_clip",
+            "vector_convert",
+            "vector_info",
+            "vector_query",
+            "vector_reproject",
+            "vector_simplify"
+          ],
+          "evidence": {
+            "municipality": {
+              "country_code": "FI",
+              "geographic_id": "091",
+              "name": "Helsinki"
+            },
+            "question": "Distribution of registered public-library and health-station locations relative to 2025 population by district",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "cases/helsinki-service-inventory/evidence/harvest.json",
+            "native_evidence": "cases/helsinki-service-inventory/evidence/native.json",
+            "mcp_evidence": "cases/helsinki-service-inventory/evidence/mcp.json",
+            "reproduction_evidence": "cases/helsinki-service-inventory/evidence/agents.json"
+          },
+          "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
+        }
+      ]
     },
     {
       "id": "klabum--swmm-mcp-pub",

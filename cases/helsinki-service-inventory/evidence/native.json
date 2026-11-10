@@ -1,0 +1,237 @@
+{
+  "snapshot": "20261110T112344Z-500b5c",
+  "commands": [
+    "docker compose --profile municipal run --rm inventory prepare",
+    "docker compose --profile municipal run --rm inventory inventory --service-id 813 --run-id native-library",
+    "docker compose --profile municipal run --rm inventory inventory --service-id 703 --run-id native-health"
+  ],
+  "results": {
+    "813": {
+      "case": "helsinki-service-inventory",
+      "snapshot": "20261110T112344Z-500b5c",
+      "municipality": "Helsinki",
+      "population_year": 2025,
+      "municipality_population": 694392,
+      "population_not_in_district_rows": 13682,
+      "districts": 34,
+      "selected_service_ids": [
+        813
+      ],
+      "selected_services": {
+        "813": "public libraries"
+      },
+      "selected_point_units": 46,
+      "assigned_point_units": 46,
+      "unmatched_point_units": 0,
+      "districts_with_zero_registered_units": [
+        "302",
+        "402",
+        "405",
+        "601"
+      ],
+      "quality": {
+        "snapshot": "20261110T112344Z-500b5c",
+        "registry_units": 12455,
+        "valid_point_units": 12423,
+        "rejected_units": 32,
+        "unmatched_point_units": 26,
+        "ambiguous_point_units": 0,
+        "districts": 34,
+        "municipality_population_2025": 694392,
+        "district_population_sum": 680710,
+        "population_not_in_district_rows": 13682,
+        "analysis_crs": "EPSG:3067",
+        "limits": [
+          "Service Map units are registry entries, including outdoor features; they are not a census of unique buildings or service capacity.",
+          "Population is measured at 31 December 2025; current service and district snapshots have a different observation date.",
+          "Counts and units per 10000 residents are descriptive indicators, not accessibility, adequacy or service quality.",
+          "Null geometry, unmatched and boundary-ambiguous locations are reported separately; no silent reassignment.",
+          "The 100 m district-ID raster is a cartographic test derivative, not a population grid.",
+          "No permanent availability or global city ranking is claimed. Pinned public snapshots support offline reproduction."
+        ],
+        "datasets": {
+          "units.geojson": "/data/prepared/units.geojson",
+          "districts.geojson": "/data/prepared/districts.geojson",
+          "units_metric.gpkg": "/data/prepared/units_metric.gpkg",
+          "districts_metric.gpkg": "/data/prepared/districts_metric.gpkg",
+          "district_ids.tif": "/data/prepared/district_ids.tif",
+          "services.json": "/data/prepared/services.json",
+          "rejected.json": "/data/prepared/rejected.json"
+        },
+        "population_reconciliation": "13682 is the arithmetic difference between the municipal total and the 34 selected statistical district rows in this snapshot. It is not a point-in-polygon result for residents; no resident coordinates were acquired. Do not infer that these residents live outside the polygons or lack services.",
+        "prepared_assets": [
+          {
+            "file": "units.geojson",
+            "sha256": "3d8622e44276560fcc5b09a137b505916bfad66e953eaebd610ff3255568fa56",
+            "bytes": 2782602
+          },
+          {
+            "file": "districts.geojson",
+            "sha256": "3b665f051cc2363d91b25e4be14c3e2df5f740f80999e86d9180628bf4a271bc",
+            "bytes": 407431
+          },
+          {
+            "file": "units_metric.gpkg",
+            "sha256": "14092b4d78c723e98388db1eb7451fc37d6ad31f2ad0225120c1298961f12696",
+            "bytes": 1855488
+          },
+          {
+            "file": "districts_metric.gpkg",
+            "sha256": "d7cfc1586675f5cc04d7f6d15cf09595d1c8d117a6a9a0d9df4378179601a3f3",
+            "bytes": 270336
+          },
+          {
+            "file": "district_ids.tif",
+            "sha256": "3c02ed1773884d3e286c6d7709f0b2c88ad3ead784f35dac7ee45897d013af72",
+            "bytes": 6232
+          },
+          {
+            "file": "services.json",
+            "sha256": "c4db07746e7e6263e21c59b32d15cf5600569d56cae30d3bf05ca1da4512e1b4",
+            "bytes": 467663
+          },
+          {
+            "file": "rejected.json",
+            "sha256": "d039c129c41fd1c4dbab853828d3a740717b063e99b8bd8ccafdd06fcc29741c",
+            "bytes": 2081
+          }
+        ],
+        "preparation_code_sha256": "1b87fc50284090e3ef42c88dfae810007d18ab9ddec611632debbcc7c5613446"
+      },
+      "limitations": [
+        "Service Map units are registry entries, including outdoor features; they are not a census of unique buildings or service capacity.",
+        "Population is measured at 31 December 2025; current service and district snapshots have a different observation date.",
+        "Counts and units per 10000 residents are descriptive indicators, not accessibility, adequacy or service quality.",
+        "Null geometry, unmatched and boundary-ambiguous locations are reported separately; no silent reassignment.",
+        "The 100 m district-ID raster is a cartographic test derivative, not a population grid.",
+        "No permanent availability or global city ranking is claimed. Pinned public snapshots support offline reproduction."
+      ],
+      "artifacts": [
+        "summary.json",
+        "district_inventory.csv",
+        "district_inventory.geojson",
+        "selected_units.geojson",
+        "report.html"
+      ],
+      "output_directory": "/data/results/native-library"
+    },
+    "703": {
+      "case": "helsinki-service-inventory",
+      "snapshot": "20261110T112344Z-500b5c",
+      "municipality": "Helsinki",
+      "population_year": 2025,
+      "municipality_population": 694392,
+      "population_not_in_district_rows": 13682,
+      "districts": 34,
+      "selected_service_ids": [
+        703
+      ],
+      "selected_services": {
+        "703": "health stations"
+      },
+      "selected_point_units": 23,
+      "assigned_point_units": 23,
+      "unmatched_point_units": 0,
+      "districts_with_zero_registered_units": [
+        "101",
+        "201",
+        "302",
+        "303",
+        "304",
+        "305",
+        "402",
+        "405",
+        "502",
+        "601",
+        "602",
+        "701",
+        "801"
+      ],
+      "quality": {
+        "snapshot": "20261110T112344Z-500b5c",
+        "registry_units": 12455,
+        "valid_point_units": 12423,
+        "rejected_units": 32,
+        "unmatched_point_units": 26,
+        "ambiguous_point_units": 0,
+        "districts": 34,
+        "municipality_population_2025": 694392,
+        "district_population_sum": 680710,
+        "population_not_in_district_rows": 13682,
+        "analysis_crs": "EPSG:3067",
+        "limits": [
+          "Service Map units are registry entries, including outdoor features; they are not a census of unique buildings or service capacity.",
+          "Population is measured at 31 December 2025; current service and district snapshots have a different observation date.",
+          "Counts and units per 10000 residents are descriptive indicators, not accessibility, adequacy or service quality.",
+          "Null geometry, unmatched and boundary-ambiguous locations are reported separately; no silent reassignment.",
+          "The 100 m district-ID raster is a cartographic test derivative, not a population grid.",
+          "No permanent availability or global city ranking is claimed. Pinned public snapshots support offline reproduction."
+        ],
+        "datasets": {
+          "units.geojson": "/data/prepared/units.geojson",
+          "districts.geojson": "/data/prepared/districts.geojson",
+          "units_metric.gpkg": "/data/prepared/units_metric.gpkg",
+          "districts_metric.gpkg": "/data/prepared/districts_metric.gpkg",
+          "district_ids.tif": "/data/prepared/district_ids.tif",
+          "services.json": "/data/prepared/services.json",
+          "rejected.json": "/data/prepared/rejected.json"
+        },
+        "population_reconciliation": "13682 is the arithmetic difference between the municipal total and the 34 selected statistical district rows in this snapshot. It is not a point-in-polygon result for residents; no resident coordinates were acquired. Do not infer that these residents live outside the polygons or lack services.",
+        "prepared_assets": [
+          {
+            "file": "units.geojson",
+            "sha256": "3d8622e44276560fcc5b09a137b505916bfad66e953eaebd610ff3255568fa56",
+            "bytes": 2782602
+          },
+          {
+            "file": "districts.geojson",
+            "sha256": "3b665f051cc2363d91b25e4be14c3e2df5f740f80999e86d9180628bf4a271bc",
+            "bytes": 407431
+          },
+          {
+            "file": "units_metric.gpkg",
+            "sha256": "e55685549fe87d4b317f3d3729a9bf148ed14bf02570f401db7fcb0ad538c4f1",
+            "bytes": 1855488
+          },
+          {
+            "file": "districts_metric.gpkg",
+            "sha256": "e4464b2a302f37e03b0d051d4e1566e9330a01e7477421f323ed9cd5daf81baf",
+            "bytes": 270336
+          },
+          {
+            "file": "district_ids.tif",
+            "sha256": "3c02ed1773884d3e286c6d7709f0b2c88ad3ead784f35dac7ee45897d013af72",
+            "bytes": 6232
+          },
+          {
+            "file": "services.json",
+            "sha256": "c4db07746e7e6263e21c59b32d15cf5600569d56cae30d3bf05ca1da4512e1b4",
+            "bytes": 467663
+          },
+          {
+            "file": "rejected.json",
+            "sha256": "d039c129c41fd1c4dbab853828d3a740717b063e99b8bd8ccafdd06fcc29741c",
+            "bytes": 2081
+          }
+        ],
+        "preparation_code_sha256": "1b87fc50284090e3ef42c88dfae810007d18ab9ddec611632debbcc7c5613446"
+      },
+      "limitations": [
+        "Service Map units are registry entries, including outdoor features; they are not a census of unique buildings or service capacity.",
+        "Population is measured at 31 December 2025; current service and district snapshots have a different observation date.",
+        "Counts and units per 10000 residents are descriptive indicators, not accessibility, adequacy or service quality.",
+        "Null geometry, unmatched and boundary-ambiguous locations are reported separately; no silent reassignment.",
+        "The 100 m district-ID raster is a cartographic test derivative, not a population grid.",
+        "No permanent availability or global city ranking is claimed. Pinned public snapshots support offline reproduction."
+      ],
+      "artifacts": [
+        "summary.json",
+        "district_inventory.csv",
+        "district_inventory.geojson",
+        "selected_units.geojson",
+        "report.html"
+      ],
+      "output_directory": "/data/results/native-health"
+    }
+  }
+}

@@ -11,7 +11,9 @@ Separa caso de referencia y ciudad real. Para cada entrada obligatoria, identifi
 
 Mapea entradas preparadas a la API/archivo/argumento original y después al esquema MCP efectivamente expuesto. Conserva originales y escenario base. Prefiere funciones/jobs existentes del upstream a otra infraestructura propia.
 
-En este PR, `python tools/validate.py` comprueba la planificación; no ejecuta motores ni acredita disponibilidad. `cases/sumo-reference-hello/` es una referencia técnica sintética. Consulta `docs/cases/municipal-first.md` para las prioridades y aceptación municipal, `docs/data/contracts.md` para las reglas de asset y `docs/agents/day-zero.md` para la operación del agente.
+`python tools/validate.py` comprueba contratos/metadatos y no ejecuta motores. `cases/helsinki-service-inventory/README.md` describe el primer caso ejecutable por Docker/MCP; su admisión está delimitada por operaciones, parámetros y evidencia. `cases/sumo-reference-hello/` permanece como referencia técnica sintética sin motor admitido. Consulta `docs/cases/municipal-first.md`, `docs/data/contracts.md` y `docs/agents/day-zero.md` para prioridades, datos y prueba del agente.
+
+En Helsinki comienza por `municipal_status`; adquiere el snapshot fijado si faltan datos, prepara, busca las categorías reales y ejecuta el inventario. Los nombres y rutas devueltos son los del servidor/contenedor. Usa CRS proyectado en metros para buffers/simplificación. La diferencia entre población municipal y filas distritales es una conciliación estadística, no ubicación de residentes. El ráster de IDs distritales es categórico, no población. No deduzcas falta de acceso por un cero de registros.
 
 En un caso municipal, identifica municipio, pregunta y periodo antes de adquirir. Usa la receta real del paquete, conserva recibo de cosecha (filtros/paginación, obtenidos/faltantes/fallidos, versiones y hashes) y separa actualización de reproducción de un snapshot. Nunca incluyas credenciales en el recibo. Comprueba que el resultado responde la pregunta dentro de sus límites y deja instrucciones que otra persona pueda repetir.
 

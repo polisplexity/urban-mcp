@@ -1,0 +1,594 @@
+{
+  "transport": "stdio subprocess",
+  "checks": [
+    {
+      "name": "municipal_status / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.622,
+        "error": null
+      }
+    },
+    {
+      "name": "harvest_municipal_sources / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.98,
+        "error": null
+      }
+    },
+    {
+      "name": "prepare_municipal_data / call",
+      "passed": true,
+      "detail": {
+        "seconds": 2.346,
+        "error": null
+      }
+    },
+    {
+      "name": "service_catalog / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.663,
+        "error": null
+      }
+    },
+    {
+      "name": "general library category found",
+      "passed": true,
+      "detail": [
+        813
+      ]
+    },
+    {
+      "name": "inventory_by_district / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.839,
+        "error": null
+      }
+    },
+    {
+      "name": "municipal native/MCP results identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_case_artifact / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.011,
+        "error": null
+      }
+    },
+    {
+      "name": "inventory_by_district / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.656,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "Choose at most 100 existing numeric IDs from service_catalog; unknown IDs are not silently ignored",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "read_case_artifact / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.002,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "run_id must be 1-48 letters, digits, underscores or hyphens",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "service_catalog / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.002,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "limit must be 1..100 and search at most 120 characters",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "vector_info / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.003,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "Cannot open vector dataset at 'missing.geojson'. Ensure the file exists and is a supported vector format.",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "vector_info / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.001,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "Tool 'vector_info' denied: Access denied: Path '/etc/passwd' (resolves to '/etc/passwd') is outside allowed workspaces.\n\nAllowed workspace directories:\n  • /data\n\nTo allow this path, add its parent directory to GDAL_MCP_WORKSPACES:\n  export GDAL_MCP_WORKSPACES=\"/data:/etc\"",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "vector_info / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.016,
+        "error": null
+      }
+    },
+    {
+      "name": "vector metadata agrees with native",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_buffer / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.016,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "This municipal profile requires a projected CRS in metres for buffer/simplify. Inspect metadata and reproject to EPSG:3067; degrees are not metres.",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "vector_convert / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.244,
+        "error": null
+      }
+    },
+    {
+      "name": "vector conversion preserves IDs and geometry",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_crs_selection / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.016,
+        "error": null
+      }
+    },
+    {
+      "name": "vector_reproject / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.28,
+        "error": null
+      }
+    },
+    {
+      "name": "vector reprojection agrees with native coordinates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_buffer / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.321,
+        "error": null
+      }
+    },
+    {
+      "name": "500 metre buffer area within 1 percent of circle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_buffer / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.051,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "Error calling tool 'vector_buffer': 1 validation error for Params\ndistance\n  Input should be greater than 0 [type=greater_than, input_value=-1.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.11/v/greater_than",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "vector_clip / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.04,
+        "error": null
+      }
+    },
+    {
+      "name": "vector clipping preserves the expected subset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_query_extent / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.013,
+        "error": null
+      }
+    },
+    {
+      "name": "vector_query / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.034,
+        "error": null
+      }
+    },
+    {
+      "name": "vector query agrees with native extent selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query result resource",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector_simplify / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.322,
+        "error": null
+      }
+    },
+    {
+      "name": "simplification agrees with native tolerance and IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raster_info / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.023,
+        "error": null
+      }
+    },
+    {
+      "name": "raster_stats / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.037,
+        "error": null
+      }
+    },
+    {
+      "name": "raster statistics agree with native masked cells",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "raster_convert / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.07,
+        "error": null
+      }
+    },
+    {
+      "name": "COG conversion preserves categorical pixels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "COG layout and overviews preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_query_extent / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.013,
+        "error": null
+      }
+    },
+    {
+      "name": "raster_query / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.042,
+        "error": null
+      }
+    },
+    {
+      "name": "raster query pixels match native window",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_crs_selection / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.014,
+        "error": null
+      }
+    },
+    {
+      "name": "justify_resampling_method / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.013,
+        "error": null
+      }
+    },
+    {
+      "name": "raster_reproject / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.075,
+        "error": null
+      }
+    },
+    {
+      "name": "raster reprojection preserves class domain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "justify_query_extent / prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "store_justification / call",
+      "passed": true,
+      "detail": {
+        "seconds": 0.013,
+        "error": null
+      }
+    },
+    {
+      "name": "raster_query / expected rejection",
+      "passed": true,
+      "detail": {
+        "seconds": 0.013,
+        "error": {
+          "meta": null,
+          "content": [
+            {
+              "type": "text",
+              "text": "Bounding box must satisfy minx < maxx and miny < maxy.",
+              "annotations": null,
+              "meta": null
+            }
+          ],
+          "structuredContent": null,
+          "isError": true
+        }
+      }
+    },
+    {
+      "name": "resource urban://helsinki/recipe",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource urban://helsinki/quality",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/all/prepared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/vector/prepared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/raster/prepared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/summary/current",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource catalog://workspace/by-crs/3067",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://compression/available/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://crs/common/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://glossary/geospatial/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://resampling/available/all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource reference://resampling/guide/nearest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fresults%2Fprotocol-library%2Fselected_units.geojson/format",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fresults%2Fprotocol-library%2Fselected_units.geojson/vector",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fdistrict_ids.tif/raster",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fdistrict_ids.tif/bands/current",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource metadata://%2Fdata%2Fprepared%2Fdistrict_ids.tif/statistics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "municipal workflow prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every exposed tool exercised",
+      "passed": true,
+      "detail": {
+        "untested": [],
+        "count": 19
+      }
+    }
+  ],
+  "tools_exercised": [
+    "harvest_municipal_sources",
+    "inventory_by_district",
+    "municipal_status",
+    "prepare_municipal_data",
+    "raster_convert",
+    "raster_info",
+    "raster_query",
+    "raster_reproject",
+    "raster_stats",
+    "read_case_artifact",
+    "service_catalog",
+    "store_justification",
+    "vector_buffer",
+    "vector_clip",
+    "vector_convert",
+    "vector_info",
+    "vector_query",
+    "vector_reproject",
+    "vector_simplify"
+  ],
+  "failures": [],
+  "limits": [
+    "Service Map units are registry entries, including outdoor features; they are not a census of unique buildings or service capacity.",
+    "Population is measured at 31 December 2025; current service and district snapshots have a different observation date.",
+    "Counts and units per 10000 residents are descriptive indicators, not accessibility, adequacy or service quality.",
+    "Null geometry, unmatched and boundary-ambiguous locations are reported separately; no silent reassignment.",
+    "The 100 m district-ID raster is a cartographic test derivative, not a population grid.",
+    "No permanent availability or global city ranking is claimed. Pinned public snapshots support offline reproduction."
+  ],
+  "protocol_version": "2025-06-18",
+  "status": "passed"
+}

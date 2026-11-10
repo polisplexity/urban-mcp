@@ -1,5 +1,7 @@
 # Roadmap por entregables
 
+Primer recorrido ejecutado: [Helsinki, inventario municipal](../cases/helsinki-service-inventory/README.md), con fuentes cosechadas, Docker, original/MCP, matriz de funciones y ensayos de Codex/Hermes. La evidencia delimita esta capacidad; el roadmap continúa vigente para capacidades nuevas.
+
 | Hito | Entrega revisable | Aceptación |
 |---|---|---|
 | M0 — RFC y contratos | Propuesta, matriz por herramienta/fuentes, contratos y tareas públicas. | Revisión de duplicidades, datos y límites; CI de metadatos. |

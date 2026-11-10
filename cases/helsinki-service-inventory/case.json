@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "id": "helsinki-service-inventory",
+  "tool_id": "jordangunn--gdal-mcp",
+  "status": "admitted",
+  "data_class": "project_observations",
+  "source_ids": [
+    "helsinki-servicemap",
+    "helsinki-statistics",
+    "urban-mcp-snapshots"
+  ],
+  "assets": [
+    {
+      "file": "helsinki-inventory-20261110.zip",
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-helsinki-20261110/helsinki-inventory-20261110.zip",
+      "source_id": "urban-mcp-snapshots",
+      "sha256": "e6f96c4d4f40e345861e97702c61078702b318b5780f468a31c5cf73854ab150",
+      "bytes": 762389,
+      "license_status": "reviewed_for_declared_use",
+      "license": "CC-BY-4.0",
+      "attribution": "City of Helsinki Service Map; City of Helsinki Urban Research and Statistics / Statistics Finland; field selection and packaging by Urban MCP contributors"
+    }
+  ],
+  "input_binding": {
+    "raw_unit_pages": "Service Map JSON -> GeoPandas points -> prepared/units.geojson; only id/name/municipality/services/location acquired",
+    "districts": "Service Map boundary GeoJSON, origin_id -> district_id; exact within predicate with ambiguity/unmatched accounting",
+    "population": "PxWeb JSON-stat2 2025, age ALL; selected 34 district codes [4:7] -> district_id; municipal total reconciled separately",
+    "native": "GDAL-MCP original Python-native operations plus municipal GeoPandas recipe",
+    "mcp": "same admitted files through original GDAL tools and six explicitly added municipal tools",
+    "analysis_crs": "EPSG:3067",
+    "raster": "100 m centre-cell rasterization of categorical district IDs, NoData 0; not population"
+  },
+  "upstream_commit": "418f401c7987e388eaaee6ad13289798a1ff69b6",
+  "engine_status": "verified",
+  "mcp_binding_status": "verified",
+  "expected_result_status": "verified",
+  "ready_to_run": true,
+  "blockers": [],
+  "mcp_tools": [
+    "harvest_municipal_sources",
+    "inventory_by_district",
+    "municipal_status",
+    "prepare_municipal_data",
+    "raster_convert",
+    "raster_info",
+    "raster_query",
+    "raster_reproject",
+    "raster_stats",
+    "read_case_artifact",
+    "service_catalog",
+    "store_justification",
+    "vector_buffer",
+    "vector_clip",
+    "vector_convert",
+    "vector_info",
+    "vector_query",
+    "vector_reproject",
+    "vector_simplify"
+  ],
+  "scope": "Helsinki descriptive registry inventory for exact services 813/703 and the documented geospatial parameters; no walking accessibility, calibrated model or universal-city admission",
+  "municipal_case": {
+    "municipality": {
+      "country_code": "FI",
+      "geographic_id": "091",
+      "name": "Helsinki"
+    },
+    "question": "Distribution of registered public-library and health-station locations relative to 2025 population by district",
+    "data_access": "public_reproducible",
+    "harvest_manifest": "cases/helsinki-service-inventory/evidence/harvest.json",
+    "native_evidence": "cases/helsinki-service-inventory/evidence/native.json",
+    "mcp_evidence": "cases/helsinki-service-inventory/evidence/mcp.json",
+    "reproduction_evidence": "cases/helsinki-service-inventory/evidence/agents.json"
+  }
+}

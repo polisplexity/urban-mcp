@@ -12,6 +12,7 @@ from reference_case import check_asset
 class AdmissionTests(unittest.TestCase):
     def setUp(self):
         self.tools, self.sources, self.profiles, self.cases = copy.deepcopy(load_all())
+        self.cases.sort(key=lambda c: c["id"] != "sumo-reference-hello")
 
     def errors(self):
         return validate_data(self.tools, self.sources, self.profiles, self.cases)
