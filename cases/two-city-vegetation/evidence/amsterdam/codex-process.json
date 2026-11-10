@@ -1,0 +1,12 @@
+{
+  "host": "codex",
+  "city": "amsterdam",
+  "capability": "vegetation",
+  "exit_code": 0,
+  "started_at": "2026-11-10T17:33:49.442415+00:00",
+  "elapsed_seconds": 323.89,
+  "submitted_prompt_sha256": "b6ba8879aadd7d8de58e0a70a8da73511b1fe208f872a8b704b04ba7660658e3",
+  "task_path": "cases/two-city-vegetation/agent-task-v2.md",
+  "task_template_sha256": "37dee1728e03b2557dc74dc866b9de0134e142b190893bff0b54e1d38fe2cd31",
+  "code_commit": "1f3a7b9f4fcb2b3ead1b22b5d4a96823dd430f34"
+}

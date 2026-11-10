@@ -1,0 +1,915 @@
+{
+  "task": "cases/two-city-vegetation/agent-task-v2.md",
+  "task_template_sha256": "37dee1728e03b2557dc74dc866b9de0134e142b190893bff0b54e1d38fe2cd31",
+  "task_contains_expected_numerical_answers": false,
+  "workspaces": "Separate initially empty workspaces for each city/host; existing host authentication only; public source snapshot restored through MCP",
+  "hosts": [
+    {
+      "city": "helsinki",
+      "host": "codex",
+      "source_commit_at_launch": "1f3a7b9f4fcb2b3ead1b22b5d4a96823dd430f34",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 56,
+      "advertised_tools_exercised": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "advertised_tools_with_successful_response": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "artifacts_match_native": true,
+      "actual_mcp_analysis_and_comparison_match_native": true,
+      "artifact_sha256": {
+        "baseline.csv": "01cce40cc50532a4eb0b333bcc60e6d171fc879f8b4574f5ce316098e076e139",
+        "baseline-classes.csv": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+        "sensitivity.csv": "24197695befef59663285e0d52f724a8d3306d1f5892934a829684a353a453a1",
+        "sensitivity-classes.csv": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+        "map.png": "1a050047e7bcf329c4c730d872599bf828a50a9c1647df794eb2244e382186cb"
+      },
+      "observed_csv_pages": [
+        {
+          "run_id": "agent-baseline",
+          "name": "zone_metrics.csv",
+          "sha256": "01cce40cc50532a4eb0b333bcc60e6d171fc879f8b4574f5ce316098e076e139",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 5648,
+              "text_sha256": "217d94da9e3a2c3befcc0a8b6907d4857f35e76693f858b064e911f90cd191be",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-sensitivity",
+          "name": "zone_metrics.csv",
+          "sha256": "24197695befef59663285e0d52f724a8d3306d1f5892934a829684a353a453a1",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 5644,
+              "text_sha256": "b5d32a20339d1c3de29f9f68d5d26955231f32b67ea5ed0d805c22410b59b4a3",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-baseline",
+          "name": "class_counts.csv",
+          "sha256": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 4295,
+              "text_sha256": "dc6ea77324b38cd47f6fa145a2fe73d6e571abe8b4eb341d0c4fa581fc12d282",
+              "next_offset": null
+            }
+          ]
+        }
+      ],
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "helsinki",
+          "landcover_year": 2021,
+          "population_date": "2025-12-31",
+          "zone_count": 34,
+          "low_zone_ids_at_020": [
+            "101",
+            "301"
+          ],
+          "low_zone_ids_at_040": [
+            "101",
+            "103",
+            "301",
+            "302",
+            "303",
+            "304"
+          ],
+          "population_in_low_zones_at_020": 51906,
+          "population_in_low_zones_at_040": 144068,
+          "no_valid_land_zone_ids": [],
+          "unknown_population_zone_ids": [],
+          "municipal_minus_zone_population": 13682,
+          "newly_below_threshold_zone_ids": [
+            "103",
+            "302",
+            "303",
+            "304"
+          ],
+          "no_longer_below_threshold_zone_ids": []
+        },
+        "mismatched_fields": []
+      },
+      "answer_sha256": "60fb97a7e946828c8d57f371282e28039772a623d950a9d49714619a3592f816",
+      "prose_word_count": 470,
+      "narrative_review": {
+        "status": "passed_for_declared_brief",
+        "factual_review": "Source dates, all low IDs/shares/population, denominators, water/NoData, missing counts, reconciliation, sensitivity and tree-class interpretation agree with native evidence. Candidate site review is conditional on current local validation. No causal/access claim is admitted.",
+        "task_constraints": "470 prose words before JSON; within 600-word limit. Codex reports the missing prompt-invocation API honestly.",
+        "issues": [],
+        "answer_sha256": "60fb97a7e946828c8d57f371282e28039772a623d950a9d49714619a3592f816",
+        "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+      }
+    },
+    {
+      "city": "helsinki",
+      "host": "hermes",
+      "source_commit_at_launch": "1f3a7b9f4fcb2b3ead1b22b5d4a96823dd430f34",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 88,
+      "advertised_tools_exercised": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "advertised_tools_with_successful_response": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "artifacts_match_native": true,
+      "actual_mcp_analysis_and_comparison_match_native": true,
+      "artifact_sha256": {
+        "baseline.csv": "01cce40cc50532a4eb0b333bcc60e6d171fc879f8b4574f5ce316098e076e139",
+        "baseline-classes.csv": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+        "sensitivity.csv": "24197695befef59663285e0d52f724a8d3306d1f5892934a829684a353a453a1",
+        "sensitivity-classes.csv": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+        "map.png": "1a050047e7bcf329c4c730d872599bf828a50a9c1647df794eb2244e382186cb"
+      },
+      "observed_csv_pages": [
+        {
+          "run_id": "agent-baseline",
+          "name": "zone_metrics.csv",
+          "sha256": "01cce40cc50532a4eb0b333bcc60e6d171fc879f8b4574f5ce316098e076e139",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 5648,
+              "text_sha256": "217d94da9e3a2c3befcc0a8b6907d4857f35e76693f858b064e911f90cd191be",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-sensitivity",
+          "name": "zone_metrics.csv",
+          "sha256": "24197695befef59663285e0d52f724a8d3306d1f5892934a829684a353a453a1",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 5644,
+              "text_sha256": "b5d32a20339d1c3de29f9f68d5d26955231f32b67ea5ed0d805c22410b59b4a3",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-baseline",
+          "name": "class_counts.csv",
+          "sha256": "cd7dd1c13ffd2c6d5577fd85cd0a0c4f18148406b7f3f046fda436b7b450bf19",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 4295,
+              "text_sha256": "dc6ea77324b38cd47f6fa145a2fe73d6e571abe8b4eb341d0c4fa581fc12d282",
+              "next_offset": null
+            }
+          ]
+        }
+      ],
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "helsinki",
+          "landcover_year": 2021,
+          "population_date": "2025-12-31",
+          "zone_count": 34,
+          "low_zone_ids_at_020": [
+            "101",
+            "301"
+          ],
+          "low_zone_ids_at_040": [
+            "101",
+            "103",
+            "301",
+            "302",
+            "303",
+            "304"
+          ],
+          "population_in_low_zones_at_020": 51906,
+          "population_in_low_zones_at_040": 144068,
+          "no_valid_land_zone_ids": [],
+          "unknown_population_zone_ids": [],
+          "municipal_minus_zone_population": 13682,
+          "newly_below_threshold_zone_ids": [
+            "103",
+            "302",
+            "303",
+            "304"
+          ],
+          "no_longer_below_threshold_zone_ids": []
+        },
+        "mismatched_fields": []
+      },
+      "answer_sha256": "01d6d434f6d02c64fc4aa50311eec65961898a6039d38e0b8d51a4dfc6856d8a",
+      "prose_word_count": 886,
+      "narrative_review": {
+        "status": "failed_factual_narrative_review",
+        "factual_review": "Structured answer JSON and complete artifacts pass, but the observed broader brief is not admitted. Retain the unchanged answer and these corrections.",
+        "task_constraints": "886 words before JSON; exceeds 600.",
+        "issues": [
+          "Vironniemi is described as 19 vegetation pixels of 20425; native counts are 3794/20425, giving 0.18575275397796817.",
+          "Zone populations 13280 and 38626 are called rounded, but the Helsinki recipe declares no rounding rule. The same answer later says the figures are not randomly rounded.",
+          "The brief says boundaries/population are from a 2025 acquisition. Acquisition was 2026-11-10; 2025-12-31 is the population reference date, not a verified boundary-acquisition date.",
+          "Institutional quarters or rounding as causes of the 13682 population gap are speculative and unsupported by these inputs. The difference must remain unresolved.",
+          "The 600-word constraint is exceeded."
+        ],
+        "answer_sha256": "01d6d434f6d02c64fc4aa50311eec65961898a6039d38e0b8d51a4dfc6856d8a",
+        "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+      }
+    },
+    {
+      "city": "amsterdam",
+      "host": "codex",
+      "source_commit_at_launch": "1f3a7b9f4fcb2b3ead1b22b5d4a96823dd430f34",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 57,
+      "advertised_tools_exercised": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "advertised_tools_with_successful_response": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "artifacts_match_native": true,
+      "actual_mcp_analysis_and_comparison_match_native": true,
+      "artifact_sha256": {
+        "baseline.csv": "276b5ea4493135c62a10dfaa0d8bf9609cf6c38eacf4be1c73242b2b9cb0434d",
+        "baseline-classes.csv": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+        "sensitivity.csv": "5f7cc6dc34cccf20d925201c37ed22e57d391056eaa8eada4806f3e588b5e300",
+        "sensitivity-classes.csv": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+        "map.png": "84c5e22dbce61f377c24b4ba255b03ed31b3261dbc1adb44046f76d4b0b048e4"
+      },
+      "observed_csv_pages": [
+        {
+          "run_id": "agent-baseline",
+          "name": "zone_metrics.csv",
+          "sha256": "276b5ea4493135c62a10dfaa0d8bf9609cf6c38eacf4be1c73242b2b9cb0434d",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 12000,
+              "text_sha256": "243017147fc25ea5285de6231854ff1e0a36169ff1e502ff96bb7cc177ad2349",
+              "next_offset": 12000
+            },
+            {
+              "offset": 12000,
+              "requested_limit": 12000,
+              "characters": 6388,
+              "text_sha256": "45436475855810b8561227f3487b3f3df4b2f99916042babea8bc7833b665a01",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-sensitivity",
+          "name": "zone_metrics.csv",
+          "sha256": "5f7cc6dc34cccf20d925201c37ed22e57d391056eaa8eada4806f3e588b5e300",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 12000,
+              "text_sha256": "cd400845f7348b50e4d5bda2ebdff815f5f66e4528f2ecce3805faf363857ff7",
+              "next_offset": 12000
+            },
+            {
+              "offset": 12000,
+              "requested_limit": 12000,
+              "characters": 6349,
+              "text_sha256": "71167a6497040cf4dcf1e089a68b70af2d18c7a92f4c2cb07218f50975da9b58",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-baseline",
+          "name": "class_counts.csv",
+          "sha256": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 12000,
+              "text_sha256": "0d86b7220d8a53b8fdcca88d18ba1115c59913c01b78e83eeb4a36ec8916663c",
+              "next_offset": 12000
+            },
+            {
+              "offset": 12000,
+              "requested_limit": 12000,
+              "characters": 7960,
+              "text_sha256": "3c9f1855d29f14085d035233fa999031d6ba87e8fb3b037b837f908838fdb856",
+              "next_offset": null
+            }
+          ]
+        }
+      ],
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "amsterdam",
+          "landcover_year": 2021,
+          "population_date": "2025-01-01",
+          "zone_count": 111,
+          "low_zone_ids_at_020": [
+            "WK0363AA",
+            "WK0363AB",
+            "WK0363AC",
+            "WK0363AD",
+            "WK0363AE",
+            "WK0363AF",
+            "WK0363AG",
+            "WK0363AH",
+            "WK0363BB",
+            "WK0363EC",
+            "WK0363EH",
+            "WK0363EM",
+            "WK0363EP",
+            "WK0363EQ",
+            "WK0363ES",
+            "WK0363ET",
+            "WK0363EU",
+            "WK0363KF",
+            "WK0363MA",
+            "WK0363ME",
+            "WK0363MF",
+            "WK0363MJ",
+            "WK0363MK",
+            "WK0363NB",
+            "WK0363NM",
+            "WK0363NP"
+          ],
+          "low_zone_ids_at_040": [
+            "WK036399",
+            "WK0363AA",
+            "WK0363AB",
+            "WK0363AC",
+            "WK0363AD",
+            "WK0363AE",
+            "WK0363AF",
+            "WK0363AG",
+            "WK0363AH",
+            "WK0363AJ",
+            "WK0363AK",
+            "WK0363BA",
+            "WK0363BB",
+            "WK0363EC",
+            "WK0363ED",
+            "WK0363EE",
+            "WK0363EG",
+            "WK0363EH",
+            "WK0363EJ",
+            "WK0363EK",
+            "WK0363EL",
+            "WK0363EM",
+            "WK0363EN",
+            "WK0363EP",
+            "WK0363EQ",
+            "WK0363ER",
+            "WK0363ES",
+            "WK0363ET",
+            "WK0363EU",
+            "WK0363EV",
+            "WK0363FC",
+            "WK0363FG",
+            "WK0363FH",
+            "WK0363FK",
+            "WK0363FN",
+            "WK0363KA",
+            "WK0363KB",
+            "WK0363KD",
+            "WK0363KE",
+            "WK0363KF",
+            "WK0363KG",
+            "WK0363KH",
+            "WK0363KJ",
+            "WK0363KK",
+            "WK0363KL",
+            "WK0363KP",
+            "WK0363MA",
+            "WK0363MB",
+            "WK0363MC",
+            "WK0363MD",
+            "WK0363ME",
+            "WK0363MF",
+            "WK0363MJ",
+            "WK0363MK",
+            "WK0363ML",
+            "WK0363NB",
+            "WK0363NC",
+            "WK0363NK",
+            "WK0363NM",
+            "WK0363NN",
+            "WK0363NP",
+            "WK0363SC",
+            "WK0363SD",
+            "WK0363TE",
+            "WK0363TH"
+          ],
+          "population_in_low_zones_at_020": 217945,
+          "population_in_low_zones_at_040": 557965,
+          "no_valid_land_zone_ids": [],
+          "unknown_population_zone_ids": [
+            "WK036399"
+          ],
+          "municipal_minus_zone_population": 11,
+          "newly_below_threshold_zone_ids": [
+            "WK036399",
+            "WK0363AJ",
+            "WK0363AK",
+            "WK0363BA",
+            "WK0363ED",
+            "WK0363EE",
+            "WK0363EG",
+            "WK0363EJ",
+            "WK0363EK",
+            "WK0363EL",
+            "WK0363EN",
+            "WK0363ER",
+            "WK0363EV",
+            "WK0363FC",
+            "WK0363FG",
+            "WK0363FH",
+            "WK0363FK",
+            "WK0363FN",
+            "WK0363KA",
+            "WK0363KB",
+            "WK0363KD",
+            "WK0363KE",
+            "WK0363KG",
+            "WK0363KH",
+            "WK0363KJ",
+            "WK0363KK",
+            "WK0363KL",
+            "WK0363KP",
+            "WK0363MB",
+            "WK0363MC",
+            "WK0363MD",
+            "WK0363ML",
+            "WK0363NC",
+            "WK0363NK",
+            "WK0363NN",
+            "WK0363SC",
+            "WK0363SD",
+            "WK0363TE",
+            "WK0363TH"
+          ],
+          "no_longer_below_threshold_zone_ids": []
+        },
+        "mismatched_fields": []
+      },
+      "answer_sha256": "7270344cc820056ebec58681c16161c15217edfdf387e4de92f21274d80129eb",
+      "prose_word_count": 718,
+      "narrative_review": {
+        "status": "passed_facts_with_length_constraint_failure",
+        "factual_review": "All 26 baseline IDs and 39 additions, attached counts, pooled fractions, source rights/dates, Groot water eligibility/null population and reconciliation agree with native evidence. Next steps require local validation.",
+        "task_constraints": "718 words before JSON, including both complete ID/population tables; exceeds the requested 600-word brief. Factual pass does not override this presentation failure. Codex reports its missing prompt-invocation API.",
+        "issues": [
+          "Requested maximum of 600 prose words exceeded."
+        ],
+        "answer_sha256": "7270344cc820056ebec58681c16161c15217edfdf387e4de92f21274d80129eb",
+        "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+      }
+    },
+    {
+      "city": "amsterdam",
+      "host": "hermes",
+      "source_commit_at_launch": "1f3a7b9f4fcb2b3ead1b22b5d4a96823dd430f34",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 93,
+      "advertised_tools_exercised": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "advertised_tools_with_successful_response": [
+        "analyze_vegetation",
+        "harvest_vegetation_data",
+        "prepare_vegetation_data",
+        "raster_convert",
+        "raster_info",
+        "raster_query",
+        "raster_reproject",
+        "raster_stats",
+        "read_vegetation_artifact",
+        "render_vegetation_map",
+        "store_justification",
+        "vector_buffer",
+        "vector_clip",
+        "vector_convert",
+        "vector_info",
+        "vector_query",
+        "vector_reproject",
+        "vector_simplify",
+        "vegetation_class_catalog",
+        "vegetation_compare",
+        "vegetation_status"
+      ],
+      "artifacts_match_native": true,
+      "actual_mcp_analysis_and_comparison_match_native": true,
+      "artifact_sha256": {
+        "baseline.csv": "276b5ea4493135c62a10dfaa0d8bf9609cf6c38eacf4be1c73242b2b9cb0434d",
+        "baseline-classes.csv": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+        "sensitivity.csv": "5f7cc6dc34cccf20d925201c37ed22e57d391056eaa8eada4806f3e588b5e300",
+        "sensitivity-classes.csv": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+        "map.png": "84c5e22dbce61f377c24b4ba255b03ed31b3261dbc1adb44046f76d4b0b048e4"
+      },
+      "observed_csv_pages": [
+        {
+          "run_id": "agent-baseline",
+          "name": "zone_metrics.csv",
+          "sha256": "276b5ea4493135c62a10dfaa0d8bf9609cf6c38eacf4be1c73242b2b9cb0434d",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 12000,
+              "text_sha256": "243017147fc25ea5285de6231854ff1e0a36169ff1e502ff96bb7cc177ad2349",
+              "next_offset": 12000
+            },
+            {
+              "offset": 12000,
+              "requested_limit": 12000,
+              "characters": 6388,
+              "text_sha256": "45436475855810b8561227f3487b3f3df4b2f99916042babea8bc7833b665a01",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-sensitivity",
+          "name": "zone_metrics.csv",
+          "sha256": "5f7cc6dc34cccf20d925201c37ed22e57d391056eaa8eada4806f3e588b5e300",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 12000,
+              "text_sha256": "cd400845f7348b50e4d5bda2ebdff815f5f66e4528f2ecce3805faf363857ff7",
+              "next_offset": 12000
+            },
+            {
+              "offset": 12000,
+              "requested_limit": 12000,
+              "characters": 6349,
+              "text_sha256": "71167a6497040cf4dcf1e089a68b70af2d18c7a92f4c2cb07218f50975da9b58",
+              "next_offset": null
+            }
+          ]
+        },
+        {
+          "run_id": "agent-baseline",
+          "name": "class_counts.csv",
+          "sha256": "df11c6c84f7d9f9c453ea2a311ce1985105ea9a867c9687dafb66b64b292dbe7",
+          "all_observed_pages_match_native_artifact": true,
+          "pages": [
+            {
+              "offset": 0,
+              "requested_limit": 12000,
+              "characters": 12000,
+              "text_sha256": "0d86b7220d8a53b8fdcca88d18ba1115c59913c01b78e83eeb4a36ec8916663c",
+              "next_offset": 12000
+            },
+            {
+              "offset": 12000,
+              "requested_limit": 12000,
+              "characters": 7960,
+              "text_sha256": "3c9f1855d29f14085d035233fa999031d6ba87e8fb3b037b837f908838fdb856",
+              "next_offset": null
+            }
+          ]
+        }
+      ],
+      "machine_claims": {
+        "status": "passed",
+        "observed": {
+          "city": "amsterdam",
+          "landcover_year": 2021,
+          "population_date": "2025-01-01",
+          "zone_count": 111,
+          "low_zone_ids_at_020": [
+            "WK0363AA",
+            "WK0363AB",
+            "WK0363AC",
+            "WK0363AD",
+            "WK0363AE",
+            "WK0363AF",
+            "WK0363AG",
+            "WK0363AH",
+            "WK0363BB",
+            "WK0363EC",
+            "WK0363EH",
+            "WK0363EM",
+            "WK0363EP",
+            "WK0363EQ",
+            "WK0363ES",
+            "WK0363ET",
+            "WK0363EU",
+            "WK0363KF",
+            "WK0363MA",
+            "WK0363ME",
+            "WK0363MF",
+            "WK0363MJ",
+            "WK0363MK",
+            "WK0363NB",
+            "WK0363NM",
+            "WK0363NP"
+          ],
+          "low_zone_ids_at_040": [
+            "WK036399",
+            "WK0363AA",
+            "WK0363AB",
+            "WK0363AC",
+            "WK0363AD",
+            "WK0363AE",
+            "WK0363AF",
+            "WK0363AG",
+            "WK0363AH",
+            "WK0363AJ",
+            "WK0363AK",
+            "WK0363BA",
+            "WK0363BB",
+            "WK0363EC",
+            "WK0363ED",
+            "WK0363EE",
+            "WK0363EG",
+            "WK0363EH",
+            "WK0363EJ",
+            "WK0363EK",
+            "WK0363EL",
+            "WK0363EM",
+            "WK0363EN",
+            "WK0363EP",
+            "WK0363EQ",
+            "WK0363ER",
+            "WK0363ES",
+            "WK0363ET",
+            "WK0363EU",
+            "WK0363EV",
+            "WK0363FC",
+            "WK0363FG",
+            "WK0363FH",
+            "WK0363FK",
+            "WK0363FN",
+            "WK0363KA",
+            "WK0363KB",
+            "WK0363KD",
+            "WK0363KE",
+            "WK0363KF",
+            "WK0363KG",
+            "WK0363KH",
+            "WK0363KJ",
+            "WK0363KK",
+            "WK0363KL",
+            "WK0363KP",
+            "WK0363MA",
+            "WK0363MB",
+            "WK0363MC",
+            "WK0363MD",
+            "WK0363ME",
+            "WK0363MF",
+            "WK0363MJ",
+            "WK0363MK",
+            "WK0363ML",
+            "WK0363NB",
+            "WK0363NC",
+            "WK0363NK",
+            "WK0363NM",
+            "WK0363NN",
+            "WK0363NP",
+            "WK0363SC",
+            "WK0363SD",
+            "WK0363TE",
+            "WK0363TH"
+          ],
+          "population_in_low_zones_at_020": 217945,
+          "population_in_low_zones_at_040": 557965,
+          "no_valid_land_zone_ids": [],
+          "unknown_population_zone_ids": [
+            "WK036399"
+          ],
+          "municipal_minus_zone_population": 11,
+          "newly_below_threshold_zone_ids": [
+            "WK036399",
+            "WK0363AJ",
+            "WK0363AK",
+            "WK0363BA",
+            "WK0363ED",
+            "WK0363EE",
+            "WK0363EG",
+            "WK0363EJ",
+            "WK0363EK",
+            "WK0363EL",
+            "WK0363EN",
+            "WK0363ER",
+            "WK0363EV",
+            "WK0363FC",
+            "WK0363FG",
+            "WK0363FH",
+            "WK0363FK",
+            "WK0363FN",
+            "WK0363KA",
+            "WK0363KB",
+            "WK0363KD",
+            "WK0363KE",
+            "WK0363KG",
+            "WK0363KH",
+            "WK0363KJ",
+            "WK0363KK",
+            "WK0363KL",
+            "WK0363KP",
+            "WK0363MB",
+            "WK0363MC",
+            "WK0363MD",
+            "WK0363ML",
+            "WK0363NC",
+            "WK0363NK",
+            "WK0363NN",
+            "WK0363SC",
+            "WK0363SD",
+            "WK0363TE",
+            "WK0363TH"
+          ],
+          "no_longer_below_threshold_zone_ids": []
+        },
+        "mismatched_fields": []
+      },
+      "answer_sha256": "0d5b8f4d1ae8d863ca6d8dec8dc3b98fb485f7a1947a2d2961274a5ea7b55193",
+      "prose_word_count": 1089,
+      "narrative_review": {
+        "status": "failed_factual_narrative_review",
+        "factual_review": "Structured JSON, full paged CSVs and native artifacts pass. The narrative correctly handles water-zone land eligibility, source classes, sensitivity, rounding and temporal mismatch, but its claim about missing population is unsupported.",
+        "task_constraints": "1089 words before JSON; exceeds 600.",
+        "issues": [
+          "Groot water null population is asserted to mean no residential population registered. The source negative missing sentinel establishes unknown, not zero or absence of residents. At 0.40, 557965 is the sum of known populations with WK036399 still unknown.",
+          "The statement of zero NoData is supported for assigned zone pixels; it must not be generalized to arbitrary pixels outside the zone mask.",
+          "The 600-word constraint is exceeded."
+        ],
+        "answer_sha256": "0d5b8f4d1ae8d863ca6d8dec8dc3b98fb485f7a1947a2d2961274a5ea7b55193",
+        "reviewer": "Primary implementation agent, explicit factual review against committed native zone/class evidence; not independent-person product qualification"
+      }
+    }
+  ],
+  "qualification": "Original-team host observations do not satisfy independent-person third-city product qualification"
+}

@@ -1,0 +1,84 @@
+[
+  {
+    "name": "justify_crs_selection",
+    "title": null,
+    "description": "Advisory guidance for CRS/datum selection reasoning.",
+    "arguments": [
+      {
+        "name": "dst_crs",
+        "description": "Provide as a JSON string matching the following schema: {\"type\":\"string\"}",
+        "required": true
+      }
+    ],
+    "meta": {
+      "_fastmcp": {
+        "tags": [
+          "crs",
+          "reasoning"
+        ]
+      }
+    }
+  },
+  {
+    "name": "justify_resampling_method",
+    "title": null,
+    "description": "Advisory guidance for resampling method reasoning.",
+    "arguments": [
+      {
+        "name": "method",
+        "description": "Provide as a JSON string matching the following schema: {\"type\":\"string\"}",
+        "required": true
+      }
+    ],
+    "meta": {
+      "_fastmcp": {
+        "tags": [
+          "reasoning",
+          "resampling"
+        ]
+      }
+    }
+  },
+  {
+    "name": "justify_query_extent",
+    "title": null,
+    "description": "Advisory guidance for spatial query extent selection.",
+    "arguments": [
+      {
+        "name": "geometry",
+        "description": "Provide as a JSON string matching the following schema: {\"anyOf\":[{\"additionalProperties\":true,\"type\":\"object\"},{\"items\":{\"type\":\"number\"},\"type\":\"array\"}]}",
+        "required": true
+      },
+      {
+        "name": "purpose",
+        "description": "Provide as a JSON string matching the following schema: {\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}]}",
+        "required": false
+      }
+    ],
+    "meta": {
+      "_fastmcp": {
+        "tags": [
+          "reasoning",
+          "spatial_query"
+        ]
+      }
+    }
+  },
+  {
+    "name": "municipal_vegetation_review",
+    "title": null,
+    "description": null,
+    "arguments": [
+      {
+        "name": "city",
+        "description": "Provide as a JSON string matching the following schema: {\"type\":\"string\"}",
+        "required": true
+      }
+    ],
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  }
+]

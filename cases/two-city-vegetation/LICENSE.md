@@ -1,0 +1,9 @@
+# Code and data rights
+
+Urban MCP code is MIT under [LICENSE](../../LICENSE). Original GDAL MCP is MIT; GIS libraries retain their licenses. Code licensing does not grant rights in datasets.
+
+- **ESA WorldCover 2021 v200 Map**, crops/reprojections/class-count derivatives: CC BY 4.0. Attribution: **© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium**. [Terms](https://esa-worldcover.org/en/data-access), [manual](https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/docs/WorldCover_PUM_V2.0.pdf). Modifications: native-grid crops, nearest 10 m metric reprojection, zonal counts and map display. No provider endorsement implied.
+- **Helsinki Service Map boundaries and City of Helsinki / Statistics Finland population**: CC BY 4.0, publisher attribution in manifest. [API terms](https://www.hel.fi/palvelukarttaws/restpages/index_en.html), [statistics terms](https://stat.fi/en/about-us/get-to-know-statistics-finland/legislation/terms-of-use). Source names remain verbatim.
+- **CBS Wijken en Buurten 2025, distributed by PDOK**: CC0-1.0 as declared in WFS capabilities. Retain CBS / PDOK provenance, 2025 vintage, inhabitants dated 2025-01-01 and random rounding to multiples of five. [Service description](https://www.pdok.nl/ogc-webservices/-/article/cbs-wijken-en-buurten), [definitions](https://www.cbs.nl/-/media/_pdf/2026/14/toelichting-variabelen-kwb-2025.pdf).
+
+Each snapshot separates raw inputs and records per-source rights, requests, hashes, tiles and transformations. The combined ZIP has no blanket code license replacing source terms. Preserve attribution in maps, derivatives and copied snapshots. Full tile caches, private host databases/configuration/authentication and raw host events are excluded from public artifacts.

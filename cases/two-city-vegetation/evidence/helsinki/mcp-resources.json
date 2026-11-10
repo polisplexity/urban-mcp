@@ -1,0 +1,254 @@
+{
+  "resources": [
+    {
+      "name": "case_recipe",
+      "title": null,
+      "uri": "vegetation://case",
+      "description": null,
+      "mimeType": "text/plain",
+      "size": null,
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    }
+  ],
+  "templates": [
+    {
+      "name": "list_all",
+      "title": null,
+      "uriTemplate": "catalog://workspace/all/{subpath}",
+      "description": "List all catalogued workspace assets.\n\nArgs:\n    subpath: Optional relative subdirectory to scope results (\"\" = root).\n    limit: Maximum number of entries to return (None = unlimited).\n    include_hidden: Include hidden files and directories when True.\n    extensions: Optional extension whitelist (e.g. `[\"tif\", \"gpkg\"]`).\n    ctx: Optional FastMCP context for boundary logging.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "list_by_crs",
+      "title": null,
+      "uriTemplate": "catalog://workspace/by-crs/{epsg}",
+      "description": "List all datasets in the workspace that use a specific CRS.\n\nThis resource enables AI to discover all data in a particular coordinate system,\nwhich is critical for multi-step workflows requiring CRS consistency.\n\nUse cases:\n- Finding all data in Web Mercator (EPSG:3857) for web mapping\n- Discovering WGS84 (EPSG:4326) datasets for global analysis\n- Identifying datasets that need reprojection to align with target CRS\n- Planning batch operations on datasets with the same projection\n\nArgs:\n    epsg: CRS identifier (e.g., \"EPSG:4326\", \"4326\", \"EPSG:3857\")\n    kind: Filter by dataset type (\"all\", \"raster\", \"vector\")\n    include_hidden: Whether to include hidden files\n    ctx: Optional context for logging\n\nReturns:\n    Catalog response with filtered entries\n\nExamples:\n    - catalog://workspace/by-crs/4326 - All WGS84 datasets\n    - catalog://workspace/by-crs/3857?kind=raster - Web Mercator rasters only\n    - catalog://workspace/by-crs/EPSG:32610 - UTM Zone 10N datasets",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "list_raster",
+      "title": null,
+      "uriTemplate": "catalog://workspace/raster/{subpath}",
+      "description": "List raster-focused assets within configured workspaces.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "get_workspace_summary",
+      "title": null,
+      "uriTemplate": "catalog://workspace/summary/{_dummy}",
+      "description": "Provide a high-level summary of all configured workspaces.\n\nReturns counts by dataset type, CRS distribution, format distribution,\nand size statistics to help AI understand workspace contents at a glance.\n\nThis resource is ideal for:\n- Initial workspace exploration\n- Understanding data diversity (formats, projections)\n- Planning batch operations across similar datasets\n- Identifying dominant CRS for workflow alignment\n\nArgs:\n    _dummy: Placeholder parameter (use 'overview' or any value)\n    ctx: Optional context for logging",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "list_vector",
+      "title": null,
+      "uriTemplate": "catalog://workspace/vector/{subpath}",
+      "description": "List vector-focused assets within configured workspaces.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "get_query_result_resource",
+      "title": null,
+      "uriTemplate": "query://result/{query_id}",
+      "description": "Return metadata for a query result by id.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "Compression Methods Reference",
+      "title": null,
+      "uriTemplate": "reference://compression/available/{kind}",
+      "description": "Available raster compression methods with detailed guidance on when to use each. Provides comprehensive information about compression algorithms including lossless (LZW, DEFLATE, ZSTD, PACKBITS) and lossy (JPEG, WEBP) methods. Includes trade-offs between compression ratio, speed, and compatibility. Essential for raster_convert operations to optimize file size while preserving data quality.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "Common CRS Reference",
+      "title": null,
+      "uriTemplate": "reference://crs/common/{coverage}",
+      "description": "Curated reference of commonly-used coordinate reference systems organized by use case and geographic coverage. Includes global systems (EPSG:4326, EPSG:3857), continental projections, and regional UTM zones. Provides EPSG codes, names, areas of use, and guidance on appropriate applications. Essential for raster_reproject and vector_reproject operations to select appropriate target coordinate systems. Filter by coverage: 'global', 'continental', 'utm', or 'all'.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "list_geospatial_terms",
+      "title": null,
+      "uriTemplate": "reference://glossary/geospatial/{term}",
+      "description": "Return glossary entries filtered by optional term substring.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "Resampling Methods Available",
+      "title": null,
+      "uriTemplate": "reference://resampling/available/{category}",
+      "description": "Complete enumeration of available resampling methods from rasterio.enums.Resampling. Lists all supported algorithms including nearest, bilinear, cubic, cubic_spline, lanczos, average, mode, gauss, and max/min/med/q1/q3. Used by raster_reproject and raster_convert with overviews. Filter by category: 'interpolation', 'aggregation', or 'all'.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "Resampling Selection Guide",
+      "title": null,
+      "uriTemplate": "reference://resampling/guide/{method}",
+      "description": "Expert guidance for choosing appropriate resampling methods based on data type and use case. Explains trade-offs between interpolation quality, performance, and data integrity. Critical for raster_reproject operations. Covers: nearest (categorical/discrete data, preserves exact values), bilinear (continuous data, smooth results), cubic (elevation/scientific, highest quality), average (downsampling), mode (categorical downsampling). Filter by method name or 'all'.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "get_format_metadata",
+      "title": null,
+      "uriTemplate": "metadata://{file}/format",
+      "description": "Return driver and format characteristics for a dataset.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "get_raster_metadata",
+      "title": null,
+      "uriTemplate": "metadata://{file}/raster",
+      "description": "Get raster spatial properties (read-only).\n\nReturns driver, CRS, bounds, transform, width/height, band count, dtype,\nnodata, overview levels, and tags. Used by AI during planning to\nunderstand file properties before choosing operations and parameters.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "get_vector_metadata",
+      "title": null,
+      "uriTemplate": "metadata://{file}/vector",
+      "description": "Get vector spatial properties (read-only).\n\nReturns driver, CRS, bounds, geometry types, feature count, and field\nschema. Used by AI during planning to understand dataset properties\nand choose appropriate operations.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "get_raster_band_metadata",
+      "title": null,
+      "uriTemplate": "metadata://{file}/bands/{_dummy}",
+      "description": "Return metadata for each band in a raster dataset.\n\nArgs:\n    file: Raster dataset path.\n    _dummy: Placeholder segment to keep URI template consistent with FastMCP.\n    include_statistics: Whether to compute approximate statistics for each band.\n    ctx: Optional FastMCP context for logging.\n\nReturns:\n    Dictionary containing band metadata.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "get_raster_statistics",
+      "title": null,
+      "uriTemplate": "metadata://{file}/statistics",
+      "description": "Get lightweight raster statistics (read-only).\n\nReturns per-band statistics including min, max, mean, std, median, and\npercentiles (25/50/75). Histogram is disabled for lightweight planning\nuse. This helps the AI choose methods and parameters during planning.",
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "manifest",
+      "title": null,
+      "uriTemplate": "vegetation://{city}/manifest",
+      "description": null,
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "quality",
+      "title": null,
+      "uriTemplate": "vegetation://{city}/quality",
+      "description": null,
+      "mimeType": "text/plain",
+      "annotations": null,
+      "meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    }
+  ]
+}

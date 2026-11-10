@@ -13,7 +13,7 @@ def main():
     parser.add_argument("--server", default="urban_mcp_walking")
     parser.add_argument("--results-dir",type=Path,help="Export complete public comparison and closed-link route responses")
     args = parser.parse_args()
-    calls, other_tools, comparisons, routes, analyses = [], [], [], [], []
+    calls, other_tools, comparisons, routes, analyses, artifacts = [], [], [], [], [], []
     for line in args.events.read_text(encoding="utf-8").splitlines():
         try:
             event = json.loads(line)
@@ -31,7 +31,7 @@ def main():
                           "error": item.get("error"), "response_recorded": result is not None,
                           "response_excerpt": json.dumps(result, ensure_ascii=False)[:800]})
             if args.results_dir and item.get("status")=="completed":
-                target=comparisons if item["tool"] in {"walking_compare","vegetation_compare"} else analyses if item["tool"]=="analyze_vegetation" else routes if item["tool"]=="walking_route" and item.get("arguments",{}).get("closed_links") else None
+                target=comparisons if item["tool"] in {"walking_compare","vegetation_compare"} else analyses if item["tool"]=="analyze_vegetation" else artifacts if item["tool"] in {"read_vegetation_artifact","render_vegetation_map"} else routes if item["tool"]=="walking_route" and item.get("arguments",{}).get("closed_links") else None
                 if target is not None:
                     target.append({"arguments":item.get("arguments"),"result":decode(result)})
         elif item.get("type") in {"command_execution", "web_search", "file_change"}:
@@ -44,7 +44,7 @@ def main():
     args.output.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     if args.results_dir:
         args.results_dir.mkdir(parents=True,exist_ok=True)
-        for name,values in [("comparison-results.json",comparisons),("route-results.json",routes),("analysis-results.json",analyses)]:
+        for name,values in [("comparison-results.json",comparisons),("route-results.json",routes),("analysis-results.json",analyses),("artifact-results.json",artifacts)]:
             (args.results_dir/name).write_text(json.dumps(values,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     print(json.dumps({"calls": len(calls), "tools": sorted({c["tool"] for c in calls})}))
 

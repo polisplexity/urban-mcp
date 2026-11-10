@@ -16,6 +16,10 @@ The ordered integration is [RFC #1](https://github.com/polisplexity/urban-mcp/pu
 
 ## Reproduce and contribute
 
+The [two-city historical vegetation case in PR #42](https://github.com/polisplexity/urban-mcp/pull/42) is on `feat/two-city-vegetation` until merged. Its [guide](cases/two-city-vegetation/README.md) reuses the audited original GDAL MCP and adds eight municipal operations. Native/stdio suites pass 110/131 checks across 21 tools, 12 synthetic regressions and 69 original-server tests. All four fresh Codex/Hermes observations reproduce artifacts, full CSV pages and answer JSON. Codex Helsinki's brief passes; Codex Amsterdam exceeds the length limit; both broader Hermes briefs fail factual review. [Findings](cases/two-city-vegetation/findings.md), [verdicts](cases/two-city-vegetation/evidence/narrative-review.json).
+
+Vegetation is modeled **2021** data with aggregate **2025** population, not current canopy, park access or heat exposure. The [data prerelease](https://github.com/polisplexity/urban-mcp/releases/tag/data-vegetation-20261110) preserves rights/hashes. Independent-person third-city qualification is pending; issue #41 remains the separate walking task.
+
 ```sh
 git clone --branch main https://github.com/polisplexity/urban-mcp.git
 cd urban-mcp

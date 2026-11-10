@@ -1,0 +1,274 @@
+[
+  {
+    "arguments": {
+      "city": "helsinki",
+      "run_id": "agent-baseline",
+      "threshold": 0.2
+    },
+    "result": {
+      "city": "helsinki",
+      "run_id": "agent-baseline",
+      "threshold": 0.2,
+      "threshold_rule": "vegetation_share_of_valid_land < threshold; equality is not low",
+      "landcover_year": 2021,
+      "population_date": "2025-12-31",
+      "zone_count": 34,
+      "eligible_zone_count": 34,
+      "no_valid_land_zone_ids": [],
+      "low_vegetation_zone_ids": [
+        "101",
+        "301"
+      ],
+      "low_vegetation_zone_count": 2,
+      "population_in_low_vegetation_zones": 51906,
+      "low_zones_with_unknown_population": [],
+      "population_reconciliation": {
+        "municipal_population": 694392,
+        "zone_population_sum": 680710,
+        "municipal_minus_zone_population": 13682,
+        "population_date": "2025-12-31",
+        "unknown_population_zone_ids": []
+      },
+      "pooled_pixel_metrics": {
+        "total_pixels": 7150383,
+        "valid_pixels": 7150383,
+        "nodata_pixels": 0,
+        "water_pixels": 5003110,
+        "valid_land_pixels": 2147273,
+        "vegetation_pixels": 1405954,
+        "tree_class_pixels": 1174097,
+        "vegetation_share_of_valid_land": 0.654762575601705,
+        "vegetation_share_of_valid_all": 0.19662639050243882,
+        "tree_class_share_of_valid_land": 0.54678515493838,
+        "valid_fraction_of_zone_pixels": 1.0,
+        "class_counts": {
+          "0": 0,
+          "10": 1174097,
+          "20": 0,
+          "30": 146431,
+          "40": 51087,
+          "50": 729208,
+          "60": 12111,
+          "70": 0,
+          "80": 5003110,
+          "90": 34339,
+          "95": 0,
+          "100": 0
+        }
+      },
+      "ranking_lowest_valid_land_share": [
+        "301",
+        "101",
+        "103",
+        "303",
+        "304",
+        "302",
+        "104",
+        "402",
+        "505",
+        "504",
+        "105",
+        "204",
+        "503",
+        "502",
+        "203",
+        "701",
+        "102",
+        "404",
+        "702",
+        "703",
+        "305",
+        "201",
+        "602",
+        "506",
+        "704",
+        "205",
+        "202",
+        "601",
+        "405",
+        "401",
+        "501",
+        "603",
+        "403",
+        "801"
+      ],
+      "input_manifest_sha256": "e8516c9db08a78f584cc9156c261dd82581ffe3f23fa0dbf9e9fc00636a7da32",
+      "implementation_sha256": "6ef350b48c2d0b2055866c700d58f0330daf0ef64e0c75e3a59723ced3999b91",
+      "runtime": {
+        "rasterio": "1.4.3",
+        "geopandas": "1.1.1",
+        "numpy": "2.3.3",
+        "shapely": "2.1.2",
+        "fastmcp": "2.12.3",
+        "matplotlib": "3.11.2"
+      },
+      "limits": [
+        "WorldCover is a modeled annual 2021 land-cover classification, not a current tree inventory, canopy percentage, NDVI, park-access measure, cooling effect or air temperature.",
+        "Vegetation includes cropland, grassland, wetlands, shrubland, tree cover and moss/lichen. Tree-class area is not fractional tree canopy.",
+        "Native geographic pixels have latitude-dependent physical size; the nearest-neighbour 10 m local metric grid is an analysis grid, not new source resolution. Boundary pixel-centre area approximates polygon area.",
+        "Land-share denominator excludes class 80 and NoData 0. All-surface share, water and NoData are reported separately. Unknown class codes fail validation.",
+        "The 20% low-vegetation threshold is an exploratory scenario, not a policy standard. Sensitivity changes use the same historical raster, not vegetation change over time.",
+        "2025 aggregate population and acquisition-date boundaries are temporally different from 2021 land cover. Residents are not located within pixels; population in low-share zones is not population without access or exposed to heat.",
+        "Global published classification accuracy is not local validation or per-pixel confidence. The separate InputQuality product is not acquired through this public Map recipe; NoData coverage is not a confidence score.",
+        "Initial-team tests in two cities do not meet the independent third-city final-product qualification rule."
+      ],
+      "artifacts": [
+        "summary.json",
+        "zone_metrics.csv",
+        "class_counts.csv",
+        "zones.geojson",
+        "report.md",
+        "map.png (after render)"
+      ],
+      "zone_details": {
+        "complete_zone_count": 34,
+        "artifacts": [
+          "summary.json",
+          "zone_metrics.csv",
+          "class_counts.csv"
+        ],
+        "read_tool": "read_vegetation_artifact",
+        "max_page_characters": 12000,
+        "instruction": "Read every page until next_offset is null. Full per-zone records are not duplicated in the primary tool response."
+      }
+    }
+  },
+  {
+    "arguments": {
+      "city": "helsinki",
+      "run_id": "agent-sensitivity",
+      "threshold": 0.4
+    },
+    "result": {
+      "city": "helsinki",
+      "run_id": "agent-sensitivity",
+      "threshold": 0.4,
+      "threshold_rule": "vegetation_share_of_valid_land < threshold; equality is not low",
+      "landcover_year": 2021,
+      "population_date": "2025-12-31",
+      "zone_count": 34,
+      "eligible_zone_count": 34,
+      "no_valid_land_zone_ids": [],
+      "low_vegetation_zone_ids": [
+        "101",
+        "103",
+        "301",
+        "302",
+        "303",
+        "304"
+      ],
+      "low_vegetation_zone_count": 6,
+      "population_in_low_vegetation_zones": 144068,
+      "low_zones_with_unknown_population": [],
+      "population_reconciliation": {
+        "municipal_population": 694392,
+        "zone_population_sum": 680710,
+        "municipal_minus_zone_population": 13682,
+        "population_date": "2025-12-31",
+        "unknown_population_zone_ids": []
+      },
+      "pooled_pixel_metrics": {
+        "total_pixels": 7150383,
+        "valid_pixels": 7150383,
+        "nodata_pixels": 0,
+        "water_pixels": 5003110,
+        "valid_land_pixels": 2147273,
+        "vegetation_pixels": 1405954,
+        "tree_class_pixels": 1174097,
+        "vegetation_share_of_valid_land": 0.654762575601705,
+        "vegetation_share_of_valid_all": 0.19662639050243882,
+        "tree_class_share_of_valid_land": 0.54678515493838,
+        "valid_fraction_of_zone_pixels": 1.0,
+        "class_counts": {
+          "0": 0,
+          "10": 1174097,
+          "20": 0,
+          "30": 146431,
+          "40": 51087,
+          "50": 729208,
+          "60": 12111,
+          "70": 0,
+          "80": 5003110,
+          "90": 34339,
+          "95": 0,
+          "100": 0
+        }
+      },
+      "ranking_lowest_valid_land_share": [
+        "301",
+        "101",
+        "103",
+        "303",
+        "304",
+        "302",
+        "104",
+        "402",
+        "505",
+        "504",
+        "105",
+        "204",
+        "503",
+        "502",
+        "203",
+        "701",
+        "102",
+        "404",
+        "702",
+        "703",
+        "305",
+        "201",
+        "602",
+        "506",
+        "704",
+        "205",
+        "202",
+        "601",
+        "405",
+        "401",
+        "501",
+        "603",
+        "403",
+        "801"
+      ],
+      "input_manifest_sha256": "e8516c9db08a78f584cc9156c261dd82581ffe3f23fa0dbf9e9fc00636a7da32",
+      "implementation_sha256": "6ef350b48c2d0b2055866c700d58f0330daf0ef64e0c75e3a59723ced3999b91",
+      "runtime": {
+        "rasterio": "1.4.3",
+        "geopandas": "1.1.1",
+        "numpy": "2.3.3",
+        "shapely": "2.1.2",
+        "fastmcp": "2.12.3",
+        "matplotlib": "3.11.2"
+      },
+      "limits": [
+        "WorldCover is a modeled annual 2021 land-cover classification, not a current tree inventory, canopy percentage, NDVI, park-access measure, cooling effect or air temperature.",
+        "Vegetation includes cropland, grassland, wetlands, shrubland, tree cover and moss/lichen. Tree-class area is not fractional tree canopy.",
+        "Native geographic pixels have latitude-dependent physical size; the nearest-neighbour 10 m local metric grid is an analysis grid, not new source resolution. Boundary pixel-centre area approximates polygon area.",
+        "Land-share denominator excludes class 80 and NoData 0. All-surface share, water and NoData are reported separately. Unknown class codes fail validation.",
+        "The 20% low-vegetation threshold is an exploratory scenario, not a policy standard. Sensitivity changes use the same historical raster, not vegetation change over time.",
+        "2025 aggregate population and acquisition-date boundaries are temporally different from 2021 land cover. Residents are not located within pixels; population in low-share zones is not population without access or exposed to heat.",
+        "Global published classification accuracy is not local validation or per-pixel confidence. The separate InputQuality product is not acquired through this public Map recipe; NoData coverage is not a confidence score.",
+        "Initial-team tests in two cities do not meet the independent third-city final-product qualification rule."
+      ],
+      "artifacts": [
+        "summary.json",
+        "zone_metrics.csv",
+        "class_counts.csv",
+        "zones.geojson",
+        "report.md",
+        "map.png (after render)"
+      ],
+      "zone_details": {
+        "complete_zone_count": 34,
+        "artifacts": [
+          "summary.json",
+          "zone_metrics.csv",
+          "class_counts.csv"
+        ],
+        "read_tool": "read_vegetation_artifact",
+        "max_page_characters": 12000,
+        "instruction": "Read every page until next_offset is null. Full per-zone records are not duplicated in the primary tool response."
+      }
+    }
+  }
+]

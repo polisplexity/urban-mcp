@@ -5410,11 +5410,93 @@
       "license_detection": "NOASSERTION",
       "license_review": "license_review_required",
       "execution_role": "candidate",
-      "input_binding_status": "not_implemented",
-      "engine_runtime_status": "not_verified",
-      "reference_case_status": "not_verified",
-      "real_city_status": "needs_input_review",
-      "ready_to_run": false
+      "input_binding_status": "verified",
+      "engine_runtime_status": "verified",
+      "reference_case_status": "verified",
+      "real_city_status": "verified_for_declared_scope",
+      "ready_to_run": true,
+      "admitted_scope": [
+        {
+          "case_id": "amsterdam-vegetation",
+          "operations": [
+            "store_justification",
+            "raster_convert",
+            "raster_info",
+            "raster_query",
+            "raster_reproject",
+            "raster_stats",
+            "vector_buffer",
+            "vector_clip",
+            "vector_convert",
+            "vector_info",
+            "vector_query",
+            "vector_reproject",
+            "vector_simplify",
+            "vegetation_status",
+            "harvest_vegetation_data",
+            "prepare_vegetation_data",
+            "vegetation_class_catalog",
+            "analyze_vegetation",
+            "vegetation_compare",
+            "read_vegetation_artifact",
+            "render_vegetation_map"
+          ],
+          "evidence": {
+            "municipality": {
+              "country_code": "NL",
+              "geographic_id": "GM0363",
+              "name": "Amsterdam"
+            },
+            "question": "Which administrative zones have low mapped 2021 vegetation share, and how much published 2025 aggregate population is attached to those zones?",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "cases/two-city-vegetation/evidence/amsterdam/harvest.json",
+            "native_evidence": "cases/two-city-vegetation/evidence/amsterdam/native.json",
+            "mcp_evidence": "cases/two-city-vegetation/evidence/amsterdam/mcp.json",
+            "reproduction_evidence": "cases/two-city-vegetation/evidence/agents.json"
+          },
+          "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
+        },
+        {
+          "case_id": "helsinki-vegetation",
+          "operations": [
+            "store_justification",
+            "raster_convert",
+            "raster_info",
+            "raster_query",
+            "raster_reproject",
+            "raster_stats",
+            "vector_buffer",
+            "vector_clip",
+            "vector_convert",
+            "vector_info",
+            "vector_query",
+            "vector_reproject",
+            "vector_simplify",
+            "vegetation_status",
+            "harvest_vegetation_data",
+            "prepare_vegetation_data",
+            "vegetation_class_catalog",
+            "analyze_vegetation",
+            "vegetation_compare",
+            "read_vegetation_artifact",
+            "render_vegetation_map"
+          ],
+          "evidence": {
+            "municipality": {
+              "country_code": "FI",
+              "geographic_id": "091",
+              "name": "Helsinki"
+            },
+            "question": "Which administrative zones have low mapped 2021 vegetation share, and how much published 2025 aggregate population is attached to those zones?",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "cases/two-city-vegetation/evidence/helsinki/harvest.json",
+            "native_evidence": "cases/two-city-vegetation/evidence/helsinki/native.json",
+            "mcp_evidence": "cases/two-city-vegetation/evidence/helsinki/mcp.json",
+            "reproduction_evidence": "cases/two-city-vegetation/evidence/agents.json"
+          },
+          "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
+        }
+      ]
     },
     {
       "id": "rspatial--terra",

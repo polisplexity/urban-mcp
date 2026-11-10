@@ -6,8 +6,13 @@
     {
       "id": "walking-access",
       "tool_id": "gboeing--osmnx",
-      "initial_cases": ["helsinki-walking", "amsterdam-walking"],
-      "initial_team": ["ekaropolus: operator of the original implementation and agent tests"],
+      "initial_cases": [
+        "helsinki-walking",
+        "amsterdam-walking"
+      ],
+      "initial_team": [
+        "ekaropolus: operator of the original implementation and agent tests"
+      ],
       "product_qualified": false,
       "status": "pending_independent_third_city",
       "tracking_issue": "https://github.com/polisplexity/urban-mcp/issues/41",
@@ -16,13 +21,19 @@
       "reproduction_pr": null,
       "review": null,
       "promotion_destination": null,
-      "blockers": ["An independent person must harvest and reproduce a third city, operate native/MCP and both hosts, and submit public evidence for review."]
+      "blockers": [
+        "An independent person must harvest and reproduce a third city, operate native/MCP and both hosts, and submit public evidence for review."
+      ]
     },
     {
       "id": "service-inventory",
       "tool_id": "jordangunn--gdal-mcp",
-      "initial_cases": ["helsinki-service-inventory"],
-      "initial_team": ["ekaropolus: operator of the original implementation and agent tests"],
+      "initial_cases": [
+        "helsinki-service-inventory"
+      ],
+      "initial_team": [
+        "ekaropolus: operator of the original implementation and agent tests"
+      ],
       "product_qualified": false,
       "status": "pending_second_initial_city_and_independent_third_city",
       "independent_operator": null,
@@ -30,7 +41,30 @@
       "reproduction_pr": null,
       "review": null,
       "promotion_destination": null,
-      "blockers": ["A second initial city and an independently operated third city with reviewed public evidence are required."]
+      "blockers": [
+        "A second initial city and an independently operated third city with reviewed public evidence are required."
+      ]
+    },
+    {
+      "id": "historical-vegetation",
+      "tool_id": "rasterio--rasterio",
+      "initial_cases": [
+        "helsinki-vegetation",
+        "amsterdam-vegetation"
+      ],
+      "initial_team": [
+        "ekaropolus: operator of original implementation and host tests"
+      ],
+      "product_qualified": false,
+      "status": "pending_independent_third_city",
+      "independent_operator": null,
+      "third_city_case": null,
+      "reproduction_pr": null,
+      "review": null,
+      "promotion_destination": null,
+      "blockers": [
+        "An independent person must harvest/reproduce a distinct third city through native/MCP and both hosts, submit public evidence and obtain accepted review. Initial-team artifact success does not admit every model narrative."
+      ]
     }
   ],
   "limits": "Declarations require human evidence review. A different agent/model or passing metadata CI is not independent third-party qualification. Existing case-scoped admission and data prereleases do not authorize final-product promotion."
