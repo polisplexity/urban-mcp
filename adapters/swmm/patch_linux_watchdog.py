@@ -82,8 +82,18 @@ batch='''def _run_simulation(
 '''
 text=text[:start]+batch+text[end:]
 path.write_text(text,encoding='utf-8')
+session_path=Path(sys.argv[1])/'src/pyswmm_mcp/sessions.py'
+session_before=session_path.read_bytes()
+session_text=session_before.decode()
+state_needle='    def state(self, session_id: str) -> SessionState:\n        return self._get(session_id).state\n'
+state_replacement='    def state(self, session_id: str) -> SessionState:\n        record = self._get(session_id)\n        with record.lock:\n            return record.state\n'
+if session_text.count(state_needle)!=1:raise ValueError('Pinned original state getter context changed')
+session_path.write_text(session_text.replace(state_needle,state_replacement),encoding='utf-8')
 print(json.dumps({'original_worker_sha256':hashlib.sha256(before).hexdigest(),
     'patched_worker_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
     'changes':['Linux process pidfd watcher with race check, outside the native worker GIL; creator-thread exit is harmless. Container init reaps orphan watchers/workers. Original Windows implementation retained.',
-        'Original PySWMM context/iterator/after_end callback captures native balances after end and before close. No solver mathematics, model parameters, time steps or routing are changed.'],
+        'Original PySWMM context/iterator/after_end callback captures native balances after end and before close. No solver mathematics, model parameters, time steps or routing are changed.',
+        'Internal SessionManager.state getter acquires the existing record lock, preventing observation of CLOSED during unfinished worker/accounting teardown. Public status/close already use this lock.'],
+    'original_sessions_sha256':hashlib.sha256(session_before).hexdigest(),
+    'patched_sessions_sha256':hashlib.sha256(session_path.read_bytes()).hexdigest(),
     'original_batch_sha256':hashlib.sha256(original_batch.encode()).hexdigest()}))

@@ -10,6 +10,7 @@ import multiprocessing as mp
 import os
 import threading
 import time
+from types import SimpleNamespace
 from . import data,engine
 
 
@@ -119,6 +120,23 @@ class Contracts(unittest.TestCase):
             if owner.is_alive():owner.kill();owner.join(5)
             if pid is not None and _alive(pid):os.kill(pid,9)
             parent.close()
+
+    def test_internal_state_observation_waits_for_teardown_lock(self):
+        from pyswmm_mcp.sessions import SessionManager,SessionState
+        manager=SessionManager.__new__(SessionManager)
+        record=SimpleNamespace(lock=threading.RLock(),state=SessionState.OPEN)
+        manager._get=lambda _:record
+        closing=threading.Event();release=threading.Event();observed=threading.Event();values=[]
+        def teardown():
+            with record.lock:
+                record.state=SessionState.CLOSED;closing.set();release.wait(2)
+        def observer():
+            values.append(manager.state('synthetic'));observed.set()
+        owner=threading.Thread(target=teardown);owner.start();self.assertTrue(closing.wait(2))
+        reader=threading.Thread(target=observer);reader.start()
+        try:self.assertFalse(observed.wait(.05),'CLOSED leaked while teardown/accounting lock was held')
+        finally:release.set();owner.join(2);reader.join(2)
+        self.assertEqual(values,[SessionState.CLOSED])
 
 
 if __name__=='__main__':unittest.main()
