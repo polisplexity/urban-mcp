@@ -9,6 +9,7 @@ RUN mkdir /opt/sumo-mcp && tar -xzf /tmp/sumo-mcp.tar.gz -C /opt/sumo-mcp --stri
 ENV PYTHONPATH=/opt/urban-mcp:/opt/sumo-mcp/src PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 SUMO_HOME=/usr/local/lib/python3.12/site-packages/sumo MPLCONFIGDIR=/tmp/matplotlib PROJ_DATA=/usr/local/lib/python3.12/site-packages/sumo/data/proj PROJ_LIB=/usr/local/lib/python3.12/site-packages/sumo/data/proj
 COPY urban_mcp_sumo /opt/urban-mcp/urban_mcp_sumo
 COPY cases/two-city-sumo /opt/urban-mcp/cases/two-city-sumo
+COPY tools/audit_sumo_upstream.py /opt/urban-mcp/tools/audit_sumo_upstream.py
 USER 65532:65532
 WORKDIR /data
 ENTRYPOINT ["python","-m","urban_mcp_sumo"]

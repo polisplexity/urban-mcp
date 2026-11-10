@@ -1,0 +1,32 @@
+name: Two-city historical SUMO native and MCP
+on:
+  push:
+    paths: ['urban_mcp_sumo/**', 'adapters/sumo/**', 'cases/two-city-sumo/**', 'cases/bologna-sumo/**', 'cases/ingolstadt-sumo/**', 'tools/*sumo*', 'tools/client_config.py', 'tools/run_agent_check.py', 'compose.yaml', '.github/workflows/sumo.yml']
+  pull_request:
+    paths: ['urban_mcp_sumo/**', 'adapters/sumo/**', 'cases/two-city-sumo/**', 'cases/bologna-sumo/**', 'cases/ingolstadt-sumo/**', 'tools/*sumo*', 'tools/client_config.py', 'tools/run_agent_check.py', 'compose.yaml', '.github/workflows/sumo.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sumo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        city: [bologna, ingolstadt]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare non-root workspace
+        run: |
+          mkdir -p .urban-mcp/sumo
+          echo "URBAN_MCP_UID=$(id -u)" >> "$GITHUB_ENV"
+          echo "URBAN_MCP_GID=$(id -g)" >> "$GITHUB_ENV"
+      - run: docker compose --profile sumo build sumo
+      - run: docker compose --profile sumo run --rm sumo-harvest harvest --city ${{ matrix.city }} --mode snapshot
+      - name: Censoring, strict thresholds, ownership, protocol and snapshot regressions
+        run: docker compose --profile sumo run --rm --entrypoint python sumo -m unittest urban_mcp_sumo.test_contracts -v
+      - name: Isolated original-method audit, with synthetic native stubs
+        run: docker compose --profile sumo run --rm --entrypoint python sumo-mcp /opt/urban-mcp/tools/audit_sumo_upstream.py --output /data/evidence/upstream-audit.json
+      - name: Native XML oracle and all thirteen MCP operations/resources/prompt
+        run: docker compose --profile sumo run --rm sumo test --city ${{ matrix.city }}
