@@ -1,0 +1,176 @@
+{
+  "observed_at": "2026-11-10T16:02:07.272827+00:00",
+  "repository": "https://github.com/polisplexity/urban-mcp",
+  "integrated_main_commit": "3802103e7c50fdf78dbacad8efbb03986a3487e5",
+  "merge_order": [
+    {
+      "baseRefName": "main",
+      "headRefOid": "904952e53015b760fb9544d9864f96f3d9863c71",
+      "mergeCommit": {
+        "oid": "a14ee0468623c7c73a628ac0d90c408627ae8823"
+      },
+      "mergedAt": "2026-11-10T15:40:10Z",
+      "number": 1,
+      "state": "MERGED",
+      "title": "RFC: data-ready urban capabilities and reproducible municipal cases",
+      "url": "https://github.com/polisplexity/urban-mcp/pull/1"
+    },
+    {
+      "baseRefName": "main",
+      "headRefOid": "37d92f12b5cebd3e0ffd72bce93b34af06e083f6",
+      "mergeCommit": {
+        "oid": "0a9043d6b0f4f69c4155ad62495d68fcad90178f"
+      },
+      "mergedAt": "2026-11-10T15:42:27Z",
+      "number": 37,
+      "state": "MERGED",
+      "title": "Add Helsinki municipal inventory with data, Docker, MCP and two hosts",
+      "url": "https://github.com/polisplexity/urban-mcp/pull/37"
+    },
+    {
+      "baseRefName": "main",
+      "headRefOid": "d41d1ba9759908fd8b86ca2570701b51e409095e",
+      "mergeCommit": {
+        "oid": "310046b9bf078d481bd939e70a96651ca0d100fe"
+      },
+      "mergedAt": "2026-11-10T15:48:32Z",
+      "number": 38,
+      "state": "MERGED",
+      "title": "Add reproducible walking cases in Helsinki and Amsterdam",
+      "url": "https://github.com/polisplexity/urban-mcp/pull/38"
+    },
+    {
+      "baseRefName": "main",
+      "headRefOid": "9c08286b1267c730ea05eafe3978279c9691c531",
+      "mergeCommit": {
+        "oid": "3802103e7c50fdf78dbacad8efbb03986a3487e5"
+      },
+      "mergedAt": "2026-11-10T15:54:37Z",
+      "number": 40,
+      "state": "MERGED",
+      "title": "Expose exact threshold crossings and closed-link route evidence",
+      "url": "https://github.com/polisplexity/urban-mcp/pull/40"
+    }
+  ],
+  "review": {
+    "existing_review_submissions": 0,
+    "unresolved_review_threads_observed": 0,
+    "scope": "Dependency diffs, pinned inputs/licenses, Docker constraints, diagnostic joins and keyed route semantics, cache synchronization, regressions, evidence/host-claim separation and reproduction instructions.",
+    "blocking_findings": [],
+    "conflicts": "README only. Retained current public entry points during dependency integration, then replaced branch-only instructions with English main-based guides. No solver, runtime, snapshot or observed evidence conflict.",
+    "reviewed_diagnostic_head": "65c011b760a262d618f7ea01e1b7b74a7999006d",
+    "runtime_paths_identical_to_reviewed_head": [
+      "urban_mcp_walking",
+      "urban_mcp_case",
+      "adapters",
+      "compose.yaml",
+      "cases/two-city-walking/recipe.json",
+      "cases/two-city-walking/snapshot.lock.json",
+      "cases/helsinki-service-inventory/recipe.json",
+      "cases/helsinki-service-inventory/snapshot.lock.json"
+    ],
+    "historical_and_issue39_observed_evidence_unchanged": true,
+    "agent_runs_repeated_during_merge": false,
+    "agent_evidence": "cases/two-city-walking/evidence/issue-39/agents.json",
+    "limits": "Historical host observations retain their original task/source/answer identities; targeted JSON success does not remove broader Hermes prose qualifications. Catalog/SUMO readiness is unchanged."
+  },
+  "ci_on_integrated_main": [
+    {
+      "conclusion": "success",
+      "databaseId": 42849297144,
+      "event": "push",
+      "headSha": "3802103e7c50fdf78dbacad8efbb03986a3487e5",
+      "name": "Planning contracts and reference data",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42849297144",
+      "jobs": [
+        {
+          "name": "validate",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42849297144/job/129945208341"
+        }
+      ],
+      "public_log_count_checks": {
+        "repository_tests_32": true
+      },
+      "public_log_sha256": "b530f8557061f1c04b8fe2fe869a38cc88093d5168bd3f2b024a140ed321d831"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42849297104,
+      "event": "push",
+      "headSha": "3802103e7c50fdf78dbacad8efbb03986a3487e5",
+      "name": "Helsinki municipal native and MCP case",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42849297104",
+      "jobs": [
+        {
+          "name": "municipal",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42849297104/job/129945206231"
+        }
+      ],
+      "public_log_count_checks": {
+        "native_mcp_checks_72": true,
+        "tools_19": true,
+        "upstream_tests_69": true
+      },
+      "public_log_sha256": "b576044ff66c405b069b20a482eed9be81266d07baf47d294100457ac15cbc89"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42849297131,
+      "event": "push",
+      "headSha": "3802103e7c50fdf78dbacad8efbb03986a3487e5",
+      "name": "Two-city walking native and MCP",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42849297131",
+      "jobs": [
+        {
+          "name": "walking (helsinki)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42849297131/job/129945206419"
+        },
+        {
+          "name": "walking (amsterdam)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42849297131/job/129945206713"
+        }
+      ],
+      "public_log_count_checks": {
+        "helsinki_checks_84": true,
+        "amsterdam_checks_83": true,
+        "synthetic_tests_7": true
+      },
+      "public_log_sha256": "0a49d1b44a53b2a8a3a0f8b5f70262081bc6409ef6d9e9031012686e70d68498"
+    }
+  ],
+  "local_checks": {
+    "metadata": "passed: 229 tools, 34 sources, 48 profiles, 4 cases; metadata only",
+    "repository_tests": 32,
+    "pinned_reference_assets": 6,
+    "english_entrypoints_before_adding_this_receipt_link": 8,
+    "local_link_targets_before_adding_this_receipt_link": 63,
+    "bash_syntax_blocks": 16,
+    "diff_check": "passed"
+  },
+  "case_counts_confirmed_in_main_ci_logs": {
+    "inventory_tools": 19,
+    "inventory_native_mcp_checks": 72,
+    "inventory_original_server_regressions": 69,
+    "walking_tools": 15,
+    "helsinki_native_mcp_checks": 84,
+    "amsterdam_native_mcp_checks": 83,
+    "walking_synthetic_integrity_cache_regressions": 7
+  },
+  "source_hashes": {
+    "urban_mcp_walking/engine.py": "a2d4ddf61f6f1ca6ae547b33e6962386281a5412c9d308c831b964d81969153d",
+    "urban_mcp_walking/diagnostics.py": "ad3a3a462c2a69852c422c0dd44213a897d7dcb04402aa6f31d1c8d73d4e59cf",
+    "adapters/walking/runtime.lock.txt": "5a23839d0542debfe13b11e54ae2a493f0c288dcc4a679a2645fdbdfa09cbd4c"
+  },
+  "record_note": "This documentation receipt is committed after the checked integration. It records that exact source commit and does not rewrite prior observations or claim the receipt's own commit SHA was available before creation."
+}

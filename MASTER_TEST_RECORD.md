@@ -8,6 +8,18 @@ Use `main` for the combined implementation: RFC #1 â†’ Helsinki inventory #37 â†
 
 Integration checks repeat the deterministic suites. Existing Codex/Hermes observations remain bound to their original task, source and answer hashes; a merge or documentation translation is not a fresh LLM experiment. Historical research, tasks and observed transcripts retain their original language and bytes.
 
+### Main integration verified, 2026-11-10
+
+PRs [#1](https://github.com/polisplexity/urban-mcp/pull/1), [#37](https://github.com/polisplexity/urban-mcp/pull/37), [#38](https://github.com/polisplexity/urban-mcp/pull/38) and [#40](https://github.com/polisplexity/urban-mcp/pull/40) were reviewed and merged into `main` in that order. README conflicts were resolved during normal merges. The integrated source is [3802103](https://github.com/polisplexity/urban-mcp/commit/3802103e7c50fdf78dbacad8efbb03986a3487e5). Runtime modules, adapters, Compose, data recipes/locks and all published observations are byte-identical to the reviewed diagnostic head `65c011b`; English entry points now reproduce from `main`.
+
+| CI on the integrated main commit | Observed result |
+| --- | --- |
+| [Planning contracts and reference data](https://github.com/polisplexity/urban-mcp/actions/runs/42849297144) | Passed; 32 repository tests, metadata contracts, six pinned reference assets and Docker metadata preflight |
+| [Helsinki municipal native/MCP](https://github.com/polisplexity/urban-mcp/actions/runs/42849297104) | Passed; 19 tools / 72 checks plus 69 original GDAL-server regressions |
+| [Two-city walking native/MCP](https://github.com/polisplexity/urban-mcp/actions/runs/42849297131) | Passed; Helsinki 84 checks, Amsterdam 83, all 15 tools/resources/prompt and seven synthetic integrity/cache regressions |
+
+The [machine-readable integration receipt](docs/integration/2026-11-10-main.json) records merge times/commits, exact CI heads and jobs, count checks against public logs, source hashes and review scope. Local validation also passed; eight English entry points had 63 valid local targets and 16 Bash blocks checked before adding this receipt link. This documentation receipt follows the checked integration commit; the runtime and observed host evidence are unchanged.
+
 ## Current walking revision: explicit diagnostic evidence, issue #39
 
 The [v2 interface and reproduction guide](cases/two-city-walking/issue-39.md) documents the implemented correction. `walking_compare` now explicitly identifies every school's before/after distance, destination, threshold booleans, transition and closed-link membership. `walking_route(closed_links=...)` marks every original-graph path's exact closed keyed edges, avoiding flag and overlap. The solver, pinned OSM inputs, distance rules and all original baseline/closure CSV bytes remain unchanged.
@@ -24,7 +36,7 @@ The [v2 interface and reproduction guide](cases/two-city-walking/issue-39.md) do
 
 All four final workspaces restore their own public snapshots and reproduce native CSV/map/GraphML artifacts. The [v2 evidence dossier](cases/two-city-walking/evidence/issue-39/README.md) preserves full selected MCP responses, observed answers, process/task receipts and an answer-hash-bound prose review. Codex's observed briefs pass review. Hermes's targeted issue-39 facts pass, while additional prose remains qualified; this does not admit autonomous municipal recommendations. The earlier failed v1 answers and verdicts remain unchanged.
 
-The repository suite has 32 tests, including nine diagnostic regressions and versioned artifact/answer integrity. Seven Docker regressions separately cover snapshot integrity and a three-thread cold-cache load. The real MCP suite also performs three concurrent cold inspections under the existing 3 GB cap. An initial Codex attempt reached that cap because plain `lru_cache` allowed duplicate cold graph deserializations; reentrant synchronization fixes the observed failure. See [the failure record](cases/two-city-walking/evidence/issue-39/runtime-failure.json). [The corrected two-city CI run passed](https://github.com/polisplexity/urban-mcp/actions/runs/42834941975).
+The repository suite has 32 tests, including nine diagnostic regressions and versioned artifact/answer integrity. Seven Docker regressions separately cover snapshot integrity and a three-thread cold-cache load. The real MCP suite also performs three concurrent cold inspections under the existing 3 GB cap. An initial concurrent Codex attempt reached that cap; duplicate graph loads were inferred from plain `lru_cache` semantics. Reentrant synchronization prevents duplicate cold misses in the threaded regression, and the repeated real MCP/host checks complete under the same cap. See [the failure record](cases/two-city-walking/evidence/issue-39/runtime-failure.json). [The corrected pre-integration two-city CI run passed](https://github.com/polisplexity/urban-mcp/actions/runs/42834941975); integrated-main CI is listed above.
 
 ## Earlier baseline experiments, retained
 
