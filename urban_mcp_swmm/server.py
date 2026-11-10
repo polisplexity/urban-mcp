@@ -2,9 +2,17 @@
 import json
 import re
 import signal
+import inspect
+import functools
+import typing
+from typing import Annotated,Literal
+from pydantic import Field
 
 from pyswmm_mcp import server as upstream
 from mcp.server import MCPServer
+from mcp.server.mcpserver.exceptions import ToolError
+from pyswmm_mcp.errors import PyswmmMcpError
+from pyswmm_mcp.output_catalog import OUTPUT_ATTRIBUTES
 from . import data,engine
 
 mcp=MCPServer('urban_mcp_swmm',instructions='Start with swmm_status; harvest a named snapshot and prepare the city. Use baseline/capacity75 municipal runs for the 72-hour comparison, and the explicitly separate five-minute inspection model for interactive/control/hotstart tests. All IDs, paths, units and times must come from returned data. Original simulation_run performs a batch without municipal comparison binding; run_swmm_scenario adds that binding. Read complete comparison CSV pages until next_offset is null. Report network warnings/continuity, hourly regional rain, historic assets and all false admission flags. No field forecast or city-wide flood extent is admitted. Cleanup retention is disabled. Output inspection and interactive creation return counts/samples rather than unbounded ID arrays; retrieve all IDs using model_list_objects. Read resource families with read_swmm_resource. Interleave status between intentional failures for hosts with a failure circuit breaker.')
@@ -12,8 +20,29 @@ mcp=MCPServer('urban_mcp_swmm',instructions='Start with swmm_status; harvest a n
 ORIGINAL_TOOLS=['model_inspect','model_list_objects','simulation_run','output_inspect','simulation_create','simulation_start',
     'simulation_observe','simulation_step','simulation_stop','simulation_save_hotstart','simulation_close','output_query_series',
     'output_query_snapshot','run_summary','simulation_run_start','simulation_task_status','simulation_task_cancel','run_cleanup']
+def invoke_original(function,*args,**kwargs):
+    try:return function(*args,**kwargs)
+    except PyswmmMcpError as exc:raise ToolError(str(exc)) from exc
+
+
+def run_uris(run_id):
+    return {kind:f'pyswmm://runs/{run_id}/{kind}' for kind in ['summary','report','output']}
+
+
+def original_tool(function):
+    @functools.wraps(function)
+    def guarded(*args,**kwargs):
+        result=invoke_original(function,*args,**kwargs)
+        if function.__name__=='simulation_run':result={**result,'resource_uris':run_uris(result['run_id'])}
+        if function.__name__=='simulation_run_start':result={**result,'resource_uri':f"pyswmm://tasks/{result['task_id']}/status"}
+        return result
+    guarded.__signature__=inspect.signature(function,eval_str=True)
+    guarded.__annotations__=typing.get_type_hints(function,include_extras=True)
+    return guarded
+
+
 for name in ORIGINAL_TOOLS:
-    if name not in {'output_inspect','simulation_create'}:mcp.tool()(getattr(upstream,name))
+    if name not in {'output_inspect','simulation_create','output_query_series','output_query_snapshot'}:mcp.tool()(original_tool(getattr(upstream,name)))
 for uri,name,fn,mime in [
     ('pyswmm://models','model-list',upstream.models_resource,'application/json'),
     ('pyswmm://runtime/status','runtime-status',upstream.runtime_status_resource,'application/json'),
@@ -38,13 +67,41 @@ def compact(value):
 @mcp.tool()
 def output_inspect(output_path:str)->dict:
     """Original output inspection with bounded ID counts/samples; complete IDs via model_list_objects. Binary output remains on disk."""
-    return compact(upstream.output_inspect(output_path))
+    return compact(invoke_original(upstream.output_inspect,output_path))
 
 
 @mcp.tool()
 def simulation_create(input_path:str,hotstart_path:str|None=None)->dict:
     """Original process-isolated interactive create/hotstart with bounded manifest counts/samples. Use the separate inspection.inp for control experiments."""
-    return compact(upstream.simulation_create(input_path,hotstart_path))
+    result=compact(invoke_original(upstream.simulation_create,input_path,hotstart_path))
+    return {**result,'resource_uri':f"pyswmm://sessions/{result['session_id']}/status"}
+
+
+OutputAttribute=Literal[tuple(sorted({key for attributes in OUTPUT_ATTRIBUTES.values() for key in attributes}))]
+
+
+def validate_output_attributes(object_type,attributes):
+    allowed=OUTPUT_ATTRIBUTES.get(object_type,{})
+    if any(a not in allowed for a in attributes):
+        raise ToolError(f'Allowed {object_type} binary output attributes: {", ".join(allowed)}. Live flooding is called flooding_loss in binary output queries.')
+
+
+@mcp.tool()
+def output_query_series(output_path:str,object_type:Literal['node','link','subcatchment','system'],
+        object_id:Annotated[str,Field(min_length=1,max_length=128)],attribute:OutputAttribute,
+        start_time:str|None=None,end_time:str|None=None,max_points:Annotated[int,Field(ge=2,le=2000)]=500)->dict:
+    """Original bounded binary output query. Allowed fields are advertised by swmm_status and the schema. Node overflow rate is flooding_loss; flooding belongs to live observations. Copy a returned artifact output path exactly; system object ID is system. Points are sampled rates/depths, not cumulative overflow volume."""
+    validate_output_attributes(object_type,[attribute])
+    return invoke_original(upstream.output_query_series,output_path,object_type,object_id,attribute,start_time,end_time,max_points)
+
+
+@mcp.tool()
+def output_query_snapshot(output_path:str,object_type:Literal['node','link','subcatchment','system'],
+        object_ids:Annotated[list[str],Field(min_length=1,max_length=100)],
+        attributes:Annotated[list[OutputAttribute],Field(min_length=1,max_length=16)],target_time:str)->dict:
+    """Original bounded snapshot at/before a model-local report time. Use schema-advertised binary fields: node depth/head/flooding_loss (not live flooding), link flow, subcatchment rainfall, system outfall_flow. Full baseline outputs span 72 hours; inspection outputs only five minutes. Copy actual output paths and source IDs from results."""
+    validate_output_attributes(object_type,attributes)
+    return invoke_original(upstream.output_query_snapshot,output_path,object_type,object_ids,attributes,target_time)
 
 
 @mcp.tool()
@@ -77,7 +134,7 @@ def inspect_swmm_case(city:str)->dict:
     folder=engine.prepared(city);s=engine.sections((folder/'baseline.inp').read_text());q=json.loads((folder/'quality.json').read_text())
     return {'quality':q,'inspection_ids':{'node':q['target']['from_node'],'link':q['target']['conduit_id'],
         'outfall':s['OUTFALLS'][0][0],'subcatchment':s['SUBCATCHMENTS'][0][0],'raingage':s['RAINGAGES'][0][0]},
-        'input_paths':{n:city+'/'+n+'.inp' for n in ['baseline','capacity75','inspection']}}
+        'input_paths':{n:city+'/'+n+'.inp' for n in ['baseline','capacity75','inspection']},'quality_resource_uri':f'swmm://cities/{city}/quality'}
 
 
 @mcp.tool()
@@ -89,7 +146,7 @@ def run_swmm_scenario(city:str,scenario:str)->dict:
     if upstream.run_summary(result['run_id'])['completion_status']!='COMPLETED':raise ValueError('Native batch not complete')
     full=engine.bind_run(city,scenario,result)
     # Detailed transformations remain available in inspect_swmm_case and summary pages.
-    return {k:v for k,v in full.items() if k!='quality'}
+    return {**{k:v for k,v in full.items() if k!='quality'},'resource_uris':run_uris(result['run_id'])}
 
 
 @mcp.tool()
@@ -105,6 +162,8 @@ def read_swmm_artifact(run_id:str,name:str,offset:int=0,limit:int=8000)->dict:
 
 
 def original_resource(uri):
+    quality=re.fullmatch(r'swmm://cities/(odense|utrecht)/quality',uri)
+    if quality:return quality_resource(quality.group(1))
     if uri=='pyswmm://models':return upstream.models_resource()
     if uri=='pyswmm://runtime/status':return upstream.runtime_status_resource()
     m=re.fullmatch(r'pyswmm://(runs|sessions|tasks)/([A-Za-z0-9_-]{1,128})/(summary|status|report|output)',uri)
@@ -120,9 +179,12 @@ def original_resource(uri):
 
 @mcp.tool()
 def read_swmm_resource(uri:str,offset:int=0,limit:int=8000)->dict:
-    """Read actual original MCP resource functions through bounded text pages, including reports and binary-output metadata (not binary bytes)."""
+    """Page the seven original MCP resource families and swmm://cities/{city}/quality. Copy exact returned resource URIs. Reports are text; output resources are binary metadata, not binary bytes. Binary output metadata needs a free worker, so query before opening live sessions."""
     if type(offset)!=int or offset<0 or type(limit)!=int or not 1<=limit<=12000:raise ValueError('offset >=0; limit 1..12000')
-    value=original_resource(uri);text=value if isinstance(value,str) else json.dumps(value,sort_keys=True,allow_nan=False)
+    try:value=original_resource(uri)
+    except (ValueError,PyswmmMcpError) as exc:
+        raise ToolError(str(exc)+'. Copy an exact returned resource_uri/resource_uris value. Static URIs: pyswmm://models and pyswmm://runtime/status; municipal quality: swmm://cities/{city}/quality.') from exc
+    text=value if isinstance(value,str) else json.dumps(value,sort_keys=True,allow_nan=False)
     if offset>len(text):raise ValueError('Offset beyond resource')
     end=min(offset+limit,len(text))
     import hashlib

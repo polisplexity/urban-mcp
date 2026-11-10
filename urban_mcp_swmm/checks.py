@@ -77,6 +77,8 @@ async def run(city):
                     from .server import ORIGINAL_TOOLS
                     expected=set(ORIGINAL_TOOLS)|{'swmm_status','harvest_swmm_data','read_swmm_source','prepare_swmm_case','inspect_swmm_case','run_swmm_scenario','compare_swmm_runs','read_swmm_artifact','read_swmm_resource'}
                     check('27 actual advertised tools',{t.name for t in tools}==expected)
+                    schemas={t.name:t.input_schema for t in tools}
+                    check('binary vocabulary is an explicit enum','flooding_loss' in str(schemas['output_query_snapshot']) and "'flooding'" not in str(schemas['output_query_snapshot']))
                     async def call(tool,args=None,error=False):
                         raw=await client.call_tool(tool,args or {},read_timeout_seconds=360)
                         value=decode(raw) if not raw.is_error else [x.text for x in raw.content if x.type=='text']
@@ -182,6 +184,8 @@ async def run(city):
                     await call('model_inspect',{'input_path':'../outside.inp'},True)
                     await call('swmm_status')
                     await call('output_query_series',{'output_path':out,'object_type':'node','object_id':'MISSING','attribute':'depth'},True)
+                    await call('swmm_status')
+                    await call('output_query_snapshot',{'output_path':out,'object_type':'node','object_ids':[node],'attributes':['flooding'],'target_time':prepared['event']['start_local'][:10]+'T01:00:00'},True)
                     await call('swmm_status')
                     await call('simulation_step',{'session_id':sid,'advance_seconds':30},True)
                     await call('swmm_status')

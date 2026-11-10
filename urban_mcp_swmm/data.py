@@ -27,13 +27,18 @@ def token(value):
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}',value):raise ValueError('Use a simple identifier of at most 64 characters')
     return value
 def status():
+    from pyswmm_mcp.output_catalog import OUTPUT_ATTRIBUTES
     return {'capability':'historical-drainage-capacity','cities':list(recipe()['cities']),
         'upstream_mcp':'foundanotusedname/pyswmm-mcp@a4db37b45d3b30dcfbd80fc0162a8238e727a80f',
         'native':'EPA SWMM 5.2.4 / PySWMM 2.2.0 / swmm-toolkit 0.17.0',
         'framework':'official Python MCP SDK 2.3.0, original MCPServer',
         'scenarios':['baseline','capacity75'],'forecast_admitted':False,'calibration_revalidated':False,
         'product_qualified':False,'qualification':'Independent person and third city required.',
-        'method':recipe()['method'],'available_sources':[c for c in recipe()['cities'] if (root()/'sources'/c/'manifest.json').exists()]}
+        'method':recipe()['method'],'available_sources':[c for c in recipe()['cities'] if (root()/'sources'/c/'manifest.json').exists()],
+        'output_attributes':{kind:list(attributes) for kind,attributes in OUTPUT_ATTRIBUTES.items()},
+        'vocabulary_note':'Live node observation uses flooding; binary output queries use flooding_loss. Do not mix the vocabularies.',
+        'worker_budget':2,'worker_budget_note':'Finish binary output/report-resource checks before opening interactive sessions. Each open session occupies one worker; binary inspection/query needs another. Close saved/hotstart sessions after checking them.',
+        'resource_uris':{'models':'pyswmm://models','runtime_status':'pyswmm://runtime/status'}}
 
 
 def fetch(url,requests,headers=None,max_bytes=12_000_000):

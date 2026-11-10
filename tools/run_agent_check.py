@@ -44,7 +44,7 @@ def main():
     out=ROOT/".urban-mcp/agent-evidence"/(args.host+"-"+args.label)
     out.mkdir(parents=True,exist_ok=False)
     work=out/"work";work.mkdir()
-    task=args.task or {"walking":"cases/two-city-walking/agent-task.md","inventory":"cases/helsinki-service-inventory/agent-task.md","vegetation":"cases/two-city-vegetation/agent-task-v2.md","sumo":"cases/two-city-sumo/agent-task.md","swmm":"cases/two-city-swmm/agent-task-v2.md"}[args.capability]
+    task=args.task or {"walking":"cases/two-city-walking/agent-task.md","inventory":"cases/helsinki-service-inventory/agent-task.md","vegetation":"cases/two-city-vegetation/agent-task-v2.md","sumo":"cases/two-city-sumo/agent-task.md","swmm":"cases/two-city-swmm/agent-task-v3.md"}[args.capability]
     task_path=(ROOT/task).resolve()
     if not task_path.is_relative_to((ROOT/"cases").resolve()) or task_path.suffix!=".md":
         raise ValueError("Use a public Markdown task inside cases/")
