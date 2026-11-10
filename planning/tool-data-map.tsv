@@ -37,8 +37,8 @@ SpaceGroupUCL/depthmapX|roads|Proposed representative-case requirements only; op
 Project-OSRM/osrm-backend|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
 GIScience/openrouteservice|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
 valhalla/valhalla|roads|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
-eclipse-sumo/sumo|sumo|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
-XRDS76354/SUMO-MCP-Server|sumo|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+eclipse-sumo/sumo|sumo-historical-works|Bologna/Ingolstadt historical works experiment; exact sources and native/MCP/two-host evidence in cases/two-city-sumo. Only the declared replay/inspection/cohort operations are admitted; other engine/MCP functions still need independent bindings.
+XRDS76354/SUMO-MCP-Server|sumo-historical-works|Bologna/Ingolstadt historical works experiment; exact sources and native/MCP/two-host evidence in cases/two-city-sumo. Only the declared replay/inspection/cohort operations are admitted; other engine/MCP functions still need independent bindings.
 a-b-street/abstreet|sumo|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
 opentripplanner/OpenTripPlanner|transit|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
 conveyal/r5|transit|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.

@@ -1,0 +1,152 @@
+{
+  "city": "ingolstadt",
+  "run_id": "check-851266f4-native-works30",
+  "scenario": "works30",
+  "inspection": false,
+  "begin": 24300,
+  "end": 27000,
+  "seed": 37,
+  "input_manifest_sha256": "6dfdc367fdfc2f9167e5e44112ca1d9e5b976396cee773a4dc3336f1d1c16956",
+  "implementation_sha256": "16184b4f7a80dfa0bd9425424c621074f031799ffe74f572da7420214e85a6f8",
+  "config": "/data/results/ingolstadt/check-851266f4-native-works30/run.sumocfg",
+  "model_date": "2020-09-16 demand and hourly traffic-light programs",
+  "target_edge": {
+    "id": "54858973#0",
+    "name": "Theodor-Heuss-Straße",
+    "length_m": 118.79,
+    "published_cohort_routes": 320,
+    "lanes": [
+      {
+        "id": "54858973#0_2",
+        "original_speed_m_s": 13.89,
+        "works_speed_m_s": 8.333333333333334
+      },
+      {
+        "id": "54858973#0_3",
+        "original_speed_m_s": 13.89,
+        "works_speed_m_s": 8.333333333333334
+      },
+      {
+        "id": "54858973#0_4",
+        "original_speed_m_s": 13.89,
+        "works_speed_m_s": 8.333333333333334
+      }
+    ]
+  },
+  "scheduled_vehicles": 6492,
+  "all_scheduled_states": {
+    "arrived": 6481,
+    "unfinished": 11
+  },
+  "corridor_cohort_vehicles": 320,
+  "corridor_cohort_states": {
+    "arrived": 318,
+    "unfinished": 2,
+    "undeparted": 0,
+    "removed": 0,
+    "not_recorded": 0
+  },
+  "completed_cohort_means": {
+    "duration": 811.3176100628931,
+    "waitingTime": 154.93632075471697,
+    "timeLoss": 272.0619182389937,
+    "departDelay": 0.19025157232704404,
+    "scheduled_to_arrival_s": 811.5078616352203
+  },
+  "native_statistics": {
+    "vehicles": {
+      "loaded": "6492",
+      "inserted": "6492",
+      "running": "11",
+      "waiting": "0"
+    },
+    "teleports": {
+      "total": "20",
+      "jam": "0",
+      "yield": "18",
+      "wrongLane": "0"
+    },
+    "safety": {
+      "collisions": "2",
+      "emergencyStops": "227",
+      "emergencyBraking": "364"
+    },
+    "persons": {
+      "loaded": "0",
+      "running": "0",
+      "jammed": "0"
+    },
+    "personTeleports": {
+      "total": "0",
+      "abortWait": "0",
+      "wrongDest": "0"
+    },
+    "vehicleTripStatistics": {
+      "count": "6492",
+      "routeLength": "6053.24",
+      "speed": "10.00",
+      "duration": "637.72",
+      "waitingTime": "134.03",
+      "timeLoss": "223.93",
+      "departDelay": "0.17",
+      "departDelayWaiting": "0.00",
+      "totalTravelTime": "4140073.25",
+      "totalDepartDelay": "1072.61"
+    },
+    "pedestrianStatistics": {
+      "number": "0",
+      "routeLength": "0.00",
+      "duration": "0.00",
+      "timeLoss": "0.00"
+    },
+    "rideStatistics": {
+      "number": "0"
+    },
+    "transportStatistics": {
+      "number": "0"
+    }
+  },
+  "limits": [
+    "Published real-city models and source data are distinct from raw contemporaneous observations. These are historical scenario experiments, not current traffic forecasts or newly calibrated models.",
+    "Departures, routes, vehicle types and mandatory signal programs are preserved within explicit time slices. Empty-network initialization and fixed warm-up are declared; traffic predating the slice is absent.",
+    "The counterfactual changes only the selected edge lane speeds; it is hypothetical works, not an observed closure or a guaranteed safety/emission benefit.",
+    "Scheduled, departed, arrived, unfinished, undeparted, discarded and teleported vehicles must be accounted for. Paired completed-trip differences exclude censored trips and must report that denominator.",
+    "Results on different networks/cohorts cannot establish a city ranking. Raw detector validation availability and model uncertainty remain explicit.",
+    "Two original-team cities do not satisfy independent-person third-city final-product qualification.",
+    "Native teleports, collisions and legacy signal warnings are retained. Teleport-identified completed trips are excluded from paired comparison, and no forecast readiness is inferred from successful replay.",
+    "A full published road network is loaded with a bounded 06:45-07:10 departure slice; evaluated departures are 07:00-07:10 and the run ends at 07:30.",
+    "The publisher fitted demand to mobility matrices and induction-loop counts and hourly fixed-time programs to observed green times. Raw independent traffic observations are not included here; no fresh calibration or independent field validation is claimed.",
+    "Original pedestrian connectivity is unsuitable; this recipe uses the publisher motorized route file only."
+  ],
+  "runtime": {
+    "eclipse-sumo": "1.28.0",
+    "sumolib": "1.28.0",
+    "traci": "1.28.0",
+    "mcp": "1.25.0"
+  },
+  "artifacts": [
+    "summary.json",
+    "all-vehicles.csv",
+    "cohort.csv",
+    "tripinfo.xml",
+    "statistics.xml",
+    "simulation-summary.xml",
+    "fcd.xml.gz",
+    "report.md",
+    "map.png (after render)"
+  ],
+  "model_quality": {
+    "native_teleport_events": 20,
+    "native_collisions": 2,
+    "native_emergency_stops": 227,
+    "native_emergency_braking": 364,
+    "incompatible_signal_program_warning_count": 577,
+    "teleport_start_log_events": 20,
+    "corridor_cohort_teleport_warning_vehicles": 0,
+    "fresh_field_validation_available": false,
+    "calibration_revalidated": false,
+    "forecast_admitted": false,
+    "interpretation": "Native model events and legacy compatibility warnings require review; no current forecast, physical safety or calibrated intervention claim is admitted. Teleport-identified completed trips are excluded from paired comparison.",
+    "teleport_log_reconciles_native_events": true
+  }
+}

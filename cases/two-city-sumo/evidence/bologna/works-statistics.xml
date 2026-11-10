@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-11-10T20:56:48.269934+00:00 by Eclipse SUMO sumo 1.28.0
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/data/inputs/bologna/bologna/acosta/acosta_buslanes.net.xml"/>
+        <route-files value="/data/prepared/bologna/routes.xml"/>
+        <additional-files value="/data/results/bologna/check-b6a1a32c-native-works30/additional-0.xml,/data/results/bologna/check-b6a1a32c-native-works30/additional-1.xml,/data/results/bologna/check-b6a1a32c-native-works30/additional-2.xml,/data/results/bologna/check-b6a1a32c-native-works30/additional-3.xml,/data/results/bologna/check-b6a1a32c-native-works30/works.add.xml"/>
+    </input>
+
+    <output>
+        <fcd-output value="/data/results/bologna/check-b6a1a32c-native-works30/fcd.xml.gz"/>
+        <summary-output value="/data/results/bologna/check-b6a1a32c-native-works30/simulation-summary.xml"/>
+        <summary-output.period value="60"/>
+        <tripinfo-output value="/data/results/bologna/check-b6a1a32c-native-works30/tripinfo.xml"/>
+        <tripinfo-output.write-undeparted value="true"/>
+        <statistic-output value="/data/results/bologna/check-b6a1a32c-native-works30/statistics.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="4500"/>
+        <step-length value="1.0"/>
+    </time>
+
+    <report>
+        <log value="/data/results/bologna/check-b6a1a32c-native-works30/sumo.log"/>
+        <error-log value="/data/results/bologna/check-b6a1a32c-native-works30/sumo-errors.log"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <fcd_device>
+        <device.fcd.period value="10"/>
+    </fcd_device>
+
+    <random_number>
+        <seed value="37"/>
+    </random_number>
+
+</sumoConfiguration>
+-->
+
+<statistics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/statistic_file.xsd">
+    <performance clockBegin="1794344208.28" clockEnd="1794344218.33" clockDuration="10.05" traciDuration="1.74" realTimeFactor="447.63" vehicleUpdatesPerSecond="265239.23" personUpdatesPerSecond="0.00" begin="0.00" end="4500.00" duration="4500.00"/>
+    <vehicles loaded="8772" inserted="8483" running="131" waiting="289"/>
+    <teleports total="0" jam="0" yield="0" wrongLane="0"/>
+    <safety collisions="0" emergencyStops="0" emergencyBraking="0"/>
+    <persons loaded="0" running="0" jammed="0"/>
+    <personTeleports total="0" abortWait="0" wrongDest="0"/>
+    <vehicleTripStatistics count="8483" routeLength="1595.93" speed="5.92" duration="314.33" waitingTime="120.33" timeLoss="192.93" departDelay="133.49" departDelayWaiting="1287.82" totalTravelTime="2666450.00" totalDepartDelay="1504600.00"/>
+    <pedestrianStatistics number="0" routeLength="0.00" duration="0.00" timeLoss="0.00"/>
+    <rideStatistics number="0"/>
+    <transportStatistics number="0"/>
+</statistics>

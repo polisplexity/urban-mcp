@@ -1,0 +1,438 @@
+{
+  "city": "ingolstadt",
+  "quick_protocol_only": false,
+  "transport": "MCP SDK stdio subprocess",
+  "checks": [
+    {
+      "name": "source snapshots and mandatory signal files verified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every selected vehicle preserves original attributes and complete route/stop subtree",
+      "passed": true,
+      "detail": {
+        "vehicles": 6492
+      }
+    },
+    {
+      "name": "baseline: every trip state and metric matches native tripinfo/teleport log",
+      "passed": true,
+      "detail": {
+        "rows": 6492,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "baseline: all censored states retained in cohort denominator",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "baseline: teleport log reconciles native event counter and no forecast admitted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "works30: every trip state and metric matches native tripinfo/teleport log",
+      "passed": true,
+      "detail": {
+        "rows": 6492,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "works30: all censored states retained in cohort denominator",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "works30: teleport log reconciles native event counter and no forecast admitted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "full keyed comparison independently reconciles eligible/censored/teleport pairs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every strict threshold flag matches arrival-difference oracle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native config preserves seed, begin, end, step and publisher processing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "works limits only selected faster passenger lanes at declared absolute time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact scoped thirteen-tool discovery",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "get_sumo_info: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "sumo_status: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "harvest_sumo_data: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_sumo_source: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete paged manifest.json",
+      "passed": true,
+      "detail": {
+        "pages": 1,
+        "sha256": "6dfdc367fdfc2f9167e5e44112ca1d9e5b976396cee773a4dc3336f1d1c16956"
+      }
+    },
+    {
+      "name": "read_sumo_source: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete paged LICENSE.md",
+      "passed": true,
+      "detail": {
+        "pages": 1,
+        "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+      }
+    },
+    {
+      "name": "prepare_sumo_case: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "sumo_network_info: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "sumo_network_info: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact original edge geometry and lanes returned",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "resource and prompt discovery",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read resource sumo://case",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read resource sumo://ingolstadt/manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read resource sumo://ingolstadt/quality",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "render municipal prompt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prepare_sumo_case: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "run_sumo_scenario: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "run_sumo_scenario: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_sumo_source: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_sumo_artifact: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "control_simulation: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "control_simulation: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "control_simulation: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "absolute inspection time, not number of calls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nonempty live vehicle query",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "query_simulation_state: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "control_simulation: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "control_simulation: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "control_simulation: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "run_analysis: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original FCD sample count/mean matches independent gzip XML oracle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original MCP live IDs, five variables and per-step counters equal independent native TraCI",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "run_sumo_scenario: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "baseline: complete native/MCP summaries identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "baseline: native/MCP all-vehicles.csv byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "baseline: native/MCP cohort.csv byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "run_sumo_scenario: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "works30: complete native/MCP summaries identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "works30: native/MCP all-vehicles.csv byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "works30: native/MCP cohort.csv byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compare_sumo_runs: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete native/MCP comparison identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_sumo_artifact: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_sumo_artifact: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "complete paged comparison.csv",
+      "passed": true,
+      "detail": {
+        "pages": 2,
+        "sha256": "ce4b431e355128f709561d0567c1d90f288e4288618a845aaffcf498d7bb0f2e"
+      }
+    },
+    {
+      "name": "render_sumo_map: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native/MCP map bytes identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_sumo_artifact: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compare_sumo_runs: expected rejection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "control_simulation: protocol success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "MCP EOF reaps owned native inspection process",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "all thirteen advertised tool families executed",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "tools_exercised": [
+    "compare_sumo_runs",
+    "control_simulation",
+    "get_sumo_info",
+    "harvest_sumo_data",
+    "prepare_sumo_case",
+    "query_simulation_state",
+    "read_sumo_artifact",
+    "read_sumo_source",
+    "render_sumo_map",
+    "run_analysis",
+    "run_sumo_scenario",
+    "sumo_network_info",
+    "sumo_status"
+  ],
+  "failures": [],
+  "runs": {
+    "native-baseline": "check-851266f4-native-baseline",
+    "native-works30": "check-851266f4-native-works30",
+    "mcp-baseline": "check-851266f4-mcp-baseline",
+    "mcp-works30": "check-851266f4-mcp-works30"
+  },
+  "passed": true,
+  "runtime_source_commit": "a3f857c",
+  "source_sha256": {
+    "data.py": "54ac6da2430612772fb3c3a2ddb95f48a479b213280383f4ea95ef9e90540051",
+    "engine.py": "16184b4f7a80dfa0bd9425424c621074f031799ffe74f572da7420214e85a6f8",
+    "server.py": "014dc2afaaf2f40f17533c150f7b0b312b20d320ac79e25403bbfe7aa1b9f96c",
+    "compat.py": "05a096845c2c0695fe87d557fb69bff3ab424d6f78eda48910231470a6271d49",
+    "checks.py": "f2b2b0ef407c5c1d79382c7f9863f65bdb05a314fe3cce00c6c263a60fa074b8",
+    "__main__.py": "5a3f17ad67faa8e4f9574f529eb48cdc5dc84845fbcb7012e9b2c813f6aacca1"
+  },
+  "artifact_sha256": {
+    "baseline-summary.json": "5e27aa489dcf85b4b534bc3e3b2393f0e1e2d169fb5e0360367b0e949e49e6bf",
+    "baseline-cohort.csv": "dfc50337c2de4a55686681051726800a49b87931ab664fd29bebce0309249ffa",
+    "baseline-all-vehicles.csv": "fd1239bcfce5a5437e05b35b2a0729bf89a0653798d5acc716b9abce56e1010b",
+    "baseline-statistics.xml": "d3dc3b81fe722374a4f4353dffd2909987ed4ccb0a4722266fcd891595816bf7",
+    "baseline-simulation-summary.xml": "3f801409694352ebe0deb2b054cc0dd103f14e8bf8f882465c9030c06eabaf19",
+    "baseline-sumo-errors.log": "ffaeac7057b66102fa055e0f3db7b5c2adef21cdcc5be9a5a5dc41c27d5054c2",
+    "works-summary.json": "18a3b0b4009b54a8e9b8182f96c0d66d67b0464822a0ff64e14aaad939a44c97",
+    "works-cohort.csv": "e5269488b1f96929d92a228330a8d7d677806ed6a49af91749ff206e0bbad58c",
+    "works-all-vehicles.csv": "46a30d3f9168401aee179fd35f0448d78e96168f307b89c32d863c45578bbee6",
+    "works-statistics.xml": "cbf5c6f9334da876e814b5af7251963d9383428c34a95b935f51842ac91cb437",
+    "works-simulation-summary.xml": "825c680123d958693d0547527851299aaf2a1c22418daa50db5df9d2ea3c0252",
+    "works-sumo-errors.log": "5d0dd988a2feb5a73ba24e80f6a85ebe1a6dd0cc2fb924e3454df1a162458e70",
+    "comparison.csv": "ce4b431e355128f709561d0567c1d90f288e4288618a845aaffcf498d7bb0f2e",
+    "comparison.json": "5f16deab566311404e958b857c0d532356e32c9d644b306aede8d9e17bd3e3aa",
+    "map.png": "bca104019f18f6f8f1957f9e429de313edf160d09668c76c3a6d5920c1fd5a56"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "review_date": "2026-11-10",
+  "entries": [
+    {
+      "city": "bologna",
+      "host": "codex",
+      "answer_sha256": "c0663e98c70d98d306f4c3e14d87fa461381a81373f2c51b05388dfbd77436a3",
+      "trace_sha256": "2d7b8a75737c12ea123f4267b58edbf7350f897be67ab379a8810790ea99fc48",
+      "factual_status": "passed",
+      "length_constraint": {
+        "maximum_words": 600,
+        "observed_words": 519,
+        "count_method": "Whitespace-separated prose tokens after removing fenced JSON",
+        "passed": true
+      },
+      "status": "passed",
+      "findings": [],
+      "scope": "Manual factual review against complete public tool traces, native cohort/comparison/statistics, source recipe and compatibility probe. Numeric artifacts and final JSON have separate machine verdicts."
+    },
+    {
+      "city": "bologna",
+      "host": "hermes",
+      "answer_sha256": "ae4ac563065cfdd14b2308b6ee16c0335d216d6c3398c4b8d2b644d3eb130ca3",
+      "trace_sha256": "68637c84afca77f26ce968081a9db2035b6017d8ed53dfe8fbf62196654bf188",
+      "factual_status": "failed",
+      "length_constraint": {
+        "maximum_words": 600,
+        "observed_words": 776,
+        "count_method": "Whitespace-separated prose tokens after removing fenced JSON",
+        "passed": false
+      },
+      "status": "failed_facts_and_length",
+      "findings": [
+        {
+          "kind": "omitted_recovered_tool_error",
+          "finding": "The brief says no host/tool failure occurred, but the trace contains a rejected variables-array query before five successful variable queries.",
+          "correction": "Report the recovered argument error separately from successful native/transport results."
+        },
+        {
+          "kind": "unsupported_source_qualifier",
+          "finding": "The brief labels missing signal timing proprietary without source evidence for that qualifier. Published TLS programs are included.",
+          "correction": "Say independent raw calibration/validation inputs are unavailable; preserve the included original signal programs and avoid inventing their legal status."
+        }
+      ],
+      "scope": "Manual factual review against complete public tool traces, native cohort/comparison/statistics, source recipe and compatibility probe. Numeric artifacts and final JSON have separate machine verdicts."
+    },
+    {
+      "city": "ingolstadt",
+      "host": "codex",
+      "answer_sha256": "315982473c8e17dd83a553a807802f5a4942edf805705dfa5b288782118163f0",
+      "trace_sha256": "7cac6cb2e72c77dbcf14f1cd23b6ec7cad0de3b009b1722ac1c8436f4a005d6c",
+      "factual_status": "passed",
+      "length_constraint": {
+        "maximum_words": 600,
+        "observed_words": 517,
+        "count_method": "Whitespace-separated prose tokens after removing fenced JSON",
+        "passed": true
+      },
+      "status": "passed",
+      "findings": [],
+      "scope": "Manual factual review against complete public tool traces, native cohort/comparison/statistics, source recipe and compatibility probe. Numeric artifacts and final JSON have separate machine verdicts."
+    },
+    {
+      "city": "ingolstadt",
+      "host": "hermes",
+      "answer_sha256": "ab4cbf997818cd7b533ad796d9adad14c5bb0b6557e8bc65511f5bedd5640faa",
+      "trace_sha256": "2a06a7f95fd239efac201e51078048b065cc81273fe59d10adbf8c90a0552c90",
+      "factual_status": "failed",
+      "length_constraint": {
+        "maximum_words": 600,
+        "observed_words": 1112,
+        "count_method": "Whitespace-separated prose tokens after removing fenced JSON",
+        "passed": false
+      },
+      "status": "failed_facts_and_length",
+      "findings": [
+        {
+          "kind": "unsupported_mechanistic_attribution",
+          "finding": "The brief attributes faster pairs to secondary signal-timing interactions and the mean increase to corridor throughput without trajectory/mechanism-isolation evidence.",
+          "correction": "Report same-seed outcome differences with explicit denominators; planned route membership, congestion, stochastic rerouting and model events do not isolate a unique causal mechanism."
+        },
+        {
+          "kind": "mischaracterized_native_warnings",
+          "finding": "The brief attributes incompatible programs to legacy formatting against SUMO 1.28.0. The native warnings describe mutual signal conflicts, and the 1.19 probe also has 577 conflicts.",
+          "correction": "Treat actual signal/network compatibility as unresolved model quality requiring qualified repair and independent validation, not a format-only issue."
+        },
+        {
+          "kind": "ambiguous_exclusion_arithmetic",
+          "finding": "The text starts at 318 matched completions and then says two censored pairs plus one teleport pair are excluded to give 317.",
+          "correction": "Start with 320 scheduled pairs, exclude two censored to obtain 318 matched completions, then exclude one teleport-identified completed pair to obtain 317 eligible pairs."
+        },
+        {
+          "kind": "counter_interval",
+          "finding": "The brief calls loaded/departed counts counters at that instant after a 30-second absolute TraCI advance.",
+          "correction": "Counters belong to that TraCI advance, which can span multiple native time steps; they are not one 0.25-second instantaneous count or whole-run totals."
+        }
+      ],
+      "scope": "Manual factual review against complete public tool traces, native cohort/comparison/statistics, source recipe and compatibility probe. Numeric artifacts and final JSON have separate machine verdicts."
+    }
+  ],
+  "image_review": "Both committed native maps were visually inspected by the implementing reviewer: source network XY/corridor, explicit zero/censored state categories and attribution are legible. Host PNG receipts are not claimed as host visual inspection.",
+  "independent_person_review": false,
+  "limits": "The implementing reviewer is not an independent third-city operator. Preserve observed answers unchanged; corrections here are not rewritten successful agent outputs."
+}

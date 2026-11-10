@@ -11,8 +11,39 @@ The [required qualification rule](docs/product-qualification.md) separates devel
 | Walking access | Helsinki, Amsterdam | Pending; no independent operator/city/evidence accepted | Blocked |
 | Service inventory | Helsinki; second initial city pending | Pending | Blocked |
 | Historical vegetation | Helsinki, Amsterdam, original team | Pending; no independent person/city/evidence accepted | Blocked |
+| Historical SUMO works experiment | Bologna Acosta, Ingolstadt, original team | Pending; no independent person/city/evidence accepted | Blocked |
 
-The [qualification register](registry/product-qualification.json) records `product_qualified=false` for all three capabilities. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed. The destination final repository/release must be named in a later reviewed promotion change.
+[Issue #44](https://github.com/polisplexity/urban-mcp/issues/44) is the independent SUMO third-city task; [its checklist](docs/tasks/sumo-third-city.md) requires accepted public evidence. It does not replace the walking task in issue #41.
+
+The [qualification register](registry/product-qualification.json) records `product_qualified=false` for all four capabilities. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed. The destination final repository/release must be named in a later reviewed promotion change.
+
+## Historical SUMO: two-city development, PR #43
+
+Municipal purpose: examine a hypothetical 30 km/h corridor works limit with a complete, auditable trip denominator, and expose missing calibration/model-quality inputs before operational use. [Reproduction guide](cases/two-city-sumo/README.md), [findings/maps](cases/two-city-sumo/findings.md), [13-operation coverage](cases/two-city-sumo/functionality.md), [original-code audit](cases/two-city-sumo/upstream-audit.md). This work is proposed in [PR #43](https://github.com/polisplexity/urban-mcp/pull/43), separately from the integrated main history below.
+
+We harvested exact licensed original models in Bologna Acosta (DLR-TS, historical morning demand using November 2008 observations, EPL-2.0) and Ingolstadt (TUM-VT, 2020-09-16 modeled demand/WAUT, simulation Apache-2.0). The [data prerelease](https://github.com/polisplexity/urban-mcp/releases/tag/data-sumo-20261110) includes original assets, licenses and request/hash manifests. Neither OSM streets nor a source portal supplies calibrated demand automatically. These bundles are published real-city models, not current field observations or newly validated calibration.
+
+Both cities were also reharvested from the pinned publishers through the production CLI **and actual MCP** in fresh mounts. All 17 request/file sets match the frozen assets and prepared route/schedule bytes; new request timestamps remain distinct. [Live acquisition/preparation receipt](cases/two-city-sumo/evidence/live-mcp.json). This is additional data-interface evidence, not a new simulation or agent run.
+
+Original C++ SUMO/TraCI/sumolib **1.28.0** perform the numerical work. Four function families from pinned original `XRDS76354/SUMO-MCP-Server` are reused behind municipal guards; nine additions supply acquisition, binding, explicit scheduled-cohort comparison and complete output paging. Python keeps those original APIs together. The framework is the original project's **official Python MCP SDK FastMCP 1.25.0**, with Pydantic 2.12.5, not the third-party FastMCP package or a required LLM runtime. [Runtime/source receipt](cases/two-city-sumo/evidence/runtime.json), [license boundaries](cases/two-city-sumo/LICENSE.md).
+
+| Verified stage | Bologna Acosta | Ingolstadt | Why it matters |
+| --- | --- | --- | --- |
+| Source network / scheduled slice / corridor cohort | 178 edges / 8,772 / 1,348 | 27,754 edges / 6,492 / 320 | Actual published models/demand, explicit study scope and planned-route denominator |
+| Native/XML/TraCI/stdio checks | 80 passed | 73 passed | Every original vehicle subtree, native state/metric oracle, full numeric CSVs/maps, all 13 tools/resources/prompt and process cleanup |
+| Eligible completed pairs / censored / teleport-excluded completed pairs | 1,289 / 59 / 0 | 317 / 2 / 1 | Incomplete or artificially moved trips cannot become ordinary successful observations |
+| Mean paired scheduled-to-arrival change | +126.994569 s | +15.272082 s | Includes insertion delay; in-network changes are +101.621412 / +15.264196 s |
+| Strictly more than +30 s | 991 / 1,289 eligible | 74 / 317 eligible | Every ID/state/nullable flag is retained in full comparison CSV |
+| Native teleports / collisions / incompatible-program warnings, each scenario | 0 / 0 / 0 | 20 / 2 / 577 | Zero exit and protocol equality do not validate physical model quality |
+| Codex actual responses, complete CSV pages/artifact hashes/JSON | Passed, 48 calls | Passed, 44 calls | Fresh empty city/host workspaces; source-name recovery retained |
+| Hermes same computational checks | Passed after recovery, 46 calls | Passed after circuit recovery, 62 calls | Fresh isolated profiles, same agent-neutral MCP; failures remain public |
+| Broader prose | Codex passes; Hermes fails facts and length | Codex passes; Hermes fails facts and length | Machine-checked numeric JSON does not admit unsupported municipal conclusions |
+
+Ten synthetic regressions and seven isolated original-method/source probes pass separately. Original source review/probes show seed override, ignored new connections, misleading disconnected empty lists, AgentSUMO baseline dropping required additional files, and a legacy route-ID/edges mismatch. The complete alternative MCP servers are not claimed as executed. Source C++ trip semantics and TraCI stdout retry behavior drove explicit guards and regression coverage.
+
+The [native reproduction index](cases/two-city-sumo/evidence/reproduction.json), [four host receipts](cases/two-city-sumo/evidence/agents.json), [answer-hash-bound prose review](cases/two-city-sumo/evidence/narrative-review.json) and [development failures](cases/two-city-sumo/evidence/development-failures.json) separate success stages. Final hosts launched from `a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf`, with Codex CLI 0.167.0-alpha.3.2 and Hermes 0.18.2. Full returned comparison pages match native artifacts (eight pages Bologna, two Ingolstadt); public traces omit private reasoning/configuration/authentication. Later evidence/documentation commits do not create new model observations.
+
+Useful limitations remain explicit. A native 1.19 compatibility probe still has Ingolstadt's 577 signal conflicts, 19 teleports and one collision; downgrading is not demonstrated repair. Original seeded type distributions and rerouting are preserved. Stable departure/ID merging, bounded departure slices, empty initialization and warm-up/cool-down are recorded transformations. Planned route membership is not observed traversal. FCD is sample-weighted, and TraCI counters cover an advance rather than full-run totals. Both `calibration_revalidated` and `forecast_admitted` remain false. Another municipality needs its own permitted demand/signals and independent validation. All current runs belong to the original team; final-product third-city qualification remains pending.
 
 ## Reproduce the current integrated source
 

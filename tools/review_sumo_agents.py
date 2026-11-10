@@ -97,9 +97,14 @@ def review(host,city,workspace,observations):
     compared=[c["result"] for c in passed if c["tool"]=="compare_sumo_runs"]
     check("complete actual comparison response",len(compared)==1 and semantic(compared[0])==semantic(comparison))
     check("actual map equals native",sha(workspace/"results"/city/"agent-works/map.png")==sha(out/"map.png"))
+    map_receipt={"name":"map.png","bytes":(out/"map.png").stat().st_size,"sha256":sha(out/"map.png")}
+    # Rendering itself returns the complete receipt requested by the task.
+    # An optional separate read must agree; it is not a second image viewing.
+    check("actual map receipt observed",any(c["tool"]=="render_sumo_map" and c["result"]==map_receipt for c in passed) and all(c["result"]==map_receipt for c in passed if c["tool"]=="read_sumo_artifact" and c["arguments"].get("name")=="map.png"))
     check("all five original variables queried",{c["arguments"].get("params",{}).get("variable") for c in passed if c["tool"]=="query_simulation_state" and c["arguments"].get("target")=="vehicle_variable"}=={"speed","position","acceleration","lane","route"})
     check("original connection lifecycle exercised",{c["arguments"].get("action") for c in passed if c["tool"]=="control_simulation"}=={"connect","step","disconnect"})
     cfg=load(CASE/"recipe.json")["cities"][city]
+    check("absolute live step",any(c["tool"]=="control_simulation" and c["arguments"].get("action")=="step" and c["arguments"].get("params",{}).get("step")==cfg["begin"]+30 and c["result"].get("absolute_simulation_time")==cfg["begin"]+30 for c in passed))
     required=[("read_sumo_artifact",{"city":city,"run_id":"agent-works","name":"comparison.csv"},workspace/"results"/city/"agent-works/comparison.csv"),
               ("read_sumo_artifact",{"city":city,"run_id":"agent-works","name":"comparison.json"},workspace/"results"/city/"agent-works/comparison.json")]
     for run_id in ["agent-baseline","agent-works"]:
@@ -112,6 +117,10 @@ def review(host,city,workspace,observations):
         except ValueError as exc:errors.append(str(exc))
     rejected=[c for c in calls if not success(c)]
     check("deliberate errors retained",len(rejected)>=4)
+    check("invalid city tested",any(c["arguments"].get("city") not in {None,"bologna","ingolstadt"} for c in rejected))
+    check("invalid scenario tested",any(c["tool"]=="run_sumo_scenario" and c["arguments"].get("scenario") not in {None,"baseline","works30"} for c in rejected))
+    check("artifact traversal tested",any(c["tool"]=="read_sumo_artifact" and ".." in c["arguments"].get("name","") for c in rejected))
+    check("disconnected query tested",any(c["tool"]=="query_simulation_state" and "No active inspection session" in str(c.get("result")) for c in rejected))
     # A later successful status call establishes recovery after each deliberate error.
     check("recovery after each rejected call",all(any(success(c) and c["tool"]=="sumo_status" for c in calls[i+1:]) for i,c in enumerate(calls) if not success(c)))
     checked_claims=claims(answer,expected_claims(baseline,works,comparison))

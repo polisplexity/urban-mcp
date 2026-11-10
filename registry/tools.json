@@ -3118,8 +3118,8 @@
       "kind": "mcp_adapter",
       "source_commit_observed": "6b62a25c1b13751d636309a03e4388594fcd7620",
       "research_date": "2026-11-10",
-      "data_profile": "sumo",
-      "data_note": "Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.",
+      "data_profile": "sumo-historical-works",
+      "data_note": "Bologna/Ingolstadt historical works experiment; exact sources and native/MCP/two-host evidence in cases/two-city-sumo. Only the declared replay/inspection/cohort operations are admitted; other engine/MCP functions still need independent bindings.",
       "scope_proposal": "comparar-mcp",
       "reuse": "MCP de redes, demanda, control y consultas SUMO.",
       "original_interface": "manage_network, control_simulation y query_simulation_state identificadas.",
@@ -4072,8 +4072,8 @@
       "kind": "solver_or_library",
       "source_commit_observed": "9a562c33fc452272ccd1fe5790632ae4e5ba7dc3",
       "research_date": "2026-11-10",
-      "data_profile": "sumo",
-      "data_note": "Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.",
+      "data_profile": "sumo-historical-works",
+      "data_note": "Bologna/Ingolstadt historical works experiment; exact sources and native/MCP/two-host evidence in cases/two-city-sumo. Only the declared replay/inspection/cohort operations are admitted; other engine/MCP functions still need independent bindings.",
       "scope_proposal": "base",
       "reuse": "Simulación de tráfico, construcción de redes y TraCI/libsumo.",
       "original_interface": "TraCI, libsumo y CLI; comparar MCP SUMO existente.",
@@ -4084,11 +4084,77 @@
       "license_detection": "EPL-2.0",
       "license_review": "open_source_license_detected",
       "execution_role": "candidate",
-      "input_binding_status": "not_implemented",
-      "engine_runtime_status": "not_verified",
-      "reference_case_status": "not_verified",
-      "real_city_status": "needs_input_review",
-      "ready_to_run": false
+      "input_binding_status": "verified",
+      "engine_runtime_status": "verified",
+      "reference_case_status": "verified",
+      "real_city_status": "verified_for_declared_scope",
+      "ready_to_run": true,
+      "admitted_scope": [
+        {
+          "case_id": "bologna-sumo",
+          "operations": [
+            "compare_sumo_runs",
+            "control_simulation",
+            "get_sumo_info",
+            "harvest_sumo_data",
+            "prepare_sumo_case",
+            "query_simulation_state",
+            "read_sumo_artifact",
+            "read_sumo_source",
+            "render_sumo_map",
+            "run_analysis",
+            "run_sumo_scenario",
+            "sumo_network_info",
+            "sumo_status"
+          ],
+          "evidence": {
+            "municipality": {
+              "country_code": "IT",
+              "geographic_id": "037006",
+              "name": "Bologna"
+            },
+            "question": "Under the published historical city models, what changes for trips scheduled through the selected corridor when its eligible passenger lanes are limited to 30 km/h for works?",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "cases/two-city-sumo/evidence/bologna/harvest.json",
+            "native_evidence": "cases/two-city-sumo/evidence/bologna/baseline-summary.json",
+            "mcp_evidence": "cases/two-city-sumo/evidence/bologna/native-mcp.json",
+            "reproduction_evidence": "cases/two-city-sumo/evidence/agents.json"
+          },
+          "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
+        },
+        {
+          "case_id": "ingolstadt-sumo",
+          "operations": [
+            "compare_sumo_runs",
+            "control_simulation",
+            "get_sumo_info",
+            "harvest_sumo_data",
+            "prepare_sumo_case",
+            "query_simulation_state",
+            "read_sumo_artifact",
+            "read_sumo_source",
+            "render_sumo_map",
+            "run_analysis",
+            "run_sumo_scenario",
+            "sumo_network_info",
+            "sumo_status"
+          ],
+          "evidence": {
+            "municipality": {
+              "country_code": "DE",
+              "geographic_id": "09161000",
+              "name": "Ingolstadt"
+            },
+            "question": "Under the published historical city models, what changes for trips scheduled through the selected corridor when its eligible passenger lanes are limited to 30 km/h for works?",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "cases/two-city-sumo/evidence/ingolstadt/harvest.json",
+            "native_evidence": "cases/two-city-sumo/evidence/ingolstadt/baseline-summary.json",
+            "mcp_evidence": "cases/two-city-sumo/evidence/ingolstadt/native-mcp.json",
+            "reproduction_evidence": "cases/two-city-sumo/evidence/agents.json"
+          },
+          "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
+        }
+      ]
     },
     {
       "id": "giscience--openrouteservice",

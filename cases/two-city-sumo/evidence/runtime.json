@@ -1,0 +1,65 @@
+{
+  "sumo_commit": "daf91b5578901d599ac9af53f49d26eeb9aefc3b",
+  "mcp_commit": "6b62a25c1b13751d636309a03e4388594fcd7620",
+  "mcp_archive_sha256": "1f3238d7013f40381ef0d9a21fffae3190da0150782829fb69e920502b48a44c",
+  "native_wheel": {
+    "filename": "eclipse_sumo-1.28.0-py3-none-manylinux_2_28_x86_64.whl",
+    "url": "https://files.pythonhosted.org/packages/0d/12/b37bcb407bdfe811e1a38179b4abc3142290e589104a33a8f88a3e661eb0/eclipse_sumo-1.28.0-py3-none-manylinux_2_28_x86_64.whl",
+    "size": 148526232,
+    "digests": {
+      "blake2b_256": "0d12b37bcb407bdfe811e1a38179b4abc3142290e589104a33a8f88a3e661eb0",
+      "md5": "6a20f0b74f8caa95827147b189320850",
+      "sha256": "ec7042794e5ab1d806b90a5983aeda4a978dc4224141b94c0ff3affeeb4ec977"
+    }
+  },
+  "inspected_native_source_files": [
+    {
+      "path": "tools/traci/connection.py",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/daf91b5578901d599ac9af53f49d26eeb9aefc3b/tools/traci/connection.py",
+      "bytes": 17094,
+      "sha256": "05820ab615a2ab18411e9722ebbc7056856f2de155383a8b58120d2b2feac572"
+    },
+    {
+      "path": "tools/traci/_simulation.py",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/daf91b5578901d599ac9af53f49d26eeb9aefc3b/tools/traci/_simulation.py",
+      "bytes": 27058,
+      "sha256": "8b7f97ced4dd6774271e8e0da270d687aa9a5ff438c8090023a941beb4e8bbec"
+    },
+    {
+      "path": "tools/traci/_vehicle.py",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/daf91b5578901d599ac9af53f49d26eeb9aefc3b/tools/traci/_vehicle.py",
+      "bytes": 72344,
+      "sha256": "ceaa400433c86d1a876e889eeac6ca66f80286a634fdbb376f4227b20bbefd1a"
+    },
+    {
+      "path": "src/microsim/devices/MSDevice_Tripinfo.cpp",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/daf91b5578901d599ac9af53f49d26eeb9aefc3b/src/microsim/devices/MSDevice_Tripinfo.cpp",
+      "bytes": 35305,
+      "sha256": "a067a066dba05d5b3125bd315009d914765901e0eda5de1b1df2f52d257fe270"
+    },
+    {
+      "path": "src/microsim/output/MSFCDExport.cpp",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/daf91b5578901d599ac9af53f49d26eeb9aefc3b/src/microsim/output/MSFCDExport.cpp",
+      "bytes": 17645,
+      "sha256": "a6f36068b77b446067e12a4f13b6dd4ab80654174eec9b7c0419a59857b5ef71"
+    },
+    {
+      "path": "src/traci-server/TraCIServerAPI_Simulation.cpp",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/daf91b5578901d599ac9af53f49d26eeb9aefc3b/src/traci-server/TraCIServerAPI_Simulation.cpp",
+      "bytes": 27742,
+      "sha256": "f99d8c32d2e8810782e83b6bd90b40f736eb94e0803bfa484250ef31d1aa54a0"
+    },
+    {
+      "path": "tools/traci/main.py",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/daf91b5578901d599ac9af53f49d26eeb9aefc3b/tools/traci/main.py",
+      "bytes": 10680,
+      "sha256": "433832a156b224a584d6237607b33bbfb3ee35e9be1188c7f3f3afdbb24d20fe"
+    }
+  ],
+  "runtime_source_commit": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf",
+  "python_lock_sha256": "1bfad0c63144e153bdffb793164282ff7abd0d88b3a99c68a7b233455cdb36d2",
+  "recipe_sha256": "17bff20f00b8afa22588ec05a5f22603bc308c3f0a2916f32e000e5b8b6f606a",
+  "codex_cli": "0.167.0-alpha.3.2",
+  "hermes": "0.18.2 (2026.7.7.2), upstream b61c033c",
+  "scope": "Exact tested backend source is a3f857c; later collection/docs/CI commits do not create fresh LLM observations. Whole base distribution apt packages are not content-hash locked."
+}

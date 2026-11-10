@@ -47,3 +47,16 @@ El primer caso ejecutable es [Helsinki: bibliotecas y salud](../cases/helsinki-s
 | [Investigar capacidad y datos: Servicios geoespaciales y catálogos](https://github.com/polisplexity/urban-mcp/issues/30) | M6 - Investigacion por familias |
 | [Investigar capacidad y datos: Simulación social y agentes](https://github.com/polisplexity/urban-mcp/issues/31) | M6 - Investigacion por familias |
 | [Investigar capacidad y datos: Visualización cartográfica y 3D](https://github.com/polisplexity/urban-mcp/issues/32) | M6 - Investigacion por familias |
+## SUMO development and next reproduction
+
+[PR #43](https://github.com/polisplexity/urban-mcp/pull/43) proposes the
+[Bologna/Ingolstadt historical works case](../cases/two-city-sumo/README.md).
+[Issue #44](https://github.com/polisplexity/urban-mcp/issues/44) and its
+[reproduction checklist](tasks/sumo-third-city.md) invite an independent person.
+Contributors can review native model warnings, preserve/repair source signal
+compatibility with independent field validation, or propose a distinct third
+city with exact rights-reviewed demand and signal inputs. An independent
+person's native/MCP/two-host evidence and accepted review are required for
+final-product qualification. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41)
+remains the separate walking reproduction task. Historical task titles below
+retain their original wording.

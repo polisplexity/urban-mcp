@@ -1,0 +1,247 @@
+{
+  "host": "codex",
+  "city": "bologna",
+  "computational_workflow_passed": true,
+  "errors": [],
+  "successful_tools": [
+    "compare_sumo_runs",
+    "control_simulation",
+    "get_sumo_info",
+    "harvest_sumo_data",
+    "prepare_sumo_case",
+    "query_simulation_state",
+    "read_sumo_artifact",
+    "read_sumo_source",
+    "render_sumo_map",
+    "run_analysis",
+    "run_sumo_scenario",
+    "sumo_network_info",
+    "sumo_status"
+  ],
+  "tool_calls": 48,
+  "failed_or_rejected_calls": 4,
+  "source_commit_at_launch": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf",
+  "task_sha256": "3a353a140938eb98b14796129c655c39697612525d54116cf8fbf05a536e217c",
+  "answer_sha256": "c0663e98c70d98d306f4c3e14d87fa461381a81373f2c51b05388dfbd77436a3",
+  "trace_sha256": "2d7b8a75737c12ea123f4267b58edbf7350f897be67ab379a8810790ea99fc48",
+  "process_sha256": "deda97579af52682cc1385d51bc5d06655ad355e51d26b9a0063376c18d85231",
+  "complete_observed_pages": [
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "bologna",
+        "run_id": "agent-works",
+        "name": "comparison.csv"
+      },
+      "sha256": "fbeaa87e64921df41953ab8bfd876119bcbfdb7ee310bbfe679d8e184e04bcc9",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 12000,
+          "next_offset": 12000,
+          "text_sha256": "ba2e94010977fe56ae42ab984aeedb289d326b79dc8adb0fd3bc5462e6c2626c"
+        },
+        {
+          "offset": 12000,
+          "characters": 12000,
+          "next_offset": 24000,
+          "text_sha256": "14f1b56e0b0fc90918e233f314e6b7da0919d301ec64df57216b77e47ac31ec5"
+        },
+        {
+          "offset": 24000,
+          "characters": 12000,
+          "next_offset": 36000,
+          "text_sha256": "3a85eb0ab41c13f06e89090d36758c6514d1110d796c21dbb9eb270e6588c1fa"
+        },
+        {
+          "offset": 36000,
+          "characters": 12000,
+          "next_offset": 48000,
+          "text_sha256": "8a9d4485c419b65a6264b3a35282dd8b0b935aa865ae00bc4aa59ef23ec5cdc4"
+        },
+        {
+          "offset": 48000,
+          "characters": 12000,
+          "next_offset": 60000,
+          "text_sha256": "2b93031d0f4e972ae02bbf5f6a0ad1dfb8830a5c67ba407cad84a910689a2cd3"
+        },
+        {
+          "offset": 60000,
+          "characters": 12000,
+          "next_offset": 72000,
+          "text_sha256": "df61971e58e7d58573b0be952e60e675d782cd0a61b3cfc9222a51589cbf09c0"
+        },
+        {
+          "offset": 72000,
+          "characters": 12000,
+          "next_offset": 84000,
+          "text_sha256": "8d9e7fe2aa12cd739035df09175d51f794dee26d718f8690c9d5c4da6d44a651"
+        },
+        {
+          "offset": 84000,
+          "characters": 8396,
+          "next_offset": null,
+          "text_sha256": "939701fecc4fb1b757b4260feb69bee365540c117277c87755fa4188aa169096"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "bologna",
+        "run_id": "agent-works",
+        "name": "comparison.json"
+      },
+      "sha256": "d144919e6cdabb90408a95e50ad50ffff33fff7faac0386b055527eb6f7730a3",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 2735,
+          "next_offset": null,
+          "text_sha256": "d144919e6cdabb90408a95e50ad50ffff33fff7faac0386b055527eb6f7730a3"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "bologna",
+        "run_id": "agent-baseline",
+        "name": "summary.json"
+      },
+      "sha256": "2fa6587206797ebe0d83f27b003f3da2726b235c6849cebf0cdd8d716a17c1bd",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 5533,
+          "next_offset": null,
+          "text_sha256": "2fa6587206797ebe0d83f27b003f3da2726b235c6849cebf0cdd8d716a17c1bd"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "bologna",
+        "run_id": "agent-works",
+        "name": "summary.json"
+      },
+      "sha256": "697d0d0a023665f3403e7ccf12997388d31c4d8169f7082276cae930bfa7f590",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 5529,
+          "next_offset": null,
+          "text_sha256": "697d0d0a023665f3403e7ccf12997388d31c4d8169f7082276cae930bfa7f590"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_source",
+      "arguments": {
+        "city": "bologna",
+        "name": "manifest.json"
+      },
+      "sha256": "222f6219f89468e1c1e3d775a0fbf767cbe5f3916278fef1642b10bb1e15ee3d",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 8252,
+          "next_offset": null,
+          "text_sha256": "222f6219f89468e1c1e3d775a0fbf767cbe5f3916278fef1642b10bb1e15ee3d"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_source",
+      "arguments": {
+        "city": "bologna",
+        "name": "bologna/acosta/run.sumocfg"
+      },
+      "sha256": "585c860cb458fd62544a475a7acea81d7cf374fe0b422eb708a6a0cd3f6d7b4d",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 749,
+          "next_offset": null,
+          "text_sha256": "585c860cb458fd62544a475a7acea81d7cf374fe0b422eb708a6a0cd3f6d7b4d"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_source",
+      "arguments": {
+        "city": "bologna",
+        "name": "LICENSE"
+      },
+      "sha256": "721c2da257578bace3332b14d8ea06643d7d26753e7ef25a837b4e904edc0bf5",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 12000,
+          "next_offset": 12000,
+          "text_sha256": "00c928e44985c7fabebc20238c0828e1d55f650d6725ab810323348f0ee4409e"
+        },
+        {
+          "offset": 12000,
+          "characters": 2199,
+          "next_offset": null,
+          "text_sha256": "bb50c05c03fd77f8d236b27b5491f6c86568cd3167c192a4f184306fefe79926"
+        }
+      ],
+      "all_pages_match": true
+    }
+  ],
+  "structured_claims": {
+    "passed": true,
+    "mismatched_fields": [],
+    "observed": {
+      "city": "bologna",
+      "target_edge_id": "204a[0]",
+      "target_lane_ids": [
+        "204a[0]_0",
+        "204a[0]_1",
+        "204a[0]_2"
+      ],
+      "scheduled_vehicles": 8772,
+      "scheduled_corridor_cohort": 1348,
+      "baseline_states": {
+        "arrived": 1330,
+        "unfinished": 18,
+        "undeparted": 0,
+        "removed": 0,
+        "not_recorded": 0
+      },
+      "works_states": {
+        "arrived": 1289,
+        "unfinished": 59,
+        "undeparted": 0,
+        "removed": 0,
+        "not_recorded": 0
+      },
+      "matched_completed_cohort": 1289,
+      "eligible_paired_comparison": 1289,
+      "excluded_censored_pairs": 59,
+      "excluded_teleport_identified_completed_pairs": 0,
+      "increased_over_30s": 991,
+      "mean_matched_scheduled_to_arrival_delta_s": 126.99456943366951,
+      "mean_matched_in_network_duration_delta_s": 101.62141194724593,
+      "mean_matched_insertion_delay_delta_s": 25.373157486423583,
+      "baseline_native_teleport_events": 0,
+      "works_native_teleport_events": 0,
+      "baseline_native_collisions": 0,
+      "works_native_collisions": 0,
+      "comparison_sha256": "fbeaa87e64921df41953ab8bfd876119bcbfdb7ee310bbfe679d8e184e04bcc9",
+      "calibration_revalidated": false,
+      "forecast_admitted": false,
+      "new_random_demand_generated": false
+    }
+  },
+  "prose_review": "Separate explicit hash-bound narrative-review.json; this script does not invent a prose verdict."
+}

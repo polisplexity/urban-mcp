@@ -2,7 +2,7 @@
 
 **Status: proposed requirements, not general operational availability.** Each tool has a profile. These describe a first representative case; every operation needs its own native binding and may use a different subset. Dependencies inherit the parent capability's inputs. GTFS is not mandatory for geometric validation, nor HVAC inputs for a daylight calculation. Historical research descriptions retain their original language.
 
-Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 3 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
+Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 4 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
 
 | Tool | Proposed profile | Status |
 |---|---|---|
@@ -124,7 +124,7 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 | [Show2Instruct/ifc-bonsai-mcp](#data-show2instruct--ifc-bonsai-mcp) | `bim` | candidate; binding pending |
 | [sparkgeo/geo-mcp-servers](#data-sparkgeo--geo-mcp-servers) | `stac` | candidate; binding pending |
 | [spkane/freecad-addon-robust-mcp-server](#data-spkane--freecad-addon-robust-mcp-server) | `cad` | candidate; binding pending |
-| [XRDS76354/SUMO-MCP-Server](#data-xrds76354--sumo-mcp-server) | `sumo` | candidate; binding pending |
+| [XRDS76354/SUMO-MCP-Server](#data-xrds76354--sumo-mcp-server) | `sumo-historical-works` | candidate; binding pending |
 | [Zhonghao1995/agentic-swmm-workflow](#data-zhonghao1995--agentic-swmm-workflow) | `swmm` | candidate; binding pending |
 | [3dcitydb/3dcitydb](#data-3dcitydb--3dcitydb) | `city-model` | candidate; binding pending |
 | [3dcitydb/citydb-tool](#data-3dcitydb--citydb-tool) | `city-model` | dependency; binding pending |
@@ -158,7 +158,7 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 | [AequilibraE/aequilibrae](#data-aequilibrae--aequilibrae) | `traffic-assignment` | candidate; binding pending |
 | [conveyal/analysis-backend](#data-conveyal--analysis-backend) | `transit` | candidate; binding pending |
 | [conveyal/r5](#data-conveyal--r5) | `transit` | dependency; binding pending |
-| [eclipse-sumo/sumo](#data-eclipse-sumo--sumo) | `sumo` | candidate; binding pending |
+| [eclipse-sumo/sumo](#data-eclipse-sumo--sumo) | `sumo-historical-works` | candidate; case-scoped admission |
 | [GIScience/openrouteservice](#data-giscience--openrouteservice) | `roads` | candidate; binding pending |
 | [ipea/accessibility](#data-ipea--accessibility) | `accessibility` | candidate; binding pending |
 | [ipea/r5r](#data-ipea--r5r) | `transit` | candidate; binding pending |
@@ -2537,17 +2537,17 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 ## XRDS76354/SUMO-MCP-Server
 
 - **Original interface:** manage_network, control_simulation y query_simulation_state identificadas.
-- **Profile scope:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Profile scope:** candidate. Bologna/Ingolstadt historical works experiment; exact sources and native/MCP/two-host evidence in cases/two-city-sumo. Only the declared replay/inspection/cohort operations are admitted; other engine/MCP functions still need independent bindings.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
-| network | SUMO net.xml | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (configuration required); Original tool examples/tests (configuration required) | netconvert and junction assumptions recorded |
-| demand | SUMO routes/trips/OD | Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | observed or synthetic status explicit |
-| config | sumocfg | Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | seed, time and vehicle types fixed |
+| network | original SUMO net.xml or net.xml.gz | [DLR Bologna Acosta published SUMO model](https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta); [TUM-VT published Ingolstadt SUMO simulation](https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required) | pin rights, publisher revision, complete network, lane permissions, speeds and source metre coordinates |
+| demand | original explicit SUMO vehicle routes and types | [DLR Bologna Acosta published SUMO model](https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta); [TUM-VT published Ingolstadt SUMO simulation](https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required) | model date, modeled-versus-observed demand and exact departure slice declared |
+| controls | mandatory additional XML and original sumocfg | [DLR Bologna Acosta published SUMO model](https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta); [TUM-VT published Ingolstadt SUMO simulation](https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required) | preserve signal programs, stops, definitions, additional-file order, native time step, processing and seed |
 
-- **Preparation required:** Convert network with SUMO tools, prepare demand separately, resolve relative file references and preserve assumptions.
-- **Validation required:** Network-route consistency, edge IDs, units, time coverage, vehicle counts and configuration.
-- **Real-city blocker:** OSM cannot supply calibrated OD demand or signal timings everywhere.
+- **Preparation required:** Preserve native SUMO solver and original MCP operations. Stream selected original vehicles with all subtrees, stable depart/ID merge, bind source hashes, select eligible most-used planned corridor and add only the declared 30 km/h VSS.
+- **Validation required:** Independent original-vehicle XML and native tripinfo/log oracle, full scheduled/censored rows, insertion delay, explicit teleport exclusions, same-seed native/MCP CSV equality and complete two-host pages/artifacts/claims plus separate prose review.
+- **Real-city blocker:** Published demand and zero process exit do not establish current traffic, field validation, causality, safety, emissions or inherited calibration. New cities need permitted demand and signals, not just mapped streets.
 - **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
 - **Project critique:** No vender sus comandos de optimización como mejora garantizada; revisar estado compartido.
 - **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.
@@ -3201,18 +3201,20 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 ## eclipse-sumo/sumo
 
 - **Original interface:** TraCI, libsumo y CLI; comparar MCP SUMO existente.
-- **Profile scope:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Profile scope:** candidate. Bologna/Ingolstadt historical works experiment; exact sources and native/MCP/two-host evidence in cases/two-city-sumo. Only the declared replay/inspection/cohort operations are admitted; other engine/MCP functions still need independent bindings.
+- **Scoped executable case:** [bologna-sumo](../../cases/bologna-sumo/README.md); operations: compare_sumo_runs, control_simulation, get_sumo_info, harvest_sumo_data, prepare_sumo_case, query_simulation_state, read_sumo_artifact, read_sumo_source, render_sumo_map, run_analysis, run_sumo_scenario, sumo_network_info, sumo_status. The generic profile below remains a proposal for other operations.
+- **Scoped executable case:** [ingolstadt-sumo](../../cases/ingolstadt-sumo/README.md); operations: compare_sumo_runs, control_simulation, get_sumo_info, harvest_sumo_data, prepare_sumo_case, query_simulation_state, read_sumo_artifact, read_sumo_source, render_sumo_map, run_analysis, run_sumo_scenario, sumo_network_info, sumo_status. The generic profile below remains a proposal for other operations.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
-| network | SUMO net.xml | [OpenStreetMap / Geofabrik](https://download.geofabrik.de/); Municipality, utility, transit agency or project owner (configuration required); Original tool examples/tests (configuration required) | netconvert and junction assumptions recorded |
-| demand | SUMO routes/trips/OD | Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | observed or synthetic status explicit |
-| config | sumocfg | Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | seed, time and vehicle types fixed |
+| network | original SUMO net.xml or net.xml.gz | [DLR Bologna Acosta published SUMO model](https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta); [TUM-VT published Ingolstadt SUMO simulation](https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required) | pin rights, publisher revision, complete network, lane permissions, speeds and source metre coordinates |
+| demand | original explicit SUMO vehicle routes and types | [DLR Bologna Acosta published SUMO model](https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta); [TUM-VT published Ingolstadt SUMO simulation](https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required) | model date, modeled-versus-observed demand and exact departure slice declared |
+| controls | mandatory additional XML and original sumocfg | [DLR Bologna Acosta published SUMO model](https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta); [TUM-VT published Ingolstadt SUMO simulation](https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required) | preserve signal programs, stops, definitions, additional-file order, native time step, processing and seed |
 
-- **Preparation required:** Convert network with SUMO tools, prepare demand separately, resolve relative file references and preserve assumptions.
-- **Validation required:** Network-route consistency, edge IDs, units, time coverage, vehicle counts and configuration.
-- **Real-city blocker:** OSM cannot supply calibrated OD demand or signal timings everywhere.
-- **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
+- **Preparation required:** Preserve native SUMO solver and original MCP operations. Stream selected original vehicles with all subtrees, stable depart/ID merge, bind source hashes, select eligible most-used planned corridor and add only the declared 30 km/h VSS.
+- **Validation required:** Independent original-vehicle XML and native tripinfo/log oracle, full scheduled/censored rows, insertion delay, explicit teleport exclusions, same-seed native/MCP CSV equality and complete two-host pages/artifacts/claims plus separate prose review.
+- **Real-city blocker:** Published demand and zero process exit do not establish current traffic, field validation, causality, safety, emissions or inherited calibration. New cities need permitted demand and signals, not just mapped streets.
+- **Native binding:** verified only for the linked case and operations; the generic profile does not admit additional operations.
 - **Project critique:** No reimplementar control ni optimización existente; red sin demanda no basta.
 - **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.
 

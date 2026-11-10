@@ -1,0 +1,62 @@
+{
+  "city": "ingolstadt",
+  "baseline_id": "check-851266f4-native-baseline",
+  "scenario_id": "check-851266f4-native-works30",
+  "target_edge_id": "54858973#0",
+  "scheduled_corridor_cohort": 320,
+  "baseline_states": {
+    "arrived": 318,
+    "unfinished": 2,
+    "undeparted": 0,
+    "removed": 0,
+    "not_recorded": 0
+  },
+  "works_states": {
+    "arrived": 318,
+    "unfinished": 2,
+    "undeparted": 0,
+    "removed": 0,
+    "not_recorded": 0
+  },
+  "matched_completed_cohort": 318,
+  "eligible_paired_comparison": 317,
+  "excluded_censored_pairs": 2,
+  "excluded_teleport_identified_completed_pairs": 1,
+  "excluded_from_paired_comparison": 3,
+  "mean_matched_scheduled_to_arrival_delta_s": 15.272082018927446,
+  "mean_matched_in_network_duration_delta_s": 15.264195583596214,
+  "mean_matched_insertion_delay_delta_s": 0.007886435331230283,
+  "increased_over_30s": 74,
+  "decreased_over_30s": 24,
+  "baseline_model_quality": {
+    "native_teleport_events": 20,
+    "native_collisions": 2,
+    "native_emergency_stops": 222,
+    "native_emergency_braking": 341,
+    "incompatible_signal_program_warning_count": 577,
+    "teleport_start_log_events": 20,
+    "corridor_cohort_teleport_warning_vehicles": 1,
+    "fresh_field_validation_available": false,
+    "calibration_revalidated": false,
+    "forecast_admitted": false,
+    "interpretation": "Native model events and legacy compatibility warnings require review; no current forecast, physical safety or calibrated intervention claim is admitted. Teleport-identified completed trips are excluded from paired comparison.",
+    "teleport_log_reconciles_native_events": true
+  },
+  "works_model_quality": {
+    "native_teleport_events": 20,
+    "native_collisions": 2,
+    "native_emergency_stops": 227,
+    "native_emergency_braking": 364,
+    "incompatible_signal_program_warning_count": 577,
+    "teleport_start_log_events": 20,
+    "corridor_cohort_teleport_warning_vehicles": 0,
+    "fresh_field_validation_available": false,
+    "calibration_revalidated": false,
+    "forecast_admitted": false,
+    "interpretation": "Native model events and legacy compatibility warnings require review; no current forecast, physical safety or calibrated intervention claim is admitted. Teleport-identified completed trips are excluded from paired comparison.",
+    "teleport_log_reconciles_native_events": true
+  },
+  "comparison_artifact": "comparison.csv",
+  "comparison_sha256": "ce4b431e355128f709561d0567c1d90f288e4288618a845aaffcf498d7bb0f2e",
+  "limits": "Paired scheduled-to-arrival duration includes insertion delay, unlike in-network duration. Exclude censored or teleport-identified pairs explicitly. Historical same-seed scenario, not an observed causal effect, current calibrated forecast, safety benefit or city ranking."
+}

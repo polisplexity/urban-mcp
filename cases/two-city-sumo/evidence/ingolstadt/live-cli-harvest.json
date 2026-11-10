@@ -1,0 +1,91 @@
+{
+  "city": "ingolstadt",
+  "case": "two-city-sumo",
+  "recipe_sha256": "17bff20f00b8afa22588ec05a5f22603bc308c3f0a2916f32e000e5b8b6f606a",
+  "publisher_repository": "TUM-VT/sumo_ingolstadt",
+  "publisher_commit": "e0a95deebe200ff81b6705044d66310d6266d42b",
+  "acquired_at": "2026-11-10T21:19:31.107628+00:00",
+  "license": "Apache-2.0",
+  "attribution": "AUDI AG and Chair of Traffic Engineering and Control, Technical University of Munich; SAVe:, SAVeNoW and KIVI authors",
+  "files": {
+    "LICENSE.md": {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/LICENSE.md",
+      "bytes": 10175,
+      "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+    },
+    "README.md": {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/README.md",
+      "bytes": 4838,
+      "sha256": "8b1adfee7c8fe4fb66d175909b57a79a319f54eab34d9f026d3dece9809bef11"
+    },
+    "docs/simulation_setup.md": {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/docs/simulation_setup.md",
+      "bytes": 3061,
+      "sha256": "d01d38f180b0fa5dbc1b186381551e0f0ae83f6b205f2fac90c4098669fdc58a"
+    },
+    "simulation/24h_sim.sumocfg": {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/24h_sim.sumocfg",
+      "bytes": 668,
+      "sha256": "5964b17e93607b3d93778faac132d438202396249c8ec2c8406a489c9294e3dc"
+    },
+    "simulation/ingolstadt_24h.net.xml.gz": {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/ingolstadt_24h.net.xml.gz",
+      "bytes": 10496318,
+      "sha256": "101412168ec627baa3a56d38226d8a850fee702b90437fb29546d6aadf5a86e7"
+    },
+    "simulation/motorized_routes_2020-09-16_24h.rou.xml.gz": {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/motorized_routes_2020-09-16_24h.rou.xml.gz",
+      "bytes": 35250242,
+      "sha256": "e2e4fb68fcd326884416612d54d882fdd9e9dd24f84272c288ba1f82e5ad360b"
+    },
+    "simulation/tlLogics_WAUT_2020-09-16_24h.add.xml": {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/tlLogics_WAUT_2020-09-16_24h.add.xml",
+      "bytes": 105690,
+      "sha256": "deac475b2b17b5471c31fe5b91b39a434065b42bc929f68b764176d5319811f3"
+    }
+  },
+  "requests": [
+    {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/LICENSE.md",
+      "retrieved_at": "2026-11-10T21:19:24.779480+00:00",
+      "status": 200,
+      "etag": "\"a8b3bdb9daec7aa969f465dc8df451a26daa2c2c53939d16c63a7f7123628c5a\""
+    },
+    {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/README.md",
+      "retrieved_at": "2026-11-10T21:19:25.112262+00:00",
+      "status": 200,
+      "etag": "\"dfe4e9064f60fbfa0f65d06ea9716d495f2f3c8865143f9fe537af63dd82ae00\""
+    },
+    {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/docs/simulation_setup.md",
+      "retrieved_at": "2026-11-10T21:19:25.487173+00:00",
+      "status": 200,
+      "etag": "\"c52aabe729efcb4b4b32268212a64a401ddc15936ef702ea69836dfe8bcbed6d\""
+    },
+    {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/24h_sim.sumocfg",
+      "retrieved_at": "2026-11-10T21:19:25.742436+00:00",
+      "status": 200,
+      "etag": "\"a59a92c55076ae2887cb45b6cabe1f01555415e6ba1c8c8932e1195aa2617e03\""
+    },
+    {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/ingolstadt_24h.net.xml.gz",
+      "retrieved_at": "2026-11-10T21:19:26.030242+00:00",
+      "status": 200,
+      "etag": "\"5264a8e1c45ae2aae59b581af9bc1e6f25f9d3a495715107c94d65e87e7def9d\""
+    },
+    {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/motorized_routes_2020-09-16_24h.rou.xml.gz",
+      "retrieved_at": "2026-11-10T21:19:27.484325+00:00",
+      "status": 200,
+      "etag": "\"05d007e2ec19999c290e5892409208c942e16d7c8d0155fd09834a3343c97b03\""
+    },
+    {
+      "url": "https://raw.githubusercontent.com/TUM-VT/sumo_ingolstadt/e0a95deebe200ff81b6705044d66310d6266d42b/simulation/tlLogics_WAUT_2020-09-16_24h.add.xml",
+      "retrieved_at": "2026-11-10T21:19:30.750160+00:00",
+      "status": 200,
+      "etag": "\"4a9ef58e3f901374921b1e486661c6196cdb8e9a454dc03493f5c67264f0dbcf\""
+    }
+  ]
+}

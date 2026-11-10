@@ -1,0 +1,12 @@
+{
+  "host": "hermes",
+  "city": "ingolstadt",
+  "capability": "sumo",
+  "exit_code": 0,
+  "started_at": "2026-11-10T20:56:54.263280+00:00",
+  "elapsed_seconds": 793.733,
+  "submitted_prompt_sha256": "9e94c90035b7042346c064881f89b488105025ef7fe86afa2bfc472d00d7b7c2",
+  "task_path": "cases/two-city-sumo/agent-task.md",
+  "task_template_sha256": "3a353a140938eb98b14796129c655c39697612525d54116cf8fbf05a536e217c",
+  "code_commit": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf"
+}

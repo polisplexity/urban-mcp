@@ -1,0 +1,12 @@
+{
+  "host": "hermes",
+  "city": "bologna",
+  "capability": "sumo",
+  "exit_code": 0,
+  "started_at": "2026-11-10T20:56:54.260328+00:00",
+  "elapsed_seconds": 243.727,
+  "submitted_prompt_sha256": "8c850e855be1f2ce7f3806c7a4ed882f9e8fedd6c0180efb97f151587c12b1a4",
+  "task_path": "cases/two-city-sumo/agent-task.md",
+  "task_template_sha256": "3a353a140938eb98b14796129c655c39697612525d54116cf8fbf05a536e217c",
+  "code_commit": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf"
+}

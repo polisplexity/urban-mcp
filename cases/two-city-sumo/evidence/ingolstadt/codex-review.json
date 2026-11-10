@@ -1,0 +1,205 @@
+{
+  "host": "codex",
+  "city": "ingolstadt",
+  "computational_workflow_passed": true,
+  "errors": [],
+  "successful_tools": [
+    "compare_sumo_runs",
+    "control_simulation",
+    "get_sumo_info",
+    "harvest_sumo_data",
+    "prepare_sumo_case",
+    "query_simulation_state",
+    "read_sumo_artifact",
+    "read_sumo_source",
+    "render_sumo_map",
+    "run_analysis",
+    "run_sumo_scenario",
+    "sumo_network_info",
+    "sumo_status"
+  ],
+  "tool_calls": 44,
+  "failed_or_rejected_calls": 7,
+  "source_commit_at_launch": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf",
+  "task_sha256": "3a353a140938eb98b14796129c655c39697612525d54116cf8fbf05a536e217c",
+  "answer_sha256": "315982473c8e17dd83a553a807802f5a4942edf805705dfa5b288782118163f0",
+  "trace_sha256": "7cac6cb2e72c77dbcf14f1cd23b6ec7cad0de3b009b1722ac1c8436f4a005d6c",
+  "process_sha256": "a21c6d8a90f03ae41bc1c1478a4246143a6a3289f871583df6958e6c28fe2e6f",
+  "complete_observed_pages": [
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "ingolstadt",
+        "run_id": "agent-works",
+        "name": "comparison.csv"
+      },
+      "sha256": "ce4b431e355128f709561d0567c1d90f288e4288618a845aaffcf498d7bb0f2e",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 12000,
+          "next_offset": 12000,
+          "text_sha256": "a20872d402a44205538075384ebcb014e19e8679edfa39d70f643bed957986ee"
+        },
+        {
+          "offset": 12000,
+          "characters": 8631,
+          "next_offset": null,
+          "text_sha256": "adead3e723d73b2ce4b9cb285d13fb5b9620a22000ba13865598b7892f0451b6"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "ingolstadt",
+        "run_id": "agent-works",
+        "name": "comparison.json"
+      },
+      "sha256": "f94e06dd8f82b57cb7ea021eaefe6b45c58e6906b2b5fbe589783e92193a857b",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 2749,
+          "next_offset": null,
+          "text_sha256": "f94e06dd8f82b57cb7ea021eaefe6b45c58e6906b2b5fbe589783e92193a857b"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "ingolstadt",
+        "run_id": "agent-baseline",
+        "name": "summary.json"
+      },
+      "sha256": "beff7733d5af4e2e9344aa97bf427a5a119e1011a826016f298a0cdc27f8f8b0",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 5552,
+          "next_offset": null,
+          "text_sha256": "beff7733d5af4e2e9344aa97bf427a5a119e1011a826016f298a0cdc27f8f8b0"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_artifact",
+      "arguments": {
+        "city": "ingolstadt",
+        "run_id": "agent-works",
+        "name": "summary.json"
+      },
+      "sha256": "3f67928f933a2f49e4a0c61d57f038ca7bb301f7a524d110f1f5660cda325b4f",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 5545,
+          "next_offset": null,
+          "text_sha256": "3f67928f933a2f49e4a0c61d57f038ca7bb301f7a524d110f1f5660cda325b4f"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_source",
+      "arguments": {
+        "city": "ingolstadt",
+        "name": "manifest.json"
+      },
+      "sha256": "6dfdc367fdfc2f9167e5e44112ca1d9e5b976396cee773a4dc3336f1d1c16956",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 6018,
+          "next_offset": null,
+          "text_sha256": "6dfdc367fdfc2f9167e5e44112ca1d9e5b976396cee773a4dc3336f1d1c16956"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_source",
+      "arguments": {
+        "city": "ingolstadt",
+        "name": "simulation/24h_sim.sumocfg"
+      },
+      "sha256": "5964b17e93607b3d93778faac132d438202396249c8ec2c8406a489c9294e3dc",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 668,
+          "next_offset": null,
+          "text_sha256": "5964b17e93607b3d93778faac132d438202396249c8ec2c8406a489c9294e3dc"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "source": "read_sumo_source",
+      "arguments": {
+        "city": "ingolstadt",
+        "name": "LICENSE.md"
+      },
+      "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0",
+      "pages": [
+        {
+          "offset": 0,
+          "characters": 10175,
+          "next_offset": null,
+          "text_sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ],
+      "all_pages_match": true
+    }
+  ],
+  "structured_claims": {
+    "passed": true,
+    "mismatched_fields": [],
+    "observed": {
+      "city": "ingolstadt",
+      "target_edge_id": "54858973#0",
+      "target_lane_ids": [
+        "54858973#0_2",
+        "54858973#0_3",
+        "54858973#0_4"
+      ],
+      "scheduled_vehicles": 6492,
+      "scheduled_corridor_cohort": 320,
+      "baseline_states": {
+        "arrived": 318,
+        "unfinished": 2,
+        "undeparted": 0,
+        "removed": 0,
+        "not_recorded": 0
+      },
+      "works_states": {
+        "arrived": 318,
+        "unfinished": 2,
+        "undeparted": 0,
+        "removed": 0,
+        "not_recorded": 0
+      },
+      "matched_completed_cohort": 318,
+      "eligible_paired_comparison": 317,
+      "excluded_censored_pairs": 2,
+      "excluded_teleport_identified_completed_pairs": 1,
+      "increased_over_30s": 74,
+      "mean_matched_scheduled_to_arrival_delta_s": 15.272082018927446,
+      "mean_matched_in_network_duration_delta_s": 15.264195583596214,
+      "mean_matched_insertion_delay_delta_s": 0.007886435331230283,
+      "baseline_native_teleport_events": 20,
+      "works_native_teleport_events": 20,
+      "baseline_native_collisions": 2,
+      "works_native_collisions": 2,
+      "comparison_sha256": "ce4b431e355128f709561d0567c1d90f288e4288618a845aaffcf498d7bb0f2e",
+      "calibration_revalidated": false,
+      "forecast_admitted": false,
+      "new_random_demand_generated": false
+    }
+  },
+  "prose_review": "Separate explicit hash-bound narrative-review.json; this script does not invent a prose verdict."
+}

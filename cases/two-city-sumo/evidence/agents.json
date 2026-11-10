@@ -1,0 +1,66 @@
+{
+  "task": "cases/two-city-sumo/agent-task.md",
+  "task_sha256": "3a353a140938eb98b14796129c655c39697612525d54116cf8fbf05a536e217c",
+  "source_commit_at_launch": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf",
+  "observations": [
+    {
+      "city": "bologna",
+      "host": "codex",
+      "computational_workflow_passed": true,
+      "tool_calls": 48,
+      "successful_tools": 13,
+      "failed_or_rejected_calls": 4,
+      "structured_claims_passed": true,
+      "answer_sha256": "c0663e98c70d98d306f4c3e14d87fa461381a81373f2c51b05388dfbd77436a3",
+      "trace_sha256": "2d7b8a75737c12ea123f4267b58edbf7350f897be67ab379a8810790ea99fc48",
+      "process_sha256": "deda97579af52682cc1385d51bc5d06655ad355e51d26b9a0063376c18d85231",
+      "narrative_status": "passed",
+      "source_commit_at_launch": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf"
+    },
+    {
+      "city": "bologna",
+      "host": "hermes",
+      "computational_workflow_passed": true,
+      "tool_calls": 46,
+      "successful_tools": 13,
+      "failed_or_rejected_calls": 6,
+      "structured_claims_passed": true,
+      "answer_sha256": "ae4ac563065cfdd14b2308b6ee16c0335d216d6c3398c4b8d2b644d3eb130ca3",
+      "trace_sha256": "68637c84afca77f26ce968081a9db2035b6017d8ed53dfe8fbf62196654bf188",
+      "process_sha256": "05e2aee5ad985ec9eb01fcc80fa66cf8d9e71cac45a425c6f3600e8d8782864d",
+      "narrative_status": "failed_facts_and_length",
+      "source_commit_at_launch": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf"
+    },
+    {
+      "city": "ingolstadt",
+      "host": "codex",
+      "computational_workflow_passed": true,
+      "tool_calls": 44,
+      "successful_tools": 13,
+      "failed_or_rejected_calls": 7,
+      "structured_claims_passed": true,
+      "answer_sha256": "315982473c8e17dd83a553a807802f5a4942edf805705dfa5b288782118163f0",
+      "trace_sha256": "7cac6cb2e72c77dbcf14f1cd23b6ec7cad0de3b009b1722ac1c8436f4a005d6c",
+      "process_sha256": "a21c6d8a90f03ae41bc1c1478a4246143a6a3289f871583df6958e6c28fe2e6f",
+      "narrative_status": "passed",
+      "source_commit_at_launch": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf"
+    },
+    {
+      "city": "ingolstadt",
+      "host": "hermes",
+      "computational_workflow_passed": true,
+      "tool_calls": 62,
+      "successful_tools": 13,
+      "failed_or_rejected_calls": 28,
+      "structured_claims_passed": true,
+      "answer_sha256": "ab4cbf997818cd7b533ad796d9adad14c5bb0b6557e8bc65511f5bedd5640faa",
+      "trace_sha256": "2a06a7f95fd239efac201e51078048b065cc81273fe59d10adbf8c90a0552c90",
+      "process_sha256": "3472228b11a17d29ab7cabbcd4526f3c95c036905432e52a762c771a5cd1dd42",
+      "narrative_status": "failed_facts_and_length",
+      "source_commit_at_launch": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf"
+    }
+  ],
+  "all_computational_workflows_passed": true,
+  "all_prose_passed": false,
+  "limits": "Four author-operated host/city workspaces, not four independent persons. Native/transport, complete paging/artifacts, structured claims and prose have separate verdicts; final-product qualification is pending."
+}

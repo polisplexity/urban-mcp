@@ -1,0 +1,12 @@
+{
+  "host": "codex",
+  "city": "ingolstadt",
+  "capability": "sumo",
+  "exit_code": 0,
+  "started_at": "2026-11-10T20:56:54.038343+00:00",
+  "elapsed_seconds": 679.766,
+  "submitted_prompt_sha256": "99e270282d0fbed446eba0a18b4abe3d52e90b2737d9ef0ae94a69d30a1960ce",
+  "task_path": "cases/two-city-sumo/agent-task.md",
+  "task_template_sha256": "3a353a140938eb98b14796129c655c39697612525d54116cf8fbf05a536e217c",
+  "code_commit": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf"
+}

@@ -1,0 +1,153 @@
+{
+  "city": "bologna",
+  "run_id": "check-b6a1a32c-native-baseline",
+  "scenario": "baseline",
+  "inspection": false,
+  "begin": 0,
+  "end": 4500,
+  "seed": 37,
+  "input_manifest_sha256": "222f6219f89468e1c1e3d775a0fbf767cbe5f3916278fef1642b10bb1e15ee3d",
+  "implementation_sha256": "16184b4f7a80dfa0bd9425424c621074f031799ffe74f572da7420214e85a6f8",
+  "config": "/data/results/bologna/check-b6a1a32c-native-baseline/run.sumocfg",
+  "model_date": "Historical 08:00-09:00 morning peak; source publication uses November 2008 observations, not a current observation",
+  "target_edge": {
+    "id": "204a[0]",
+    "name": "",
+    "length_m": 190.3,
+    "published_cohort_routes": 1348,
+    "lanes": [
+      {
+        "id": "204a[0]_0",
+        "original_speed_m_s": 13.89,
+        "works_speed_m_s": 8.333333333333334
+      },
+      {
+        "id": "204a[0]_1",
+        "original_speed_m_s": 13.89,
+        "works_speed_m_s": 8.333333333333334
+      },
+      {
+        "id": "204a[0]_2",
+        "original_speed_m_s": 13.89,
+        "works_speed_m_s": 8.333333333333334
+      }
+    ]
+  },
+  "scheduled_vehicles": 8772,
+  "all_scheduled_states": {
+    "arrived": 8414,
+    "undeparted": 232,
+    "unfinished": 126
+  },
+  "corridor_cohort_vehicles": 1348,
+  "corridor_cohort_states": {
+    "arrived": 1330,
+    "unfinished": 18,
+    "undeparted": 0,
+    "removed": 0,
+    "not_recorded": 0
+  },
+  "completed_cohort_means": {
+    "duration": 352.7007518796992,
+    "waitingTime": 129.7278195488722,
+    "timeLoss": 216.9436842105263,
+    "departDelay": 420.93082706766916,
+    "scheduled_to_arrival_s": 773.6315789473684
+  },
+  "native_statistics": {
+    "vehicles": {
+      "loaded": "8772",
+      "inserted": "8540",
+      "running": "126",
+      "waiting": "232"
+    },
+    "teleports": {
+      "total": "0",
+      "jam": "0",
+      "yield": "0",
+      "wrongLane": "0"
+    },
+    "safety": {
+      "collisions": "0",
+      "emergencyStops": "0",
+      "emergencyBraking": "0"
+    },
+    "persons": {
+      "loaded": "0",
+      "running": "0",
+      "jammed": "0"
+    },
+    "personTeleports": {
+      "total": "0",
+      "abortWait": "0",
+      "wrongDest": "0"
+    },
+    "vehicleTripStatistics": {
+      "count": "8540",
+      "routeLength": "1598.60",
+      "speed": "6.36",
+      "duration": "274.96",
+      "waitingTime": "92.52",
+      "timeLoss": "155.51",
+      "departDelay": "125.58",
+      "departDelayWaiting": "1213.19",
+      "totalTravelTime": "2348156.00",
+      "totalDepartDelay": "1353922.00"
+    },
+    "pedestrianStatistics": {
+      "number": "0",
+      "routeLength": "0.00",
+      "duration": "0.00",
+      "timeLoss": "0.00"
+    },
+    "rideStatistics": {
+      "number": "0"
+    },
+    "transportStatistics": {
+      "number": "0"
+    }
+  },
+  "limits": [
+    "Published real-city models and source data are distinct from raw contemporaneous observations. These are historical scenario experiments, not current traffic forecasts or newly calibrated models.",
+    "Departures, routes, vehicle types and mandatory signal programs are preserved within explicit time slices. Empty-network initialization and fixed warm-up are declared; traffic predating the slice is absent.",
+    "The counterfactual changes only the selected edge lane speeds; it is hypothetical works, not an observed closure or a guaranteed safety/emission benefit.",
+    "Scheduled, departed, arrived, unfinished, undeparted, discarded and teleported vehicles must be accounted for. Paired completed-trip differences exclude censored trips and must report that denominator.",
+    "Results on different networks/cohorts cannot establish a city ranking. Raw detector validation availability and model uncertainty remain explicit.",
+    "Two original-team cities do not satisfy independent-person third-city final-product qualification.",
+    "Native teleports, collisions and legacy signal warnings are retained. Teleport-identified completed trips are excluded from paired comparison, and no forecast readiness is inferred from successful replay.",
+    "This is the Andrea Costa study network, not the whole municipality.",
+    "Modeled historical morning-peak demand derives from supplied VISSIM scenarios and detector observations; simulated vehicle IDs are not observed people or license plates.",
+    "The original paper warns of warm-up needs, small route-choice scope and potentially unrealistic multilane roundabout queues. The chosen warm-up is an explicit experimental setting, not a newly validated duration."
+  ],
+  "runtime": {
+    "eclipse-sumo": "1.28.0",
+    "sumolib": "1.28.0",
+    "traci": "1.28.0",
+    "mcp": "1.25.0"
+  },
+  "artifacts": [
+    "summary.json",
+    "all-vehicles.csv",
+    "cohort.csv",
+    "tripinfo.xml",
+    "statistics.xml",
+    "simulation-summary.xml",
+    "fcd.xml.gz",
+    "report.md",
+    "map.png (after render)"
+  ],
+  "model_quality": {
+    "native_teleport_events": 0,
+    "native_collisions": 0,
+    "native_emergency_stops": 0,
+    "native_emergency_braking": 0,
+    "incompatible_signal_program_warning_count": 0,
+    "teleport_start_log_events": 0,
+    "corridor_cohort_teleport_warning_vehicles": 0,
+    "fresh_field_validation_available": false,
+    "calibration_revalidated": false,
+    "forecast_admitted": false,
+    "interpretation": "Native model events and legacy compatibility warnings require review; no current forecast, physical safety or calibrated intervention claim is admitted. Teleport-identified completed trips are excluded from paired comparison.",
+    "teleport_log_reconciles_native_events": true
+  }
+}
