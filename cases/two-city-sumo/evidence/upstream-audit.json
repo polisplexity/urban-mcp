@@ -1,0 +1,103 @@
+{
+  "probe_scope": "Synthetic isolated original methods with explicit stubs; not full AgentSUMO/legacy MCP execution, field validation or municipal observations.",
+  "original_methods_unmodified": true,
+  "sources": [
+    {
+      "repository": "XRDS76354/SUMO-MCP-Server",
+      "commit": "6b62a25c1b13751d636309a03e4388594fcd7620",
+      "path": "src/mcp_tools/simulation.py",
+      "sha256": "580696d7772c765a1be021f858ad859949590ae162264dae584f23c9da82f5a2",
+      "installed_from": "checksum-pinned complete original archive"
+    },
+    {
+      "repository": "mw-jeong/AgentSUMO",
+      "commit": "2ad1d91a02f442218d54f2b1aec25c3b813ed5df",
+      "path": "agentsumo_mcp/baseline/simulation_runner.py",
+      "url": "https://raw.githubusercontent.com/mw-jeong/AgentSUMO/2ad1d91a02f442218d54f2b1aec25c3b813ed5df/agentsumo_mcp/baseline/simulation_runner.py",
+      "bytes": 27256,
+      "sha256": "70650792f3dda01879fe1d882aafe3b86c755a44ac11e702dde035b7e9d4e6ab"
+    },
+    {
+      "repository": "mw-jeong/AgentSUMO",
+      "commit": "2ad1d91a02f442218d54f2b1aec25c3b813ed5df",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/mw-jeong/AgentSUMO/2ad1d91a02f442218d54f2b1aec25c3b813ed5df/LICENSE",
+      "bytes": 1152,
+      "sha256": "ccf088fad2565260717c67df6df8ca400138b78e65be5a844e78bbb4a5dfe486"
+    },
+    {
+      "repository": "shikharvashistha/sumo-mcp",
+      "commit": "619abcbcc91cb2ddbfbdc09d25dc7819f4e2551e",
+      "path": "server.py",
+      "url": "https://raw.githubusercontent.com/shikharvashistha/sumo-mcp/619abcbcc91cb2ddbfbdc09d25dc7819f4e2551e/server.py",
+      "bytes": 9611,
+      "sha256": "821e1f43ff173d2207fc3eb48c5eab200c0ef94a4038f90470590a668d40b405"
+    }
+  ],
+  "checks": [
+    {
+      "name": "original simple execution adds --random despite explicit seed",
+      "passed": true,
+      "observed": {
+        "command_without_private_path": [
+          "sumo",
+          "-c",
+          "<synthetic-config>",
+          "--no-step-log",
+          "true",
+          "--random"
+        ]
+      }
+    },
+    {
+      "name": "original already-connected call does not open requested model",
+      "passed": true,
+      "observed": {
+        "new_native_start_calls": 0
+      }
+    },
+    {
+      "name": "original disconnected vehicle list is empty rather than a diagnostic",
+      "passed": true,
+      "observed": {
+        "value": []
+      }
+    },
+    {
+      "name": "original AgentSUMO baseline drops supplied additional files",
+      "passed": true,
+      "observed": {
+        "baseline": [],
+        "other_policy": [
+          "required-WAUT.add.xml"
+        ],
+        "backend": "stubbed; not the full server"
+      }
+    },
+    {
+      "name": "original generated AgentSUMO config always begins at zero",
+      "passed": true,
+      "observed": {
+        "begin": 0,
+        "required_original_ingolstadt_begin": 24300
+      }
+    },
+    {
+      "name": "original AgentSUMO source contains forced rerouting probability",
+      "passed": true,
+      "observed": {
+        "source_level_only": true,
+        "probability": 1.0
+      }
+    },
+    {
+      "name": "legacy original route-edges method returns route identifier string",
+      "passed": true,
+      "observed": {
+        "returned_type": "str",
+        "value": "route-identifier"
+      }
+    }
+  ],
+  "passed": true
+}

@@ -1775,6 +1775,52 @@
       "validation": "OD/network consistency, demand totals, flows, cost units and convergence.",
       "real_city_blocker": "Mapped streets do not supply the OD matrix, capacities or observed congestion calibration.",
       "status": "needs_operation_binding"
+    },
+    {
+      "id": "sumo-historical-works",
+      "scope": "proposed_representative_case_not_every_operation",
+      "requirements": [
+        {
+          "id": "network",
+          "format_contract": "original SUMO net.xml or net.xml.gz",
+          "candidate_sources": [
+            "sumo-bologna",
+            "sumo-ingolstadt",
+            "operator",
+            "model-author"
+          ],
+          "required": true,
+          "admission_condition": "pin rights, publisher revision, complete network, lane permissions, speeds and source metre coordinates"
+        },
+        {
+          "id": "demand",
+          "format_contract": "original explicit SUMO vehicle routes and types",
+          "candidate_sources": [
+            "sumo-bologna",
+            "sumo-ingolstadt",
+            "operator",
+            "model-author"
+          ],
+          "required": true,
+          "admission_condition": "model date, modeled-versus-observed demand and exact departure slice declared"
+        },
+        {
+          "id": "controls",
+          "format_contract": "mandatory additional XML and original sumocfg",
+          "candidate_sources": [
+            "sumo-bologna",
+            "sumo-ingolstadt",
+            "operator",
+            "model-author"
+          ],
+          "required": true,
+          "admission_condition": "preserve signal programs, stops, definitions, additional-file order, native time step, processing and seed"
+        }
+      ],
+      "preparation": "Preserve native SUMO solver and original MCP operations. Stream selected original vehicles with all subtrees, stable depart/ID merge, bind source hashes, select eligible most-used planned corridor and add only the declared 30 km/h VSS.",
+      "validation": "Independent original-vehicle XML and native tripinfo/log oracle, full scheduled/censored rows, insertion delay, explicit teleport exclusions, same-seed native/MCP CSV equality and complete two-host pages/artifacts/claims plus separate prose review.",
+      "real_city_blocker": "Published demand and zero process exit do not establish current traffic, field validation, causality, safety, emissions or inherited calibration. New cities need permitted demand and signals, not just mapped streets.",
+      "status": "needs_operation_binding"
     }
   ]
 }

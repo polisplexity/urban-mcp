@@ -1,0 +1,103 @@
+{
+  "runtime_source_commit": "a3f857ca1ae2d3689749fc71ad7b8d8a0990adaf",
+  "cities": [
+    {
+      "city": "bologna",
+      "checks": 80,
+      "tools": 13,
+      "source_sha256": {
+        "data.py": "54ac6da2430612772fb3c3a2ddb95f48a479b213280383f4ea95ef9e90540051",
+        "engine.py": "16184b4f7a80dfa0bd9425424c621074f031799ffe74f572da7420214e85a6f8",
+        "server.py": "014dc2afaaf2f40f17533c150f7b0b312b20d320ac79e25403bbfe7aa1b9f96c",
+        "compat.py": "05a096845c2c0695fe87d557fb69bff3ab424d6f78eda48910231470a6271d49",
+        "checks.py": "f2b2b0ef407c5c1d79382c7f9863f65bdb05a314fe3cce00c6c263a60fa074b8",
+        "__main__.py": "5a3f17ad67faa8e4f9574f529eb48cdc5dc84845fbcb7012e9b2c813f6aacca1"
+      },
+      "input_manifest_sha256": "222f6219f89468e1c1e3d775a0fbf767cbe5f3916278fef1642b10bb1e15ee3d",
+      "target_edge": {
+        "id": "204a[0]",
+        "name": "",
+        "length_m": 190.3,
+        "published_cohort_routes": 1348,
+        "lanes": [
+          {
+            "id": "204a[0]_0",
+            "original_speed_m_s": 13.89,
+            "works_speed_m_s": 8.333333333333334
+          },
+          {
+            "id": "204a[0]_1",
+            "original_speed_m_s": 13.89,
+            "works_speed_m_s": 8.333333333333334
+          },
+          {
+            "id": "204a[0]_2",
+            "original_speed_m_s": 13.89,
+            "works_speed_m_s": 8.333333333333334
+          }
+        ]
+      },
+      "scheduled_vehicles": 8772,
+      "corridor_cohort": 1348,
+      "eligible_pairs": 1289,
+      "comparison_sha256": "fbeaa87e64921df41953ab8bfd876119bcbfdb7ee310bbfe679d8e184e04bcc9"
+    },
+    {
+      "city": "ingolstadt",
+      "checks": 73,
+      "tools": 13,
+      "source_sha256": {
+        "data.py": "54ac6da2430612772fb3c3a2ddb95f48a479b213280383f4ea95ef9e90540051",
+        "engine.py": "16184b4f7a80dfa0bd9425424c621074f031799ffe74f572da7420214e85a6f8",
+        "server.py": "014dc2afaaf2f40f17533c150f7b0b312b20d320ac79e25403bbfe7aa1b9f96c",
+        "compat.py": "05a096845c2c0695fe87d557fb69bff3ab424d6f78eda48910231470a6271d49",
+        "checks.py": "f2b2b0ef407c5c1d79382c7f9863f65bdb05a314fe3cce00c6c263a60fa074b8",
+        "__main__.py": "5a3f17ad67faa8e4f9574f529eb48cdc5dc84845fbcb7012e9b2c813f6aacca1"
+      },
+      "input_manifest_sha256": "6dfdc367fdfc2f9167e5e44112ca1d9e5b976396cee773a4dc3336f1d1c16956",
+      "target_edge": {
+        "id": "54858973#0",
+        "name": "Theodor-Heuss-Straße",
+        "length_m": 118.79,
+        "published_cohort_routes": 320,
+        "lanes": [
+          {
+            "id": "54858973#0_2",
+            "original_speed_m_s": 13.89,
+            "works_speed_m_s": 8.333333333333334
+          },
+          {
+            "id": "54858973#0_3",
+            "original_speed_m_s": 13.89,
+            "works_speed_m_s": 8.333333333333334
+          },
+          {
+            "id": "54858973#0_4",
+            "original_speed_m_s": 13.89,
+            "works_speed_m_s": 8.333333333333334
+          }
+        ]
+      },
+      "scheduled_vehicles": 6492,
+      "corridor_cohort": 320,
+      "eligible_pairs": 317,
+      "comparison_sha256": "ce4b431e355128f709561d0567c1d90f288e4288618a845aaffcf498d7bb0f2e"
+    }
+  ],
+  "synthetic_regressions": {
+    "suite": "urban_mcp_sumo.test_contracts",
+    "tests": 10,
+    "passed": true,
+    "municipal_observations": false
+  },
+  "upstream_method_probes": {
+    "checks": 7,
+    "passed": true,
+    "scope": "isolated original methods and separately marked static source check, not full alternative-server installations"
+  },
+  "host_evidence": "cases/two-city-sumo/evidence/agents.json",
+  "prose_review": "cases/two-city-sumo/evidence/narrative-review.json",
+  "forecast_admitted": false,
+  "product_qualified": false,
+  "limits": "Case-scoped historical computational reproduction only. Preserve unresolved native quality events. Final independent-person third-city gate remains pending."
+}

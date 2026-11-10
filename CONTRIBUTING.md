@@ -29,6 +29,8 @@ For walking changes, follow [the two-city case](cases/two-city-walking/README.md
 
 `planning/*.tsv` contains editable catalog decisions. Rebuild data registries/matrix with `python tools/build_data_registry.py` after changes. `tools/build_planning_catalog.py` imports reviewed research updates; do not mark readiness to make CI pass. Case admission derives from `case.json` and reviewed evidence, not a generic tool's reputation.
 
+For SUMO changes, run [both historical-city suites](cases/two-city-sumo/README.md), all 13 MCP tools/resources/prompt, the ten synthetic contracts and isolated original-source probes. Preserve the exact publisher demand, signal files/order, vehicle attributes, seed/processing/time and every censored/teleport-identified row. Review all comparison pages, actual host responses and complete artifact/JSON equality; independently review prose and recovered failures. These are computational model experiments, not inherited calibration or current forecasts. A third city operated by an independent person is still required for final-product qualification.
+
 ## Review questions
 
 - Do these data actually feed this operation, with explicit transformations and omissions?

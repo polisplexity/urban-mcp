@@ -34,6 +34,9 @@ class AdmissionTests(unittest.TestCase):
 
     def admit_technical_fixture(self):
         case = self.cases[0]
+        # Isolate the synthetic fixture: SUMO now also has genuine, separately
+        # admitted municipal cases, which must not satisfy this negative test.
+        self.cases = [item for item in self.cases if item is case or item["tool_id"] != case["tool_id"]]
         case.update(ready_to_run=True, status="admitted", blockers=[], engine_status="verified", mcp_binding_status="verified", expected_result_status="verified")
         for asset in case["assets"]:
             asset["license_status"] = "reviewed_for_declared_use"

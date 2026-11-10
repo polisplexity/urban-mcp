@@ -1,0 +1,12 @@
+{
+  "host": "codex",
+  "city": "bologna",
+  "capability": "sumo",
+  "exit_code": 0,
+  "started_at": "2026-11-10T20:55:05.542701+00:00",
+  "elapsed_seconds": 259.766,
+  "submitted_prompt_sha256": "9c295910bffca8f61e8d658390ee785fbcb718cbcf633c692212cc87fbf20fb3",
+  "task_path": "cases/two-city-sumo/agent-task.md",
+  "task_template_sha256": "3a353a140938eb98b14796129c655c39697612525d54116cf8fbf05a536e217c",
+  "code_commit": "eaa10aadc0b5855c65dbe9ddadf87a627a5750be"
+}

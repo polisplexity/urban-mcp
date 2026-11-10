@@ -1,0 +1,155 @@
+{
+  "city": "bologna",
+  "case": "two-city-sumo",
+  "recipe_sha256": "17bff20f00b8afa22588ec05a5f22603bc308c3f0a2916f32e000e5b8b6f606a",
+  "publisher_repository": "DLR-TS/sumo-scenarios",
+  "publisher_commit": "79d2e1837a9683617393c69aaf754c6bc812e3f8",
+  "acquired_at": "2026-11-10T20:00:57.675476+00:00",
+  "license": "EPL-2.0",
+  "attribution": "DLR Institute of Transportation Systems, Comune di Bologna and iTETRIS scenario authors",
+  "files": {
+    "LICENSE": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/LICENSE",
+      "bytes": 14199,
+      "sha256": "721c2da257578bace3332b14d8ea06643d7d26753e7ef25a837b4e904edc0bf5"
+    },
+    "README.md": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/README.md",
+      "bytes": 658,
+      "sha256": "3b51df28b0488f01c2b44298a7da0ba91b103d7ef36ed758fcb2c65ff94eb75b"
+    },
+    "bologna/acosta/acosta.rou.xml": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta.rou.xml",
+      "bytes": 1728966,
+      "sha256": "2f61eb2b27af2ef40038943b17a5fc7cad70bfbd042bcca2c12b3a723b0eaf8a"
+    },
+    "bologna/acosta/acosta_bus_stops.add.xml": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_bus_stops.add.xml",
+      "bytes": 3127,
+      "sha256": "157b84393e39a75f148428256f61d6c2e770d8e327c5ea97394b726e36ca381f"
+    },
+    "bologna/acosta/acosta_buslanes.net.xml": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_buslanes.net.xml",
+      "bytes": 256993,
+      "sha256": "1d6e736bf524dcfebdda7e4f460fc518ad3d0aa28203ef74d5797b70dff72091"
+    },
+    "bologna/acosta/acosta_busses.rou.xml": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_busses.rou.xml",
+      "bytes": 60748,
+      "sha256": "71cc87961b9c05a9b76613ef1bb1a253f8340939f77e39668dbc590c9f1c4c0b"
+    },
+    "bologna/acosta/acosta_detectors.add.xml": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_detectors.add.xml",
+      "bytes": 6799,
+      "sha256": "652c9add3f906d3c6842c28f6487fe5e9a821c5004a7ffbd5a587830cf6d18a8"
+    },
+    "bologna/acosta/acosta_tls.add.xml": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_tls.add.xml",
+      "bytes": 8036,
+      "sha256": "3a1976d35a5b17db8afc1e44d6b9ba037c8339c5bfbffa65d7e6e6caece15d5c"
+    },
+    "bologna/acosta/acosta_vtypes.add.xml": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_vtypes.add.xml",
+      "bytes": 2896,
+      "sha256": "506566e9a28c51e9e3a20379894f5511f58089e614e5deb6e6503fd06a4093f9"
+    },
+    "bologna/acosta/run.sumocfg": {
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/run.sumocfg",
+      "bytes": 749,
+      "sha256": "585c860cb458fd62544a475a7acea81d7cf374fe0b422eb708a6a0cd3f6d7b4d"
+    }
+  },
+  "requests": [
+    {
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/LICENSE",
+      "bytes": 14199,
+      "sha256": "721c2da257578bace3332b14d8ea06643d7d26753e7ef25a837b4e904edc0bf5",
+      "status": 200,
+      "etag": "\"752a6cb4412e3dcdf9d11c68c440487881c562d46620be19403b126d30bd10a1\"",
+      "retrieved_at": "2026-11-10T20:00:56.638053+00:00"
+    },
+    {
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/README.md",
+      "bytes": 658,
+      "sha256": "3b51df28b0488f01c2b44298a7da0ba91b103d7ef36ed758fcb2c65ff94eb75b",
+      "status": 200,
+      "etag": "\"dda7d1a7adc79e86e3729074171ca7d55f5dcd35942c3eacfa3e1de3e1d1c1ab\"",
+      "retrieved_at": "2026-11-10T20:00:56.638559+00:00"
+    },
+    {
+      "file": "bologna/acosta/acosta.rou.xml",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta.rou.xml",
+      "bytes": 1728966,
+      "sha256": "2f61eb2b27af2ef40038943b17a5fc7cad70bfbd042bcca2c12b3a723b0eaf8a",
+      "status": 200,
+      "etag": "\"f04c695018940e69696b24ebec6ddd47dacd9a4af139ae3bd9fa6dec53b316e9\"",
+      "retrieved_at": "2026-11-10T20:00:56.639580+00:00"
+    },
+    {
+      "file": "bologna/acosta/acosta_bus_stops.add.xml",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_bus_stops.add.xml",
+      "bytes": 3127,
+      "sha256": "157b84393e39a75f148428256f61d6c2e770d8e327c5ea97394b726e36ca381f",
+      "status": 200,
+      "etag": "\"1a58951d2609b82da5223c52fab6c4bfce1c6926d94672410e23dc23d6239e60\"",
+      "retrieved_at": "2026-11-10T20:00:56.639580+00:00"
+    },
+    {
+      "file": "bologna/acosta/acosta_buslanes.net.xml",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_buslanes.net.xml",
+      "bytes": 256993,
+      "sha256": "1d6e736bf524dcfebdda7e4f460fc518ad3d0aa28203ef74d5797b70dff72091",
+      "status": 200,
+      "etag": "\"bba10f0139b19606fc21dd32ca8dd54ba7739761f870f142113657393150ce94\"",
+      "retrieved_at": "2026-11-10T20:00:56.639580+00:00"
+    },
+    {
+      "file": "bologna/acosta/acosta_busses.rou.xml",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_busses.rou.xml",
+      "bytes": 60748,
+      "sha256": "71cc87961b9c05a9b76613ef1bb1a253f8340939f77e39668dbc590c9f1c4c0b",
+      "status": 200,
+      "etag": "\"be1905beba82c1ebf46afe7a3898545460401a4a95506b3b4a48ea83d7852629\"",
+      "retrieved_at": "2026-11-10T20:00:57.174552+00:00"
+    },
+    {
+      "file": "bologna/acosta/acosta_detectors.add.xml",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_detectors.add.xml",
+      "bytes": 6799,
+      "sha256": "652c9add3f906d3c6842c28f6487fe5e9a821c5004a7ffbd5a587830cf6d18a8",
+      "status": 200,
+      "etag": "\"fb570bdfcd6267c31bfc40f8fbb63a5d134a034609fe9625f091e8a86161cdb2\"",
+      "retrieved_at": "2026-11-10T20:00:57.196664+00:00"
+    },
+    {
+      "file": "bologna/acosta/acosta_tls.add.xml",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_tls.add.xml",
+      "bytes": 8036,
+      "sha256": "3a1976d35a5b17db8afc1e44d6b9ba037c8339c5bfbffa65d7e6e6caece15d5c",
+      "status": 200,
+      "etag": "\"7f9dce9b421144ef743c8c92688623cabceabdc0ef4da9c6313c202b7e571466\"",
+      "retrieved_at": "2026-11-10T20:00:57.215750+00:00"
+    },
+    {
+      "file": "bologna/acosta/acosta_vtypes.add.xml",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/acosta_vtypes.add.xml",
+      "bytes": 2896,
+      "sha256": "506566e9a28c51e9e3a20379894f5511f58089e614e5deb6e6503fd06a4093f9",
+      "status": 200,
+      "etag": "\"ae90163c92049b1a1b2443a8aeb18fcec9f9913442729bfa59853ab373fec7bc\"",
+      "retrieved_at": "2026-11-10T20:00:57.643464+00:00"
+    },
+    {
+      "file": "bologna/acosta/run.sumocfg",
+      "url": "https://raw.githubusercontent.com/DLR-TS/sumo-scenarios/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta/run.sumocfg",
+      "bytes": 749,
+      "sha256": "585c860cb458fd62544a475a7acea81d7cf374fe0b422eb708a6a0cd3f6d7b4d",
+      "status": 200,
+      "etag": "\"e9f8a57ff06671e25f3a82ce0449826dad738ae7867d7524c141f05b06af393b\"",
+      "retrieved_at": "2026-11-10T20:00:57.675476+00:00"
+    }
+  ],
+  "binding_note": "Original acquisition receipts retained; no second download or synthetic source claim."
+}

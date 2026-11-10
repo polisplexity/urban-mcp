@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.1.0",
+  "id": "bologna-sumo",
+  "tool_id": "eclipse-sumo--sumo",
+  "reused_mcp_tool_id": "xrds76354--sumo-mcp-server",
+  "status": "admitted",
+  "data_class": "declared_scenario",
+  "source_ids": [
+    "sumo-bologna",
+    "urban-mcp-snapshots"
+  ],
+  "assets": [
+    {
+      "file": "bologna-sumo-20261110.zip",
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-sumo-20261110/bologna-sumo-20261110.zip",
+      "sha256": "0ed58a87c79233cf41f4f1eb36669415bf372519fdcad21f486fde6455098228",
+      "bytes": 148241,
+      "source_id": "urban-mcp-snapshots",
+      "license_status": "reviewed_for_declared_use",
+      "license": "EPL-2.0",
+      "attribution": "DLR Institute of Transportation Systems, Comune di Bologna and iTETRIS scenario authors"
+    }
+  ],
+  "input_binding": {
+    "raw": "Exact pinned original publisher model assets with rights, hashes, request receipts and mandatory signals; historical modeled demand, not raw field observations",
+    "native": "Original SUMO/TraCI/sumolib 1.28.0, source vehicle subtrees, stable scheduled-departure/ID order, declared departure slice and original processing/time step",
+    "mcp": "Official MCP Python SDK FastMCP 1.25.0; four reused original XRDS function families plus nine explicit municipal tools",
+    "method": "Among edges referenced by evaluation-window published routes, choose the one with the largest number of distinct scheduled vehicles, at least 100 m length and passenger lane speed above 30 km/h; break ties by source edge ID. The corridor cohort comprises evaluation-window vehicles whose published routes contain that edge. Preserve connectivity and all other lane speeds.",
+    "comparison": "Same seed 37 and horizon; VSS cap on eligible lanes; explicit schedule states, insertion delay, censored/teleport exclusions and strict >30s flags",
+    "coordinates": "Source-network metre XY; preserve local model coordinates and do not infer full municipal boundary coverage"
+  },
+  "runtime_lock": "adapters/sumo/runtime.lock.txt",
+  "engine_status": "verified",
+  "mcp_binding_status": "verified",
+  "expected_result_status": "verified",
+  "ready_to_run": true,
+  "blockers": [],
+  "mcp_tools": [
+    "compare_sumo_runs",
+    "control_simulation",
+    "get_sumo_info",
+    "harvest_sumo_data",
+    "prepare_sumo_case",
+    "query_simulation_state",
+    "read_sumo_artifact",
+    "read_sumo_source",
+    "render_sumo_map",
+    "run_analysis",
+    "run_sumo_scenario",
+    "sumo_network_info",
+    "sumo_status"
+  ],
+  "scope": "Reproducible computational historical-model experiment and inspection only. Native physical-model warnings remain unresolved; no inherited calibration, current forecast, causal mechanism, safety/emissions conclusion or every-upstream-function admission.",
+  "municipal_case": {
+    "municipality": {
+      "country_code": "IT",
+      "geographic_id": "037006",
+      "name": "Bologna"
+    },
+    "question": "Under the published historical city models, what changes for trips scheduled through the selected corridor when its eligible passenger lanes are limited to 30 km/h for works?",
+    "data_access": "public_reproducible",
+    "harvest_manifest": "cases/two-city-sumo/evidence/bologna/harvest.json",
+    "native_evidence": "cases/two-city-sumo/evidence/bologna/baseline-summary.json",
+    "mcp_evidence": "cases/two-city-sumo/evidence/bologna/native-mcp.json",
+    "reproduction_evidence": "cases/two-city-sumo/evidence/agents.json"
+  },
+  "agent_acceptance": {
+    "codex": "All thirteen tool families, complete pages, exact source/CSV/map artifacts and JSON claims pass; factual/length prose review passed.",
+    "hermes": "All thirteen tool families, complete pages, artifacts and JSON pass after recovered failures. Broader prose fails facts and length review; do not accept it as municipal advice.",
+    "evidence": "cases/two-city-sumo/evidence/narrative-review.json"
+  },
+  "calibration_revalidated": false,
+  "forecast_admitted": false,
+  "product_qualified": false,
+  "admission_meaning": "Computational workflow only, independent of prose correctness and final-product qualification; new municipalities need their own rights-reviewed demand/signals and independent validation."
+}

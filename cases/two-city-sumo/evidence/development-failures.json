@@ -1,0 +1,45 @@
+{
+  "observations": [
+    {
+      "stage": "initial Docker runtime probes",
+      "failure": "The official SUMO wheel could not start on Python slim because libX11.so.6 and then libatomic.so.1 were absent.",
+      "correction": "Install required native shared libraries in the sandbox and verify the native binary before protocol or municipal admission."
+    },
+    {
+      "stage": "initial SDK compatibility probe",
+      "failure": "MCP SDK 1.14.0 with an unconstrained newer Pydantic failed importing eval_type_backport.",
+      "correction": "Use the selected original MCP project's pinned MCP 1.25.0 and Pydantic 2.12.5, and capture the complete tested dependency lock. This is not a project-wide framework migration."
+    },
+    {
+      "stage": "initial native Ingolstadt 1.28.0 experiment",
+      "observation": "The original 1.19-tested model loads and executes, but SUMO reports incompatible legacy signal programs, teleports and collisions. A successful exit is not physical-model validation.",
+      "required_response": "Expose native quality events, distinguish model replay from calibration/forecast readiness, retain warnings and non-completed trips, and review any paired comparison exclusions explicitly."
+    },
+    {
+      "stage": "initial metric design review",
+      "observation": "In-network duration alone omits vehicle insertion delay, which is substantial in the Bologna prototype.",
+      "required_response": "Report in-network duration and scheduled-to-arrival duration separately. State paired-completion and teleport exclusions; never silently drop censored trips."
+    },
+    {
+      "stage": "native source output semantics review",
+      "observation": "Arrival/departure -1 are censored/undeparted; vaporized=end can occur for an unfinished trip. Completed travel duration alone hides insertion delay; teleport-identified completed trips need explicit exclusion.",
+      "correction": "Classify source states before removed states; retain full schedule rows, insertion time, strict threshold precision and per-vehicle teleport flags. Ten synthetic regressions cover these contracts."
+    },
+    {
+      "stage": "first quick protocol test at eaa10aa development",
+      "failure": "The test treated an asset object as a filename string while selecting LICENSE.",
+      "correction": "Read its file key and verify every license page. Rebuilt quick/full suites pass; this was a test-harness error, not a municipal result."
+    },
+    {
+      "stage": "initial protocol/native configuration at eaa10aa",
+      "observation": "SUMO emitted an empty-processing-group diagnostic in Bologna and a missing proj.db diagnostic, while completing native/protocol equality.",
+      "correction": "At a3f857c omit empty option groups and point native PROJ at the packaged projection database. Both cities and all four final host workspaces were freshly rerun. Preserve the Codex Bologna V1 observation separately; do not label it final evidence."
+    },
+    {
+      "stage": "final Hermes host observations",
+      "observation": "Both numerical workflows and all thirteen tool families ultimately pass. Bologna first sends variables rather than variable. Ingolstadt attempts unsupported source/result names and wrong step actions/keys, trips the host failure circuit, repeatedly retries while blocked, then recovers and finishes. Both briefs exceed 600 words and fail explicit factual review.",
+      "response": "Preserve all public failures/recovery and answer hashes. Use the exact documented action=step, params={step:absolute_time}; read the original schema/instructions, one variable per query, source allowlist and works comparison run. Interleave successful status after expected rejections. Do not describe recovered host results as error-free or accept unsupported prose mechanisms."
+    }
+  ],
+  "admission": "Useful development failures are preserved separately from final source-bound native/protocol results and explicit host/prose verdicts."
+}

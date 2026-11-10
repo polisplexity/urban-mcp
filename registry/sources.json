@@ -524,9 +524,11 @@
       "implemented_cases": [
         "amsterdam-vegetation",
         "amsterdam-walking",
+        "bologna-sumo",
         "helsinki-service-inventory",
         "helsinki-vegetation",
-        "helsinki-walking"
+        "helsinki-walking",
+        "ingolstadt-sumo"
       ]
     },
     {
@@ -544,6 +546,40 @@
       "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
       "implemented_cases": [
         "amsterdam-vegetation"
+      ]
+    },
+    {
+      "id": "sumo-bologna",
+      "name": "DLR Bologna Acosta published SUMO model",
+      "url": "https://github.com/DLR-TS/sumo-scenarios/tree/79d2e1837a9683617393c69aaf754c6bc812e3f8/bologna/acosta",
+      "access": "public-versioned",
+      "coverage": "Andrea Costa study network and historical morning demand, not the full municipality",
+      "provides": "network, routes, buses, vehicle types, mandatory TLS, stops and detectors; EPL-2.0 original inputs",
+      "does_not_provide": "fresh observations, current demand, raw VISSIM project or independently revalidated calibration",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "bologna-sumo"
+      ]
+    },
+    {
+      "id": "sumo-ingolstadt",
+      "name": "TUM-VT published Ingolstadt SUMO simulation",
+      "url": "https://github.com/TUM-VT/sumo_ingolstadt/tree/e0a95deebe200ff81b6705044d66310d6266d42b",
+      "access": "public-versioned",
+      "coverage": "published study network and motorized model for 2020-09-16, bounded experiment slice",
+      "provides": "network, modeled motorized routes and mandatory WAUT signal programs; simulation Apache-2.0",
+      "does_not_provide": "raw independent detector counts, current demand, repaired legacy conflicts or fresh field validation",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "ingolstadt-sumo"
       ]
     }
   ]

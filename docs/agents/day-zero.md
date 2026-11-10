@@ -43,3 +43,17 @@ The vegetation evidence verifies all four hosts' numerical artifacts, complete r
 Agent tests use the selected host's existing authentication. Do not create messaging connectors, reuse a production gateway/profile, publish credentials or export system prompts, reasoning or private configuration. The Codex benchmark authorizes only this case's MCP within the requested test and uses a read-only shell policy; the public task forbids unrelated tools and the exporter checks the trace.
 
 Publish reviewed, scoped evidence and update the master record. Host/model/version and skill/transport support belong to the result; no experiment promises identical behavior from every client or model. Historical public tasks and observed transcripts retain their original bytes and language.
+## Historical SUMO profile
+
+The [two-city SUMO guide](../../cases/two-city-sumo/README.md) documents the
+agent-neutral profile proposed in PR #43. Generate a separate configuration
+with `tools/client_config.py --capability sumo`; use a new mount for each city
+and host. The official SDK FastMCP server reuses four original MCP families
+and adds nine municipal bindings. No model/SOUL/agent framework is required
+inside it. Use the [blind task](../../cases/two-city-sumo/agent-task.md), a
+420-second tool timeout, the full comparison/source page chains and the
+SUMO-specific export/review tools. Do not infer forecast readiness from native
+exit zero, a numeric match or a successful model answer. Preserve source-model
+warnings, censored trips, teleport exclusions, recovered argument failures and
+explicit prose verdicts. The existing earlier capability guides below retain
+their original scopes.

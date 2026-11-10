@@ -1,0 +1,77 @@
+{
+  "transport": "Actual MCP SDK stdio subprocess, live publisher acquisition and preparation",
+  "observations": [
+    {
+      "city": "bologna",
+      "harvest_response": {
+        "city": "bologna",
+        "mode": "live",
+        "publisher_repository": "DLR-TS/sumo-scenarios",
+        "publisher_commit": "79d2e1837a9683617393c69aaf754c6bc812e3f8",
+        "asset_count": 10,
+        "license": "EPL-2.0",
+        "input_manifest_sha256": "ce1138b58329e6765c701c27a8e45eca1a7de81dfe5d011133ed5deca6327684",
+        "source_details": "Read the full manifest.json and publisher license through read_sumo_source pages."
+      },
+      "prepared_files": {
+        "routes.xml": {
+          "sha256": "9bfb17d50dc6d097aaa74369c62fcc54e2b80733db50762d4c091a42763ac586",
+          "bytes": 1744937
+        },
+        "schedule.csv": {
+          "sha256": "0c6b094a6f98819ea534aa8cfb09b3fe575abd0bc3c994ef3b14097047b27e68",
+          "bytes": 353590
+        }
+      },
+      "scheduled_vehicles": 8772,
+      "corridor_cohort_vehicles": 1348,
+      "all_asset_hashes_verified": true,
+      "request_count": 10,
+      "all_requests_http_200": true,
+      "prepared_files_identical_to_locked_snapshot": true,
+      "live_mcp_manifest_sha256": "ce1138b58329e6765c701c27a8e45eca1a7de81dfe5d011133ed5deca6327684",
+      "live_cli_manifest_sha256": "e12600187350e35c07fd701bad8564dc7fa99a474fb4cd29097eed4d1a55fd3d"
+    },
+    {
+      "city": "ingolstadt",
+      "harvest_response": {
+        "city": "ingolstadt",
+        "mode": "live",
+        "publisher_repository": "TUM-VT/sumo_ingolstadt",
+        "publisher_commit": "e0a95deebe200ff81b6705044d66310d6266d42b",
+        "asset_count": 7,
+        "license": "Apache-2.0",
+        "input_manifest_sha256": "6b7ca35ba293cf3aa19a5a874807ad3f9c8b311f0415f27f31316731429e43db",
+        "source_details": "Read the full manifest.json and publisher license through read_sumo_source pages."
+      },
+      "prepared_files": {
+        "routes.xml": {
+          "sha256": "d5880c1fcfac76a4f2fc3dd4067910920ee1b9263c792f165afda6e3c0e4a330",
+          "bytes": 6558699
+        },
+        "schedule.csv": {
+          "sha256": "7701746258d74e3a810a129e7d4e44b269d107a20d390005fa5d98729f986871",
+          "bytes": 250453
+        }
+      },
+      "scheduled_vehicles": 6492,
+      "corridor_cohort_vehicles": 320,
+      "all_asset_hashes_verified": true,
+      "request_count": 7,
+      "all_requests_http_200": true,
+      "prepared_files_identical_to_locked_snapshot": true,
+      "live_mcp_manifest_sha256": "6b7ca35ba293cf3aa19a5a874807ad3f9c8b311f0415f27f31316731429e43db",
+      "live_cli_manifest_sha256": "1e4a204d8e2dea705a6833d719fb7f0793eeca294128f4a7627b3fe38b70f712"
+    }
+  ],
+  "source_sha256": {
+    "engine.py": "16184b4f7a80dfa0bd9425424c621074f031799ffe74f572da7420214e85a6f8",
+    "server.py": "014dc2afaaf2f40f17533c150f7b0b312b20d320ac79e25403bbfe7aa1b9f96c",
+    "data.py": "54ac6da2430612772fb3c3a2ddb95f48a479b213280383f4ea95ef9e90540051",
+    "compat.py": "05a096845c2c0695fe87d557fb69bff3ab424d6f78eda48910231470a6271d49"
+  },
+  "scope": "No simulation or LLM is run by this optional acquisition review; final native/host experiments are separate.",
+  "passed": true,
+  "cli_acquisition_and_preparation_also_executed": true,
+  "note": "Both actual CLI and actual MCP live harvests re-fetched exact pinned publisher files with HTTP 200 and identical original hashes; prepared route/schedule bytes match the locked snapshot experiment. New manifest timestamps differ. Simulations and LLM observations remain bound to their original snapshot manifests."
+}

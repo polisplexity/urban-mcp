@@ -1,4 +1,8 @@
 * text=auto eol=lf
+# Preserve exact observed SUMO evidence bytes named by public SHA-256 receipts.
+cases/two-city-sumo/evidence/**/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+cases/two-city-sumo/evidence/**/*-answer.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+cases/two-city-sumo/evidence/**/*-process.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Preserve exact observed vegetation CSV/answer/process bytes and their hashes.
 cases/two-city-vegetation/evidence/**/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 cases/two-city-vegetation/evidence/**/*-answer.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

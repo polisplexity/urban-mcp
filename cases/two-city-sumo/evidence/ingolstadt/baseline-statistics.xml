@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-11-10T20:56:52.185627+00:00 by Eclipse SUMO sumo 1.28.0
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/data/inputs/ingolstadt/simulation/ingolstadt_24h.net.xml.gz"/>
+        <route-files value="/data/prepared/ingolstadt/routes.xml"/>
+        <additional-files value="/data/results/ingolstadt/check-851266f4-native-baseline/additional-0.xml"/>
+    </input>
+
+    <output>
+        <fcd-output value="/data/results/ingolstadt/check-851266f4-native-baseline/fcd.xml.gz"/>
+        <summary-output value="/data/results/ingolstadt/check-851266f4-native-baseline/simulation-summary.xml"/>
+        <summary-output.period value="60"/>
+        <tripinfo-output value="/data/results/ingolstadt/check-851266f4-native-baseline/tripinfo.xml"/>
+        <tripinfo-output.write-undeparted value="true"/>
+        <statistic-output value="/data/results/ingolstadt/check-851266f4-native-baseline/statistics.xml"/>
+    </output>
+
+    <time>
+        <begin value="24300"/>
+        <end value="27000"/>
+        <step-length value="0.25"/>
+    </time>
+
+    <processing>
+        <ignore-junction-blocker value="15"/>
+        <time-to-teleport value="300"/>
+        <max-depart-delay value="100"/>
+    </processing>
+
+    <routing>
+        <device.rerouting.probability value="0.2"/>
+    </routing>
+
+    <report>
+        <log value="/data/results/ingolstadt/check-851266f4-native-baseline/sumo.log"/>
+        <error-log value="/data/results/ingolstadt/check-851266f4-native-baseline/sumo-errors.log"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <fcd_device>
+        <device.fcd.period value="10"/>
+    </fcd_device>
+
+    <random_number>
+        <seed value="37"/>
+    </random_number>
+
+</sumoConfiguration>
+-->
+
+<statistics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/statistic_file.xsd">
+    <performance clockBegin="1794344213.07" clockEnd="1794344441.95" clockDuration="228.88" traciDuration="21.55" realTimeFactor="11.80" vehicleUpdatesPerSecond="72159.01" personUpdatesPerSecond="0.00" begin="24300.00" end="27000.00" duration="2700.00"/>
+    <vehicles loaded="6492" inserted="6492" running="12" waiting="0"/>
+    <teleports total="20" jam="0" yield="18" wrongLane="0"/>
+    <safety collisions="2" emergencyStops="222" emergencyBraking="341"/>
+    <persons loaded="0" running="0" jammed="0"/>
+    <personTeleports total="0" abortWait="0" wrongDest="0"/>
+    <vehicleTripStatistics count="6492" routeLength="6053.71" speed="10.02" duration="636.01" waitingTime="132.69" timeLoss="222.62" departDelay="0.16" departDelayWaiting="0.00" totalTravelTime="4128974.75" totalDepartDelay="1060.61"/>
+    <pedestrianStatistics number="0" routeLength="0.00" duration="0.00" timeLoss="0.00"/>
+    <rideStatistics number="0"/>
+    <transportStatistics number="0"/>
+</statistics>
