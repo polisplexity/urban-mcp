@@ -1,0 +1,104 @@
+{
+  "city": "amsterdam",
+  "run_id": "check-f9a558e6-native",
+  "question": "Mapped school objects in the central study disk with a modeled library route within an explicit distance threshold",
+  "threshold_m": 1200.0,
+  "walking_speed_kph": 4.8,
+  "core_radius_m": 2000,
+  "network_buffer_m": 2000,
+  "denominator": "mapped OSM school objects whose representative point is in the study core",
+  "origin_count": 40,
+  "routed_count": 38,
+  "within_threshold": 22,
+  "outside_threshold": 16,
+  "unreachable": 2,
+  "snap_rejected": 0,
+  "within_share_of_all_origins": 0.55,
+  "quality": {
+    "mapped_features_by_amenity": {
+      "school": 204,
+      "library": 21
+    },
+    "core_school_objects": 40,
+    "buffer_library_objects": 20,
+    "accepted_library_objects": 20,
+    "library_objects_rejected_for_access": 1,
+    "school_objects_rejected_for_snap": 0,
+    "library_objects_rejected_for_snap": 0,
+    "invalid_geometries": 0,
+    "representative_points_outside_buffer": 3,
+    "unknown_library_access": 20
+  },
+  "graph": {
+    "city": "amsterdam",
+    "nodes": 79384,
+    "edges": 176632,
+    "crs": "epsg:4326",
+    "weak_components": 468,
+    "edge_attributes": [
+      "access",
+      "area",
+      "bridge",
+      "est_width",
+      "foot",
+      "highway",
+      "junction",
+      "lanes",
+      "length",
+      "maxspeed",
+      "name",
+      "oneway",
+      "oneway:foot",
+      "osmid",
+      "ref",
+      "reversed",
+      "service",
+      "sidewalk",
+      "surface",
+      "tunnel",
+      "wheelchair",
+      "width"
+    ],
+    "snapshot_manifest_sha256": "3c2c8dce71deeac129471de1e1a0ce3d8fb17de772b5316288a53f4ac3538e34",
+    "acquired_at": "2026-11-10T13:18:41.849586+00:00",
+    "model": "bidirectional unsimplified OSMnx walk"
+  },
+  "closures": [],
+  "removed_directed_edges": [],
+  "suggested_closure": {
+    "u": 46386552,
+    "v": 12534903767,
+    "baseline_routes_using_link": 5
+  },
+  "source": {
+    "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright",
+    "license": "ODbL-1.0",
+    "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "manifest_sha256": "3c2c8dce71deeac129471de1e1a0ce3d8fb17de772b5316288a53f4ac3538e34"
+  },
+  "implementation_sha256": "a2d4ddf61f6f1ca6ae547b33e6962386281a5412c9d308c831b964d81969153d",
+  "diagnostics_sha256": "ad3a3a462c2a69852c422c0dd44213a897d7dcb04402aa6f31d1c8d73d4e59cf",
+  "runtime": {
+    "osmnx": "2.1.1",
+    "networkx": "3.7",
+    "fastmcp": "3.4.2",
+    "geopandas": "1.2.0",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0"
+  },
+  "limits": [
+    "Central 2 km study disks, not complete municipal territories. The extra 2 km graph buffer reduces boundary effects for the 1200 m threshold; longer nearest routes can be censored.",
+    "OSM mapped amenity=school and amenity=library objects, not an authoritative complete facility register. Multiple objects can represent one campus; no silent deduplication.",
+    "Polygon representative points and nearest graph nodes are proxies, not verified entrances. Snap connectors are straight distances, not verified paths; reject distances over 150 m.",
+    "General pedestrian network only. OSMnx walk mode is bidirectional; directional foot rules, barriers, opening hours, crossings, stairs, slope, winter conditions and wheelchair access are not fully modeled.",
+    "1200 m is an explicit planning scenario. Minutes use an assumed constant 4.8 km/h including snap connectors; no measured speeds, delay or calibration.",
+    "Denominator is mapped school objects in the core, never population, pupils, residents, service capacity or service quality.",
+    "A link closure is a hypothetical robustness scenario on the harvested graph, not a report of actual works or a forecast."
+  ],
+  "artifacts": [
+    "summary.json",
+    "accessibility.csv",
+    "routes.geojson",
+    "report.md"
+  ]
+}

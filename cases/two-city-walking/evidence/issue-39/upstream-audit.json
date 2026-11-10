@@ -1,0 +1,396 @@
+{
+  "repository": "https://github.com/msradam/osmnx-mcp",
+  "commit": "be547a94038b7b3fa353615381a330b94e2b0b7c",
+  "license": "No license file or declaration at inspected revision; GitHub license metadata null",
+  "runtime": "walking runtime.lock.txt, direct mounted source; not installed or redistributed as a package",
+  "tool_inventory": [
+    {
+      "name": "add_edge_speeds",
+      "source": "tools/enrichment.py",
+      "line": 9
+    },
+    {
+      "name": "add_edge_travel_times",
+      "source": "tools/enrichment.py",
+      "line": 23
+    },
+    {
+      "name": "add_edge_bearings",
+      "source": "tools/enrichment.py",
+      "line": 37
+    },
+    {
+      "name": "add_edge_grades",
+      "source": "tools/enrichment.py",
+      "line": 50
+    },
+    {
+      "name": "features_from_point",
+      "source": "tools/features.py",
+      "line": 26
+    },
+    {
+      "name": "features_from_bbox",
+      "source": "tools/features.py",
+      "line": 44
+    },
+    {
+      "name": "features_from_place",
+      "source": "tools/features.py",
+      "line": 62
+    },
+    {
+      "name": "load_graph_from_point",
+      "source": "tools/graph_loading.py",
+      "line": 11
+    },
+    {
+      "name": "load_graph_from_place",
+      "source": "tools/graph_loading.py",
+      "line": 71
+    },
+    {
+      "name": "load_graph_from_file",
+      "source": "tools/graph_loading.py",
+      "line": 127
+    },
+    {
+      "name": "save_graph",
+      "source": "tools/graph_loading.py",
+      "line": 176
+    },
+    {
+      "name": "list_graphs",
+      "source": "tools/graph_loading.py",
+      "line": 197
+    },
+    {
+      "name": "set_active_graph",
+      "source": "tools/graph_loading.py",
+      "line": 210
+    },
+    {
+      "name": "drop_graph",
+      "source": "tools/graph_loading.py",
+      "line": 229
+    },
+    {
+      "name": "subgraph_from_point",
+      "source": "tools/graph_loading.py",
+      "line": 247
+    },
+    {
+      "name": "graph_info",
+      "source": "tools/graph_loading.py",
+      "line": 303
+    },
+    {
+      "name": "nearest_nodes",
+      "source": "tools/routing.py",
+      "line": 9
+    },
+    {
+      "name": "shortest_path",
+      "source": "tools/routing.py",
+      "line": 17
+    },
+    {
+      "name": "k_shortest_paths",
+      "source": "tools/routing.py",
+      "line": 55
+    },
+    {
+      "name": "nearest_edges",
+      "source": "tools/routing.py",
+      "line": 84
+    },
+    {
+      "name": "truncate_graph_bbox",
+      "source": "tools/spatial.py",
+      "line": 10
+    },
+    {
+      "name": "truncate_graph_dist",
+      "source": "tools/spatial.py",
+      "line": 30
+    },
+    {
+      "name": "largest_component",
+      "source": "tools/spatial.py",
+      "line": 46
+    },
+    {
+      "name": "consolidate_intersections",
+      "source": "tools/spatial.py",
+      "line": 58
+    },
+    {
+      "name": "basic_stats",
+      "source": "tools/stats.py",
+      "line": 24
+    },
+    {
+      "name": "orientation_entropy",
+      "source": "tools/stats.py",
+      "line": 37
+    },
+    {
+      "name": "streets_per_node_avg",
+      "source": "tools/stats.py",
+      "line": 58
+    },
+    {
+      "name": "streets_per_node_proportions",
+      "source": "tools/stats.py",
+      "line": 65
+    },
+    {
+      "name": "plot_graph",
+      "source": "tools/visualization.py",
+      "line": 34
+    },
+    {
+      "name": "plot_route_from_path",
+      "source": "tools/visualization.py",
+      "line": 60
+    },
+    {
+      "name": "plot_route",
+      "source": "tools/visualization.py",
+      "line": 91
+    },
+    {
+      "name": "plot_orientation",
+      "source": "tools/visualization.py",
+      "line": 133
+    },
+    {
+      "name": "plot_figure_ground",
+      "source": "tools/visualization.py",
+      "line": 157
+    }
+  ],
+  "observations": [
+    {
+      "tool": "list_graphs",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'graphs': {'audit': {'node_count': 79384, 'edge_count': 176632, 'network_type': 'walk', 'active': True}}, 'active': 'audit', 'count': 1}"
+    },
+    {
+      "tool": "graph_info",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'loaded': True, 'name': 'audit', 'active': True, 'node_count': 79384, 'edge_count': 176632, 'crs': 'epsg:4326', 'network_type': 'walk', 'bbox': {'north': 52.4093017, 'south': 52.3367474, 'east': 4.9530359, 'west': 4.8324441}, 'edge_attributes': ['access', 'area', 'bridge', 'est_width', 'foot', 'highway', 'junction', 'lanes', 'length', 'maxspeed', 'name', 'oneway', 'oneway:foot', 'osmid', 'ref', '"
+    },
+    {
+      "tool": "set_active_graph",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'active': 'audit', 'node_count': 79384, 'edge_count': 176632}"
+    },
+    {
+      "tool": "save_graph",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'status': 'saved', 'name': 'audit', 'path': '/tmp/audit.graphml'}"
+    },
+    {
+      "tool": "load_graph_from_file",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'status': 'loaded', 'name': 'from-file', 'path': '/tmp/audit.graphml', 'node_count': 79384, 'edge_count': 176632, 'network_type': 'walk'}"
+    },
+    {
+      "tool": "nearest_nodes",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'node_id': 12842570837, 'data': {'y': 52.3787162, 'x': 4.8912516, 'street_count': 2}}"
+    },
+    {
+      "tool": "nearest_edges",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'u': 12842570838, 'v': 12842570837, 'key': 0, 'data': {'osmid': 7372985, 'highway': 'residential', 'maxspeed': '30', 'name': 'Herengracht', 'oneway': False, 'sidewalk': 'right', 'surface': 'paving_stones', 'reversed': True, 'length': 200.93444703928068}}"
+    },
+    {
+      "tool": "shortest_path",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'path': [12842570837, 46421798, 452003303, 11285868974, 452003304, 46423401, 11923387815, 46422988, 370958623, 46422430, 10581943682, 10793733570, 46421260, 11923387795, 14255216017, 14255216016, 14255216015, 46421194, 1826071860, 561326575, 46419201, 561326584, 3674473265, 3177828068, 3177828067, 250750028, 6841786727, 6841786726, 6841786715, 6913097553, 6913097569, 9959600352, 9817686659, 98176"
+    },
+    {
+      "tool": "k_shortest_paths",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "[{'path': [12842570837, 46421798, 452003303, 11285868974, 452003304, 46423401, 11923387815, 46422988, 370958623, 46422430, 10581943682, 10793733570, 46421260, 11923387795, 14255216017, 14255216016, 14255216015, 46421194, 1826071860, 561326575, 46419201, 561326584, 3674473265, 3177828068, 3177828067, 250750028, 6841786727, 6841786726, 6841786715, 6913097553, 6913097569, 9959600352, 9817686659, 9817"
+    },
+    {
+      "tool": "basic_stats",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'n': 79384, 'm': 176632, 'k_avg': 4.450065504383755, 'edge_length_total': 2757579.6999721443, 'edge_length_avg': 15.612005185765572, 'streets_per_node_avg': 2.230839967751688, 'streets_per_node_counts': {'0': 0, '1': 5587, '2': 55097, '3': 13699, '4': 4825, '5': 144, '6': 29, '7': 3}, 'streets_per_node_proportions': {'0': 0.0, '1': 0.07037942154590346, '2': 0.6940567368739292, '3': 0.172566260203"
+    },
+    {
+      "tool": "orientation_entropy",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'orientation_entropy': 3.5566437843819623}"
+    },
+    {
+      "tool": "streets_per_node_avg",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'streets_per_node_avg': 2.230839967751688}"
+    },
+    {
+      "tool": "streets_per_node_proportions",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'0': 0.0, '1': 0.07037942154590346, '2': 0.6940567368739292, '3': 0.17256626020356747, '4': 0.06078050992643354, '5': 0.0018139675501360475, '6': 0.00036531290940239845, '7': 3.779099062783432e-05}"
+    },
+    {
+      "tool": "add_edge_speeds",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'edges_updated': 176632, 'attribute': 'speed_kph'}"
+    },
+    {
+      "tool": "add_edge_travel_times",
+      "status": "error",
+      "error": "Error calling tool 'add_edge_travel_times': \"All edges must have 'length' and 'speed_kph' attributes.\""
+    },
+    {
+      "tool": "add_edge_bearings",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'edges_updated': 176632, 'attribute': 'bearing'}"
+    },
+    {
+      "tool": "add_edge_grades",
+      "status": "error",
+      "error": "Error calling tool 'add_edge_grades': unsupported operand type(s) for -: 'NoneType' and 'NoneType'"
+    },
+    {
+      "tool": "truncate_graph_bbox",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'node_count': 9235, 'edge_count': 20044}",
+      "native_expected_nodes": 13567,
+      "returned_nodes": 9235,
+      "same_node_set": false,
+      "actual_bounds": {
+        "west": 4.9100002,
+        "south": 52.3381567,
+        "east": 4.9487883,
+        "north": 52.3599977
+      }
+    },
+    {
+      "tool": "subgraph_from_point",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'status': 'extracted', 'source': 'audit', 'target': 'subgraph', 'node_count': 17256, 'edge_count': 38006, 'bbox': {'north': 52.37759155587496, 'south': 52.368608444125044, 'east': 4.9009569701559155, 'west': 4.886243029844085}}",
+      "native_expected_nodes": 2399,
+      "returned_nodes": 17256,
+      "same_node_set": false,
+      "actual_bounds": {
+        "west": 4.9009583,
+        "south": 52.3370658,
+        "east": 4.9518591,
+        "north": 52.3686082
+      }
+    },
+    {
+      "tool": "truncate_graph_dist",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'node_count': 467, 'edge_count': 1016}"
+    },
+    {
+      "tool": "largest_component",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'node_count': 62165, 'edge_count': 139750}"
+    },
+    {
+      "tool": "consolidate_intersections",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'node_count': 305, 'edge_count': 0}",
+      "input_crs": "epsg:4326",
+      "metric_precondition_enforced": false
+    },
+    {
+      "tool": "plot_graph",
+      "status": "error",
+      "error": "Error calling tool 'plot_graph': [Errno 2] No such file or directory: '/Downloads/osmnx_graph.png'"
+    },
+    {
+      "tool": "plot_route",
+      "status": "error",
+      "error": "Error calling tool 'plot_route': [Errno 2] No such file or directory: '/Downloads/osmnx_route.png'"
+    },
+    {
+      "tool": "plot_orientation",
+      "status": "error",
+      "error": "Error calling tool 'plot_orientation': plot_orientation() got an unexpected keyword argument 'show'"
+    },
+    {
+      "tool": "plot_figure_ground",
+      "status": "error",
+      "error": "Error calling tool 'plot_figure_ground': [Errno 2] No such file or directory: '/Downloads/osmnx_figure_ground.png'"
+    },
+    {
+      "tool": "plot_route_from_path",
+      "status": "error",
+      "error": "Error calling tool 'plot_route_from_path': [Errno 2] No such file or directory: '/Downloads/osmnx_route.png'"
+    },
+    {
+      "tool": "drop_graph",
+      "status": "returned",
+      "warnings": [],
+      "result_excerpt": "{'dropped': 'audit', 'nodes_freed': 79384, 'active': 'from-file'}"
+    },
+    {
+      "tool": "shortest_path",
+      "fixture": "synthetic parallel edges",
+      "reported_length_m": 90.0,
+      "native_shortest_length_m": 10.0,
+      "status": "returned"
+    }
+  ],
+  "not_executed": [
+    {
+      "name": "features_from_point",
+      "source": "tools/features.py",
+      "line": 26,
+      "reason": "Live acquisition not admitted; avoid redundant public API calls in this offline audit"
+    },
+    {
+      "name": "features_from_bbox",
+      "source": "tools/features.py",
+      "line": 44,
+      "reason": "Live acquisition not admitted; avoid redundant public API calls in this offline audit"
+    },
+    {
+      "name": "features_from_place",
+      "source": "tools/features.py",
+      "line": 62,
+      "reason": "Live acquisition not admitted; avoid redundant public API calls in this offline audit"
+    },
+    {
+      "name": "load_graph_from_point",
+      "source": "tools/graph_loading.py",
+      "line": 11,
+      "reason": "Live acquisition not admitted; avoid redundant public API calls in this offline audit"
+    },
+    {
+      "name": "load_graph_from_place",
+      "source": "tools/graph_loading.py",
+      "line": 71,
+      "reason": "Live acquisition not admitted; avoid redundant public API calls in this offline audit"
+    }
+  ],
+  "limits": "This is an audit of an independently obtained checkout, not a license determination or proof of all upstream functions. City evidence uses a separately implemented MIT adapter on public OSMnx/NetworkX APIs."
+}

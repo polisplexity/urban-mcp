@@ -1,0 +1,57 @@
+{
+  "case": "two-city-walking",
+  "city": "amsterdam",
+  "retrieved_at": "2026-11-10T13:18:41.849586+00:00",
+  "recipe_sha256": "f5c2d45958c56483f121433c02fb65642a844057234930514bfab106ae4350e7",
+  "license": "ODbL-1.0",
+  "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "attribution": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright",
+  "nodes": 79384,
+  "edges": 176632,
+  "features": 225,
+  "http_requests": 6,
+  "osmnx": "2.1.1",
+  "python": "3.12.14",
+  "files": {
+    "areas.geojson": {
+      "sha256": "e5aca3fd7d0f9101d30a3a925fcbb864a954f0aac4ccd0fb0cb1a2844391ac2e",
+      "bytes": 5951
+    },
+    "features.geojson": {
+      "sha256": "2795b1ade271b9e3a9954af26a3cc753a370c679762549b3abd3063f9f176b74",
+      "bytes": 96509
+    },
+    "network.graphml": {
+      "sha256": "c76f0abd5b41962ce4722ad0e969d9fb78bb49b3f05374ab4c760d363837f44e",
+      "bytes": 75464517
+    },
+    "raw/000.response": {
+      "sha256": "96e35f66cfe2dfc721d5b471fe07fba55b87b0132b21efc92781e17c64c38d38",
+      "bytes": 210
+    },
+    "raw/001.response": {
+      "sha256": "84837f74f93e857796f46180c7427d241e6bab43cc962a6558470503c86c7cd2",
+      "bytes": 18800260
+    },
+    "raw/002.response": {
+      "sha256": "8084e21e11df846a2e41bb93ddaf66961aa2ef71e9a9fc1f46debc960b303042",
+      "bytes": 534
+    },
+    "raw/003.response": {
+      "sha256": "9e8d149c02b9ab7719f9e6cfdf696730c39abead6f27e39eb13793b7d2adbb82",
+      "bytes": 695
+    },
+    "raw/004.response": {
+      "sha256": "5979d56bd761a0d678123b4447a17c4b523b25d696a8f00271aab58411221cfc",
+      "bytes": 210
+    },
+    "raw/005.response": {
+      "sha256": "08a59f448a075f8a028f79d13d92103627b57c08b4d3db5a9d5eedd59e7f9ce3",
+      "bytes": 294912
+    },
+    "raw/requests.json": {
+      "sha256": "c08cdf58b62205afcebffd7b55582ad913942da882a35d1bee68bb2d787d0385",
+      "bytes": 21654
+    }
+  }
+}

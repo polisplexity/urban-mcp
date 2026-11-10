@@ -63,15 +63,17 @@
     },
     "question": "Which mapped school objects in the central study disk have a modeled library route within 1200 m, and what changes under one declared link closure?",
     "data_access": "public_reproducible",
-    "harvest_manifest": "cases/two-city-walking/evidence/helsinki/harvest.json",
-    "native_evidence": "cases/two-city-walking/evidence/helsinki/native.json",
-    "mcp_evidence": "cases/two-city-walking/evidence/helsinki/mcp.json",
-    "reproduction_evidence": "cases/two-city-walking/evidence/agents.json"
+    "harvest_manifest": "cases/two-city-walking/evidence/issue-39/helsinki/harvest.json",
+    "native_evidence": "cases/two-city-walking/evidence/issue-39/helsinki/native.json",
+    "mcp_evidence": "cases/two-city-walking/evidence/issue-39/helsinki/mcp.json",
+    "reproduction_evidence": "cases/two-city-walking/evidence/issue-39/agents.json"
   },
   "agent_acceptance": {
-    "codex": "All 15 tools and exact artifacts verified; observed brief passed primary-agent factual review",
-    "hermes": "All 15 tools and exact artifacts verified; free prose failed factual review and is NOT admitted for unsupervised municipal recommendations",
-    "evidence": "cases/two-city-walking/evidence/narrative-review.json"
+    "codex": "All 15 tools, artifacts, full diagnostics, targeted JSON and observed brief verified",
+    "hermes": "All 15 tools, artifacts, full diagnostics and targeted JSON verified; broader prose qualified and not admitted for autonomous municipal recommendations",
+    "evidence": "cases/two-city-walking/evidence/issue-39/narrative-review.json"
   },
-  "admission_meaning": "Reproducible computational workflow for this declared study area and parameters, not authoritative service adequacy or autonomous planning advice"
+  "admission_meaning": "Reproducible computational workflow for this declared study area and parameters, not authoritative service adequacy or autonomous planning advice",
+  "diagnostics_revision": "2.0",
+  "prior_version_evidence": "cases/two-city-walking/evidence/agents.json"
 }

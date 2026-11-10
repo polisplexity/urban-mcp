@@ -1,32 +1,32 @@
 # Urban MCP
 
-Open infrastructure that lets any MCP-capable agent operate urban open-source tools with the data, installation recipes and evidence needed to do useful municipal work.
+Open infrastructure that lets any MCP-capable agent operate urban open-source tools with the data, installation recipes and evidence needed for useful municipal work.
 
 **Start with the [master test record](MASTER_TEST_RECORD.md): what we tested, why, the evidence and the limits.** Catalog entries remain research until a scoped municipal case passes data, native engine, MCP and independent-host checks.
 
-## Executable cases
+## Executable cases on main
 
-- [Helsinki service inventory](cases/helsinki-service-inventory/README.md): public library and health-station registry locations against 2025 district population; original GDAL MCP plus municipal preparation/inventory operations, with Codex and Hermes evidence. [PR #37](https://github.com/polisplexity/urban-mcp/pull/37).
-- [Helsinki and Amsterdam walking access](cases/two-city-walking/README.md): mapped school-to-library routes, snap/disconnection accounting and an explicit link-closure scenario. Includes an OSMnx MCP source audit, separately implemented adapter, harvested ODbL snapshots, Docker recipes, native/protocol checks and blind host tasks. Consult the master record for completed stages.
+- [Helsinki service inventory](cases/helsinki-service-inventory/README.md): registered public-library and health-station locations against 2025 district population; original GDAL MCP plus municipal preparation/inventory operations, with Codex/Hermes evidence.
+- [Helsinki and Amsterdam walking access](cases/two-city-walking/README.md): mapped school-to-library routes, snap/disconnection accounting and a declared link-closure scenario. Includes an OSMnx MCP source audit, a separately implemented adapter, harvested ODbL snapshots and Docker/native/MCP checks in two cities.
+- [Current walking diagnostics](cases/two-city-walking/issue-39.md): exact per-school threshold transitions and per-path closed-edge membership, with a versioned blind task and four reviewed Codex/Hermes observations. Numerical artifacts, answer JSON and broader prose have separate verdicts.
 
-[RFC #1](https://github.com/polisplexity/urban-mcp/pull/1) and the Helsinki inventory [PR #37](https://github.com/polisplexity/urban-mcp/pull/37) are merged into `main`. This branch contains the two-city walking implementation under review in [PR #38](https://github.com/polisplexity/urban-mcp/pull/38); [PR #40](https://github.com/polisplexity/urban-mcp/pull/40) adds explicit threshold and closed-link diagnostics afterward. The final reproduction entry point will be `main` after that ordered integration.
-
-## What a contribution contains
-
-A capability package joins the original software/API, the missing interface delta, exact data sources and rights, preparation/binding, a municipal question, reproducible installation/startup, native/MCP comparisons, reviewed host evidence and clear limitations. A portal link, container startup or tool listing alone is insufficient.
-
-The [research registry](registry/tools.json), [data matrix](docs/data/tool-data-matrix.md) and [public tasks](docs/tasks.md) help locate candidate work; their generic requirements are not proof that those tools run. Historical research notes and original earlier agent transcripts may retain their original language. Current project entry points, new capability code/documentation, test tasks and reports are maintained in English; preserve observed evidence verbatim and add an English interpretation when needed.
+The ordered integration is [RFC #1](https://github.com/polisplexity/urban-mcp/pull/1) → [inventory #37](https://github.com/polisplexity/urban-mcp/pull/37) → [walking #38](https://github.com/polisplexity/urban-mcp/pull/38) → [diagnostics #40](https://github.com/polisplexity/urban-mcp/pull/40). Use `main` for current reproduction. Historical branches and versioned failed observations remain available for audit.
 
 ## Reproduce and contribute
 
-Follow the case's Docker instructions for a deterministic run without an LLM account. For an agent test, configure the same stdio MCP in your existing host; no proprietary agent, model provider or mandatory SOUL framework is required. [Configuration generator](tools/client_config.py), [blind host runner](tools/run_agent_check.py), [contribution guide](CONTRIBUTING.md), [roadmap](docs/roadmap.md).
-
 ```sh
+git clone --branch main https://github.com/polisplexity/urban-mcp.git
+cd urban-mcp
+git rev-parse HEAD
 python -m pip install -r requirements-dev.txt
 python tools/validate.py
 python -m unittest discover -s tests
 ```
 
-Each executable case additionally has native/MCP Docker checks. Metadata CI is a separate stage. New families do not inherit another tool's readiness, language or framework choice.
+Then follow the selected case's Docker guide above. Metadata CI is a separate stage; each executable case has real native/MCP checks. Deterministic reproduction needs no LLM account. Host tests use an existing privately authenticated agent and an independent data mount. [Client configuration](tools/client_config.py), [blind host runner](tools/run_agent_check.py), [agent runbook](docs/agents/day-zero.md).
 
-This repository's original code is MIT licensed. Each upstream program and dataset retains its own terms. Walking snapshots and derived databases are ODbL-1.0, with © OpenStreetMap contributors attribution. Keep private product code, credentials, operator data and bulk caches outside Git. Public recipes, source receipts, reviewed evidence and useful failures make it possible for anyone to repeat, inspect and improve the work.
+The current walking suite passes 84 checks in Helsinki and 83 in Amsterdam across all 15 tools, resource families and prompt, plus seven Docker integrity/cache regressions. All four final Codex/Hermes observations reproduce native artifacts and pass checked threshold/membership JSON fields. Codex briefs pass review; broader Hermes commentary remains qualified. See the master for exact versions, CI and useful failures. These results cover bounded study disks and mapped objects, not entire cities, pupils, wheelchair access, verified entrances, public admission or observed travel times.
+
+A contribution joins original software/API, a justified interface delta, exact sources and rights, preparation, a municipal question, reproducible startup, native/MCP comparison and reviewed host evidence. A portal link or successful container startup is insufficient. [Contribution guide](CONTRIBUTING.md), [roadmap](docs/roadmap.md), [public tasks](docs/tasks.md), [research registry](registry/tools.json), [data matrix](docs/data/tool-data-matrix.md).
+
+New documentation, tasks, code comments and reports are in English. Historical research and observed evidence retain their original language and bytes. Original code is MIT licensed; upstream tools and datasets retain their terms. OSM-derived snapshots and databases are ODbL-1.0, © OpenStreetMap contributors. Keep credentials, private product code, operator data and bulk caches outside Git. Public recipes, provenance, reviewed evidence and useful failures let anyone repeat and improve the work.

@@ -11,13 +11,16 @@ import json
 import math
 from pathlib import Path
 import re
+from threading import RLock
 
 import geopandas as gpd
 import networkx as nx
 import osmnx as ox
 from shapely.geometry import LineString, Point, mapping
 
-from . import data
+from . import data, diagnostics
+
+_CACHE_LOCK = RLock()
 
 
 def token(value, label="run_id"):
@@ -31,8 +34,15 @@ def positive(value, label, maximum):
         raise ValueError(f"{label} must be finite, positive and at most {maximum}")
 
 
-@lru_cache(maxsize=2)
 def load(city):
+    # A plain lru_cache can execute the same cold miss concurrently. GraphML
+    # deserialization is large enough to exhaust the sandbox when multiplied.
+    with _CACHE_LOCK:
+        return _load_cached(city)
+
+
+@lru_cache(maxsize=2)
+def _load_cached(city):
     base, manifest = data.verify(city)
     graph = ox.load_graphml(base / "network.graphml")
     if len(graph) != manifest["nodes"] or graph.number_of_edges() != manifest["edges"]:
@@ -97,8 +107,13 @@ def snap(city, longitude, latitude):
             "longitude": float(graph.nodes[node]["x"]), "latitude": float(graph.nodes[node]["y"])}
 
 
-@lru_cache(maxsize=2)
 def prepare(city):
+    with _CACHE_LOCK:
+        return _prepare_cached(city)
+
+
+@lru_cache(maxsize=2)
+def _prepare_cached(city):
     features = catalog(city)["features"]
     counts = Counter(f["amenity"] for f in features)
     buffered = data.study_polygon(city, buffered=True)
@@ -220,6 +235,7 @@ def analyze(city, run_id, threshold_m=1200.0, speed_kph=4.8, closures=None):
                "source": {"attribution": manifest["attribution"], "license": manifest["license"], "license_url": manifest["license_url"],
                           "manifest_sha256": data.sha(data.root() / "inputs" / city / "manifest.json")},
                "implementation_sha256": data.sha(Path(__file__)),
+               "diagnostics_sha256": data.sha(Path(diagnostics.__file__)),
                "runtime": {name: importlib.metadata.version(name) for name in ["osmnx", "networkx", "fastmcp", "geopandas", "shapely", "pyproj"]},
                "limits": data.recipe()["limits"],
                "artifacts": ["summary.json", "accessibility.csv", "routes.geojson", "report.md"]}
@@ -258,33 +274,34 @@ def compare(city, baseline_id, scenario_id):
     scenario = json.loads(artifact(city, scenario_id)["text"])
     if baseline["closures"] or not scenario["closures"]:
         raise ValueError("Compare an unmodified baseline with a declared closure scenario")
-    if any(baseline[key] != scenario[key] for key in ["threshold_m", "walking_speed_kph", "source", "implementation_sha256"]):
+    if any(baseline.get(key) != scenario.get(key) for key in ["threshold_m", "walking_speed_kph", "source", "implementation_sha256", "diagnostics_sha256"]):
         raise ValueError("Scenario inputs, method, speed and threshold must match baseline")
     def read(run):
-        return {row["origin_id"]: row for row in csv.DictReader(io.StringIO(artifact(city, run, "accessibility.csv", limit=50000)["text"]))}
-    before, after = read(baseline_id), read(scenario_id)
-    affected = []
-    for key, row in before.items():
-        nxt = after[key]
-        if row["status"] == "routed":
-            if nxt["status"] == "routed":
-                difference = float(nxt["total_m"]) - float(row["total_m"])
-                if difference < -1e-6:
-                    raise ValueError("Removing links unexpectedly shortened a shortest route")
-                if difference > 1e-6:
-                    affected.append({"origin_id": key, "extra_distance_m": difference, "lost_reachability": False})
-            else:
-                affected.append({"origin_id": key, "extra_distance_m": None, "lost_reachability": True})
+        # Internal allowlisted artifacts are read in full. MCP presentation
+        # paging must not silently truncate the comparison's denominator.
+        folder = data.root() / "results" / city / token(run)
+        with (folder / "accessibility.csv").open(encoding="utf-8", newline="") as stream:
+            rows = list(csv.DictReader(stream))
+        routes = json.loads((folder / "routes.geojson").read_text(encoding="utf-8"))["features"]
+        return rows, routes
+    before, before_routes = read(baseline_id)
+    after, after_routes = read(scenario_id)
+    details = diagnostics.compare_records(before, after, before_routes, after_routes, scenario["closures"], baseline["threshold_m"])
+    if details["origin_count"] != baseline["origin_count"] or details["origin_count"] != scenario["origin_count"]:
+        raise ValueError("Summary and comparison denominators disagree")
     return {"city": city, "baseline_id": baseline_id, "scenario_id": scenario_id,
             "within_before": baseline["within_threshold"], "within_after": scenario["within_threshold"],
-            "affected_origins": affected, "affected_count": len(affected), "removed_directed_edges": scenario["removed_directed_edges"],
+            **details, "removed_directed_edges": scenario["removed_directed_edges"],
             "interpretation": "Hypothetical removal of both directions and every parallel edge for each node pair; not an observed closure"}
 
 
-def route(city, origin_id, destination_id, k=1):
+def route(city, origin_id, destination_id, k=1, closed_links=None):
     if not 1 <= k <= 3:
         raise ValueError("k must be 1..3")
     graph, _, _ = load(city)
+    links = diagnostics.normalize_links([] if closed_links is None else closed_links)
+    if any(not graph.has_edge(link["u"], link["v"]) and not graph.has_edge(link["v"], link["u"]) for link in links):
+        raise ValueError("closed link does not exist in the input graph")
     features = {f["feature_id"]: f for f in catalog(city)["features"]}
     if origin_id not in features or destination_id not in features:
         raise ValueError("Unknown feature_id; inspect the feature catalog")
@@ -295,14 +312,14 @@ def route(city, origin_id, destination_id, k=1):
     try:
         paths = list(ox.routing.k_shortest_paths(graph, start["node"], end["node"], k, weight="length")) if k > 1 else [nx.shortest_path(graph, start["node"], end["node"], weight="length")]
     except nx.NetworkXNoPath:
-        return {"city": city, "paths": [], "status": "unreachable"}
+        return {"city": city, "status": "unreachable", **diagnostics.annotate_paths([], links)}
     results = []
     for nodes in paths:
         edges = keyed_route(graph, nodes)
         network = sum(e["length_m"] for e in edges)
         results.append({"nodes": [int(n) for n in nodes], "edges": edges, "network_m": network,
                         "origin_snap_m": start["distance_m"], "destination_snap_m": end["distance_m"], "total_m": network + start["distance_m"] + end["distance_m"]})
-    return {"city": city, "status": "routed", "paths": results}
+    return {"city": city, "status": "routed", **diagnostics.annotate_paths(results, links)}
 
 
 def network_stats(city):

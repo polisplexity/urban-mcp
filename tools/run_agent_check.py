@@ -34,12 +34,16 @@ def main():
     parser.add_argument("--label",default="trial",help="New label preserves earlier runs and observations")
     parser.add_argument("--capability",choices=["inventory","walking"],default="inventory")
     parser.add_argument("--city",choices=["helsinki","amsterdam"],default="helsinki")
+    parser.add_argument("--task",help="Versioned public task path relative to this repository")
     args=parser.parse_args()
     if not args.label.replace("-","").replace("_","").isalnum():raise SystemExit("Use a simple alphanumeric label")
     out=ROOT/".urban-mcp/agent-evidence"/(args.host+"-"+args.label)
     out.mkdir(parents=True,exist_ok=False)
     work=out/"work";work.mkdir()
-    task="cases/two-city-walking/agent-task.md" if args.capability=="walking" else "cases/helsinki-service-inventory/agent-task.md"
+    task=args.task or ("cases/two-city-walking/agent-task.md" if args.capability=="walking" else "cases/helsinki-service-inventory/agent-task.md")
+    task_path=(ROOT/task).resolve()
+    if not task_path.is_relative_to((ROOT/"cases").resolve()) or task_path.suffix!=".md":
+        raise ValueError("Use a public Markdown task inside cases/")
     prompt=(ROOT/task).read_text(encoding="utf-8").replace("{{city}}",args.city)+"\nYour host name is "+args.host+".\n"
     name=server_name(args.capability)
     env=dict(os.environ)
@@ -75,7 +79,7 @@ def main():
         result=subprocess.run(command,input=stdin,encoding="utf-8",env=env,cwd=work,stdout=stdout,stderr=stderr,timeout=900)
     (out/"process.json").write_text(json.dumps({"host":args.host,"city":args.city,"capability":args.capability,"exit_code":result.returncode,
         "started_at":started_at,"elapsed_seconds":round(time.monotonic()-started,3),"submitted_prompt_sha256":hashlib.sha256(prompt.encode()).hexdigest(),
-        "task_template_sha256":hashlib.sha256((ROOT/task).read_bytes()).hexdigest()},indent=2)+"\n",encoding="utf-8")
+        "task_path":task,"task_template_sha256":hashlib.sha256((ROOT/task).read_bytes()).hexdigest()},indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"host":args.host,"exit_code":result.returncode,"evidence":str(out),"note":"Exit code alone is not admission: inspect tool calls, compare numeric/table artifacts and review claims."}))
     raise SystemExit(result.returncode)
 
