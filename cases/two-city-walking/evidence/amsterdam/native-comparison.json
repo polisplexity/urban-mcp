@@ -1,0 +1,48 @@
+{
+  "city": "amsterdam",
+  "baseline_id": "check-a6c0a70b-native",
+  "scenario_id": "check-a6c0a70b-native-scenario",
+  "within_before": 22,
+  "within_after": 22,
+  "affected_origins": [
+    {
+      "origin_id": "node/2725797085",
+      "extra_distance_m": 112.14368529027735,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "node/2741066971",
+      "extra_distance_m": 328.1476048934587,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "node/4446826076",
+      "extra_distance_m": 91.42696996460836,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/904127355",
+      "extra_distance_m": 112.14368529027735,
+      "lost_reachability": false
+    },
+    {
+      "origin_id": "way/904127931",
+      "extra_distance_m": 328.14760489345883,
+      "lost_reachability": false
+    }
+  ],
+  "affected_count": 5,
+  "removed_directed_edges": [
+    [
+      12534903767,
+      46386552,
+      0
+    ],
+    [
+      46386552,
+      12534903767,
+      0
+    ]
+  ],
+  "interpretation": "Hypothetical removal of both directions and every parallel edge for each node pair; not an observed closure"
+}

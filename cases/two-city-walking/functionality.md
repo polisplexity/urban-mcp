@@ -24,4 +24,6 @@ Resources: `walking://case`, `walking://{city}/manifest`, `walking://{city}/grap
 
 Missing input, unknown city/feature/node/edge, remote coordinates, invalid budgets/speeds, nonexistent closure links, duplicate run IDs, arbitrary artifact paths, incompatible comparisons and excessive output limits are rejection cases. Each check asserts the reason, not only an error flag.
 
+Agent review exposed a specific interpretation hazard: k-shortest paths can overlap. `walking_route` alternatives are not edge-disjoint and do not establish availability after a link closure. Use the actual closure analysis and CSV for that question. The [narrative review](evidence/narrative-review.md) records a concrete Amsterdam counterexample and the Helsinki per-object classification errors; all four hosts' artifacts match even though Hermes prose fails review.
+
 Not admitted: all of OSMnx, all original MCP tools, every driver/parameter, motor-speed imputation, DEM/elevation/grade, metric intersection consolidation, calibrated pedestrian simulation, barriers/turn restrictions, continuous-edge isochrone polygons, wheelchair routing, population coverage, authoritative school/library completeness, or whole-city/global reachability. Add a new operation only with its data contract, municipal need and native comparison.

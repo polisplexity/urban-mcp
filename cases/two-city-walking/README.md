@@ -2,7 +2,7 @@
 
 This case tests a real data-to-engine-to-MCP-to-agent workflow in **two central study areas**, with the same analysis recipe. It supports an exploratory municipal question: **which mapped school objects have a modeled route to a mapped library within 1,200 m, and what changes if one network link is removed?** It does not measure residents, pupils, service capacity, verified public admission or wheelchair accessibility.
 
-Start with the project [master test record](../../MASTER_TEST_RECORD.md). See the [upstream audit and implementation decisions](upstream-audit.md), [function coverage](functionality.md), [data recipe](recipe.json), [snapshot locks](snapshot.lock.json) and [blind agent task](agent-task.md). Results and host admission are recorded only after execution, in `evidence/`.
+Start with the project [master test record](../../MASTER_TEST_RECORD.md). See the [municipal findings and maps](findings.md), [upstream audit and implementation decisions](upstream-audit.md), [function coverage](functionality.md), [data recipe](recipe.json), [snapshot locks](snapshot.lock.json) and [blind agent task](agent-task.md). Results and host admission are recorded only after execution, in `evidence/`.
 
 ## Scope and inputs
 
@@ -89,6 +89,8 @@ python tools/run_agent_check.py hermes --capability walking --city amsterdam --l
 ```
 
 `--hermes-executable` supports an installation outside PATH. A model account is optional for deterministic reproduction; model-host tests use each contributor's own configured authentication. Never commit host configuration, environment files, full private sessions or reasoning. Export only the public task's calls and reviewed answer with `tools/export_hermes_trace.py --task cases/two-city-walking/agent-task.md --city <city> ...`.
+
+The tested Hermes 0.18.2 Linux launcher does not forward a configured `cwd` to its stdio watchdog. The Linux Hermes configuration generator therefore wraps Docker with `/usr/bin/env -C <absolute-repo> docker ...`. This sets a stable working directory before Compose loads its schema. If startup reports `getwd: no such file or directory`, inspect the host's MCP stderr, preserve the failure and use the generated launcher. Process exit code 0 can still accompany a failed MCP workflow.
 
 ## Interpret and contribute
 

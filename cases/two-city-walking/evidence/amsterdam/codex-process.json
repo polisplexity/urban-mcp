@@ -1,0 +1,10 @@
+{
+  "host": "codex",
+  "city": "amsterdam",
+  "capability": "walking",
+  "exit_code": 0,
+  "started_at": "2026-11-10T13:41:04.380624+00:00",
+  "elapsed_seconds": 226.266,
+  "submitted_prompt_sha256": "8b99b3657e5fbbb815c4289ddd3aa9a552667d9a54b167740942e5ba74d199f1",
+  "task_template_sha256": "3f870b0139e0c064d6946e80a298c688fafa572ed2e572162b6ae9c4979bc7c1"
+}

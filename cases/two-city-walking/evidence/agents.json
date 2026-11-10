@@ -1,0 +1,184 @@
+{
+  "task": "cases/two-city-walking/agent-task.md",
+  "task_template_sha256": "3f870b0139e0c064d6946e80a298c688fafa572ed2e572162b6ae9c4979bc7c1",
+  "task_contains_expected_numerical_answers": false,
+  "workspaces": "Independent and initially empty for each city/host; original host authentication only",
+  "hosts": [
+    {
+      "city": "helsinki",
+      "host": "codex",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 36,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "0091c35f0e99e41afc05fbe362248dd901e7a08b94519a841ae4413fe9950a1f",
+        "closure_csv_sha256": "04ec8cec8305ad8cc144b06ae9131d22ac8d30a4d2d5c5611ac34c0718834b9d",
+        "map_sha256": "e81a86642bd1500f0f712608e736d96f90a99b58d451621cb880e13338f16ad5",
+        "graphml_sha256": "2ea8f1570dfea012a77bd7a7ab0f1042e73660c06e6454cadd8df5f63de495d5"
+      },
+      "answer_sha256": "03aef33ec13cbb0578c08206c60236071801c38b4fa7896c64f7000c326b01c3",
+      "answer_word_count": 748,
+      "narrative_review": {
+        "answer_sha256": "03aef33ec13cbb0578c08206c60236071801c38b4fa7896c64f7000c326b01c3",
+        "status": "passed_for_declared_brief",
+        "checked": [
+          "baseline/scenario counts",
+          "all eleven detours and five actual threshold crossings",
+          "route costs and connector semantics",
+          "input/artifact identities",
+          "scope/access/entrance limitations",
+          "no invented disconnection causes"
+        ],
+        "limit": "Review of this observed answer only, not a guarantee about future model responses or actual municipal conditions"
+      }
+    },
+    {
+      "city": "helsinki",
+      "host": "hermes",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 26,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "0091c35f0e99e41afc05fbe362248dd901e7a08b94519a841ae4413fe9950a1f",
+        "closure_csv_sha256": "04ec8cec8305ad8cc144b06ae9131d22ac8d30a4d2d5c5611ac34c0718834b9d",
+        "map_sha256": "e81a86642bd1500f0f712608e736d96f90a99b58d451621cb880e13338f16ad5",
+        "graphml_sha256": "2ea8f1570dfea012a77bd7a7ab0f1042e73660c06e6454cadd8df5f63de495d5"
+      },
+      "answer_sha256": "154be5de228205ecb014037d37939f1ea5eeffd81447f6bfbbe7f5ffc6fc33b0",
+      "answer_word_count": 1684,
+      "narrative_review": {
+        "answer_sha256": "154be5de228205ecb014037d37939f1ea5eeffd81447f6bfbbe7f5ffc6fc33b0",
+        "status": "failed_factual_narrative_review",
+        "artifacts_match_native": true,
+        "errors": [
+          "Per-object threshold labels are wrong: node/1017984829 and way/128161235 remain within 1200 m; way/38192458 and way/592362656 cross beyond it",
+          "Claims that the five newly outside objects have detours up to 556.3 m; their actual detours are 233.890 to 493.909 m",
+          "Calls a routed object both within threshold and over 1200 m in the exploratory finding",
+          "States that the agent verified exported topology by reload, although its trace only exports/reads the receipt; native protocol tests performed the round trip separately"
+        ],
+        "accepted_scope": "All 15 tools operated and numerical artifacts reproduced; free prose requires correction before municipal use"
+      }
+    },
+    {
+      "city": "amsterdam",
+      "host": "codex",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 35,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "f246dca57b503e73746e272152a63933fcafdc12500b8aa7d14f4cf86c8fe575",
+        "closure_csv_sha256": "83272b7213f3c4d3716981d780d5272a996aea08e891ff2167cd0bc1dde6dcf0",
+        "map_sha256": "5d154ef0b4f47c0260b27b18f079510ffbbb5e8b22a535ccff9efcac4564796d",
+        "graphml_sha256": "c76f0abd5b41962ce4722ad0e969d9fb78bb49b3f05374ab4c760d363837f44e"
+      },
+      "answer_sha256": "67896706541dae404203cb839fbcb6170d627173a8b502422c05f01f4c51110d",
+      "answer_word_count": 721,
+      "narrative_review": {
+        "answer_sha256": "67896706541dae404203cb839fbcb6170d627173a8b502422c05f01f4c51110d",
+        "status": "passed_for_declared_brief",
+        "checked": [
+          "baseline/scenario counts",
+          "five detours with zero threshold changes",
+          "route and reachable-node facts",
+          "input/artifact identities",
+          "unknown admission and point/boundary semantics"
+        ],
+        "limit": "Review of this observed answer only, not a guarantee about future model responses or actual municipal conditions"
+      }
+    },
+    {
+      "city": "amsterdam",
+      "host": "hermes",
+      "process_exit_code": 0,
+      "mcp_calls_recorded": 24,
+      "advertised_tools_exercised": [
+        "harvest_walking_data",
+        "walking_accessibility",
+        "walking_compare",
+        "walking_edge",
+        "walking_export_graph",
+        "walking_feature_catalog",
+        "walking_graph_info",
+        "walking_isochrone",
+        "walking_network_stats",
+        "walking_node",
+        "walking_read_artifact",
+        "walking_render_map",
+        "walking_route",
+        "walking_snap",
+        "walking_status"
+      ],
+      "artifacts_match_native": true,
+      "artifact_hashes": {
+        "baseline_csv_sha256": "f246dca57b503e73746e272152a63933fcafdc12500b8aa7d14f4cf86c8fe575",
+        "closure_csv_sha256": "83272b7213f3c4d3716981d780d5272a996aea08e891ff2167cd0bc1dde6dcf0",
+        "map_sha256": "5d154ef0b4f47c0260b27b18f079510ffbbb5e8b22a535ccff9efcac4564796d",
+        "graphml_sha256": "c76f0abd5b41962ce4722ad0e969d9fb78bb49b3f05374ab4c760d363837f44e"
+      },
+      "answer_sha256": "98ef5c73c1c79e504f309d688613208246f6fa1d2554a61c94c1ebcc5df56179",
+      "answer_word_count": 1231,
+      "narrative_review": {
+        "answer_sha256": "98ef5c73c1c79e504f309d688613208246f6fa1d2554a61c94c1ebcc5df56179",
+        "status": "failed_factual_narrative_review",
+        "artifacts_match_native": true,
+        "errors": [
+          "Describes the 284.329 m second k-shortest route as an alternative if the primary edge is removed, but both returned paths use the removed node pair; the closure run gives a 513.679 m nearest-library route for this origin",
+          "The response exceeds the requested 900-word brief format"
+        ],
+        "accepted_scope": "All 15 tools operated and numerical artifacts reproduced; overlapping k-shortest paths are not closure-safe alternatives"
+      }
+    }
+  ],
+  "narrative_review": "See narrative-review.md; numerical artifact equality does not establish factual correctness of every sentence"
+}

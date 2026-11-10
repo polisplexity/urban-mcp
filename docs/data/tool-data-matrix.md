@@ -2,7 +2,7 @@
 
 **Status: proposed requirements, not general operational availability.** Each tool has a profile. These describe a first representative case; every operation needs its own native binding and may use a different subset. Dependencies inherit the parent capability's inputs. GTFS is not mandatory for geometric validation, nor HVAC inputs for a daylight calculation. Historical research descriptions retain their original language.
 
-Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 1 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
+Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 2 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
 
 | Tool | Proposed profile | Status |
 |---|---|---|
@@ -142,7 +142,7 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 | [tudelft3d/City4CFD](#data-tudelft3d--city4cfd) | `cfd` | candidate; binding pending |
 | [VCityTeam/UD-Viz](#data-vcityteam--ud-viz) | `scene` | candidate; binding pending |
 | [benchmark-urbanism/cityseer-api](#data-benchmark-urbanism--cityseer-api) | `roads` | candidate; binding pending |
-| [gboeing/osmnx](#data-gboeing--osmnx) | `roads` | candidate; binding pending |
+| [gboeing/osmnx](#data-gboeing--osmnx) | `roads` | candidate; case-scoped admission |
 | [pysal/esda](#data-pysal--esda) | `statistics` | candidate; binding pending |
 | [pysal/inequality](#data-pysal--inequality) | `statistics` | candidate; binding pending |
 | [pysal/libpysal](#data-pysal--libpysal) | `statistics` | dependency; binding pending |
@@ -2330,8 +2330,8 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 
 ## msradam/osmnx-mcp
 
-- **Original interface:** create_server y registro de grafos identificados.
-- **Profile scope:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Original interface:** FastMCP create_server/mount with process-global named graph registry; Python OSMnx/NetworkX.
+- **Profile scope:** candidate. Source/runtime audit recorded in cases/two-city-walking/upstream-audit.md; this third-party MCP is not admitted or redistributed.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
@@ -2341,7 +2341,7 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 - **Validation required:** Connectivity, direction, intersection semantics, units and source coverage.
 - **Real-city blocker:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
 - **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
-- **Project critique:** No reinventar registro de grafos; un grafo activo global puede requerir revisar aislamiento.
+- **Project critique:** No declared license at inspected revision; route totals assume key 0, bbox order differs from current OSMnx, metric preconditions/portable plotting and municipal data contracts are missing.
 - **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.
 
 <a id="data-neka-nat--freecad-mcp"></a>
@@ -2882,8 +2882,10 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 
 ## gboeing/osmnx
 
-- **Original interface:** API Python; comparar MCP OSMnx existente.
-- **Profile scope:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Original interface:** Public Python API; admitted walking runtime pins OSMnx 2.1.1, NetworkX 3.7 and FastMCP 3.4.2.
+- **Profile scope:** candidate. Helsinki/Amsterdam central walking cases have scoped execution evidence. The generic roads profile remains a proposal for other operations.
+- **Scoped executable case:** [amsterdam-walking](../../cases/amsterdam-walking/README.md); operations: harvest_walking_data, walking_accessibility, walking_compare, walking_edge, walking_export_graph, walking_feature_catalog, walking_graph_info, walking_isochrone, walking_network_stats, walking_node, walking_read_artifact, walking_render_map, walking_route, walking_snap, walking_status. The generic profile below remains a proposal for other operations.
+- **Scoped executable case:** [helsinki-walking](../../cases/helsinki-walking/README.md); operations: harvest_walking_data, walking_accessibility, walking_compare, walking_edge, walking_export_graph, walking_feature_catalog, walking_graph_info, walking_isochrone, walking_network_stats, walking_node, walking_read_artifact, walking_render_map, walking_route, walking_snap, walking_status. The generic profile below remains a proposal for other operations.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
@@ -2892,8 +2894,8 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 - **Preparation required:** Build graph with native tool, preserve graph/source version, project and specify routing profile.
 - **Validation required:** Connectivity, direction, intersection semantics, units and source coverage.
 - **Real-city blocker:** Mapped roads do not imply capacity, reliable speed, pedestrian completeness or traffic demand.
-- **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
-- **Project critique:** No rehacer descarga/topología ni asumir OSM completo o apto para cada simulador.
+- **Native binding:** verified only for the linked case and operations; the generic profile does not admit additional operations.
+- **Project critique:** OSM completeness and public library admission are unverified; bidirectional walk graph omits important barriers/directional rules. No wheelchair, population, calibrated-time or entire-city claim.
 - **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.
 
 <a id="data-pysal--esda"></a>

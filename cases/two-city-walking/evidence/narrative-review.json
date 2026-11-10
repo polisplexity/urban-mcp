@@ -1,0 +1,32 @@
+{
+  "reviewed_on": "2026-11-10",
+  "reviewer": "Primary implementing agent, checked against native/MCP artifacts; not an independent municipal or human field review",
+  "reviews": {
+    "helsinki:codex": {
+      "answer_sha256": "03aef33ec13cbb0578c08206c60236071801c38b4fa7896c64f7000c326b01c3",
+      "status": "passed_for_declared_brief",
+      "checked": ["baseline/scenario counts", "all eleven detours and five actual threshold crossings", "route costs and connector semantics", "input/artifact identities", "scope/access/entrance limitations", "no invented disconnection causes"],
+      "limit": "Review of this observed answer only, not a guarantee about future model responses or actual municipal conditions"
+    },
+    "amsterdam:codex": {
+      "answer_sha256": "67896706541dae404203cb839fbcb6170d627173a8b502422c05f01f4c51110d",
+      "status": "passed_for_declared_brief",
+      "checked": ["baseline/scenario counts", "five detours with zero threshold changes", "route and reachable-node facts", "input/artifact identities", "unknown admission and point/boundary semantics"],
+      "limit": "Review of this observed answer only, not a guarantee about future model responses or actual municipal conditions"
+    },
+    "helsinki:hermes": {
+      "answer_sha256": "154be5de228205ecb014037d37939f1ea5eeffd81447f6bfbbe7f5ffc6fc33b0",
+      "status": "failed_factual_narrative_review",
+      "artifacts_match_native": true,
+      "errors": ["Per-object threshold labels are wrong: node/1017984829 and way/128161235 remain within 1200 m; way/38192458 and way/592362656 cross beyond it", "Claims that the five newly outside objects have detours up to 556.3 m; their actual detours are 233.890 to 493.909 m", "Calls a routed object both within threshold and over 1200 m in the exploratory finding", "States that the agent verified exported topology by reload, although its trace only exports/reads the receipt; native protocol tests performed the round trip separately"],
+      "accepted_scope": "All 15 tools operated and numerical artifacts reproduced; free prose requires correction before municipal use"
+    },
+    "amsterdam:hermes": {
+      "answer_sha256": "98ef5c73c1c79e504f309d688613208246f6fa1d2554a61c94c1ebcc5df56179",
+      "status": "failed_factual_narrative_review",
+      "artifacts_match_native": true,
+      "errors": ["Describes the 284.329 m second k-shortest route as an alternative if the primary edge is removed, but both returned paths use the removed node pair; the closure run gives a 513.679 m nearest-library route for this origin", "The response exceeds the requested 900-word brief format"],
+      "accepted_scope": "All 15 tools operated and numerical artifacts reproduced; overlapping k-shortest paths are not closure-safe alternatives"
+    }
+  }
+}

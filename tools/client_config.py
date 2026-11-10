@@ -34,7 +34,7 @@ def server_config(data_dir=None, wsl_distro=None, capability="inventory"):
         env = {variable: str(data)}
         if hasattr(os, "getuid"):
             env.update(URBAN_MCP_UID=str(os.getuid()), URBAN_MCP_GID=str(os.getgid()))
-    return {"command": command, "args": args, "env": env}
+    return {"command": command, "args": args, "env": env, "cwd": str(ROOT)}
 
 
 def main():
@@ -50,10 +50,14 @@ def main():
         print(json.dumps({"mcpServers":{name:cfg}},indent=2))
     elif args.format == "hermes":
         import yaml
+        if sys.platform == "linux" and not args.wsl_distro:
+            # Hermes 0.18.2 does not forward a configured cwd to its stdio
+            # watchdog. GNU env changes directory before Docker starts.
+            cfg={**cfg,"command":"/usr/bin/env","args":["-C",str(ROOT),cfg["command"],*cfg["args"]]}
         print(yaml.safe_dump({"mcp_servers":{name:{**cfg,"connect_timeout":60,"timeout":300}}},sort_keys=False))
     else:
         print(f"[mcp_servers.{name}]")
-        for key in ("command","args"):
+        for key in ("command","args","cwd"):
             print(key+" = "+json.dumps(cfg[key]))
         print("startup_timeout_sec = 60\ntool_timeout_sec = 300\n# Review and approve this case server in your host before operating it.")
         if cfg["env"]:

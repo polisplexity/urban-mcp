@@ -27,9 +27,12 @@
       "evidence": "publisher-case-verified",
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
-      "download_implemented": false,
+      "download_implemented": true,
       "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
-      "implemented_cases": []
+      "implemented_cases": [
+        "amsterdam-walking",
+        "helsinki-walking"
+      ]
     },
     {
       "id": "overture",
@@ -514,7 +517,9 @@
       "download_implemented": true,
       "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
       "implemented_cases": [
-        "helsinki-service-inventory"
+        "amsterdam-walking",
+        "helsinki-service-inventory",
+        "helsinki-walking"
       ]
     }
   ]
