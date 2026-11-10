@@ -143,6 +143,11 @@ async def run(city):
 
             await invoke("walking_status")
             await invoke("harvest_walking_data", {"city": city, "mode": "snapshot"})
+            cold_graph, cold_schools, cold_libraries = await asyncio.wait_for(asyncio.gather(
+                invoke("walking_graph_info", {"city": city}),
+                invoke("walking_feature_catalog", {"city": city, "amenity": "school", "core_only": True}),
+                invoke("walking_feature_catalog", {"city": city, "amenity": "library"})), timeout=90)
+            check("parallel cold-start inspections share one graph without resource exhaustion", cold_graph == info and cold_schools["count"] == len(origins) and cold_libraries["count"] > 0)
             remote_info = await invoke("walking_graph_info", {"city": city})
             check("native/MCP graph identity", remote_info == info)
             catalog = await invoke("walking_feature_catalog", {"city": city, "amenity": "school", "core_only": True})

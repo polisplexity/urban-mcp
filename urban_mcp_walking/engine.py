@@ -11,6 +11,7 @@ import json
 import math
 from pathlib import Path
 import re
+from threading import RLock
 
 import geopandas as gpd
 import networkx as nx
@@ -18,6 +19,8 @@ import osmnx as ox
 from shapely.geometry import LineString, Point, mapping
 
 from . import data, diagnostics
+
+_CACHE_LOCK = RLock()
 
 
 def token(value, label="run_id"):
@@ -31,8 +34,15 @@ def positive(value, label, maximum):
         raise ValueError(f"{label} must be finite, positive and at most {maximum}")
 
 
-@lru_cache(maxsize=2)
 def load(city):
+    # A plain lru_cache can execute the same cold miss concurrently. GraphML
+    # deserialization is large enough to exhaust the sandbox when multiplied.
+    with _CACHE_LOCK:
+        return _load_cached(city)
+
+
+@lru_cache(maxsize=2)
+def _load_cached(city):
     base, manifest = data.verify(city)
     graph = ox.load_graphml(base / "network.graphml")
     if len(graph) != manifest["nodes"] or graph.number_of_edges() != manifest["edges"]:
@@ -97,8 +107,13 @@ def snap(city, longitude, latitude):
             "longitude": float(graph.nodes[node]["x"]), "latitude": float(graph.nodes[node]["y"])}
 
 
-@lru_cache(maxsize=2)
 def prepare(city):
+    with _CACHE_LOCK:
+        return _prepare_cached(city)
+
+
+@lru_cache(maxsize=2)
+def _prepare_cached(city):
     features = catalog(city)["features"]
     counts = Counter(f["amenity"] for f in features)
     buffered = data.study_polygon(city, buffered=True)

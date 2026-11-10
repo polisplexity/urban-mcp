@@ -24,7 +24,7 @@ jobs:
           echo "URBAN_MCP_GID=$(id -g)" >> "$GITHUB_ENV"
       - run: docker compose --profile walking build walking
       - run: docker compose --profile walking run --rm walking-harvest harvest --mode snapshot --city ${{ matrix.city }}
-      - name: Snapshot integrity regressions (synthetic, offline)
-        run: docker compose --profile walking run --rm --entrypoint python walking -m unittest urban_mcp_walking.test_contracts -v
+      - name: Snapshot integrity and cache concurrency regressions (synthetic, offline)
+        run: docker compose --profile walking run --rm --entrypoint python walking -m unittest urban_mcp_walking.test_contracts urban_mcp_walking.test_runtime -v
       - name: Native oracle and all MCP operations (municipal inputs, offline)
         run: docker compose --profile walking run --rm walking test --city ${{ matrix.city }}
