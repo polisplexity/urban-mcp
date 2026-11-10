@@ -32,18 +32,19 @@ def main():
     parser.add_argument("--hermes-home",help="An isolated, already-authenticated Hermes test profile")
     parser.add_argument("--hermes-executable",help="Explicit path when Hermes is not on PATH")
     parser.add_argument("--label",default="trial",help="New label preserves earlier runs and observations")
-    parser.add_argument("--capability",choices=["inventory","walking","vegetation","sumo"],default="inventory")
-    parser.add_argument("--city",choices=["helsinki","amsterdam","bologna","ingolstadt"],default="helsinki")
+    parser.add_argument("--capability",choices=["inventory","walking","vegetation","sumo","swmm"],default="inventory")
+    parser.add_argument("--city",choices=["helsinki","amsterdam","bologna","ingolstadt","odense","utrecht"],default="helsinki")
     parser.add_argument("--task",help="Versioned public task path relative to this repository")
     parser.add_argument("--max-turns",type=int,help="Hermes turn budget; default 65 for vegetation, 45 for earlier cases")
     args=parser.parse_args()
-    if (args.capability=="sumo") != (args.city in {"bologna","ingolstadt"}):
-        raise ValueError("SUMO uses Bologna/Ingolstadt; earlier capabilities use Helsinki/Amsterdam")
+    allowed={"sumo":{"bologna","ingolstadt"},"swmm":{"odense","utrecht"}}
+    if args.city not in allowed.get(args.capability,{"helsinki","amsterdam"}):
+        raise ValueError("City is not supported by the selected capability")
     if not args.label.replace("-","").replace("_","").isalnum():raise SystemExit("Use a simple alphanumeric label")
     out=ROOT/".urban-mcp/agent-evidence"/(args.host+"-"+args.label)
     out.mkdir(parents=True,exist_ok=False)
     work=out/"work";work.mkdir()
-    task=args.task or {"walking":"cases/two-city-walking/agent-task.md","inventory":"cases/helsinki-service-inventory/agent-task.md","vegetation":"cases/two-city-vegetation/agent-task-v2.md","sumo":"cases/two-city-sumo/agent-task.md"}[args.capability]
+    task=args.task or {"walking":"cases/two-city-walking/agent-task.md","inventory":"cases/helsinki-service-inventory/agent-task.md","vegetation":"cases/two-city-vegetation/agent-task-v2.md","sumo":"cases/two-city-sumo/agent-task.md","swmm":"cases/two-city-swmm/agent-task.md"}[args.capability]
     task_path=(ROOT/task).resolve()
     if not task_path.is_relative_to((ROOT/"cases").resolve()) or task_path.suffix!=".md":
         raise ValueError("Use a public Markdown task inside cases/")
@@ -58,7 +59,7 @@ def main():
         executable=shutil.which("codex")
         if not executable:raise SystemExit("Install/configure Codex CLI with your account first")
         cfg=server_config(ROOT/".urban-mcp"/("codex-"+args.label),args.wsl_distro,args.capability)
-        cfg.update(startup_timeout_sec=60,tool_timeout_sec=420 if args.capability=="sumo" else 300,required=True,default_tools_approval_mode="approve")
+        cfg.update(startup_timeout_sec=60,tool_timeout_sec=420 if args.capability in {"sumo","swmm"} else 300,required=True,default_tools_approval_mode="approve")
         config_path=Path(os.environ.get("CODEX_HOME",str(Path.home()/".codex")))/"config.toml"
         host_config=tomllib.loads(config_path.read_text(encoding="utf-8")) if config_path.exists() else {}
         registrations=list(host_config.get("mcp_servers",{}))
@@ -78,12 +79,12 @@ def main():
         executable=args.hermes_executable or shutil.which("hermes")
         if not executable or not args.hermes_home:raise SystemExit("Use an installed Hermes and --hermes-home pointing to an isolated configured test profile")
         env["HERMES_HOME"]=str(Path(args.hermes_home).resolve())
-        turns=args.max_turns or (100 if args.capability=="sumo" else 65 if args.capability=="vegetation" else 45)
+        turns=args.max_turns or (100 if args.capability in {"sumo","swmm"} else 65 if args.capability=="vegetation" else 45)
         if not 1 <= turns <= 100:raise ValueError("max-turns must be 1..100")
         command=[executable,"chat","-Q","--ignore-rules","--source","tool","-t",name,"--max-turns",str(turns),"-q",prompt]
         stdin=None
     with (out/"events.log").open("w",encoding="utf-8") as stdout,(out/"stderr.log").open("w",encoding="utf-8") as stderr:
-        result=subprocess.run(command,input=stdin,encoding="utf-8",env=env,cwd=work,stdout=stdout,stderr=stderr,timeout=1800 if args.capability=="sumo" else 900)
+        result=subprocess.run(command,input=stdin,encoding="utf-8",env=env,cwd=work,stdout=stdout,stderr=stderr,timeout=1800 if args.capability in {"sumo","swmm"} else 900)
     (out/"process.json").write_text(json.dumps({"host":args.host,"city":args.city,"capability":args.capability,"exit_code":result.returncode,
         "started_at":started_at,"elapsed_seconds":round(time.monotonic()-started,3),"submitted_prompt_sha256":hashlib.sha256(prompt.encode()).hexdigest(),
         "task_path":task,"task_template_sha256":task_hash,

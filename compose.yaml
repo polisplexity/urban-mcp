@@ -68,7 +68,37 @@ x-sumo: &sumo
   tmpfs: ["/tmp:rw,noexec,nosuid,size=128m"]
   volumes:
     - ${URBAN_MCP_SUMO_WORKDIR:-./.urban-mcp/sumo}:/data
+x-swmm: &swmm
+  profiles: [swmm]
+  init: true
+  platform: linux/amd64
+  image: urban-mcp-swmm:dev
+  user: "${URBAN_MCP_UID:-65532}:${URBAN_MCP_GID:-65532}"
+  build:
+    context: .
+    dockerfile: adapters/swmm/Dockerfile
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  cpus: 2
+  mem_limit: 3g
+  pids_limit: 128
+  network_mode: none
+  tmpfs: ["/tmp:rw,noexec,nosuid,size=128m", "/.config:rw,noexec,nosuid,size=1m,mode=1777"]
+  volumes:
+    - ${URBAN_MCP_SWMM_WORKDIR:-./.urban-mcp/swmm}:/data
 services:
+  swmm:
+    <<: *swmm
+  swmm-harvest:
+    <<: *swmm
+    network_mode: bridge
+    command: [harvest]
+  swmm-mcp:
+    <<: *swmm
+    network_mode: bridge
+    stdin_open: true
+    command: [serve]
   sumo:
     <<: *sumo
   sumo-harvest:
