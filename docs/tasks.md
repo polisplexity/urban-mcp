@@ -6,6 +6,8 @@
 
 ## Historical planning backlog
 
+Current implementation is on `main`: [Helsinki inventory](../cases/helsinki-service-inventory/README.md), [two-city walking diagnostics](../cases/two-city-walking/issue-39.md) and [Helsinki/Amsterdam historical vegetation](../cases/two-city-vegetation/README.md). Vegetation [issue #35](https://github.com/polisplexity/urban-mcp/issues/35) was closed by merged [PR #42](https://github.com/polisplexity/urban-mcp/pull/42). The original planning text below is historical; use the [master](../MASTER_TEST_RECORD.md) and exact case evidence for current readiness. Independent-person qualification remains pending.
+
 El primer caso ejecutable es [Helsinki: bibliotecas y salud](../cases/helsinki-service-inventory/README.md), con cosecha, original/MCP y dos agentes. Las prioridades siguientes son accesibilidad y cobertura vegetal. Cada capacidad se admite con cosecha, resultado municipal y reproducción independiente; SUMO Hello es una referencia técnica auxiliar. Ver [criterios](cases/municipal-first.md) y [plantilla](cases/municipal-case-template.md). Las tareas de familia seleccionan operaciones/casos y datos, no ordenan implementar todo el inventario.
 
 | Tarea | Hito |

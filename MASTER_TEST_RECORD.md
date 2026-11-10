@@ -20,6 +20,19 @@ PR [#42](https://github.com/polisplexity/urban-mcp/pull/42) is merged into `main
 
 The [vegetation integration receipt](docs/integration/2026-11-10-vegetation-main.json) records the reviewed PR head, merge/source equality, CI heads/results and source/evidence fingerprints. Documentation changes after the merge do not create new Codex/Hermes observations. The earlier integration receipt below remains historical evidence for #1–#40. Final-product qualification is still pending independent-person reproduction in a third city.
 
+### PR #42 integration verified, 2026-11-10
+
+All four workflows passed on the integrated `6f929fc` main commit. Public log checks confirm the counts below. Documentation commit `ea3ad85` also passed metadata/reference CI and both vegetation jobs, with executable source, input locks and all observed case evidence unchanged. No host experiment was rerun or relabeled during integration. Issue #35 was closed by the merge; issue #41 remains open and the qualification register remains pending.
+
+| CI on integrated main | Observed result |
+| --- | --- |
+| [Planning contracts and reference data](https://github.com/polisplexity/urban-mcp/actions/runs/42882308988) | Passed; 36 repository tests, metadata contracts, pinned reference assets and Docker preflight |
+| [Vegetation, Helsinki and Amsterdam](https://github.com/polisplexity/urban-mcp/actions/runs/42882308943) | Passed; 110/131 native/stdio checks, all 21 tools/resources/prompts, 12 synthetic regressions and 69 original-server tests in each job |
+| [Existing Helsinki inventory](https://github.com/polisplexity/urban-mcp/actions/runs/42882309048) | Passed; 72 native/MCP checks and 69 original-server regressions |
+| [Existing two-city walking](https://github.com/polisplexity/urban-mcp/actions/runs/42882309050) | Passed; Helsinki 84 / Amsterdam 83 native/MCP checks |
+
+The English [contribution checks](CONTRIBUTING.md), [agent runbook](docs/agents/day-zero.md), [roadmap](docs/roadmap.md) and [public task index](docs/tasks.md) now include the implemented vegetation workflow. Current entry-point verification covers 133 local Markdown targets and eight Bash blocks. Source/evidence hashes and exact CI job URLs are retained in the integration receipt.
+
 ## Historical vegetation: two-city evidence, issue #35 / PR #42
 
 Municipal purpose: identify statistical zones with low **mapped 2021 vegetation share**, and report attached **2025 aggregate population**, to select a bounded local data-validation exercise. [Reproduction guide](cases/two-city-vegetation/README.md), [exact findings and maps](cases/two-city-vegetation/findings.md), [21-operation coverage](cases/two-city-vegetation/functionality.md), [source audit](cases/two-city-vegetation/upstream-audit.md). Source inputs were harvested in both cities and published as [hash-locked data snapshots](https://github.com/polisplexity/urban-mcp/releases/tag/data-vegetation-20261110). WorldCover/Helsinki attribution and CBS CC0 terms remain separate from MIT code licensing.

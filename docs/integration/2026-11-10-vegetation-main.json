@@ -1,8 +1,8 @@
 {
-  "observed_at": "2026-11-10T19:11:49.958916+00:00",
+  "observed_at": "2026-11-10T19:16:37.169759+00:00",
   "repository": "https://github.com/polisplexity/urban-mcp",
   "integrated_main_commit": "6f929fc3f1c0b2ccd8166496f8fd641c5efa73f5",
-  "integration_status": "waiting_for_main_ci",
+  "integration_status": "passed",
   "pull_request": {
     "baseRefName": "main",
     "headRefOid": "2f8f4d78ec3ca2a739423659f157483db0f58663",
@@ -126,31 +126,10 @@
     "agent_runs_repeated_during_merge": false,
     "agent_evidence": "cases/two-city-vegetation/evidence/agents.json",
     "factual_reviews": "cases/two-city-vegetation/evidence/narrative-review.json",
-    "limits": "Preserve recorded task/source/answer identities and failed Hermes narratives; native artifact success does not establish factual prose or final-product qualification."
+    "limits": "Preserve recorded task/source/answer identities and failed Hermes narratives; native artifact success does not establish factual prose or final-product qualification.",
+    "inline_review_comments_observed": 0
   },
   "ci_on_integrated_main": [
-    {
-      "conclusion": "",
-      "databaseId": 42882309050,
-      "headSha": "6f929fc3f1c0b2ccd8166496f8fd641c5efa73f5",
-      "status": "in_progress",
-      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882309050",
-      "workflowName": "Two-city walking native and MCP",
-      "jobs": [
-        {
-          "name": "walking (amsterdam)",
-          "status": "in_progress",
-          "conclusion": "",
-          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882309050/job/130061481188"
-        },
-        {
-          "name": "walking (helsinki)",
-          "status": "in_progress",
-          "conclusion": "",
-          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882309050/job/130061481474"
-        }
-      ]
-    },
     {
       "conclusion": "success",
       "databaseId": 42882308988,
@@ -220,11 +199,40 @@
         "inventory_72_checks": true,
         "original_69_regressions": true
       }
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42882309050,
+      "headSha": "6f929fc3f1c0b2ccd8166496f8fd641c5efa73f5",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882309050",
+      "workflowName": "Two-city walking native and MCP",
+      "jobs": [
+        {
+          "name": "walking (amsterdam)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882309050/job/130061481188"
+        },
+        {
+          "name": "walking (helsinki)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882309050/job/130061481474"
+        }
+      ],
+      "public_log_sha256": "2790b5789dbc6917539c4730bce74b905b94c819a8392bc5c1cfabe003ec3306",
+      "public_log_count_checks": {
+        "helsinki_84_checks": true,
+        "amsterdam_83_checks": true
+      }
     }
   ],
   "local_validation": {
     "metadata_contracts": "passed; 229 tools, 35 source channels, 48 profiles, six scoped cases",
     "repository_tests": 36,
+    "documentation_local_targets": 133,
+    "bash_blocks_syntax_checked": 8,
     "passed": true,
     "scientific_runtime_verified_by_metadata_check": false
   },
@@ -287,5 +295,25 @@
     "historical_vegetation_product_qualified": false,
     "independent_person_third_city": "pending"
   },
-  "documentation_followup": "README, master and vegetation reproduction instructions now select main; these changes do not replace original observations or change executable source/data."
+  "documentation_followup": "README, master and vegetation reproduction instructions now select main; these changes do not replace original observations or change executable source/data.",
+  "documentation_commit": "ea3ad85101077568b2a8cdc80cef0604cae67d83",
+  "ci_on_documented_main": [
+    {
+      "conclusion": "success",
+      "databaseId": 42882891870,
+      "headSha": "ea3ad85101077568b2a8cdc80cef0604cae67d83",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882891870",
+      "workflowName": "Two-city vegetation native and MCP"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42882892185,
+      "headSha": "ea3ad85101077568b2a8cdc80cef0604cae67d83",
+      "status": "completed",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42882892185",
+      "workflowName": "Planning contracts and reference data"
+    }
+  ],
+  "documented_main_source_and_observed_evidence_unchanged": true
 }

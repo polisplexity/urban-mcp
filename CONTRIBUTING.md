@@ -25,7 +25,7 @@ python tools/validate.py
 python -m unittest discover -s tests
 ```
 
-For walking changes, follow [the two-city case](cases/two-city-walking/README.md) and run native/MCP Docker checks in both cities. For service-inventory changes, follow [the Helsinki case](cases/helsinki-service-inventory/README.md), including its original-server regression suite. Live source calls belong in acquisition reviews, not routine CI; CI restores locked permitted snapshots without model credentials.
+For walking changes, follow [the two-city case](cases/two-city-walking/README.md) and run native/MCP Docker checks in both cities. For vegetation changes, follow [its two-city guide](cases/two-city-vegetation/README.md), including the categorical/integrity regressions, original GDAL regressions and full native/stdio suites in both cities. For service-inventory changes, follow [the Helsinki case](cases/helsinki-service-inventory/README.md), including its original-server regression suite. Live source calls belong in acquisition reviews, not routine CI; CI restores locked permitted snapshots without model credentials.
 
 `planning/*.tsv` contains editable catalog decisions. Rebuild data registries/matrix with `python tools/build_data_registry.py` after changes. `tools/build_planning_catalog.py` imports reviewed research updates; do not mark readiness to make CI pass. Case admission derives from `case.json` and reviewed evidence, not a generic tool's reputation.
 
