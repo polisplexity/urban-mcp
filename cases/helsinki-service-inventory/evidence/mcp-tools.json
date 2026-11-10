@@ -1,0 +1,2521 @@
+[
+  {
+    "name": "store_justification",
+    "title": null,
+    "description": "Store an epistemic justification for later use. This tool is called after generating a methodological justification via a prompt. The stored justification allows subsequent tool calls to proceed without re-justification. REQUIRES: tool_name (name of the tool this justification is for), domain (crs_datum, resampling, hydrology, aggregation, spatial_query), prompt_name (name of the prompt that generated this), prompt_args (dict of arguments used in the prompt), justification (the generated justification as dict with intent/alternatives/choice/confidence). OUTPUT: Confirmation message with cache key.",
+    "inputSchema": {
+      "$defs": {
+        "Alternative": {
+          "description": "An alternative method that was considered but rejected.",
+          "properties": {
+            "method": {
+              "description": "Name of the alternative method",
+              "title": "Method",
+              "type": "string"
+            },
+            "why_not": {
+              "description": "Reason for rejection",
+              "title": "Why Not",
+              "type": "string"
+            }
+          },
+          "required": [
+            "method",
+            "why_not"
+          ],
+          "title": "Alternative",
+          "type": "object"
+        },
+        "Choice": {
+          "description": "The selected method with rationale.",
+          "properties": {
+            "method": {
+              "description": "Name of the selected method",
+              "title": "Method",
+              "type": "string"
+            },
+            "rationale": {
+              "description": "Why this method fits the intent",
+              "title": "Rationale",
+              "type": "string"
+            },
+            "tradeoffs": {
+              "description": "Known limitations or compromises",
+              "title": "Tradeoffs",
+              "type": "string"
+            }
+          },
+          "required": [
+            "method",
+            "rationale",
+            "tradeoffs"
+          ],
+          "title": "Choice",
+          "type": "object"
+        },
+        "Justification": {
+          "description": "Minimal justification structure for consequential operations.",
+          "properties": {
+            "intent": {
+              "description": "What property must be preserved",
+              "title": "Intent",
+              "type": "string"
+            },
+            "alternatives": {
+              "description": "Methods considered but rejected",
+              "items": {
+                "$ref": "#/$defs/Alternative"
+              },
+              "title": "Alternatives",
+              "type": "array"
+            },
+            "choice": {
+              "$ref": "#/$defs/Choice",
+              "description": "Selected method with rationale"
+            },
+            "confidence": {
+              "description": "Confidence level in this choice",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "title": "Confidence",
+              "type": "string"
+            }
+          },
+          "required": [
+            "intent",
+            "choice",
+            "confidence"
+          ],
+          "title": "Justification",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "tool_name": {
+          "title": "Tool Name",
+          "type": "string"
+        },
+        "domain": {
+          "enum": [
+            "crs_datum",
+            "resampling",
+            "hydrology",
+            "aggregation",
+            "spatial_query"
+          ],
+          "title": "Domain",
+          "type": "string"
+        },
+        "prompt_name": {
+          "title": "Prompt Name",
+          "type": "string"
+        },
+        "prompt_args": {
+          "additionalProperties": true,
+          "title": "Prompt Args",
+          "type": "object"
+        },
+        "justification": {
+          "$ref": "#/$defs/Justification",
+          "title": "Justification"
+        }
+      },
+      "required": [
+        "tool_name",
+        "domain",
+        "prompt_name",
+        "prompt_args",
+        "justification"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "raster_convert",
+    "title": null,
+    "description": "Convert raster format with compression, tiling, and overview generation. USE WHEN: Need to change format (e.g. GeoTIFF to COG), apply compression to reduce file size, create tiled output for performance, or build overviews for faster display at multiple scales. Common use cases: create Cloud-Optimized GeoTIFFs (COG) for web serving, compress large rasters, or prepare data for GIS software. REQUIRES: uri (source raster path), output (destination file path). OPTIONAL: options (ConversionOptions) with driver (GTiff, COG, PNG, JPEG, etc.), compression (lzw, deflate, zstd, jpeg, packbits, none), tiled (bool, default True), blockxsize/blockysize (tile dimensions, default 256x256), photometric (RGB, YCBCR), overviews (list of levels like [2, 4, 8, 16]), overview_resampling (nearest, bilinear, cubic, average, mode), creation_options (dict of driver-specific options). OUTPUT: ConversionResult with ResourceRef (output file URI, path, size, driver, metadata), driver name, compression method used, size_bytes, and overviews_built list. SIDE EFFECTS: Creates new file at output path. NOTE: COG driver automatically creates optimized cloud-friendly GeoTIFFs.",
+    "inputSchema": {
+      "$defs": {
+        "Options": {
+          "description": "Options for raster format conversion.",
+          "properties": {
+            "driver": {
+              "default": "GTiff",
+              "description": "Output driver (GTiff, COG, PNG, JPEG, etc.)",
+              "title": "Driver",
+              "type": "string"
+            },
+            "compression": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "jpeg",
+                    "lzw",
+                    "packbits",
+                    "deflate",
+                    "ccittrle",
+                    "ccittfax3",
+                    "ccittfax4",
+                    "lzma",
+                    "none",
+                    "zstd",
+                    "lerc",
+                    "lerc_deflate",
+                    "lerc_zstd",
+                    "webp",
+                    "jpeg2000"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Compression method (lowercase). See reference://compression/available/all for full list with guidance. Common options: deflate (universal, lossless), lzw (GeoTIFF, categorical), zstd (modern, fast, GDAL 3.4+), jpeg (lossy, RGB only), none (no compression). Driver compatibility varies - deflate works with most formats.",
+              "title": "Compression"
+            },
+            "tiled": {
+              "default": true,
+              "description": "Create tiled output (improves performance for large rasters)",
+              "title": "Tiled",
+              "type": "boolean"
+            },
+            "blockxsize": {
+              "default": 256,
+              "description": "Tile width in pixels (must be multiple of 16)",
+              "minimum": 16,
+              "title": "Blockxsize",
+              "type": "integer"
+            },
+            "blockysize": {
+              "default": 256,
+              "description": "Tile height in pixels (must be multiple of 16)",
+              "minimum": 16,
+              "title": "Blockysize",
+              "type": "integer"
+            },
+            "photometric": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Photometric interpretation (RGB, YCBCR, MINISBLACK, etc.)",
+              "title": "Photometric"
+            },
+            "overviews": {
+              "items": {
+                "type": "integer"
+              },
+              "title": "Overviews",
+              "type": "array"
+            },
+            "overview_resampling": {
+              "default": "average",
+              "description": "Resampling method for overviews",
+              "title": "Overview Resampling",
+              "type": "string"
+            },
+            "creation_options": {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "description": "Additional driver-specific creation options",
+              "title": "Creation Options",
+              "type": "object"
+            }
+          },
+          "title": "Options",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "options": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Options"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Options"
+        }
+      },
+      "required": [
+        "uri",
+        "output"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "ResourceRef": {
+          "description": "Reference to a generated resource (file, URI, embedded data).",
+          "properties": {
+            "uri": {
+              "description": "Resource URI (file://, s3://, http://, etc.)",
+              "title": "Uri",
+              "type": "string"
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Local filesystem path if applicable",
+              "title": "Path"
+            },
+            "size": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Size in bytes",
+              "title": "Size"
+            },
+            "checksum": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Checksum (e.g., SHA256)",
+              "title": "Checksum"
+            },
+            "driver": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "GDAL driver name",
+              "title": "Driver"
+            },
+            "meta": {
+              "additionalProperties": true,
+              "description": "Additional metadata",
+              "title": "Meta",
+              "type": "object"
+            }
+          },
+          "required": [
+            "uri"
+          ],
+          "title": "ResourceRef",
+          "type": "object"
+        }
+      },
+      "description": "Result of a raster conversion operation.",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/ResourceRef",
+          "description": "Reference to the output raster file"
+        },
+        "driver": {
+          "description": "Driver used for output",
+          "title": "Driver",
+          "type": "string"
+        },
+        "compression": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Compression applied",
+          "title": "Compression"
+        },
+        "size_bytes": {
+          "description": "Output file size in bytes",
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        },
+        "overviews_built": {
+          "description": "Overview levels that were built",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Overviews Built",
+          "type": "array"
+        }
+      },
+      "required": [
+        "output",
+        "driver",
+        "size_bytes"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "raster_info",
+    "title": null,
+    "description": "Inspect raster metadata using Python-native Rasterio. USE WHEN: Need to understand raster properties before processing, verify CRS and spatial extent, check band count and data types, inspect nodata values, or examine overview levels for multi-resolution data. REQUIRES: uri (path or URI to raster file, supports file://, /vsi paths). OPTIONAL: band (1-based band index for overview introspection). OUTPUT: RasterInfo with driver (e.g. 'GTiff'), CRS (e.g. 'EPSG:4326'), width/height (pixels), count (number of bands), dtype (e.g. 'uint8'), transform (6-element affine: [a, b, c, d, e, f]), bounds (minx, miny, maxx, maxy), nodata value, overview_levels (list), and tags (metadata dict). SIDE EFFECTS: None (read-only operation, no file modification).",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "band": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Band"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "description": "Structured metadata for a raster dataset.",
+      "properties": {
+        "path": {
+          "description": "Path or URI to the raster dataset",
+          "title": "Path",
+          "type": "string"
+        },
+        "driver": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "GDAL driver name (e.g., GTiff)",
+          "title": "Driver"
+        },
+        "crs": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Coordinate reference system (e.g., EPSG:4326)",
+          "title": "Crs"
+        },
+        "width": {
+          "description": "Raster width in pixels",
+          "minimum": 1,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "description": "Raster height in pixels",
+          "minimum": 1,
+          "title": "Height",
+          "type": "integer"
+        },
+        "count": {
+          "description": "Number of bands",
+          "minimum": 1,
+          "title": "Count",
+          "type": "integer"
+        },
+        "dtype": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Data type of first band",
+          "title": "Dtype"
+        },
+        "transform": {
+          "description": "Affine transform as [a, b, c, d, e, f]",
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Transform",
+          "type": "array"
+        },
+        "bounds": {
+          "description": "Bounding box as (left, bottom, right, top)",
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Bounds",
+          "type": "array"
+        },
+        "nodata": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "NoData value",
+          "title": "Nodata"
+        },
+        "overview_levels": {
+          "description": "Overview/pyramid levels",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Overview Levels",
+          "type": "array"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Raster tags/metadata",
+          "title": "Tags",
+          "type": "object"
+        }
+      },
+      "required": [
+        "path",
+        "width",
+        "height",
+        "count",
+        "transform",
+        "bounds"
+      ],
+      "title": "Info",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "raster_query",
+    "title": null,
+    "description": "Query raster data by spatial extent. USE WHEN: Need to extract a subset of a raster for analysis or downstream processing. REQUIRES: uri (source raster path) and geometry (GeoJSON polygon or [minx, miny, maxx, maxy] bbox). OPTIONAL: output path for persistence, bands list to limit bands. OUTPUT: Query metadata with optional output reference and query://result/{id} for inspection.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "geometry": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            }
+          ],
+          "title": "Geometry"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output"
+        },
+        "bands": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bands"
+        },
+        "purpose": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Purpose"
+        }
+      },
+      "required": [
+        "uri",
+        "geometry"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "raster_reproject",
+    "title": null,
+    "description": "Reproject raster to new coordinate reference system with explicit resampling method (required). USE WHEN: Coordinate system doesn't match target projection OR data needs different spatial reference for analysis, overlay, or web serving. Common scenarios: convert lat/lon (EPSG:4326) to Web Mercator (EPSG:3857) for web maps, transform to local UTM zone for accurate area/distance calculations, or align multiple rasters to common projection for analysis. REQUIRES: uri (source raster path), output (destination file path), dst_crs (e.g. 'EPSG:3857', 'EPSG:4326', 'EPSG:32610'), resampling (nearest for categorical data, bilinear/cubic for continuous data). OPTIONAL: src_crs (override source CRS if missing/incorrect), resolution (target pixel size as [x, y] list in destination units),width/height (explicit output dimensions in pixels), bounds (crop to extent in destination CRS as [left, bottom, right, top]),nodata (override nodata value for output). OUTPUT: ReprojectionResult with ResourceRef (output file URI/path/size/metadata), src_crs used, dst_crs, resampling method, output transform (6-element affine), width/height in pixels, and bounds in destination CRS. SIDE EFFECTS: Creates new file at output path. NOTE: Resampling method is REQUIRED to prevent unintentional data corruption (no defaults). Choose carefully: nearest preserves exact values but creates blocky appearance, bilinear/cubic create smooth output but may introduce new values.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "dst_crs": {
+          "title": "Dst Crs",
+          "type": "string"
+        },
+        "resampling": {
+          "title": "Resampling",
+          "type": "string"
+        },
+        "src_crs": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Src Crs"
+        },
+        "resolution": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resolution"
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Width"
+        },
+        "height": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Height"
+        },
+        "bounds": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bounds"
+        },
+        "nodata": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Nodata"
+        }
+      },
+      "required": [
+        "uri",
+        "output",
+        "dst_crs",
+        "resampling"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "ResourceRef": {
+          "description": "Reference to a generated resource (file, URI, embedded data).",
+          "properties": {
+            "uri": {
+              "description": "Resource URI (file://, s3://, http://, etc.)",
+              "title": "Uri",
+              "type": "string"
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Local filesystem path if applicable",
+              "title": "Path"
+            },
+            "size": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Size in bytes",
+              "title": "Size"
+            },
+            "checksum": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Checksum (e.g., SHA256)",
+              "title": "Checksum"
+            },
+            "driver": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "GDAL driver name",
+              "title": "Driver"
+            },
+            "meta": {
+              "additionalProperties": true,
+              "description": "Additional metadata",
+              "title": "Meta",
+              "type": "object"
+            }
+          },
+          "required": [
+            "uri"
+          ],
+          "title": "ResourceRef",
+          "type": "object"
+        }
+      },
+      "description": "Result of a raster reprojection operation.",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/ResourceRef",
+          "description": "Reference to the output raster file"
+        },
+        "src_crs": {
+          "description": "Source CRS that was used",
+          "title": "Src Crs",
+          "type": "string"
+        },
+        "dst_crs": {
+          "description": "Destination CRS",
+          "title": "Dst Crs",
+          "type": "string"
+        },
+        "resampling": {
+          "description": "Resampling method applied",
+          "title": "Resampling",
+          "type": "string"
+        },
+        "transform": {
+          "description": "Affine transform of output as [a, b, c, d, e, f]",
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Transform",
+          "type": "array"
+        },
+        "width": {
+          "description": "Output width in pixels",
+          "minimum": 1,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "description": "Output height in pixels",
+          "minimum": 1,
+          "title": "Height",
+          "type": "integer"
+        },
+        "bounds": {
+          "description": "Output bounds [left, bottom, right, top] in dst_crs",
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "title": "Bounds",
+          "type": "array"
+        }
+      },
+      "required": [
+        "output",
+        "src_crs",
+        "dst_crs",
+        "resampling",
+        "transform",
+        "width",
+        "height",
+        "bounds"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "raster_stats",
+    "title": null,
+    "description": "Compute comprehensive statistics for raster bands including min/max/mean/std/median/percentiles and optional histogram. USE WHEN: Need to analyze data distribution, find outliers, understand value ranges, validate data quality, or generate histograms for visualization. Useful before processing to understand data characteristics. REQUIRES: uri (path to raster file). OPTIONAL: params (RasterStatsParams) with bands (list of 1-based indices, None=all bands), include_histogram (bool, default False), histogram_bins (2-1024, default 256), percentiles (list like [25, 50, 75]), sample_size (integer, for large rasters sample random pixels instead of reading all). OUTPUT: RasterStatsResult with total_pixels and per-band BandStatistics containing min, max, mean, std, median, percentile_25, percentile_75, valid_count, nodata_count, and optional histogram (list of HistogramBin with min_value/max_value/count). SIDE EFFECTS: None (read-only, computes in-memory). NOTE: Large rasters may require sampling to avoid memory issues.",
+    "inputSchema": {
+      "$defs": {
+        "Params": {
+          "description": "Parameters for raster statistics computation.",
+          "properties": {
+            "bands": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Band indices to compute stats for (1-based). None = all bands.",
+              "title": "Bands"
+            },
+            "include_histogram": {
+              "default": false,
+              "description": "Whether to compute histogram (can be expensive for large rasters)",
+              "title": "Include Histogram",
+              "type": "boolean"
+            },
+            "histogram_bins": {
+              "default": 256,
+              "description": "Number of histogram bins (2-1024)",
+              "maximum": 1024,
+              "minimum": 2,
+              "title": "Histogram Bins",
+              "type": "integer"
+            },
+            "percentiles": {
+              "description": "Percentiles to compute (0-100)",
+              "items": {
+                "type": "number"
+              },
+              "title": "Percentiles",
+              "type": "array"
+            },
+            "sample_size": {
+              "anyOf": [
+                {
+                  "minimum": 1000,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Sample size for large rasters (None = use all pixels)",
+              "title": "Sample Size"
+            }
+          },
+          "title": "Params",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "params": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Params"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Params"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "Band": {
+          "description": "Statistics for a single raster band.",
+          "properties": {
+            "band": {
+              "description": "Band index (1-based)",
+              "minimum": 1,
+              "title": "Band",
+              "type": "integer"
+            },
+            "min": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Minimum value (excluding nodata)",
+              "title": "Min"
+            },
+            "max": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Maximum value (excluding nodata)",
+              "title": "Max"
+            },
+            "mean": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Mean value (excluding nodata)",
+              "title": "Mean"
+            },
+            "std": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Standard deviation (excluding nodata)",
+              "title": "Std"
+            },
+            "median": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Median value (50th percentile)",
+              "title": "Median"
+            },
+            "percentile_25": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "25th percentile",
+              "title": "Percentile 25"
+            },
+            "percentile_75": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "75th percentile",
+              "title": "Percentile 75"
+            },
+            "valid_count": {
+              "description": "Number of valid (non-nodata) pixels",
+              "minimum": 0,
+              "title": "Valid Count",
+              "type": "integer"
+            },
+            "nodata_count": {
+              "description": "Number of nodata pixels",
+              "minimum": 0,
+              "title": "Nodata Count",
+              "type": "integer"
+            },
+            "histogram": {
+              "description": "Histogram bins (optional)",
+              "items": {
+                "$ref": "#/$defs/Histogram"
+              },
+              "title": "Histogram",
+              "type": "array"
+            }
+          },
+          "required": [
+            "band",
+            "valid_count",
+            "nodata_count"
+          ],
+          "title": "Band",
+          "type": "object"
+        },
+        "Histogram": {
+          "description": "Single histogram bin.",
+          "properties": {
+            "min_value": {
+              "description": "Minimum value for this bin",
+              "title": "Min Value",
+              "type": "number"
+            },
+            "max_value": {
+              "description": "Maximum value for this bin",
+              "title": "Max Value",
+              "type": "number"
+            },
+            "count": {
+              "description": "Number of pixels in this bin",
+              "minimum": 0,
+              "title": "Count",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "min_value",
+            "max_value",
+            "count"
+          ],
+          "title": "Histogram",
+          "type": "object"
+        }
+      },
+      "description": "Result of raster statistics computation.",
+      "properties": {
+        "path": {
+          "description": "Path to the raster dataset",
+          "title": "Path",
+          "type": "string"
+        },
+        "band_stats": {
+          "description": "Per-band statistics",
+          "items": {
+            "$ref": "#/$defs/Band"
+          },
+          "title": "Band Stats",
+          "type": "array"
+        },
+        "total_pixels": {
+          "description": "Total number of pixels per band",
+          "minimum": 0,
+          "title": "Total Pixels",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "band_stats",
+        "total_pixels"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "vector_buffer",
+    "title": null,
+    "description": "Create buffer zones around vector geometries for proximity analysis. USE WHEN: Need to create zones of influence, analyze proximity, identify areas within distance of features, or create coverage areas. Common scenarios: Service area analysis (500m from transit stops), environmental buffers (wetland protection zones), proximity analysis (schools within 1km). REQUIRES: uri (source vector path), output (destination file path), distance (buffer distance in CRS units). OPTIONAL: resolution (segments per quadrant, 4-64, default 16). Higher resolution = smoother circles but slower performance. OUTPUT: VectorBufferResult with ResourceRef (output file URI/path/size/metadata), feature_count, buffer_distance applied, resolution used, bounds. SIDE EFFECTS: Creates new file at output path. Output geometry type is Polygon. SUPPORTS: Shapefile, GeoPackage, GeoJSON and other OGR formats. IMPORTANT: Distance in CRS units - meters for projected (UTM, State Plane), degrees for geographic (EPSG:4326). For metric buffers on lat/lon data, reproject to projected CRS first. Uses shapely for geometry operations. No reflection required - distance is user-specified.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "distance": {
+          "title": "Distance",
+          "type": "number"
+        },
+        "resolution": {
+          "default": 16,
+          "title": "Resolution",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "uri",
+        "output",
+        "distance"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "ResourceRef": {
+          "description": "Reference to a generated resource (file, URI, embedded data).",
+          "properties": {
+            "uri": {
+              "description": "Resource URI (file://, s3://, http://, etc.)",
+              "title": "Uri",
+              "type": "string"
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Local filesystem path if applicable",
+              "title": "Path"
+            },
+            "size": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Size in bytes",
+              "title": "Size"
+            },
+            "checksum": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Checksum (e.g., SHA256)",
+              "title": "Checksum"
+            },
+            "driver": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "GDAL driver name",
+              "title": "Driver"
+            },
+            "meta": {
+              "additionalProperties": true,
+              "description": "Additional metadata",
+              "title": "Meta",
+              "type": "object"
+            }
+          },
+          "required": [
+            "uri"
+          ],
+          "title": "ResourceRef",
+          "type": "object"
+        }
+      },
+      "description": "Result of a vector buffer operation.",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/ResourceRef",
+          "description": "Reference to the output vector file"
+        },
+        "feature_count": {
+          "description": "Number of features buffered",
+          "minimum": 0,
+          "title": "Feature Count",
+          "type": "integer"
+        },
+        "buffer_distance": {
+          "description": "Buffer distance applied",
+          "title": "Buffer Distance",
+          "type": "number"
+        },
+        "resolution": {
+          "description": "Segments per quadrant used",
+          "title": "Resolution",
+          "type": "integer"
+        },
+        "bounds": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 4,
+              "minItems": 4,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Output bounds [minx, miny, maxx, maxy]",
+          "title": "Bounds"
+        }
+      },
+      "required": [
+        "output",
+        "feature_count",
+        "buffer_distance",
+        "resolution"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "vector_clip",
+    "title": null,
+    "description": "Clip vector dataset by bounding box or mask geometry for spatial subsetting. USE WHEN: Need to extract features within specific area, subset large datasets, or prepare data for localized analysis. Common scenarios: Clip to study area extent, extract features within city boundary, subset regional data to project area. REQUIRES: uri (source vector path), output (destination file path). ONE OF: bounds=[minx, miny, maxx, maxy] (bounding box) OR mask=<path> (clip geometry). OUTPUT: VectorClipResult with ResourceRef (output file URI/path/size/metadata), feature_count (features in output), geometry_type, bounds, clip_method used. SIDE EFFECTS: Creates new file at output path. SUPPORTS: Shapefile, GeoPackage, GeoJSON and other OGR formats. NOTE: Features intersecting clip boundary are split. Empty geometries removed. Uses pyogrio and shapely for performance. No reflection required - spatial operations are straightforward with user-defined extents.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "bounds": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bounds"
+        },
+        "mask": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mask"
+        }
+      },
+      "required": [
+        "uri",
+        "output"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "ResourceRef": {
+          "description": "Reference to a generated resource (file, URI, embedded data).",
+          "properties": {
+            "uri": {
+              "description": "Resource URI (file://, s3://, http://, etc.)",
+              "title": "Uri",
+              "type": "string"
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Local filesystem path if applicable",
+              "title": "Path"
+            },
+            "size": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Size in bytes",
+              "title": "Size"
+            },
+            "checksum": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Checksum (e.g., SHA256)",
+              "title": "Checksum"
+            },
+            "driver": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "GDAL driver name",
+              "title": "Driver"
+            },
+            "meta": {
+              "additionalProperties": true,
+              "description": "Additional metadata",
+              "title": "Meta",
+              "type": "object"
+            }
+          },
+          "required": [
+            "uri"
+          ],
+          "title": "ResourceRef",
+          "type": "object"
+        }
+      },
+      "description": "Result of a vector clipping operation.",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/ResourceRef",
+          "description": "Reference to the output vector file"
+        },
+        "feature_count": {
+          "description": "Number of features in output",
+          "minimum": 0,
+          "title": "Feature Count",
+          "type": "integer"
+        },
+        "geometry_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Primary geometry type (Point, LineString, Polygon, etc.)",
+          "title": "Geometry Type"
+        },
+        "bounds": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 4,
+              "minItems": 4,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Output bounds [minx, miny, maxx, maxy]",
+          "title": "Bounds"
+        },
+        "clip_method": {
+          "description": "Clipping method used (bbox or mask)",
+          "title": "Clip Method",
+          "type": "string"
+        }
+      },
+      "required": [
+        "output",
+        "feature_count",
+        "clip_method"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "vector_convert",
+    "title": null,
+    "description": "Convert vector dataset to different format with encoding control. USE WHEN: Need to migrate between formats (Shapefile ↔ GeoPackage ↔ GeoJSON), fix encoding issues, or prepare data for specific software requirements. Common scenarios: Shapefile to GeoPackage for single-file portability and UTF-8, GeoJSON to Shapefile for desktop GIS, GeoPackage to GeoJSON for web applications. REQUIRES: uri (source vector path), output (destination file path with extension). OPTIONAL: driver (auto-detected from extension: .shp, .gpkg, .geojson, .kml, .gml), encoding (UTF-8 default, ISO-8859-1 for legacy compatibility). OUTPUT: VectorConvertResult with ResourceRef (output file URI/path/size/metadata), src_driver, dst_driver, feature_count, geometry_type, encoding used. SIDE EFFECTS: Creates new file at output path. SUPPORTS: ESRI Shapefile, GeoPackage, GeoJSON, KML, GML and other OGR formats. NOTE: Uses pyogrio backend for performance. GeoPackage recommended for modern workflows (single file, UTF-8 native, no field name limits, efficient spatial indexing). No reflection required - format/compression choices covered by existing resources.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "driver": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Driver"
+        },
+        "encoding": {
+          "default": "UTF-8",
+          "title": "Encoding",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri",
+        "output"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "ResourceRef": {
+          "description": "Reference to a generated resource (file, URI, embedded data).",
+          "properties": {
+            "uri": {
+              "description": "Resource URI (file://, s3://, http://, etc.)",
+              "title": "Uri",
+              "type": "string"
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Local filesystem path if applicable",
+              "title": "Path"
+            },
+            "size": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Size in bytes",
+              "title": "Size"
+            },
+            "checksum": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Checksum (e.g., SHA256)",
+              "title": "Checksum"
+            },
+            "driver": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "GDAL driver name",
+              "title": "Driver"
+            },
+            "meta": {
+              "additionalProperties": true,
+              "description": "Additional metadata",
+              "title": "Meta",
+              "type": "object"
+            }
+          },
+          "required": [
+            "uri"
+          ],
+          "title": "ResourceRef",
+          "type": "object"
+        }
+      },
+      "description": "Result of a vector format conversion operation.",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/ResourceRef",
+          "description": "Reference to the output vector file"
+        },
+        "src_driver": {
+          "description": "Source driver detected",
+          "title": "Src Driver",
+          "type": "string"
+        },
+        "dst_driver": {
+          "description": "Destination driver used",
+          "title": "Dst Driver",
+          "type": "string"
+        },
+        "feature_count": {
+          "description": "Number of features converted",
+          "minimum": 0,
+          "title": "Feature Count",
+          "type": "integer"
+        },
+        "geometry_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Primary geometry type (Point, LineString, Polygon, etc.)",
+          "title": "Geometry Type"
+        },
+        "encoding": {
+          "description": "Character encoding used",
+          "title": "Encoding",
+          "type": "string"
+        }
+      },
+      "required": [
+        "output",
+        "src_driver",
+        "dst_driver",
+        "feature_count",
+        "encoding"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "vector_info",
+    "title": null,
+    "description": "Inspect vector dataset metadata using Python-native pyogrio (or fiona fallback). USE WHEN: Need to understand vector dataset properties before processing, verify CRS and spatial extent, check geometry types (Point, LineString, Polygon), examine attribute fields and types, or validate feature count. Common scenarios: verify Shapefile structure, check GeoJSON CRS, inspect GeoPackage layers, or validate CSV with geometry. REQUIRES: uri (path to vector file or dataset). OPTIONAL: None. OUTPUT: VectorInfo with path, driver (e.g. 'ESRI Shapefile', 'GeoJSON', 'GPKG'), crs (e.g. 'EPSG:4326'), layer_count (number of layers), geometry_types (list like ['Point', 'MultiPolygon']), feature_count (number of features/records), fields (list of tuples with field name and type like [('name', 'str'), ('pop', 'int')]), bounds (spatial extent as (minx, miny, maxx, maxy) or None). SIDE EFFECTS: None (read-only operation, metadata only - features not loaded). NOTE: Uses pyogrio backend for performance (falls back to fiona if unavailable). Both backends support Shapefile, GeoPackage, GeoJSON, KML, and other OGR formats.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "description": "Structured metadata for a vector dataset.",
+      "properties": {
+        "path": {
+          "description": "Path or URI to the vector dataset",
+          "title": "Path",
+          "type": "string"
+        },
+        "driver": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "GDAL/OGR driver name (e.g., GPKG)",
+          "title": "Driver"
+        },
+        "crs": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Coordinate reference system (e.g., EPSG:4326)",
+          "title": "Crs"
+        },
+        "layer_count": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Number of layers",
+          "title": "Layer Count"
+        },
+        "geometry_types": {
+          "description": "Geometry types present (e.g., Point, Polygon)",
+          "items": {
+            "type": "string"
+          },
+          "title": "Geometry Types",
+          "type": "array"
+        },
+        "feature_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Total feature count",
+          "title": "Feature Count"
+        },
+        "fields": {
+          "description": "Field names and types as (name, type) tuples",
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "bounds": {
+          "anyOf": [
+            {
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Bounding box as (minx, miny, maxx, maxy)",
+          "title": "Bounds"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "Info",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "vector_query",
+    "title": null,
+    "description": "Query vector data by spatial extent and optional filters. USE WHEN: Need to subset features by area and/or attribute filters. REQUIRES: uri (source vector path) and geometry (GeoJSON polygon or [minx, miny, maxx, maxy] bbox). OPTIONAL: output path for persistence, attributes list, SQL where filter. OUTPUT: Query metadata with optional output reference and query://result/{id} for inspection.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "geometry": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            }
+          ],
+          "title": "Geometry"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output"
+        },
+        "attributes": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attributes"
+        },
+        "where": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Where"
+        },
+        "purpose": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Purpose"
+        }
+      },
+      "required": [
+        "uri",
+        "geometry"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "vector_reproject",
+    "title": null,
+    "description": "Reproject vector dataset to new coordinate reference system. USE WHEN: Vector CRS doesn't match target projection OR data needs different spatial reference for analysis, overlay, or web serving. Common scenarios: convert lat/lon (EPSG:4326) to Web Mercator (EPSG:3857) for web maps, transform to local UTM zone for accurate area/distance calculations, or align multiple datasets to common projection for spatial analysis. REQUIRES: uri (source vector path), output (destination file path), dst_crs (e.g. 'EPSG:3857', 'EPSG:4326', 'EPSG:32610'). OPTIONAL: src_crs (override source CRS if missing/incorrect). OUTPUT: VectorReprojectResult with ResourceRef (output file URI/path/size/metadata), src_crs used, dst_crs, feature_count, geometry_type, and bounds in destination CRS. SIDE EFFECTS: Creates new file at output path. SUPPORTS: Shapefile, GeoPackage, GeoJSON, KML, GML and other OGR formats. NOTE: Uses pyogrio backend for performance. Reflection middleware will prompt for CRS selection justification (why this projection? what properties to preserve?) if not previously justified for this CRS.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "dst_crs": {
+          "title": "Dst Crs",
+          "type": "string"
+        },
+        "src_crs": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Src Crs"
+        }
+      },
+      "required": [
+        "uri",
+        "output",
+        "dst_crs"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "ResourceRef": {
+          "description": "Reference to a generated resource (file, URI, embedded data).",
+          "properties": {
+            "uri": {
+              "description": "Resource URI (file://, s3://, http://, etc.)",
+              "title": "Uri",
+              "type": "string"
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Local filesystem path if applicable",
+              "title": "Path"
+            },
+            "size": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Size in bytes",
+              "title": "Size"
+            },
+            "checksum": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Checksum (e.g., SHA256)",
+              "title": "Checksum"
+            },
+            "driver": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "GDAL driver name",
+              "title": "Driver"
+            },
+            "meta": {
+              "additionalProperties": true,
+              "description": "Additional metadata",
+              "title": "Meta",
+              "type": "object"
+            }
+          },
+          "required": [
+            "uri"
+          ],
+          "title": "ResourceRef",
+          "type": "object"
+        }
+      },
+      "description": "Result of a vector reprojection operation.",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/ResourceRef",
+          "description": "Reference to the output vector file"
+        },
+        "src_crs": {
+          "description": "Source CRS that was used",
+          "title": "Src Crs",
+          "type": "string"
+        },
+        "dst_crs": {
+          "description": "Destination CRS",
+          "title": "Dst Crs",
+          "type": "string"
+        },
+        "feature_count": {
+          "description": "Number of features in output",
+          "minimum": 0,
+          "title": "Feature Count",
+          "type": "integer"
+        },
+        "geometry_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Primary geometry type (Point, LineString, Polygon, etc.)",
+          "title": "Geometry Type"
+        },
+        "bounds": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 4,
+              "minItems": 4,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Output bounds [minx, miny, maxx, maxy] in dst_crs",
+          "title": "Bounds"
+        }
+      },
+      "required": [
+        "output",
+        "src_crs",
+        "dst_crs",
+        "feature_count"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "vector_simplify",
+    "title": null,
+    "description": "Simplify vector geometries to reduce complexity and file size for web display or generalization. USE WHEN: Need to reduce vertex count, optimize for web mapping, create generalized representations, or reduce file size while preserving shape. Common scenarios: Web map optimization (reduce vertices for faster rendering), multi-scale mapping (create simplified versions for zoom levels), file size reduction (large detailed datasets). REQUIRES: uri (source vector path), output (destination file path), tolerance (simplification distance in CRS units - larger = more simplified). OPTIONAL: method (douglas-peucker default, or visvalingam), preserve_topology (True default - ensures valid geometries). OUTPUT: VectorSimplifyResult with ResourceRef (output file URI/path/size/metadata), feature_count, tolerance applied, method used, preserve_topology flag, bounds. SIDE EFFECTS: Creates new file at output path. Reduces vertex count. SUPPORTS: Shapefile, GeoPackage, GeoJSON and other OGR formats. METHODS: Douglas-Peucker (fast, standard) removes points based on perpendicular distance; Visvalingam-Whyatt (slower, preserves shape) removes points based on area. TOLERANCE: Measured in CRS units - for EPSG:4326 use 0.0001-0.01 degrees, for projected CRS use 10-1000 meters depending on scale. Higher tolerance = more simplification. Uses shapely for geometry operations. No reflection required - tolerance is user-specified based on use case.",
+    "inputSchema": {
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "tolerance": {
+          "title": "Tolerance",
+          "type": "number"
+        },
+        "method": {
+          "default": "douglas-peucker",
+          "title": "Method",
+          "type": "string"
+        },
+        "preserve_topology": {
+          "default": true,
+          "title": "Preserve Topology",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "uri",
+        "output",
+        "tolerance"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "$defs": {
+        "ResourceRef": {
+          "description": "Reference to a generated resource (file, URI, embedded data).",
+          "properties": {
+            "uri": {
+              "description": "Resource URI (file://, s3://, http://, etc.)",
+              "title": "Uri",
+              "type": "string"
+            },
+            "path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Local filesystem path if applicable",
+              "title": "Path"
+            },
+            "size": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Size in bytes",
+              "title": "Size"
+            },
+            "checksum": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "Checksum (e.g., SHA256)",
+              "title": "Checksum"
+            },
+            "driver": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "description": "GDAL driver name",
+              "title": "Driver"
+            },
+            "meta": {
+              "additionalProperties": true,
+              "description": "Additional metadata",
+              "title": "Meta",
+              "type": "object"
+            }
+          },
+          "required": [
+            "uri"
+          ],
+          "title": "ResourceRef",
+          "type": "object"
+        }
+      },
+      "description": "Result of a vector simplification operation.",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/ResourceRef",
+          "description": "Reference to the output vector file"
+        },
+        "feature_count": {
+          "description": "Number of features simplified",
+          "minimum": 0,
+          "title": "Feature Count",
+          "type": "integer"
+        },
+        "tolerance": {
+          "description": "Tolerance applied",
+          "title": "Tolerance",
+          "type": "number"
+        },
+        "method": {
+          "description": "Simplification method used",
+          "title": "Method",
+          "type": "string"
+        },
+        "preserve_topology": {
+          "description": "Whether topology was preserved",
+          "title": "Preserve Topology",
+          "type": "boolean"
+        },
+        "bounds": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 4,
+              "minItems": 4,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Output bounds [minx, miny, maxx, maxy]",
+          "title": "Bounds"
+        }
+      },
+      "required": [
+        "output",
+        "feature_count",
+        "tolerance",
+        "method",
+        "preserve_topology"
+      ],
+      "title": "Result",
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "municipal_status",
+    "title": null,
+    "description": "Inspect the Helsinki case, input integrity, preparation state and scientific limits. Start here.",
+    "inputSchema": {
+      "properties": {},
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "harvest_municipal_sources",
+    "title": null,
+    "description": "Acquire Helsinki inputs: pinned public snapshot for reproduction, or bounded live API harvest into a new version. Live needs network; never overwrites the previous snapshot. This does not execute analysis.",
+    "inputSchema": {
+      "properties": {
+        "mode": {
+          "default": "snapshot",
+          "enum": [
+            "snapshot",
+            "live"
+          ],
+          "title": "Mode",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "prepare_municipal_data",
+    "title": null,
+    "description": "Validate raw hashes, reconcile district/population IDs, georeference services and record unmatched/null points. Produce GeoJSON, metric GeoPackage and a categorical district-ID raster; no population interpolation.",
+    "inputSchema": {
+      "properties": {},
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "service_catalog",
+    "title": null,
+    "description": "Find actual service IDs and names before filtering the municipal inventory. Search is a substring in supplied languages (e.g. 'librar' matches library/libraries). IDs use exact membership, without inferred hierarchy. No matches returns an empty result.",
+    "inputSchema": {
+      "properties": {
+        "search": {
+          "default": "",
+          "title": "Search",
+          "type": "string"
+        },
+        "limit": {
+          "default": 20,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "inventory_by_district",
+    "title": null,
+    "description": "Count distinct geolocated registry units by exact district polygon and service IDs; attach 2025 population and counts per 10000 residents. Empty IDs selects all units. Save CSV, GeoJSON, offline HTML and evidence. Counts do not establish accessibility or adequacy.",
+    "inputSchema": {
+      "properties": {
+        "service_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Service Ids"
+        },
+        "run_id": {
+          "default": "agent",
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  },
+  {
+    "name": "read_case_artifact",
+    "title": null,
+    "description": "Read a result or district table produced by inventory_by_district, with checksum. The run ID is confined to the case workspace. Large maps/GeoJSON remain file artifacts.",
+    "inputSchema": {
+      "properties": {
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "name": {
+          "default": "summary.json",
+          "enum": [
+            "summary.json",
+            "district_inventory.csv"
+          ],
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "annotations": null,
+    "meta": {
+      "_fastmcp": {
+        "tags": []
+      }
+    }
+  }
+]

@@ -4,6 +4,8 @@ Estado: **propuesta abierta**. Fecha: 2026-11-10. No hay elección global de len
 
 Actualización: la [construcción guiada por casos municipales](../cases/municipal-first.md) fija el caso municipal y su cosecha como aceptación final. El orden pasa a inventario territorial, accesibilidad y cobertura vegetal. SUMO Hello es una fixture técnica auxiliar, sin reemplazar esa aceptación.
 
+Implementación de referencia: [Helsinki](../../cases/helsinki-service-inventory/README.md). Reutiliza el MCP GDAL fijado, agrega la cosecha/preparación/análisis municipal y ejecuta pruebas nativas, MCP y dos agentes. No convierte las otras 228 entradas ni todos los perfiles de datos en capacidades operativas, ni fija un framework para otras familias.
+
 ## Problema
 
 Exponer una función por MCP no vuelve utilizable una herramienta urbana. Un agente puede conocer `run_model` y carecer de red, demanda, meteorología, licencia, configuración o forma de interpretar los resultados. El producto debe mantener la cadena completa desde la fuente hasta una operación comprobada.
@@ -52,7 +54,7 @@ Ejemplos: calles OSM no son demanda SUMO; Copernicus DEM es un producto de super
 
 ## Contratos y estados
 
-`registry/tools.json` relaciona 229 candidatos con perfiles iniciales de datos y decisiones de investigación. `registry/sources.json` registra canales; `registry/data-profiles.json` propone requisitos para un primer caso representativo. **Todavía no son bindings por operación ni fuentes admitidas.**
+`registry/tools.json` relaciona 229 entradas con perfiles iniciales y decisiones de investigación. `registry/sources.json` registra canales; `registry/data-profiles.json` propone requisitos generales. **Los perfiles genéricos no son bindings por operación.** El alcance admitido de Helsinki se referencia desde `admitted_scope` y su `case.json`, con fuentes, operaciones y evidencia específicas; no se extiende al resto del catálogo.
 
 La siguiente contribución desagrega cada operación en un manifiesto de capacidad. Estados separados:
 
@@ -69,7 +71,7 @@ La siguiente contribución desagrega cada operación en un manifiesto de capacid
 
 La disponibilidad se calcula por capacidad, caso y entorno. No es una etiqueta única para toda una herramienta. Un flujo puede estar disponible con fixture y bloqueado para ciudad real.
 
-Operaciones transversales **propuestas, no implementadas**: inspeccionar requisitos/capacidades; planificar adquisición; preparar/validar entradas; ejecutar/consultar/cancelar caso; recuperar artefactos. Los nombres y schemas se decidirán en el primer vertical. Se reutiliza el sistema de jobs del original cuando exista.
+Operaciones transversales propuestas: inspeccionar requisitos/capacidades; planificar adquisición; preparar/validar entradas; ejecutar/consultar/cancelar caso; recuperar artefactos. Helsinki implementa los nombres y schemas delimitados en su matriz de funciones, sin un sistema global de jobs/cancelación. Las otras familias requieren diseño por operación; se reutiliza el sistema de jobs del original cuando exista.
 
 ## Sandbox propuesto
 
@@ -78,7 +80,7 @@ Operaciones transversales **propuestas, no implementadas**: inspeccionar requisi
 - Imágenes/datos/versiones fijados; credenciales inyectadas por el operador y fuera de artefactos y Git.
 - Perfiles distintos para CLI, escritorio, JVM, R, GPU y HPC. Docker es el primer entorno reproducible, no una promesa de que cualquier herramienta cabe o funciona dentro de un contenedor.
 - Fixture técnica auxiliar: SUMO Hello upstream. Ya están identificados seis assets y sus hashes; falta admitir derechos, fijar runtime Docker, registrar baseline nativo y mapear una operación de un MCP existente. La primera capacidad municipal propuesta es inventario/equipamientos y población.
-- El perfil Docker incluido en esta RFC **solo valida planificación/metadatos y datos de referencia**. No ejecuta SUMO ni prueba un agente científico.
+- El perfil Docker `preflight` solo valida planificación/metadatos y datos de referencia. El perfil `municipal` ejecuta Helsinki; ninguno acredita todavía SUMO.
 
 ## MCP, skills y perfil del agente
 

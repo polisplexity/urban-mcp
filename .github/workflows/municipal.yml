@@ -1,0 +1,27 @@
+name: Helsinki municipal native and MCP case
+on:
+  push:
+    paths: ['urban_mcp_case/**', 'adapters/municipal_inventory/**', 'cases/helsinki-service-inventory/**', 'compose.yaml', '.github/workflows/municipal.yml']
+  pull_request:
+    paths: ['urban_mcp_case/**', 'adapters/municipal_inventory/**', 'cases/helsinki-service-inventory/**', 'compose.yaml', '.github/workflows/municipal.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  municipal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare case workspace without root
+        run: |
+          mkdir -p .urban-mcp/helsinki
+          echo "URBAN_MCP_UID=$(id -u)" >> "$GITHUB_ENV"
+          echo "URBAN_MCP_GID=$(id -g)" >> "$GITHUB_ENV"
+      - run: docker compose --profile municipal build inventory
+      - run: docker compose --profile municipal run --rm harvest harvest --mode snapshot
+      - run: docker compose --profile municipal run --rm inventory prepare
+      - run: docker compose --profile municipal run --rm inventory inventory --service-id 813 --run-id ci-native-library
+      - run: docker compose --profile municipal run --rm inventory test
+      - name: Original server regression suite with its expected empty-workspace environment
+        run: docker compose --profile municipal run --rm --entrypoint env inventory -u GDAL_MCP_WORKSPACES python -m pytest /opt/gdal-mcp/test -q -o cache_dir=/tmp/pytest-cache

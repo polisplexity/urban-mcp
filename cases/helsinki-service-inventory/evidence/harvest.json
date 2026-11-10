@@ -1,0 +1,1174 @@
+{
+  "case": "helsinki-service-inventory",
+  "mode": "live",
+  "snapshot": "20261110T112344Z-500b5c",
+  "acquired_at": "2026-11-10T11:23:44.384904+00:00",
+  "sources": {
+    "units": {
+      "expected": 12455,
+      "obtained": 12455,
+      "duplicates": 0,
+      "complete_pagination": true,
+      "pages": [
+        {
+          "file": "units-0001.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&page_size=100&only=id,name,location,municipality,services",
+          "sha256": "983030c147b214d878c6d2419189673e3227766e3615405056db56eaa8049e1c",
+          "bytes": 23377,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0002.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=2&page_size=100",
+          "sha256": "8f53cc978741c32683d246d74503a5b4ee797747cd081a594d783b11d34244f4",
+          "bytes": 27712,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0003.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=3&page_size=100",
+          "sha256": "22586fd9d035fe0963080060328664365770d5e46c60ce8d4c72bedc229eac49",
+          "bytes": 20908,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0004.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=4&page_size=100",
+          "sha256": "04925e9364173bc38ae53935bceba02fdf984a224f6f6452f79ec604f5a73824",
+          "bytes": 21149,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0005.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=5&page_size=100",
+          "sha256": "c5297f23e7061710c0aeb3eca794c9094b6d0d3552079e4f6199e97440fc8db6",
+          "bytes": 25512,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0006.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=6&page_size=100",
+          "sha256": "a9e19d05bfbe28715e0ff069776a165b3d45ba469fb86914b7adced550e6bb43",
+          "bytes": 20754,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0007.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=7&page_size=100",
+          "sha256": "bbaaae24935d2893f1e84a6ad6e3ee91f916685ccdcfc13bc128478737c8e063",
+          "bytes": 21048,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0008.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=8&page_size=100",
+          "sha256": "be6fad76be0098c84f68efb0386db3017c5f7bdfcb35c9c85069b6986517f380",
+          "bytes": 21811,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0009.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=9&page_size=100",
+          "sha256": "cbbe321fc262b0a1302aceaafca2b1efb4d917f047c1dab167f93b685a577034",
+          "bytes": 21135,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0010.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=10&page_size=100",
+          "sha256": "853217dcab8f086e22c520db15d320707193b866a02510751fad4ff311b84671",
+          "bytes": 22239,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0011.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=11&page_size=100",
+          "sha256": "4b6215dc1e0b212c51308f10c47c61b652e16c60d5979bc6a193c17c4fca7406",
+          "bytes": 22691,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0012.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=12&page_size=100",
+          "sha256": "579a7fb5bce64b42ec38eeb6d7d355d399396456991b3de7facbde43bee9974c",
+          "bytes": 22720,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0013.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=13&page_size=100",
+          "sha256": "30c9acc4cd803cab2252593c382429f54fed66fc57c182e52107217609ebb481",
+          "bytes": 21162,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0014.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=14&page_size=100",
+          "sha256": "01c5d428973ced546d29fcfe712d9f79d764c517c04a264841e8fab35c5ba35f",
+          "bytes": 24169,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0015.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=15&page_size=100",
+          "sha256": "cbb16470959b58e58b1652e3a7ff72b1958887ce570eaf3e67ff0c85bfcab192",
+          "bytes": 22310,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0016.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=16&page_size=100",
+          "sha256": "badd74ba83847e0d0a46df4a3af69ff052382ac3cacc55e5ae300422924a69a4",
+          "bytes": 21327,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0017.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=17&page_size=100",
+          "sha256": "2aa1ae0054fe2348b3db542551833064f6e357966a7ebc7b13b0d10ea77ded23",
+          "bytes": 21247,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0018.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=18&page_size=100",
+          "sha256": "9fc8bc32a51bfea2e2685951cf648b74c23f5e865ac45a9ca886db59e6e4494d",
+          "bytes": 25816,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0019.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=19&page_size=100",
+          "sha256": "01544f91b3494aca067f9b0baffa3621b4fe378fe596e6f726a5d71eebb154c4",
+          "bytes": 23879,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0020.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=20&page_size=100",
+          "sha256": "0176cb940c7d1be5859218255af422d33c3038bb6bb95173ed44090e32e5f79a",
+          "bytes": 23278,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0021.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=21&page_size=100",
+          "sha256": "43041a3f9077c8119b2333f05c438642671544945a44ff36a872369b590e127c",
+          "bytes": 22454,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0022.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=22&page_size=100",
+          "sha256": "d95bdc0c21da35f5fa13f67a2b4e4dd4335e112acb0d61c0a3381d2926dc230c",
+          "bytes": 25165,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0023.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=23&page_size=100",
+          "sha256": "28422d67a5544dbc8e587ce1a3e025a7be0d0450de4ad92388e9b0322d456f29",
+          "bytes": 22333,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0024.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=24&page_size=100",
+          "sha256": "34482df341cd21bfd9a3050237e97ec633a814c514356db796337f4549206fa8",
+          "bytes": 22133,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0025.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=25&page_size=100",
+          "sha256": "0fb86b4d54917ed3550e9dc1de20b6e864bee6c15bc68c01364ea8a3827719df",
+          "bytes": 21583,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0026.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=26&page_size=100",
+          "sha256": "2e69058e6331754a84d12d2ec089dda5673037bd442888ba3ab5d564cbc3d205",
+          "bytes": 23769,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0027.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=27&page_size=100",
+          "sha256": "5fd02518b4c54f5a9173b7c3ec47e43d92eb3488e3ccfc5684df037028664937",
+          "bytes": 24887,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0028.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=28&page_size=100",
+          "sha256": "c150a9d381c149fc22d5cea67a4befd54fcaefe0ec88678aba96fc8d43174255",
+          "bytes": 22874,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0029.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=29&page_size=100",
+          "sha256": "92773b39c367605bac0a3000a0e89cbdaa068e93b02eaa5691570d0482ac9dac",
+          "bytes": 23279,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0030.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=30&page_size=100",
+          "sha256": "b9ee398b2a1849c8f1a8094082681730cf5e000646a9b493a05b940f91a74c82",
+          "bytes": 23023,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0031.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=31&page_size=100",
+          "sha256": "0e655be4153671fd5d502ad4032738aa2cfd0de22bc838afe469e6e1bde66e8a",
+          "bytes": 21403,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0032.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=32&page_size=100",
+          "sha256": "12a16c142c257c710eb249e30c26ff3cf40bef4b81189751a94ec9b4f90b661d",
+          "bytes": 24509,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0033.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=33&page_size=100",
+          "sha256": "02c50a3e63404d65e0d0a654d6cd1e6aabd7d33ff2e9186c51d40bfba608922b",
+          "bytes": 20437,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0034.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=34&page_size=100",
+          "sha256": "5ec65148af2ab5ba2015ab5c41513687e4030f757bea69795cfd98e288e5f306",
+          "bytes": 25524,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0035.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=35&page_size=100",
+          "sha256": "052ac28e1a524e41ba3e6507e6d8a5e4fb4c25081c96bf060dd95044d7156aa3",
+          "bytes": 21945,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0036.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=36&page_size=100",
+          "sha256": "e9f13fbb6f72f0261ea3055bff47b56e72b01e5c5f88aaba1e8ec26e11396e9e",
+          "bytes": 22090,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0037.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=37&page_size=100",
+          "sha256": "c7e045ee39d31ed8ffe5bafe5a39772b06dd6ad4ec2343c3fcf5ecdc5b1d6543",
+          "bytes": 21458,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0038.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=38&page_size=100",
+          "sha256": "7f78bc6bf6f7320cedc029cc65483ab3bd658c2e1e549986dc40eb7bd54cb27d",
+          "bytes": 22410,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0039.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=39&page_size=100",
+          "sha256": "2661b21973b0a12e37c70d70de151f04f69e46bd2581fd144ac653adbec9d3af",
+          "bytes": 20314,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0040.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=40&page_size=100",
+          "sha256": "683cb5d9bc22e5d581d6e0f91664cf08228f1b8f7f5c5c0730f789ac21eb916b",
+          "bytes": 21350,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0041.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=41&page_size=100",
+          "sha256": "b5ea8a3cb1903214bca0bcbfbe139571c02e3e9afc9aa7c94723ad6ec0878181",
+          "bytes": 23006,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0042.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=42&page_size=100",
+          "sha256": "c8a21660a3da39b4db6c8734f16044f47a78c46134cd26a1842d6abc07a45859",
+          "bytes": 25430,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0043.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=43&page_size=100",
+          "sha256": "6a402436d80d2e892c29da66b791d70f9560ec48935ba06821c4d20de6f7829c",
+          "bytes": 25095,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0044.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=44&page_size=100",
+          "sha256": "5d1d0f8aa1054de47ed4f6ded0eef152c2b41bf057c8cc63d807db1151482a3b",
+          "bytes": 27816,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0045.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=45&page_size=100",
+          "sha256": "7459ec4c869f06d3156e886ac231308cded69a3ce91b446f2bb85793b5161a1c",
+          "bytes": 31265,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0046.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=46&page_size=100",
+          "sha256": "9b33e5141f962974e2efc159d22ad1b5b18262f61281a70b29daf7f739e38f87",
+          "bytes": 32677,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0047.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=47&page_size=100",
+          "sha256": "95771356b1dc3ba7b4cc52e2f2b0501f027b4fc6e6c98a02bf43af57067b0585",
+          "bytes": 32947,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0048.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=48&page_size=100",
+          "sha256": "da03d80a5b531b74d30fed7e417ef22602e7f4451d9e7bd3db77299ef8273288",
+          "bytes": 27078,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0049.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=49&page_size=100",
+          "sha256": "1234383d16ac52b3e393b8a66df04a3ba2b11b50b600d91c4eda0d767c2a4ce6",
+          "bytes": 20472,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0050.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=50&page_size=100",
+          "sha256": "0fc4bb0d601fafb04944828a75b60599482ddf7ecd377db9f96705a51ed741d9",
+          "bytes": 22803,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0051.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=51&page_size=100",
+          "sha256": "96f214445427e52e0d17df3de14c6b9ab3f048d4cb91dfdee3a54e31cf2e9211",
+          "bytes": 25816,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0052.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=52&page_size=100",
+          "sha256": "bb691c238179263d74098fb85da84eb1de8961f719666ec0f6e760b33c450702",
+          "bytes": 25644,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0053.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=53&page_size=100",
+          "sha256": "d290287a87975c6ccba0448d78331f8dfd91d0fee07fff72ad196681d1d11652",
+          "bytes": 25193,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0054.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=54&page_size=100",
+          "sha256": "2301d19486e8b3dffccba362940a0df53c1725b08c5165d0f82b66948643f685",
+          "bytes": 22949,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0055.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=55&page_size=100",
+          "sha256": "f0f3d1f29f76fbf38e3e24f25c5693d07286a6dc6f77f6201567b21ae5e89279",
+          "bytes": 22638,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0056.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=56&page_size=100",
+          "sha256": "e6b517a9fb57713789b51686e3350a8548fa93d7a4e9d6ed73939e48ba15b490",
+          "bytes": 21005,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0057.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=57&page_size=100",
+          "sha256": "b1b249fcd4fdb03318d1aae1ff0f44660b8a592888757ff28b60d99843b4a703",
+          "bytes": 22802,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0058.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=58&page_size=100",
+          "sha256": "47d5521be26f400da3cea469a26898f340fc9febd13cab8144f647eb1030532f",
+          "bytes": 23394,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0059.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=59&page_size=100",
+          "sha256": "cc669823b77af6682a09af957c0d386ee1abf891df568c990c97482fb107a443",
+          "bytes": 22837,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0060.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=60&page_size=100",
+          "sha256": "d06733a0f10e433c3827156e79386b2f93a4988462c499905a0f45ad56dfa023",
+          "bytes": 27770,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0061.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=61&page_size=100",
+          "sha256": "74ee383ea6c1cb2262179dde793af12357408a8d03000d1919e4d8ff4153e2c2",
+          "bytes": 27875,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0062.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=62&page_size=100",
+          "sha256": "928962b7368780284158c79a7dc37fb49032c4d9c2471ec46f3a985f2f3c0c31",
+          "bytes": 26577,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0063.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=63&page_size=100",
+          "sha256": "ec178ddf7ef1629e72353e5529a20d4faf5f0bd3b43ced82373b34c496e386b7",
+          "bytes": 20827,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0064.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=64&page_size=100",
+          "sha256": "736c843fe59866244e874534c3883d3456da3006ff9477b3e0bb3cde23908749",
+          "bytes": 23869,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0065.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=65&page_size=100",
+          "sha256": "74c70c0fc5162eb17128463bb0fff50a916231ab266bed0866680b5b5dc2b450",
+          "bytes": 23028,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0066.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=66&page_size=100",
+          "sha256": "1ed10d9a65af973eea67654561546e75e3d1c246a234020f00ab072f83fef5a9",
+          "bytes": 23301,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0067.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=67&page_size=100",
+          "sha256": "3941f4a5ed37aeccab4300ccc9b37ac6f7d21e410cbdf4e8f4d6b442afa4090c",
+          "bytes": 26251,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0068.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=68&page_size=100",
+          "sha256": "6319855034c7ac2e2e02e5703329b0cfcc97a786a10fdf44890d6f21222957dd",
+          "bytes": 21188,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0069.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=69&page_size=100",
+          "sha256": "933559f065a5df6309f7c92a290a641b7cc4f267e055a922cb97ae38dd3c47f2",
+          "bytes": 23156,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0070.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=70&page_size=100",
+          "sha256": "bf3529feda1f681a5731dc72b7531ee0ef20f3c20ac970e1e688435da0e4ce20",
+          "bytes": 27976,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0071.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=71&page_size=100",
+          "sha256": "2250c4d9a2788fa3dcc0060fa7928c3c5488c4869e4c8c436cde881b9de81183",
+          "bytes": 25437,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0072.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=72&page_size=100",
+          "sha256": "5e177460a5d4faeca43682d62873c1589cef832c2ce96dece7fb09c440d47341",
+          "bytes": 23075,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0073.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=73&page_size=100",
+          "sha256": "537c7893a28ceff2a75c365da46d31ef6698fa1a855b69cc7b292a4dbcd60d65",
+          "bytes": 23970,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0074.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=74&page_size=100",
+          "sha256": "594463cc159018c1c6fef798a98c59216353a4b752428f57538844d2b0a32d74",
+          "bytes": 25366,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0075.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=75&page_size=100",
+          "sha256": "e38c3335ace483058a13359b01a285cd036d785b2b5444e79d975c668ccd3459",
+          "bytes": 23554,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0076.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=76&page_size=100",
+          "sha256": "45bf37b58abd573fa6ba15c45430f27327acd309f762079f2613dde84f554402",
+          "bytes": 23718,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0077.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=77&page_size=100",
+          "sha256": "2330c61aabba9a8387e400e0f88c16c476f80ad0ef2d7a0f94e639c309631b4a",
+          "bytes": 23950,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0078.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=78&page_size=100",
+          "sha256": "0a5fb2f431aaa147898866a0967db4a22333a7ed969b44834d1f8f69a5209437",
+          "bytes": 24230,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0079.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=79&page_size=100",
+          "sha256": "bea16fb9d4fe8012d6a101f44a766293124bc5e1ca180eff22ee5661de7dabe5",
+          "bytes": 24081,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0080.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=80&page_size=100",
+          "sha256": "45e64efdc7b99494f52951472967ea3002d9c90427acbfdebc96eed5dbadaf13",
+          "bytes": 24525,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0081.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=81&page_size=100",
+          "sha256": "0caf2a0214041973efb626f149d5154c660cc29a46c96af7f446219589b8d181",
+          "bytes": 24940,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0082.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=82&page_size=100",
+          "sha256": "1af54509543496d65c8ce6c4a05c2b2ddaee07c0003a312ec1d1329d6c9851ea",
+          "bytes": 24989,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0083.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=83&page_size=100",
+          "sha256": "8145c2b7ea099e251e7cf209d93e1fff74de9d2bdf3b2e7538ac8d8e2b58bef9",
+          "bytes": 23808,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0084.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=84&page_size=100",
+          "sha256": "924075cb8a190c455181dbfa573a14bf4d8d6a7bebb40b229be671051a48b3e7",
+          "bytes": 24139,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0085.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=85&page_size=100",
+          "sha256": "580025121fa63b2a738ecbd8e7c0d3f66380c8f814c18ea73717d8e05217e88b",
+          "bytes": 24436,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0086.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=86&page_size=100",
+          "sha256": "48c5a19747766fa1ec14cf42fd839a050f62e1f61a92356ffac4f8d268eb4ff8",
+          "bytes": 24256,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0087.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=87&page_size=100",
+          "sha256": "07e01346f72442e5606a01868e9827ed74886ba42adad653ef08df76503cf33b",
+          "bytes": 24230,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0088.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=88&page_size=100",
+          "sha256": "7ee6e0bc50b63bfcbf24800736376cfc23b110afcee5e7155c6c39a92061709c",
+          "bytes": 23910,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0089.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=89&page_size=100",
+          "sha256": "2f0cb0ca37cf5a30faa01a9657cc8cb5b4b1c62c0e5ee7dbe90d765f4b9d788a",
+          "bytes": 23119,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0090.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=90&page_size=100",
+          "sha256": "7efad9126dd96ee1a569d2b05d6b19512d2ebf47d3d39290047aafb2834a0ebe",
+          "bytes": 18023,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0091.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=91&page_size=100",
+          "sha256": "b7884e44c47565cabf7012d23879009fc128f62d716ee09768251ef084b53310",
+          "bytes": 18225,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0092.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=92&page_size=100",
+          "sha256": "26caddd7bdd8a0ba9cfa166edee37f7daace56dc96bcd94c3d7d38ca5209b6c5",
+          "bytes": 24130,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0093.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=93&page_size=100",
+          "sha256": "5fa707b01cae8ad54269a5dfbd099ca32361e48ea3e901f75b901b4f5fdf82ae",
+          "bytes": 31075,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0094.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=94&page_size=100",
+          "sha256": "66c6b8a203804a7a96ebaecc6437e48b8b75861d274fab0acbc47d6842a68881",
+          "bytes": 30558,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0095.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=95&page_size=100",
+          "sha256": "370b281d60fdf1d20c5a4d46f6cb8d4c1fa1e112e8fb4282652c860fcf842a59",
+          "bytes": 31127,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0096.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=96&page_size=100",
+          "sha256": "4ac0d49777e35c2715a1dedbbe6259becf83919e966a986ede51e298ffa43fd9",
+          "bytes": 24781,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0097.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=97&page_size=100",
+          "sha256": "a2f38f01c18e6f8f01a0fa34ba1e5104c4da425097416111887ba8660be3d956",
+          "bytes": 23383,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0098.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=98&page_size=100",
+          "sha256": "e3cbc30f91dbdf69b7405c4938c3b3ee96883edcfdc82106ad3bb4366b3035e7",
+          "bytes": 24575,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0099.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=99&page_size=100",
+          "sha256": "b8fc60850b762d739720122996c25ba02ba6b2ecf6480d7769f5604ccdf6b472",
+          "bytes": 20402,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0100.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=100&page_size=100",
+          "sha256": "d4709029aa34c5a199251ade284a3da026faffea32f4cd17d29a9d0621212534",
+          "bytes": 17360,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0101.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=101&page_size=100",
+          "sha256": "b9f082d25c878f0e14b62a7bd3102f7002c28bcd63e4e064a5ede2ad1a147657",
+          "bytes": 22718,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0102.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=102&page_size=100",
+          "sha256": "46647e21fb13b689bdca69de334481a8d44516f3aec671310fe6481691ca688b",
+          "bytes": 19542,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0103.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=103&page_size=100",
+          "sha256": "654f13cc9a0ba5523fe1394dc9482ac429cf67d0d7258c8fa8eba11b2c6d8e78",
+          "bytes": 23061,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0104.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=104&page_size=100",
+          "sha256": "37bf6cf0bf01f037205767202ff3f677bcebd4135f0f931859aa0333732d47b0",
+          "bytes": 22683,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0105.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=105&page_size=100",
+          "sha256": "e31f861489a33b5138cfb585da2092935095a5607ea9d19030a907cdfc7330a5",
+          "bytes": 23042,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0106.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=106&page_size=100",
+          "sha256": "569f35901869fdbed3e958803efedf561281c119496d0839a32df4d478c129b8",
+          "bytes": 22854,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0107.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=107&page_size=100",
+          "sha256": "53124544bfaa6e7c18c1d0b5d2791f01519adb4bd6e86f8abdae639386e47dbf",
+          "bytes": 22044,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0108.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=108&page_size=100",
+          "sha256": "53c4e09725a8a7ca1f39413d8e418b108ce4e780d7666e00f9a24ad4c38d9aef",
+          "bytes": 21744,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0109.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=109&page_size=100",
+          "sha256": "127fac6335311def32a64993c8a8924041aa0d9a092c7cbe310731f9ad548708",
+          "bytes": 21723,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0110.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=110&page_size=100",
+          "sha256": "6d0fdbd392991b953e4174827be889530fbc902b08d690b07f3ef3f12410de8e",
+          "bytes": 21545,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0111.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=111&page_size=100",
+          "sha256": "8ba7a1839617cedd3cd396425ffa5bcb7907f829ece646e0e3a7674ec0ea2f68",
+          "bytes": 25031,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0112.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=112&page_size=100",
+          "sha256": "db858ba7676b918daabdc3c44cd4e361f968a4f4f1e0b505697f24b94deadd38",
+          "bytes": 23628,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0113.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=113&page_size=100",
+          "sha256": "a3ff9e0b2145d2d8ecf85f94018c28dc6344eda71f69da572df07f82c4cc616e",
+          "bytes": 24213,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0114.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=114&page_size=100",
+          "sha256": "3647846d44ee9b13df0bcd40693b75e983b29279fa24c3e05812bf7729244a35",
+          "bytes": 24701,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0115.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=115&page_size=100",
+          "sha256": "36a94121a9c6c21a2b75d23397a269dd579e1806f597bf0abfe4c9f2ff3fa872",
+          "bytes": 25508,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0116.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=116&page_size=100",
+          "sha256": "51dfd44bbf4c2a2c77f2f4046b3655a86902334cca34353e81a137fe1e987d14",
+          "bytes": 23777,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0117.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=117&page_size=100",
+          "sha256": "c92c3dfa742e1356ecaccd02f8c9682786aeabc1054035b0c4aaf8024fe3fe9c",
+          "bytes": 27761,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0118.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=118&page_size=100",
+          "sha256": "3e6272e5110691a002fc9f8c752500de6115f9f6e3d46a304076e257f145248f",
+          "bytes": 28354,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0119.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=119&page_size=100",
+          "sha256": "fca678bde42b465b63bdeea624b8c3d92ca8b6e55da65138fc65ba55c015b1d3",
+          "bytes": 29819,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0120.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=120&page_size=100",
+          "sha256": "ae00b5acb7fb075e496a27dada9b8698488732b1c427afef1092772e264badbf",
+          "bytes": 29672,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0121.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=121&page_size=100",
+          "sha256": "c9e3e41792977f2503790784ee408cef51052361b2b75e4c847843f3621c6171",
+          "bytes": 26055,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0122.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=122&page_size=100",
+          "sha256": "31b8ebfe656be435bb4f199ac4abc1860c76d00c80ef348d0c1791ef83648366",
+          "bytes": 24108,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0123.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=123&page_size=100",
+          "sha256": "bf5c071a7288496b61bab7562ff62ef34da82e6b5a6471e55cc7c8679d30d05d",
+          "bytes": 22341,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0124.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=124&page_size=100",
+          "sha256": "c98cc539d4f3632c1cd3437d8a5350debba7507afcb615f77a839587b0641610",
+          "bytes": 21960,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "units-0125.json",
+          "url": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&only=id%2Cname%2Clocation%2Cmunicipality%2Cservices&page=125&page_size=100",
+          "sha256": "504987bb0c292a95a266c2d7d505367f0f6873bf8b00b34ba99e2ba8d7fc34e3",
+          "bytes": 11784,
+          "records": 55,
+          "retries": []
+        }
+      ]
+    },
+    "districts": {
+      "expected": 34,
+      "obtained": 34,
+      "duplicates": 0,
+      "complete_pagination": true,
+      "pages": [
+        {
+          "file": "districts-0001.json",
+          "url": "https://api.hel.fi/servicemap/v2/administrative_division/?type=district&municipality=helsinki&geometry=true&page_size=100",
+          "sha256": "f0c9777956c16c577d39f718a629734c899dac5d64ca645a5d7fee1f20469de1",
+          "bytes": 368607,
+          "records": 34,
+          "retries": []
+        }
+      ]
+    },
+    "services": {
+      "expected": 1113,
+      "obtained": 1113,
+      "duplicates": 0,
+      "complete_pagination": true,
+      "pages": [
+        {
+          "file": "services-0001.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?page_size=100&only=id,name",
+          "sha256": "af4279d87c4948b15d7fe6b7da35392b0944f7c41784ea03e0eb5f7904663155",
+          "bytes": 22437,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0002.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=2&page_size=100",
+          "sha256": "4353e3264670147adff4e2839bbdecea4792672eab02c903560b6d9055381254",
+          "bytes": 31879,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0003.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=3&page_size=100",
+          "sha256": "294f932c1076a21bb65a1daf6268a8e0d651a3042635655557dbe67695524daa",
+          "bytes": 27159,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0004.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=4&page_size=100",
+          "sha256": "d572dcd39943f0505ae2406eac7104303551d2e79e1589b8c640e11d21f28993",
+          "bytes": 29148,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0005.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=5&page_size=100",
+          "sha256": "8e68e44795aa42687eae27108c9191061ab36c92dbe1ee44d45125a2ae877374",
+          "bytes": 28805,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0006.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=6&page_size=100",
+          "sha256": "22bebee31ad0a1911dbafb8f5e0fc16a79129b0295698120cd93fa3bf073339b",
+          "bytes": 27106,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0007.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=7&page_size=100",
+          "sha256": "e46cca92a55f77ac4dd4eef53172d60e5c29395370c37e2d14db13ac69595a1c",
+          "bytes": 27729,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0008.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=8&page_size=100",
+          "sha256": "4fb4799a494dee002bbe437e4391054b1258ec31bd9f252fd1d4e82bff8d77fa",
+          "bytes": 29831,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0009.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=9&page_size=100",
+          "sha256": "9f93e5b2d93ca99eee68a0d9134321196beca270029e8b8647879e30dfd29d25",
+          "bytes": 28606,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0010.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=10&page_size=100",
+          "sha256": "a89c50bf50ed4a26b64863aa080051b448c22b3e4fd04faf058c4ffa10bb4b01",
+          "bytes": 27125,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0011.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=11&page_size=100",
+          "sha256": "e051bad3b38effe3dd95fcb6b62c63e1f89e29c5cca149b9362b6966d02da8c4",
+          "bytes": 29571,
+          "records": 100,
+          "retries": []
+        },
+        {
+          "file": "services-0012.json",
+          "url": "https://api.hel.fi/servicemap/v2/service/?only=id%2Cname&page=12&page_size=100",
+          "sha256": "f94d03efc939b7ffc9a82c91f2fe00ac44132c9c7f5757877fa3624b184d3174",
+          "bytes": 3630,
+          "records": 13,
+          "retries": []
+        }
+      ]
+    },
+    "population": {
+      "url": "https://stat.hel.fi/api/v1/fi/Aluesarjat/vrm/vaerak/alu_vaerak_004r.px",
+      "query_file": "population-query.json",
+      "retries": [],
+      "pages": [
+        {
+          "file": "population-metadata.json",
+          "sha256": "1c81aec2e1a5a8ac607906485cdb39e766ae5338bda6b2f92b9a7950da9a6ebd",
+          "bytes": 15562
+        },
+        {
+          "file": "population-query.json",
+          "sha256": "bfc219310195bc97af34129737d915f5df480db59a105fbe2f5816a19164f849",
+          "bytes": 1443
+        },
+        {
+          "file": "population.json",
+          "sha256": "b93fa1f650b8329d79146ae8ba1b57f72b05aad7cf9a2fc92b7f3b74c50022f7",
+          "bytes": 3258
+        }
+      ]
+    }
+  },
+  "licenses": [
+    {
+      "source": "Service Map data",
+      "license": "CC-BY-4.0",
+      "attribution": "City of Helsinki Service Map, https://servicemap.hel.fi",
+      "terms": "https://www.hel.fi/palvelukarttaws/restpages/index_en.html"
+    },
+    {
+      "source": "Helsinki population statistics",
+      "license": "CC-BY-4.0",
+      "attribution": "City of Helsinki, Urban Research and Statistics; Statistics Finland",
+      "terms": "https://stat.hel.fi/Resources/Images/PxWebAPI_Help_Helsinki_en.pdf"
+    }
+  ],
+  "failed": [],
+  "complete": true
+}

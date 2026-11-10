@@ -2,7 +2,7 @@
 
 **Estado: propuesta de requisitos, no disponibilidad operativa.** Cada fila tiene una ficha individual. Los perfiles agrupan datos de un primer caso representativo; cada operación necesita un binding nativo y puede requerir un subconjunto diferente. Las dependencias heredan datos del paquete padre. No se exige GTFS para una validación geométrica ni HVAC para un cálculo de iluminación.
 
-Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. Las fuentes de operador necesitan proyecto y autorización concretos. `ready_to_run=false` en los 229 candidatos.
+Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. Las fuentes de operador necesitan proyecto y autorización concretos. 1 entrada(s) con alcance admitido por caso; el resto conserva `ready_to_run=false`. La admisión no abarca todas las funciones del upstream.
 
 | Herramienta | Perfil propuesto | Estado |
 |---|---|---|
@@ -109,7 +109,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 | [idfkit/idfkit-mcp](#data-idfkit--idfkit-mcp) | `energy` | candidate; binding pendiente |
 | [jagan-shanmugam/open-streetmap-mcp](#data-jagan-shanmugam--open-streetmap-mcp) | `roads` | candidate; binding pendiente |
 | [jjsantos01/qgis_mcp](#data-jjsantos01--qgis_mcp) | `vector` | candidate; binding pendiente |
-| [JordanGunn/gdal-mcp](#data-jordangunn--gdal-mcp) | `vector` | candidate; binding pendiente |
+| [JordanGunn/gdal-mcp](#data-jordangunn--gdal-mcp) | `vector` | candidate; alcance admitido por caso |
 | [kLabUM/SWMM-MCP-PUB](#data-klabum--swmm-mcp-pub) | `swmm` | candidate; binding pendiente |
 | [LBNL-ETA/EnergyPlus-MCP](#data-lbnl-eta--energyplus-mcp) | `energy` | candidate; binding pendiente |
 | [mahdin75/gis-mcp](#data-mahdin75--gis-mcp) | `vector` | candidate; binding pendiente |
@@ -2255,6 +2255,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 
 - **Interfaz original:** Servidor y módulos upstream.
 - **Alcance de esta ficha:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Caso ejecutable delimitado:** [helsinki-service-inventory](../../cases/helsinki-service-inventory/README.md); operaciones: harvest_municipal_sources, inventory_by_district, municipal_status, prepare_municipal_data, raster_convert, raster_info, raster_query, raster_reproject, raster_stats, read_case_artifact, service_catalog, store_justification, vector_buffer, vector_clip, vector_convert, vector_info, vector_query, vector_reproject, vector_simplify. La ficha genérica siguiente sigue siendo propuesta para otras operaciones.
 
 | Entrada candidata | Formato/contrato | Posibles fuentes | Condición de admisión |
 |---|---|---|---|
@@ -2263,7 +2264,7 @@ Fuentes candidatas no equivalen a assets descargados, licenciados o adecuados. L
 - **Preparación que hay que resolver:** Select area, preserve source IDs, project only with declared operation, map fields and retain provenance.
 - **Validación requerida:** Geometry validity, dimensions, IDs, bounds, CRS/units and required attributes.
 - **Faltante para un caso real:** Coverage and domain attributes are not guaranteed by a map.
-- **Binding nativo:** pendiente de mapear cada entrada al archivo/API/argumento de la operación elegida; no se infiere de esta tabla.
+- **Binding nativo:** comprobado únicamente para el caso y operaciones enlazados; la ficha genérica no admite otras operaciones.
 - **Crítica propia del proyecto:** No construir otro GDAL MCP sin contrastar catálogo, límites y salidas.
 - **Siguiente contribución:** seleccionar una operación y un asset permitido, fijar versión/hash/licencia, documentar conversión y reproducir caso directo antes de probar MCP.
 

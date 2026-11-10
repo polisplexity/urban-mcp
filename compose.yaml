@@ -1,5 +1,33 @@
 name: urban-mcp-planning
+x-municipal: &municipal
+  profiles: [municipal]
+  image: urban-mcp-inventory:dev
+  user: "${URBAN_MCP_UID:-65532}:${URBAN_MCP_GID:-65532}"
+  build:
+    context: .
+    dockerfile: adapters/municipal_inventory/Dockerfile
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  cpus: 2
+  mem_limit: 1g
+  pids_limit: 128
+  network_mode: bridge
+  tmpfs: ["/tmp:rw,noexec,nosuid,size=64m"]
+  volumes:
+    - ${URBAN_MCP_WORKDIR:-./.urban-mcp/helsinki}:/data
 services:
+  inventory:
+    <<: *municipal
+    network_mode: none
+    command: [status]
+  harvest:
+    <<: *municipal
+    command: [harvest, --mode, live]
+  municipal-mcp:
+    <<: *municipal
+    stdin_open: true
+    command: [serve]
   preflight:
     profiles: [preflight]
     build:

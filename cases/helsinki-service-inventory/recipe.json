@@ -1,0 +1,26 @@
+{
+  "id": "helsinki-service-inventory",
+  "municipality": {"country_code": "FI", "geographic_id": "091", "name": "Helsinki"},
+  "question": "How are registered service locations distributed across Helsinki districts relative to their 2025 population?",
+  "population_year": "2025",
+  "analysis_crs": "EPSG:3067",
+  "district_raster_resolution_m": 100,
+  "sources": {
+    "units": "https://api.hel.fi/servicemap/v2/unit/?municipality=helsinki&page_size=100&only=id,name,location,municipality,services",
+    "districts": "https://api.hel.fi/servicemap/v2/administrative_division/?type=district&municipality=helsinki&geometry=true&page_size=100",
+    "services": "https://api.hel.fi/servicemap/v2/service/?page_size=100&only=id,name",
+    "population_metadata": "https://stat.hel.fi/api/v1/fi/Aluesarjat/vrm/vaerak/alu_vaerak_004r.px"
+  },
+  "licenses": [
+    {"source": "Service Map data", "license": "CC-BY-4.0", "attribution": "City of Helsinki Service Map, https://servicemap.hel.fi", "terms": "https://www.hel.fi/palvelukarttaws/restpages/index_en.html"},
+    {"source": "Helsinki population statistics", "license": "CC-BY-4.0", "attribution": "City of Helsinki, Urban Research and Statistics; Statistics Finland", "terms": "https://stat.fi/en/about-us/get-to-know-statistics-finland/legislation/terms-of-use", "publisher_catalog": "https://hri.fi/data/dataset/helsingin-tilastollinen-vuosikirja"}
+  ],
+  "limits": [
+    "Service Map units are registry entries, including outdoor features; they are not a census of unique buildings or service capacity.",
+    "Population is measured at 31 December 2025; current service and district snapshots have a different observation date.",
+    "Counts and units per 10000 residents are descriptive indicators, not accessibility, adequacy or service quality.",
+    "Null geometry, unmatched and boundary-ambiguous locations are reported separately; no silent reassignment.",
+    "The 100 m district-ID raster is a cartographic test derivative, not a population grid.",
+    "No permanent availability or global city ranking is claimed. Pinned public snapshots support offline reproduction."
+  ]
+}

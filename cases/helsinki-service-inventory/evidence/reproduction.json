@@ -1,0 +1,78 @@
+{
+  "snapshot": {
+    "snapshot": "20261110T112344Z-500b5c",
+    "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-helsinki-20261110/helsinki-inventory-20261110.zip",
+    "sha256": "e6f96c4d4f40e345861e97702c61078702b318b5780f468a31c5cf73854ab150",
+    "bytes": 762389,
+    "data_license": "CC-BY-4.0",
+    "acquired_at": "2026-11-10T11:23:44.384904+00:00"
+  },
+  "native_and_two_agents_same_csv": true,
+  "comparisons": [
+    {
+      "service_id": 813,
+      "native_units": 46,
+      "native_csv_sha256": "aaa8d0c97184e9515bc959bea5c9cf3d4890f6368a215b26fe175ccfc57a3b94",
+      "agents": {
+        "codex": {
+          "units": 46,
+          "assigned": 46,
+          "unmatched": 0,
+          "csv_sha256": "aaa8d0c97184e9515bc959bea5c9cf3d4890f6368a215b26fe175ccfc57a3b94",
+          "equals_native": true,
+          "run_id": "codex-public-libraries",
+          "prepared_from_same_snapshot": true
+        },
+        "hermes": {
+          "units": 46,
+          "assigned": 46,
+          "unmatched": 0,
+          "csv_sha256": "aaa8d0c97184e9515bc959bea5c9cf3d4890f6368a215b26fe175ccfc57a3b94",
+          "equals_native": true,
+          "run_id": "hermes-libraries",
+          "prepared_from_same_snapshot": true
+        }
+      }
+    },
+    {
+      "service_id": 703,
+      "native_units": 23,
+      "native_csv_sha256": "08ed8219a4879e34834017a7b8a2e7d974316ddc42e77ecac7bf09580a438273",
+      "agents": {
+        "codex": {
+          "units": 23,
+          "assigned": 23,
+          "unmatched": 0,
+          "csv_sha256": "08ed8219a4879e34834017a7b8a2e7d974316ddc42e77ecac7bf09580a438273",
+          "equals_native": true,
+          "run_id": "codex-health-stations",
+          "prepared_from_same_snapshot": true
+        },
+        "hermes": {
+          "units": 23,
+          "assigned": 23,
+          "unmatched": 0,
+          "csv_sha256": "08ed8219a4879e34834017a7b8a2e7d974316ddc42e77ecac7bf09580a438273",
+          "equals_native": true,
+          "run_id": "hermes-healthstations",
+          "prepared_from_same_snapshot": true
+        }
+      }
+    }
+  ],
+  "metadata_unit_tests": 18,
+  "original_server_tests": 69,
+  "protocol_checks": 72,
+  "protocol_tools": 19,
+  "original_server_test_environment": "Unit tests run with GDAL_MCP_WORKSPACES unset, as expected by their empty-configuration fixture; the actual MCP remains confined to /data.",
+  "source_hash_normalization": "Implementation hashes below normalize CRLF to LF, matching Git. Runtime quality records preserve the executing file byte hash. The Windows working-tree line endings do not change Python semantics or the compared CSV artifacts.",
+  "implementation_file_sha256_canonical_lf": {
+    "urban_mcp_case/analysis.py": "9fde032309eab69d28b82dd7602e2adad648972ea35cd069cdbe0435fd8d3776",
+    "urban_mcp_case/sources.py": "168616faa1f7872e42ee234d6bc4aa3a6ba097e780a3e9abc0573f15f1cfc0ed",
+    "urban_mcp_case/server.py": "339c2c1271c76077b78903a6731b62bb6fc9d5d7eeb8db6edad42b2809d91620",
+    "urban_mcp_case/mcp_check.py": "c2edc6e910eabfd86427a59e83d0e7c30a8db41b9b96e1d3826e8f0176d06224",
+    "adapters/municipal_inventory/Dockerfile": "0b6004f67184e84906f20ee90903df87a99ae746aad96e57015b7c50a569b8db",
+    "adapters/municipal_inventory/apply_compat.py": "67cc49cbfe595a41bd4397e90ef2d6a8e5e0e435871936588da72a7726d1f08f",
+    "adapters/municipal_inventory/upstream-constraints.txt": "176133d08397a21bfa5d2abcae9b9c3ac11656fdb16d5f643f23228f6701cb84"
+  }
+}

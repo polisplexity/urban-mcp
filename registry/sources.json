@@ -13,7 +13,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "overture",
@@ -27,7 +28,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "cop-dem",
@@ -41,7 +43,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "inegi-dem",
@@ -55,7 +58,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "inegi-boundaries",
@@ -69,7 +73,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "inegi-census",
@@ -83,7 +88,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "inegi-denue",
@@ -97,7 +103,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "inegi-rnc",
@@ -111,7 +118,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "ghsl",
@@ -125,7 +133,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "worldpop",
@@ -139,7 +148,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "era5-land",
@@ -153,7 +163,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "nasa-power",
@@ -167,7 +178,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "epw",
@@ -181,7 +193,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "gtfs",
@@ -195,7 +208,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "sentinel",
@@ -209,7 +223,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "landsat",
@@ -223,7 +238,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "landcover",
@@ -237,7 +253,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "soilgrids",
@@ -251,7 +268,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "edgar",
@@ -265,7 +283,8 @@
       "checked_on": "2026-11-10",
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "gebco",
@@ -279,7 +298,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "ncar",
@@ -293,7 +313,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "building-samples",
@@ -307,7 +328,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "upstream-fixture",
@@ -321,7 +343,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "operator",
@@ -335,7 +358,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "model-author",
@@ -349,7 +373,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "user-files",
@@ -363,7 +388,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "service-instance",
@@ -377,7 +403,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "hazard-catalog",
@@ -391,7 +418,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "training-data",
@@ -405,7 +433,8 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
     },
     {
       "id": "standards",
@@ -419,7 +448,59 @@
       "checked_on": null,
       "asset_admission": "per_asset_review_required",
       "download_implemented": false,
-      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights"
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": []
+    },
+    {
+      "id": "helsinki-servicemap",
+      "name": "City of Helsinki Service Map",
+      "url": "https://api.hel.fi/servicemap/v2/",
+      "access": "public-api",
+      "coverage": "municipality and acquisition snapshot dependent",
+      "provides": "service registry units and taxonomy; administrative district geometries via paginated JSON",
+      "does_not_provide": "unique-building census, service capacity, measured access or permanent API availability",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "helsinki-service-inventory"
+      ]
+    },
+    {
+      "id": "helsinki-statistics",
+      "name": "City of Helsinki PxWeb statistics",
+      "url": "https://stat.hel.fi/api/v1/fi/Aluesarjat/vrm/vaerak/alu_vaerak_004r.px",
+      "access": "public-api",
+      "coverage": "selected population year, age group and statistical geography",
+      "provides": "population at 31 December by selected district IDs and municipal aggregate",
+      "does_not_provide": "resident coordinates, population grid, current live population or automatic resolution of unallocated statistical totals",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "helsinki-service-inventory"
+      ]
+    },
+    {
+      "id": "urban-mcp-snapshots",
+      "name": "Urban MCP permitted public case snapshots",
+      "url": "https://github.com/polisplexity/urban-mcp/releases",
+      "access": "public-download",
+      "coverage": "one versioned case archive with exact hash and original attribution",
+      "provides": "immutable acquisition snapshots and receipts for offline reproduction",
+      "does_not_provide": "a new source authority, upstream endorsement or replacement of original data licenses",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "helsinki-service-inventory"
+      ]
     }
   ]
 }

@@ -22,6 +22,8 @@ docker compose --profile preflight run --rm preflight
 
 Los archivos `planning/*.tsv` son decisiones editables. `registry/` y la matriz Markdown se generan desde ellos. `tools/build_data_registry.py` reconstruye fuentes/perfiles/matriz; `tools/build_planning_catalog.py` solo se usa para importar una nueva revisión pública de investigación con el formato documentado.
 
+Para cambios de Helsinki, seguir [el caso ejecutable](cases/helsinki-service-inventory/README.md): construir la imagen, adquirir el snapshot permitido, preparar y ejecutar la suite MCP. Se ensayan todas las funciones expuestas y las familias de recursos/prompts; ampliar parámetros/drivers exige casos nuevos y su contraste nativo. La admisión se deriva de `case.json` y evidencia revisada; no marcar un campo como verificado para hacer pasar CI.
+
 ## Cómo revisar una propuesta
 
 - **Datos:** ¿realmente alimentan esa operación? ¿qué falta? ¿qué se transforma y qué se pierde?

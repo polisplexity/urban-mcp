@@ -1,6 +1,6 @@
 # Tareas públicas
 
-Las prioridades son inventario municipal, accesibilidad y cobertura vegetal. Cada capacidad se admite con cosecha, resultado municipal y reproducción independiente; SUMO Hello es una referencia técnica auxiliar. Ver [criterios](cases/municipal-first.md) y [plantilla](cases/municipal-case-template.md). Las tareas de familia seleccionan operaciones/casos y datos, no ordenan implementar todo el inventario.
+El primer caso ejecutable es [Helsinki: bibliotecas y salud](../cases/helsinki-service-inventory/README.md), con cosecha, original/MCP y dos agentes. Las prioridades siguientes son accesibilidad y cobertura vegetal. Cada capacidad se admite con cosecha, resultado municipal y reproducción independiente; SUMO Hello es una referencia técnica auxiliar. Ver [criterios](cases/municipal-first.md) y [plantilla](cases/municipal-case-template.md). Las tareas de familia seleccionan operaciones/casos y datos, no ordenan implementar todo el inventario.
 
 | Tarea | Hito |
 |---|---|

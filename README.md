@@ -2,31 +2,38 @@
 
 Proyecto abierto para mantener cómo agentes y clientes MCP utilizan herramientas de urbanismo: software original, datos de entrada, preparación, instalación, operación y pruebas.
 
-**Estado: planificación pública.** El trabajo inicial se discute mediante una RFC y un pull request. Un repositorio investigado no equivale a un adaptador operativo ni a un modelo de ciudad listo.
+**Estado: catálogo en investigación y primer caso municipal ejecutable.** [Helsinki: inventario de bibliotecas y salud](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/README.md) ya recorre datos públicos, Docker, original, MCP y dos agentes. La admisión se limita a sus operaciones y parámetros comprobados; el resto del catálogo conserva su estado de investigación.
 
 La unidad de contribución propuesta es un **paquete de capacidad**: herramienta original + interfaz admitida + requisitos de datos + fuentes y preparación + caso comprobable + guía operativa del agente. Las bibliotecas auxiliares y los estándares se mantienen como dependencias, sin convertirlos automáticamente en servidores MCP.
 
 ## Revisar y contribuir
 
 - **[RFC y pull request #1](https://github.com/polisplexity/urban-mcp/pull/1):** propuesta técnica abierta, todavía sin fusionar ni fijar un framework global.
-- **[Orden de construcción y aceptación municipal](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/cases/municipal-first.md):** inventario de equipamientos/población, accesibilidad peatonal y cobertura vegetal. Cada capacidad debe cosechar datos y demostrar un resultado municipal reproducible.
-- **[Matriz de datos por herramienta](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/data/tool-data-matrix.md):** 229 candidatos, 48 perfiles iniciales y 30 canales de fuentes. Distingue insumos abiertos, datos del operador, preparación y faltantes.
-- **[Tareas para contribuir](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/tasks.md):** 35 tareas en siete hitos, incluyendo los primeros casos municipales e investigación por familias.
+- **[Primer caso y comandos para repetir](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/README.md):** Helsinki, 12,455 registros cosechados, 34 distritos y población de 2025; [datos fijados por hash](https://github.com/polisplexity/urban-mcp/releases/tag/data-helsinki-20261110).
+- **[Cobertura por función y origen](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/functionality.md):** MCP original GDAL + seis funciones nuevas para datos/inventario, con prueba de las 19 funciones expuestas.
+- **[Orden de construcción y aceptación municipal](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/cases/municipal-first.md):** inventario de equipamientos/población, accesibilidad peatonal y cobertura vegetal. Cada capacidad debe cosechar datos y demostrar un resultado municipal reproducible.
+- **[Matriz de datos por herramienta](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/data/tool-data-matrix.md):** 229 entradas, 48 perfiles iniciales y 33 canales de fuentes. Distingue alcance admitido por caso, candidatos, datos del operador y faltantes.
+- **[Tareas para contribuir](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/docs/tasks.md):** casos municipales, reproducción e investigación por familias en siete hitos; consultar también las [issues abiertas](https://github.com/polisplexity/urban-mcp/issues).
 - **[Guía de contribución](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/CONTRIBUTING.md)** y **[roadmap](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/roadmap.md)**.
 
-La propuesta vive en `rfc/data-ready-capabilities`. Para revisar archivos y comprobaciones desde un clon:
+La RFC inicial vive en `rfc/data-ready-capabilities`; la implementación del primer caso, en `feat/helsinki-municipal-inventory`. Para ejecutar:
 
 ```sh
-git switch rfc/data-ready-capabilities
-python -m pip install -r requirements-dev.txt
-python tools/validate.py
-python -m unittest discover -s tests
-docker compose --profile preflight run --rm --build preflight
+git switch feat/helsinki-municipal-inventory
+# En Linux/WSL, mapear el usuario propio para el workspace:
+export URBAN_MCP_UID="$(id -u)"
+export URBAN_MCP_GID="$(id -g)"
+mkdir -p .urban-mcp/helsinki
+docker compose --profile municipal build inventory
+docker compose --profile municipal run --rm harvest harvest --mode snapshot
+docker compose --profile municipal run --rm inventory prepare
+docker compose --profile municipal run --rm inventory inventory --service-id 813 --run-id native-library
+docker compose --profile municipal run --rm inventory test
 ```
 
-Este contenedor **solo valida planificación/metadatos**. SUMO Hello es una referencia técnica auxiliar: seis assets upstream fijados por commit/hash, con revisión de referencias y aristas. Todavía faltan admisión del alcance de datos, runtime científico Docker, baseline nativo, comparación MCP y ensayo independiente del agente. No sustituye la aceptación municipal.
+El perfil `municipal` ejecuta el caso y sus pruebas reales. El perfil `preflight` sigue validando únicamente planificación/metadatos. SUMO Hello permanece como referencia sintética auxiliar, sin motor/MCP admitidos.
 
-La pregunta y el municipio se definen desde el inicio. La prueba final recorre cosecha, preparación, ejecución nativa/MCP, resultado y reproducción independiente; la [plantilla municipal](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/cases/municipal-case-template.md) guía el expediente. Las fuentes candidatas no significan que ya haya datos suficientes. La [propuesta para agentes y skills](https://github.com/polisplexity/urban-mcp/blob/rfc/data-ready-capabilities/docs/agents/day-zero.md) no exige un agente propio ni un archivo SOUL obligatorio.
+Codex y un perfil aislado de Hermes ejecutaron la misma tarea sin respuestas esperadas, con datos/resultados separados. La [evidencia del caso](https://github.com/polisplexity/urban-mcp/tree/feat/helsinki-municipal-inventory/cases/helsinki-service-inventory/evidence) distingue pruebas de protocolo, resultado nativo y comportamiento de los agentes. [Configurar otro cliente](https://github.com/polisplexity/urban-mcp/blob/feat/helsinki-municipal-inventory/tools/client_config.py) no exige un agente propio ni un archivo SOUL obligatorio.
 
 El proyecto no exige un proveedor de IA ni un lenguaje único para los motores. La licencia de este repositorio no sustituye la de cada software, dataset, peso o servicio conectado.
 
