@@ -31,6 +31,8 @@ Host acceptance compares complete baseline/closure CSVs, graph/map receipts, too
 
 **Final host result:** all four city/host runs operate the 15 tools and reproduce the native artifacts. Codex's two observed briefs pass the declared factual review. Hermes's prose is not admitted: it mislabels individual Helsinki threshold crossings and describes an overlapping Amsterdam route as available after closure. The [answer-hash-bound narrative review](cases/two-city-walking/evidence/narrative-review.md) gives exact corrections. Computational readiness does not establish unsupervised municipal recommendation readiness.
 
+[Contribution issue #39](https://github.com/polisplexity/urban-mcp/issues/39) scopes explicit per-object threshold transitions and closed-link/route-overlap evidence, with new native/MCP/host acceptance. Current failures remain visible until a new tested version establishes otherwise.
+
 ## What remains unproven
 
 The research catalog is not a coverage claim. Walking access is not wheelchair accessibility, observed travel time, population coverage, school enrollment, service capacity or an authoritative municipal finding. Every result must retain its study boundary, acquisition date, data license, assumptions and known omissions.
