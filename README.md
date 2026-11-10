@@ -9,7 +9,7 @@ Open infrastructure that lets any MCP-capable agent operate urban open-source to
 - [Helsinki service inventory](cases/helsinki-service-inventory/README.md): public library and health-station registry locations against 2025 district population; original GDAL MCP plus municipal preparation/inventory operations, with Codex and Hermes evidence. [PR #37](https://github.com/polisplexity/urban-mcp/pull/37).
 - [Helsinki and Amsterdam walking access](cases/two-city-walking/README.md): mapped school-to-library routes, snap/disconnection accounting and an explicit link-closure scenario. Includes an OSMnx MCP source audit, separately implemented adapter, harvested ODbL snapshots, Docker recipes, native/protocol checks and blind host tasks. Consult the master record for completed stages.
 
-Use `feat/two-city-walking-accessibility` for the combined implementation. The inventory PR is based on `rfc/data-ready-capabilities`; these branches remain reviewable, not a claim that all work is merged into the default branch. [RFC #1](https://github.com/polisplexity/urban-mcp/pull/1) tracks the wider proposal.
+[RFC #1](https://github.com/polisplexity/urban-mcp/pull/1) and the Helsinki inventory [PR #37](https://github.com/polisplexity/urban-mcp/pull/37) are merged into `main`. This branch contains the two-city walking implementation under review in [PR #38](https://github.com/polisplexity/urban-mcp/pull/38); [PR #40](https://github.com/polisplexity/urban-mcp/pull/40) adds explicit threshold and closed-link diagnostics afterward. The final reproduction entry point will be `main` after that ordered integration.
 
 ## What a contribution contains
 
