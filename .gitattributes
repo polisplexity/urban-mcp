@@ -1,1 +1,6 @@
 * text=auto eol=lf
+# Observed artifacts must retain the exact bytes named by public SHA-256 receipts.
+cases/two-city-walking/evidence/**/*.csv -text
+cases/two-city-walking/evidence/**/*-answer.md -text
+cases/two-city-walking/evidence/**/*-process.json -text
+cases/two-city-walking/evidence/initial-observations/* -text
