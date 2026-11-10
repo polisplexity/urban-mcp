@@ -42,6 +42,8 @@ class VegetationPolicy(Middleware):
             options = args.get("options") or {}
             if options.get("overviews") and options.get("overview_resampling", "average") not in {"nearest", "mode"}:
                 raise ToolError("Categorical overviews require explicit nearest or mode resampling")
+        if name == "vector_simplify" and args.get("method", "douglas-peucker") != "douglas-peucker":
+            raise ToolError("Visvalingam is not admitted: pinned upstream delegates that label to Douglas-Peucker. Use explicit douglas-peucker.")
         if name in {"vector_buffer", "vector_simplify"} and args.get("uri"):
             path = validate_path(str(resolve_path(args["uri"])))
             info = pyogrio.read_info(path)
@@ -51,7 +53,10 @@ class VegetationPolicy(Middleware):
         return await call_next(context)
 
 
-mcp.add_middleware(VegetationPolicy())
+# FastMCP 2.12.3 exposes the ordered list; add_middleware only appends.
+# Reject unsupported profile choices before asking for upstream justification.
+# Admitted operations still pass through original path/reflection middleware.
+mcp.middleware.insert(0, VegetationPolicy())
 
 
 async def call(function, *args):

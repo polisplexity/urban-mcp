@@ -7,11 +7,14 @@ from pathlib import Path
 import tempfile
 
 import numpy as np
+import geopandas as gpd
 import rasterio
 from rasterio.transform import from_origin
+from shapely.geometry import LineString
 
 from src.shared.raster.reproject import Params
 from src.tools.raster.reproject import _reproject
+from src.shared.vector.simplify import simplify
 
 
 async def audit():
@@ -32,7 +35,13 @@ async def audit():
             bounds = {"requested_bounds": requested_bounds, "observed_bounds": list(result.bounds)}
         assert dimensions["observed_bounds"] != original_bounds
         assert bounds["observed_bounds"] != requested_bounds
-        return {"upstream": "JordanGunn/gdal-mcp", "commit": "418f401c7987e388eaaee6ad13289798a1ff69b6", "license": "MIT", "fixture": "Synthetic 100x100 EPSG:3067 raster, 10 m pixels, class 50; not municipal evidence", "source_sha256": hashlib.sha256(Path("/opt/gdal-mcp/src/tools/raster/reproject.py").read_bytes()).hexdigest(), "explicit_dimensions_change_footprint": dimensions, "bounds_ignored": bounds, "profile_response": "Vegetation profile rejects explicit bounds/width/height; uses resolution and categorical nearest/mode. Original numerical code remains unchanged."}
+        line = folder/"line.gpkg"
+        gpd.GeoDataFrame({"id":[1]},geometry=[LineString([(380000,6670000),(380010,6670001),(380020,6670020),(380030,6670001),(380040,6670000)])],crs=3067).to_file(line,driver="GPKG")
+        simplify(str(line),folder/"dp.gpkg",5,method="douglas-peucker")
+        simplify(str(line),folder/"vw.gpkg",5,method="visvalingam")
+        equal = bool(gpd.read_file(folder/"dp.gpkg").geometry.geom_equals_exact(gpd.read_file(folder/"vw.gpkg").geometry,1e-9).all())
+        assert equal
+        return {"upstream": "JordanGunn/gdal-mcp", "commit": "418f401c7987e388eaaee6ad13289798a1ff69b6", "license": "MIT", "fixture": "Synthetic 100x100 EPSG:3067 raster, 10 m pixels, class 50, plus synthetic metric line; not municipal evidence", "source_sha256": {name:hashlib.sha256(Path('/opt/gdal-mcp/src/'+name).read_bytes()).hexdigest() for name in ['tools/raster/reproject.py','shared/vector/simplify.py']}, "explicit_dimensions_change_footprint": dimensions, "bounds_ignored": bounds, "visvalingam_label_aliases_douglas_peucker": {"source_finding":"The advertised visvalingam branch explicitly calls Shapely simplify, the same Douglas-Peucker implementation; it does not implement a true Visvalingam algorithm.","synthetic_outputs_identical":equal}, "profile_response": "Vegetation profile rejects explicit raster bounds/width/height, continuous categorical interpolation and the Visvalingam label. Uses resolution, nearest/mode and Douglas-Peucker. Original numerical code remains unchanged."}
 
 
 if __name__ == "__main__":

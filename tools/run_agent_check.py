@@ -82,7 +82,8 @@ def main():
         result=subprocess.run(command,input=stdin,encoding="utf-8",env=env,cwd=work,stdout=stdout,stderr=stderr,timeout=900)
     (out/"process.json").write_text(json.dumps({"host":args.host,"city":args.city,"capability":args.capability,"exit_code":result.returncode,
         "started_at":started_at,"elapsed_seconds":round(time.monotonic()-started,3),"submitted_prompt_sha256":hashlib.sha256(prompt.encode()).hexdigest(),
-        "task_path":task,"task_template_sha256":hashlib.sha256((ROOT/task).read_bytes()).hexdigest()},indent=2)+"\n",encoding="utf-8")
+        "task_path":task,"task_template_sha256":hashlib.sha256((ROOT/task).read_bytes()).hexdigest(),
+        "code_commit":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip()},indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"host":args.host,"exit_code":result.returncode,"evidence":str(out),"note":"Exit code alone is not admission: inspect tool calls, compare numeric/table artifacts and review claims."}))
     raise SystemExit(result.returncode)
 

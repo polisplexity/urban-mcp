@@ -1,0 +1,34 @@
+name: Two-city vegetation native and MCP
+on:
+  push:
+    paths: ['urban_mcp_vegetation/**', 'adapters/vegetation/**', 'adapters/municipal_inventory/**', 'cases/two-city-vegetation/**', 'tools/client_config.py', 'tools/run_agent_check.py', 'compose.yaml', '.github/workflows/vegetation.yml']
+  pull_request:
+    paths: ['urban_mcp_vegetation/**', 'adapters/vegetation/**', 'adapters/municipal_inventory/**', 'cases/two-city-vegetation/**', 'tools/client_config.py', 'tools/run_agent_check.py', 'compose.yaml', '.github/workflows/vegetation.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  vegetation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        city: [helsinki, amsterdam]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare non-root workspace
+        run: |
+          mkdir -p .urban-mcp/vegetation
+          echo "URBAN_MCP_UID=$(id -u)" >> "$GITHUB_ENV"
+          echo "URBAN_MCP_GID=$(id -g)" >> "$GITHUB_ENV"
+      - run: docker compose --profile vegetation build vegetation
+      - run: docker compose --profile vegetation run --rm vegetation-harvest harvest --mode snapshot --city ${{ matrix.city }}
+      - name: Synthetic categorical and snapshot-integrity regressions
+        run: docker compose --profile vegetation run --rm --entrypoint python vegetation -m unittest urban_mcp_vegetation.test_contracts -v
+      - name: Reproduce pinned upstream defects on synthetic inputs
+        run: docker compose --profile vegetation run --rm --entrypoint python vegetation /opt/urban-mcp/tools/audit_vegetation_upstream.py --output /data/evidence/upstream-audit.json
+      - name: Native per-zone oracle and all original/municipal MCP operations
+        run: docker compose --profile vegetation run --rm vegetation test --city ${{ matrix.city }}
+      - name: Original GDAL MCP regressions in the expected empty-workspace environment
+        run: docker compose --profile vegetation run --rm --entrypoint env vegetation -u GDAL_MCP_WORKSPACES python -m pytest /opt/gdal-mcp/test -q -o cache_dir=/tmp/pytest-cache

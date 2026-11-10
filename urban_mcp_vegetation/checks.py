@@ -168,7 +168,8 @@ async def run(city):
             check("original vector query resource is readable", bool((await client.read_resource(AnyUrl(query["query"]["uri"]))).contents))
             simplified = work/"simplified.gpkg"
             await invoke("vector_simplify", {"uri":str(metric),"output":str(simplified),"tolerance":20})
-            check("original simplify agrees with native metric tolerance", gpd.read_file(simplified).geometry.geom_equals_exact(metric_zones.geometry.simplify(20,preserve_topology=True),1e-7).all())
+            simplified_zones = gpd.read_file(simplified)
+            check("original simplify agrees with native geometry allowing driver single/multipart representation", simplified_zones.zone_id.tolist() == metric_zones.zone_id.tolist() and simplified_zones.geometry.geom_equals(metric_zones.geometry.simplify(20,preserve_topology=True)).all())
             raster_info = await invoke("raster_info", {"uri":str(raster)})
             stats = await invoke("raster_stats", {"uri":str(raster),"params":{"include_histogram":True}})
             with rasterio.open(raster) as source:
@@ -192,7 +193,8 @@ async def run(city):
             await justify("raster_reproject","resampling","justify_resampling_method",{"method":"nearest"},"Categorical nearest")
             await invoke("raster_reproject", {"uri":str(raster),"output":str(work/"display.tif"),"dst_crs":"EPSG:3857","resampling":"nearest"})
             with rasterio.open(work/"display.tif") as result:
-                check("original nearest reprojection preserves class domain", result.crs.to_epsg()==3857 and set(np.unique(result.read(1))) <= set(np.unique(pixels)))
+                values = result.read(1)
+                check("original nearest reprojection preserves classes with explicit new footprint NoData", result.crs.to_epsg()==3857 and result.nodata == 0 and (values != 0).any() and set(np.unique(values)) <= {0, *np.unique(pixels).tolist()})
 
             await invoke("analyze_vegetation", {"city":city,"run_id":"invalid","threshold":1.1},error="threshold must")
             await invoke("analyze_vegetation", {"city":city,"run_id":remote["run_id"]},error="already exists")
@@ -205,6 +207,7 @@ async def run(city):
             await invoke("raster_reproject", {"uri":str(raster),"output":str(work/"bad-dimensions.tif"),"dst_crs":crs,"resampling":"nearest","width":20,"height":20},error="Explicit bounds/width/height")
             await invoke("raster_reproject", {"uri":str(raster),"output":str(work/"bad-bounds.tif"),"dst_crs":crs,"resampling":"nearest","bounds":[0,0,100,100]},error="Explicit bounds/width/height")
             await invoke("raster_convert", {"uri":str(raster),"output":str(work/"bad-cog.tif"),"options":{"driver":"COG","overviews":[2]}},error="Categorical overviews require")
+            await invoke("vector_simplify", {"uri":str(metric),"output":str(work/"bad-vw.gpkg"),"tolerance":20,"method":"visvalingam"},error="Visvalingam is not admitted")
             await invoke("vector_info", {"uri":"/etc/passwd"},error="outside")
             resources = (await client.list_resources()).resources
             templates = (await client.list_resource_templates()).resourceTemplates
@@ -219,7 +222,7 @@ async def run(city):
             result = await client.get_prompt("municipal_vegetation_review", {"city":city})
             check("municipal workflow prompt", bool(result.messages))
             check("every exposed original and added tool exercised", set(evidence["tools_exercised"]) == names, {"advertised":sorted(names),"exercised":sorted(set(evidence["tools_exercised"]))})
-    evidence.update(checks_passed=sum(c["passed"] for c in evidence["checks"]), native_baseline=baseline["run_id"], native_sensitivity=sensitivity["run_id"], mcp_baseline=remote["run_id"], mcp_sensitivity=remote_sensitivity["run_id"], input_manifest_sha256=data.sha(data.root()/"inputs"/city/"manifest.json"), implementation_sha256=data.sha(Path(engine.__file__)))
+    evidence.update(checks_passed=sum(c["passed"] for c in evidence["checks"]), native_baseline=baseline["run_id"], native_sensitivity=sensitivity["run_id"], mcp_baseline=remote["run_id"], mcp_sensitivity=remote_sensitivity["run_id"], input_manifest_sha256=data.sha(data.root()/"inputs"/city/"manifest.json"), implementation_sha256=data.sha(Path(engine.__file__)), server_sha256=data.sha(Path(__file__).with_name("server.py")), data_code_sha256=data.sha(Path(data.__file__)))
     for filename, value in [("native.json",baseline),("native-sensitivity.json",sensitivity),("native-comparison.json",comparison),("mcp.json",evidence)]:
         data.dump(out/filename,value)
     if evidence["failures"]:

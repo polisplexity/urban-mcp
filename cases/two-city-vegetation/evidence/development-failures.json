@@ -1,0 +1,20 @@
+{
+  "observations": [
+    {
+      "stage": "first Helsinki native/MCP development suite",
+      "initial_source_commit": "0d7c236",
+      "failure": "The negative bilinear raster_reproject test expected the categorical profile rejection, but original reflection middleware requested a resampling justification first.",
+      "observed_error": "Epistemic preflight required for raster_reproject; required justify_resampling_method with method bilinear",
+      "numerical_checks": "Per-zone native oracle, native/MCP baseline and sensitivity diagnostics, categorical exports and remaining protocol checks completed; this failed suite was not admitted.",
+      "correction": "Prepend profile admissibility middleware using the ordered list exposed by pinned FastMCP 2.12.3. Unsupported choices are refused before requesting justification; admitted operations still pass through original path/reflection middleware.",
+      "reverification": "Require the complete suite in both cities on the corrected candidate before admission."
+    },
+    {
+      "stage": "first Amsterdam native/MCP development suite",
+      "failure": "Two overly strict test expectations failed: exact Polygon/MultiPolygon type equality after GeoPackage output, and a reprojection class-domain assertion that excluded newly introduced NoData 0.",
+      "observed_evidence": "Simplified geometries had zero Hausdorff difference but Polygon became an equivalent MultiPolygon in the mixed output layer. Display reprojection added only the declared NoData code 0 around the changed footprint; all other classes matched the source domain.",
+      "correction": "Compare zone IDs and topological geometry equivalence for this driver representation; require nonempty valid output, preserved class domain plus declared NoData 0 and correct destination CRS. Numerical analysis and native geospatial algorithms are unchanged.",
+      "reverification": "Require complete native/MCP suites in both cities; do not admit the failed development run."
+    }
+  ]
+}
