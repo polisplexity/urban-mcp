@@ -1,0 +1,54 @@
+{
+  "city": "odense",
+  "passed": true,
+  "checks": [
+    {
+      "name": "initial native clock",
+      "passed": true
+    },
+    {
+      "name": "initial rainfall",
+      "passed": true
+    },
+    {
+      "name": "initial runoff",
+      "passed": true
+    },
+    {
+      "name": "after_step native clock",
+      "passed": true
+    },
+    {
+      "name": "after_step rainfall",
+      "passed": true
+    },
+    {
+      "name": "after_step runoff",
+      "passed": true
+    },
+    {
+      "name": "session closed",
+      "passed": true
+    },
+    {
+      "name": "actual answer JSON",
+      "passed": true
+    }
+  ],
+  "trace_sha256": "9fe7d0aceaea0c90c3dbb91be6ba45b116ec48cbeacfd905dd2b6e6e996cb7cb",
+  "answer_sha256": "6837fcf9147fe00ba8551de0d675b8a553cd4a39da80805374243dd2d6fb02e2",
+  "input_sha256": "0ae770d0a4107605add78e1b38c6dae60399333ca2c76b988c35dd2918b1bee1",
+  "native_initial": {
+    "rainfall": 0.0,
+    "runoff": 0.0,
+    "current_time": "2018-08-11T00:00:00"
+  },
+  "native_after_step": {
+    "rainfall": 0.0,
+    "runoff": 0.0,
+    "current_time": "2018-08-11T00:00:30"
+  },
+  "subcatchment_id": "BellAa_1358_17896_6",
+  "open_resource_read_in_this_supplement": false,
+  "scope": "Live rainfall/runoff observations at initialization and 30 s versus direct original PySWMM, not a new municipal forecast or a replacement for full-task observations."
+}

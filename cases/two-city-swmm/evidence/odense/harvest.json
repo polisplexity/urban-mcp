@@ -1,0 +1,40 @@
+{
+  "city": "odense",
+  "mode": "live",
+  "files": [
+    {
+      "name": "model.inp",
+      "bytes": 1227640,
+      "sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c"
+    },
+    {
+      "name": "publisher-model-record.json",
+      "bytes": 6144,
+      "sha256": "b6358075b90cbfbc6735f1a840462ccd8ea66d7755dfdc8ebc929f08e3bbae29"
+    },
+    {
+      "name": "rainfall.json",
+      "bytes": 328177,
+      "sha256": "d61e7987bdd4c637dfbf9499d583f2a6cb90d7c44d5b48a31cc3514cb3205d0c"
+    },
+    {
+      "name": "requests.json",
+      "bytes": 1380,
+      "sha256": "984a626b48a681df0e043b6a15305f48629af36925cf88948f3207dd0a0aa36a"
+    },
+    {
+      "name": "rights.json",
+      "bytes": 363,
+      "sha256": "d43722d43653731e5dd695438f1942786275179e402b928c6769d86e1b3fdd77"
+    },
+    {
+      "name": "weather-terms.html",
+      "bytes": 62065,
+      "sha256": "cfe8ecfcca64b78161220d265eaef57c9b7c231bd037b8ed68d44fbf2c5f0036"
+    }
+  ],
+  "model_member": "7_SWMM/BellingeSWMM_v021_nopervious.inp",
+  "model_license": "CC-BY-4.0",
+  "weather_license": "CC-BY-4.0",
+  "weather_content_sha256": "f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a"
+}

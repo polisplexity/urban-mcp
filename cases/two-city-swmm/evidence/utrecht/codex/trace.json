@@ -1,0 +1,3523 @@
+{
+  "host": "Codex CLI",
+  "calls": [
+    {
+      "tool": "swmm_status",
+      "arguments": {},
+      "status": "completed",
+      "error": null,
+      "result": {
+        "capability": "historical-drainage-capacity",
+        "cities": [
+          "odense",
+          "utrecht"
+        ],
+        "upstream_mcp": "foundanotusedname/pyswmm-mcp@a4db37b45d3b30dcfbd80fc0162a8238e727a80f",
+        "native": "EPA SWMM 5.2.4 / PySWMM 2.2.0 / swmm-toolkit 0.17.0",
+        "framework": "official Python MCP SDK 2.3.0, original MCPServer",
+        "scenarios": [
+          "baseline",
+          "capacity75"
+        ],
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "qualification": "Independent person and third city required.",
+        "method": {
+          "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+          "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+          "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+          "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+          "threshold_m3": 10,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "thread_count": 1,
+          "knmi_trace_midpoint_mm": 0.025,
+          "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+          "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+        },
+        "available_sources": [],
+        "output_attributes": {
+          "node": [
+            "depth",
+            "head",
+            "ponded_volume",
+            "lateral_inflow",
+            "total_inflow",
+            "flooding_loss"
+          ],
+          "link": [
+            "flow",
+            "depth",
+            "velocity",
+            "volume",
+            "capacity"
+          ],
+          "subcatchment": [
+            "rainfall",
+            "snow_depth",
+            "evaporation_loss",
+            "infiltration_loss",
+            "runoff_rate",
+            "groundwater_outflow_rate",
+            "groundwater_elevation",
+            "soil_moisture"
+          ],
+          "system": [
+            "air_temperature",
+            "rainfall",
+            "snow_depth",
+            "evaporation_infiltration_loss",
+            "runoff_flow",
+            "dry_weather_inflow",
+            "groundwater_inflow",
+            "rdii_inflow",
+            "direct_inflow",
+            "total_lateral_inflow",
+            "flood_losses",
+            "outfall_flow",
+            "stored_volume",
+            "evaporation_rate",
+            "potential_evaporation_rate"
+          ]
+        },
+        "vocabulary_note": "Live node observation uses flooding; binary output queries use flooding_loss. Do not mix the vocabularies.",
+        "worker_budget": 2,
+        "worker_budget_note": "Finish binary output/report-resource checks before opening interactive sessions. Each open session occupies one worker; binary inspection/query needs another. Close saved/hotstart sessions after checking them.",
+        "resource_uris": {
+          "models": "pyswmm://models",
+          "runtime_status": "pyswmm://runtime/status"
+        }
+      }
+    },
+    {
+      "tool": "harvest_swmm_data",
+      "arguments": {
+        "city": "utrecht",
+        "mode": "snapshot"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "city": "utrecht",
+        "mode": "snapshot",
+        "manifest_sha256": "22e7bebb30f23010068a37f47abbb4cfdb8b1bdd5dcd534b4c0191ea8391ae04",
+        "sources": 6
+      }
+    },
+    {
+      "tool": "prepare_swmm_case",
+      "arguments": {
+        "city": "utrecht"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "city": "utrecht",
+        "scope": "Tuindorp development division of the published sewer model in Utrecht, Netherlands; transferability division excluded.",
+        "source_binding": {
+          "original_model_sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85",
+          "weather_content_sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b",
+          "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+          "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+        },
+        "event": {
+          "wet_day": "2018-08-25",
+          "selection_day_lower_bound_mm": 20.5,
+          "event_day_mm": 20.575,
+          "start_local": "2018-08-24T00:00:00",
+          "end_local": "2018-08-27T00:00:00",
+          "timezone": "Europe/Amsterdam",
+          "hourly_intervals": 72,
+          "forcing_total_mm": 23.025,
+          "trace_intervals": 9,
+          "trace_midpoint_mm": 0.025,
+          "trace_total_uncertainty_mm": 0.225,
+          "complete_candidate_days": 31,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "observation_kind": "KNMI hourly RH precipitation amount in 0.1 mm, 2011-2020 station archive; August 2018 selection; trace -1 explicitly imputed at 0.025 mm with ±0.025 mm interval uncertainty."
+        },
+        "target": {
+          "conduit_id": "c_906791",
+          "from_node": "j_90679",
+          "to_node": "j_90678",
+          "source_diameter_m": 0.3,
+          "scenario_diameter_m": 0.22499999999999998,
+          "directly_contributing_area_ha": 0.155,
+          "eligible_conduits": 54,
+          "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+        },
+        "transformations": {
+          "edits": [
+            {
+              "section": "OPTIONS",
+              "before": "START_DATE           01/05/2014",
+              "after": "START_DATE 08/24/2018"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "START_TIME           00:00:00",
+              "after": "START_TIME 00:00:00"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "REPORT_START_DATE    01/05/2014",
+              "after": "REPORT_START_DATE 08/24/2018"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "REPORT_START_TIME    00:05:00",
+              "after": "REPORT_START_TIME 00:00:00"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "END_DATE             01/05/2014",
+              "after": "END_DATE 08/27/2018"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "END_TIME             08:05:00",
+              "after": "END_TIME 00:00:00"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "THREADS              2",
+              "after": "THREADS 1"
+            },
+            {
+              "section": "RAINGAGES",
+              "before": "R_1              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+              "after": "R_1 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+            },
+            {
+              "section": "RAINGAGES",
+              "before": "R_2              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+              "after": "R_2 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+            },
+            {
+              "section": "RAINGAGES",
+              "before": "R_3              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+              "after": "R_3 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_90368        R_1              j_90368          0.0000   nan      0.0000   0.4056   0.0000                   ",
+              "after": "sub_90368        R_1              j_90368          0.0000   0      0.0000   0.4056   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_90374        R_1              j_90374          0.0000   nan      0.0000   0.0000   0.0000                   ",
+              "after": "sub_90374        R_1              j_90374          0.0000   0      0.0000   0.0000   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91272        R_1              j_91272          0.0000   nan      0.0000   0.1832   0.0000                   ",
+              "after": "sub_91272        R_1              j_91272          0.0000   0      0.0000   0.1832   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91273        R_1              j_91273          0.0000   nan      0.0000   0.0634   0.0000                   ",
+              "after": "sub_91273        R_1              j_91273          0.0000   0      0.0000   0.0634   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91274        R_1              j_91274          0.0000   nan      0.0000   0.0200   0.0000                   ",
+              "after": "sub_91274        R_1              j_91274          0.0000   0      0.0000   0.0200   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91275        R_1              j_91275          0.0000   nan      0.0000   0.0600   0.0000                   ",
+              "after": "sub_91275        R_1              j_91275          0.0000   0      0.0000   0.0600   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91276        R_1              j_91276          0.0000   nan      0.0000   0.0040   0.0000                   ",
+              "after": "sub_91276        R_1              j_91276          0.0000   0      0.0000   0.0040   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91277        R_1              j_91277          0.0000   nan      0.0000   0.0674   0.0000                   ",
+              "after": "sub_91277        R_1              j_91277          0.0000   0      0.0000   0.0674   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91278        R_1              j_91278          0.0000   nan      0.0000   0.0121   0.0000                   ",
+              "after": "sub_91278        R_1              j_91278          0.0000   0      0.0000   0.0121   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91279        R_1              j_91279          0.0000   nan      0.0000   0.0682   0.0000                   ",
+              "after": "sub_91279        R_1              j_91279          0.0000   0      0.0000   0.0682   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91292        R_1              j_91292          0.0000   nan      0.0000   0.0000   0.0000                   ",
+              "after": "sub_91292        R_1              j_91292          0.0000   0      0.0000   0.0000   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91293        R_1              j_91293          0.0000   nan      0.0000   0.0075   0.0000                   ",
+              "after": "sub_91293        R_1              j_91293          0.0000   0      0.0000   0.0075   0.0000                   "
+            },
+            {
+              "section": "SUBCATCHMENTS",
+              "before": "sub_91294        R_1              j_91294          0.0000   nan      0.0000   0.0049   0.0000                   ",
+              "after": "sub_91294        R_1              j_91294          0.0000   0      0.0000   0.0049   0.0000                   "
+            }
+          ],
+          "zero_area_nan_normalized_ids": [
+            "sub_90368",
+            "sub_90374",
+            "sub_91272",
+            "sub_91273",
+            "sub_91274",
+            "sub_91275",
+            "sub_91276",
+            "sub_91277",
+            "sub_91278",
+            "sub_91279",
+            "sub_91292",
+            "sub_91293",
+            "sub_91294"
+          ],
+          "inserted_observation_rows": 72,
+          "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+        },
+        "counts": {
+          "subcatchments": 311,
+          "junctions": 309,
+          "outfalls": 2,
+          "storage": 0,
+          "conduits": 345,
+          "pumps": 0,
+          "orifices": 0,
+          "weirs": 0,
+          "raingages": 3
+        },
+        "allow_ponding": "NO",
+        "flow_units": "CMS",
+        "length_units": "m",
+        "area_units": "ha",
+        "coordinate_reference": "Original model XY coordinates preserved; no EPSG assignment or full municipal coverage inferred.",
+        "flood_volume_report_resolution_m3": 1,
+        "node_volume_threshold_m3": 10,
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "limits": [
+          "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+          "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+          "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+          "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+          "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+          "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+          "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+          "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+        ],
+        "baseline_input_path": "utrecht/baseline.inp",
+        "scenario_input_path": "utrecht/capacity75.inp",
+        "inspection_input_path": "utrecht/inspection.inp",
+        "quality_sha256": "5ab5f011d1295899d73554cb5c2ca115394ffb6b34cec4bba52477112a081a45"
+      }
+    },
+    {
+      "tool": "inspect_swmm_case",
+      "arguments": {
+        "city": "utrecht"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "quality": {
+          "city": "utrecht",
+          "scope": "Tuindorp development division of the published sewer model in Utrecht, Netherlands; transferability division excluded.",
+          "source_binding": {
+            "original_model_sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85",
+            "weather_content_sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b",
+            "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+            "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+          },
+          "event": {
+            "wet_day": "2018-08-25",
+            "selection_day_lower_bound_mm": 20.5,
+            "event_day_mm": 20.575,
+            "start_local": "2018-08-24T00:00:00",
+            "end_local": "2018-08-27T00:00:00",
+            "timezone": "Europe/Amsterdam",
+            "hourly_intervals": 72,
+            "forcing_total_mm": 23.025,
+            "trace_intervals": 9,
+            "trace_midpoint_mm": 0.025,
+            "trace_total_uncertainty_mm": 0.225,
+            "complete_candidate_days": 31,
+            "warmup_hours": 24,
+            "cooldown_hours": 24,
+            "observation_kind": "KNMI hourly RH precipitation amount in 0.1 mm, 2011-2020 station archive; August 2018 selection; trace -1 explicitly imputed at 0.025 mm with ±0.025 mm interval uncertainty."
+          },
+          "target": {
+            "conduit_id": "c_906791",
+            "from_node": "j_90679",
+            "to_node": "j_90678",
+            "source_diameter_m": 0.3,
+            "scenario_diameter_m": 0.22499999999999998,
+            "directly_contributing_area_ha": 0.155,
+            "eligible_conduits": 54,
+            "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+          },
+          "transformations": {
+            "edits": [
+              {
+                "section": "OPTIONS",
+                "before": "START_DATE           01/05/2014",
+                "after": "START_DATE 08/24/2018"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "START_TIME           00:00:00",
+                "after": "START_TIME 00:00:00"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "REPORT_START_DATE    01/05/2014",
+                "after": "REPORT_START_DATE 08/24/2018"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "REPORT_START_TIME    00:05:00",
+                "after": "REPORT_START_TIME 00:00:00"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "END_DATE             01/05/2014",
+                "after": "END_DATE 08/27/2018"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "END_TIME             08:05:00",
+                "after": "END_TIME 00:00:00"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "THREADS              2",
+                "after": "THREADS 1"
+              },
+              {
+                "section": "RAINGAGES",
+                "before": "R_1              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+                "after": "R_1 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+              },
+              {
+                "section": "RAINGAGES",
+                "before": "R_2              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+                "after": "R_2 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+              },
+              {
+                "section": "RAINGAGES",
+                "before": "R_3              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+                "after": "R_3 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_90368        R_1              j_90368          0.0000   nan      0.0000   0.4056   0.0000                   ",
+                "after": "sub_90368        R_1              j_90368          0.0000   0      0.0000   0.4056   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_90374        R_1              j_90374          0.0000   nan      0.0000   0.0000   0.0000                   ",
+                "after": "sub_90374        R_1              j_90374          0.0000   0      0.0000   0.0000   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91272        R_1              j_91272          0.0000   nan      0.0000   0.1832   0.0000                   ",
+                "after": "sub_91272        R_1              j_91272          0.0000   0      0.0000   0.1832   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91273        R_1              j_91273          0.0000   nan      0.0000   0.0634   0.0000                   ",
+                "after": "sub_91273        R_1              j_91273          0.0000   0      0.0000   0.0634   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91274        R_1              j_91274          0.0000   nan      0.0000   0.0200   0.0000                   ",
+                "after": "sub_91274        R_1              j_91274          0.0000   0      0.0000   0.0200   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91275        R_1              j_91275          0.0000   nan      0.0000   0.0600   0.0000                   ",
+                "after": "sub_91275        R_1              j_91275          0.0000   0      0.0000   0.0600   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91276        R_1              j_91276          0.0000   nan      0.0000   0.0040   0.0000                   ",
+                "after": "sub_91276        R_1              j_91276          0.0000   0      0.0000   0.0040   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91277        R_1              j_91277          0.0000   nan      0.0000   0.0674   0.0000                   ",
+                "after": "sub_91277        R_1              j_91277          0.0000   0      0.0000   0.0674   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91278        R_1              j_91278          0.0000   nan      0.0000   0.0121   0.0000                   ",
+                "after": "sub_91278        R_1              j_91278          0.0000   0      0.0000   0.0121   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91279        R_1              j_91279          0.0000   nan      0.0000   0.0682   0.0000                   ",
+                "after": "sub_91279        R_1              j_91279          0.0000   0      0.0000   0.0682   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91292        R_1              j_91292          0.0000   nan      0.0000   0.0000   0.0000                   ",
+                "after": "sub_91292        R_1              j_91292          0.0000   0      0.0000   0.0000   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91293        R_1              j_91293          0.0000   nan      0.0000   0.0075   0.0000                   ",
+                "after": "sub_91293        R_1              j_91293          0.0000   0      0.0000   0.0075   0.0000                   "
+              },
+              {
+                "section": "SUBCATCHMENTS",
+                "before": "sub_91294        R_1              j_91294          0.0000   nan      0.0000   0.0049   0.0000                   ",
+                "after": "sub_91294        R_1              j_91294          0.0000   0      0.0000   0.0049   0.0000                   "
+              }
+            ],
+            "zero_area_nan_normalized_ids": [
+              "sub_90368",
+              "sub_90374",
+              "sub_91272",
+              "sub_91273",
+              "sub_91274",
+              "sub_91275",
+              "sub_91276",
+              "sub_91277",
+              "sub_91278",
+              "sub_91279",
+              "sub_91292",
+              "sub_91293",
+              "sub_91294"
+            ],
+            "inserted_observation_rows": 72,
+            "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+          },
+          "counts": {
+            "subcatchments": 311,
+            "junctions": 309,
+            "outfalls": 2,
+            "storage": 0,
+            "conduits": 345,
+            "pumps": 0,
+            "orifices": 0,
+            "weirs": 0,
+            "raingages": 3
+          },
+          "allow_ponding": "NO",
+          "flow_units": "CMS",
+          "length_units": "m",
+          "area_units": "ha",
+          "coordinate_reference": "Original model XY coordinates preserved; no EPSG assignment or full municipal coverage inferred.",
+          "flood_volume_report_resolution_m3": 1,
+          "node_volume_threshold_m3": 10,
+          "forecast_admitted": false,
+          "calibration_revalidated": false,
+          "product_qualified": false,
+          "limits": [
+            "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+            "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+            "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+            "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+            "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+            "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+            "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+            "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+          ]
+        },
+        "inspection_ids": {
+          "node": "j_90679",
+          "link": "c_906791",
+          "outfall": "j_90431",
+          "subcatchment": "sub_9006F",
+          "raingage": "R_1"
+        },
+        "input_paths": {
+          "baseline": "utrecht/baseline.inp",
+          "capacity75": "utrecht/capacity75.inp",
+          "inspection": "utrecht/inspection.inp"
+        },
+        "quality_resource_uri": "swmm://cities/utrecht/quality"
+      }
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "manifest.json",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "manifest.json",
+        "bytes": 1303,
+        "sha256": "22e7bebb30f23010068a37f47abbb4cfdb8b1bdd5dcd534b4c0191ea8391ae04",
+        "offset": 0,
+        "next_offset": null,
+        "characters": 1303,
+        "text": "{\n  \"city\": \"utrecht\",\n  \"mode\": \"live\",\n  \"files\": [\n    {\n      \"name\": \"model.inp\",\n      \"bytes\": 206770,\n      \"sha256\": \"72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85\"\n    },\n    {\n      \"name\": \"publisher-README.md\",\n      \"bytes\": 4701,\n      \"sha256\": \"38fb6627dbb831a4dc7ea828fbdd9e66bf86399ea931ac0bd696e1edaf2ed528\"\n    },\n    {\n      \"name\": \"rainfall.zip\",\n      \"bytes\": 1758375,\n      \"sha256\": \"3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b\"\n    },\n    {\n      \"name\": \"requests.json\",\n      \"bytes\": 3575,\n      \"sha256\": \"d2737a0b259373020b9b31e1a0370e57011b486104765d43ae3153095f3dd6ca\"\n    },\n    {\n      \"name\": \"rights.json\",\n      \"bytes\": 549,\n      \"sha256\": \"d5778f1c4408e691e67156a40d7792c7b32801c0d2e8401069e6bdf4fe0ce1bb\"\n    },\n    {\n      \"name\": \"weather-terms.html\",\n      \"bytes\": 12698,\n      \"sha256\": \"a7fda31b45b7123c5eeb05180cda70cc9ccf6e37f1e73b2c24e9e4af9c378ebb\"\n    }\n  ],\n  \"model_member\": \"Tuindorp development - 1 min resolution/networks/Tuindorp development - 1 min resolution.inp\",\n  \"model_license\": \"CC-BY-4.0\",\n  \"weather_license\": \"CC0-1.0; attribute bron: KNMI and state no endorsement as requested by publisher\",\n  \"weather_content_sha256\": \"3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b\"\n}\n"
+      }
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "requests.json",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "requests.json",
+        "bytes": 3575,
+        "sha256": "d2737a0b259373020b9b31e1a0370e57011b486104765d43ae3153095f3dd6ca",
+        "offset": 0,
+        "next_offset": null,
+        "characters": 3575,
+        "text": "[\n  {\n    \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd\",\n    \"retrieved_at\": \"2026-11-10T22:40:50.185292+00:00\",\n    \"http_status\": 206,\n    \"bytes\": 22,\n    \"sha256\": \"3ab1de9348600170abfbbf84e44b4e8345ffdec4aff430f5179395bd2e9fc6f3\",\n    \"etag\": \"\\\"1722078782.072251-2761626547-3252886696\\\"\",\n    \"content_range\": \"bytes 2761626525-2761626546/2761626547\"\n  },\n  {\n    \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd\",\n    \"retrieved_at\": \"2026-11-10T22:40:50.814629+00:00\",\n    \"http_status\": 206,\n    \"bytes\": 20,\n    \"sha256\": \"711c587203a052721e983fb852cfd197f84f3513369c0889e5757653513e5356\",\n    \"etag\": \"\\\"1722078782.072251-2761626547-3252886696\\\"\",\n    \"content_range\": \"bytes 2761626505-2761626524/2761626547\"\n  },\n  {\n    \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd\",\n    \"retrieved_at\": \"2026-11-10T22:40:52.390494+00:00\",\n    \"http_status\": 206,\n    \"bytes\": 555072,\n    \"sha256\": \"c239dea5bb9fc3a8d2e8e3ae5e92f8e03f6c65b8a72a527130c463b3c05a9025\",\n    \"etag\": \"\\\"1722078782.072251-2761626547-3252886696\\\"\",\n    \"content_range\": \"bytes 2761071453-2761626524/2761626547\"\n  },\n  {\n    \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd\",\n    \"retrieved_at\": \"2026-11-10T22:40:53.115267+00:00\",\n    \"http_status\": 206,\n    \"bytes\": 30,\n    \"sha256\": \"3fcd7e13c610f5e769287788f484fee1f48ab45b6b8f66985683a6e9d3ce42b0\",\n    \"etag\": \"\\\"1722078782.072251-2761626547-3252886696\\\"\",\n    \"content_range\": \"bytes 79-108/2761626547\"\n  },\n  {\n    \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd\",\n    \"retrieved_at\": \"2026-11-10T22:40:53.773544+00:00\",\n    \"http_status\": 206,\n    \"bytes\": 92,\n    \"sha256\": \"0f5c6a1d4dede545d547743d16ed885025233d88ed0fc314bf21ba33543d74d5\",\n    \"etag\": \"\\\"1722078782.072251-2761626547-3252886696\\\"\",\n    \"content_range\": \"bytes 109-200/2761626547\"\n  },\n  {\n    \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd\",\n    \"retrieved_at\": \"2026-11-10T22:40:54.711433+00:00\",\n    \"http_status\": 206,\n    \"bytes\": 24411,\n    \"sha256\": \"9472807490f426aca77aa4470698141989d4961c36838a08cba1b01708130ef0\",\n    \"etag\": \"\\\"1722078782.072251-2761626547-3252886696\\\"\",\n    \"content_range\": \"bytes 201-24611/2761626547\"\n  },\n  {\n    \"url\": \"https://cdn.knmi.nl/knmi/map/page/klimatologie/gegevens/uurgegevens/uurgeg_260_2011-2020.zip\",\n    \"retrieved_at\": \"2026-11-10T22:40:54.122828+00:00\",\n    \"http_status\": 200,\n    \"bytes\": 1758375,\n    \"sha256\": \"3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b\",\n    \"etag\": \"\\\"dcb7d42f8286216e1ab46be9ca750f42\\\"\",\n    \"content_range\": null\n  },\n  {\n    \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/03048849-45e1-4b24-b85d-8a9a8ff1b4dc\",\n    \"retrieved_at\": \"2026-11-10T22:40:54.835119+00:00\",\n    \"http_status\": 200,\n    \"bytes\": 4701,\n    \"sha256\": \"38fb6627dbb831a4dc7ea828fbdd9e66bf86399ea931ac0bd696e1edaf2ed528\",\n    \"etag\": \"\\\"599ae8ab7805c9c00081d5d3b335ab80\\\"\",\n    \"content_range\": null\n  },\n  {\n    \"url\": \"https://www.knmi.nl/copyright\",\n    \"retrieved_at\": \"2026-11-10T22:40:55.999212+00:00\",\n    \"http_status\": 200,\n    \"bytes\": 12698,\n    \"sha256\": \"a7fda31b45b7123c5eeb05180cda70cc9ccf6e37f1e73b2c24e9e4af9c378ebb\",\n    \"etag\": \"W/\\\"a7fda31b45b7123c5eeb05180cda70cc\\\"\",\n    \"content_range\": null\n  }\n]\n"
+      }
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "rights.json",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "rights.json",
+        "bytes": 549,
+        "sha256": "d5778f1c4408e691e67156a40d7792c7b32801c0d2e8401069e6bdf4fe0ce1bb",
+        "offset": 0,
+        "next_offset": null,
+        "characters": 549,
+        "text": "{\n  \"model\": \"CC-BY-4.0\",\n  \"weather\": \"CC0-1.0; attribute bron: KNMI and state no endorsement as requested by publisher\",\n  \"attribution\": \"Jorge Alexander Garz\\u00f3n D\\u00edaz (2024), Garz\\u00f3n, Kapelan, Langeveld and Taormina; DOI 10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1, CC BY 4.0. Rain source: KNMI. KNMI was not involved in and does not necessarily endorse this derived work.\",\n  \"excluded\": \"Original Bellinge rain-gauge collection CC-BY-NC-4.0 is not redistributed or used. All original hydraulic parameters remain historical.\"\n}\n"
+      }
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "recipe.json",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "recipe.json",
+        "bytes": 6759,
+        "sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+        "offset": 0,
+        "next_offset": null,
+        "characters": 6759,
+        "text": "{\n  \"schema_version\": \"0.1.0\",\n  \"method\": {\n    \"municipal_question\": \"Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?\",\n    \"event_selection\": \"Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.\",\n    \"scenario\": \"capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.\",\n    \"target_selection\": \"Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.\",\n    \"threshold_m3\": 10,\n    \"warmup_hours\": 24,\n    \"cooldown_hours\": 24,\n    \"thread_count\": 1,\n    \"knmi_trace_midpoint_mm\": 0.025,\n    \"swmm_time_convention\": \"VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.\",\n    \"inspection\": \"Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results.\"\n  },\n  \"limitations\": [\n    \"Historical published neighborhood models, not full municipal inventories or current condition surveys.\",\n    \"No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.\",\n    \"Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.\",\n    \"A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.\",\n    \"Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.\",\n    \"Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.\",\n    \"Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.\",\n    \"Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted.\"\n  ],\n  \"cities\": {\n    \"odense\": {\n      \"scope\": \"Bellinge combined-sewer study network, Odense, Denmark; original published model, approximately 1.7 km2 study area.\",\n      \"timezone\": \"Europe/Copenhagen\",\n      \"coordinate_reference\": \"Original model XY coordinates preserved. No EPSG assignment or municipal boundary coverage inferred by this adapter.\",\n      \"model\": {\n        \"url\": \"https://ndownloader.figshare.com/files/30592830\",\n        \"doi\": \"10.11583/DTU.12513428.v2\",\n        \"member\": \"7_SWMM/BellingeSWMM_v021_nopervious.inp\",\n        \"sha256\": \"1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c\",\n        \"archive_sha256\": \"fe07d487925cef647d1657def9c6316f952c9ae75304d28f2e1798d5dd8a646b\",\n        \"rights\": \"CC-BY-4.0\"\n      },\n      \"weather\": {\n        \"url\": \"https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000\",\n        \"filename\": \"rainfall.json\",\n        \"content_sha256\": \"f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a\",\n        \"rights\": \"CC-BY-4.0\",\n        \"station\": \"06120 Odense Lufthavn / H. C. Andersen Airport\",\n        \"station_coordinates_wgs84\": [\n          10.3304,\n          55.4748\n        ],\n        \"description\": \"DMI climateData hourly acc_precip with validity=true and qcStatus retained; regional airport observations, not Bellinge local gauges.\"\n      },\n      \"metadata\": [\n        {\n          \"filename\": \"publisher-model-record.json\",\n          \"url\": \"https://api.figshare.com/v2/articles/12513428/versions/2\"\n        },\n        {\n          \"filename\": \"weather-terms.html\",\n          \"url\": \"https://www.dmi.dk/friedata/dokumentation/terms-of-use\"\n        }\n      ],\n      \"attribution\": \"Bellinge dataset authors (Pedersen et al., 2021), DOI 10.11583/DTU.12513428.v2; DMI Open Data. No endorsement of the derived experiment.\"\n    },\n    \"utrecht\": {\n      \"scope\": \"Tuindorp development division of the published sewer model in Utrecht, Netherlands; transferability division excluded.\",\n      \"timezone\": \"Europe/Amsterdam\",\n      \"coordinate_reference\": \"Original model XY coordinates preserved; no EPSG assignment or full municipal coverage inferred.\",\n      \"model\": {\n        \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd\",\n        \"doi\": \"10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1\",\n        \"archive_bytes\": 2761626547,\n        \"member\": \"Tuindorp development - 1 min resolution/networks/Tuindorp development - 1 min resolution.inp\",\n        \"sha256\": \"72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85\",\n        \"rights\": \"CC-BY-4.0\"\n      },\n      \"weather\": {\n        \"url\": \"https://cdn.knmi.nl/knmi/map/page/klimatologie/gegevens/uurgegevens/uurgeg_260_2011-2020.zip\",\n        \"filename\": \"rainfall.zip\",\n        \"content_sha256\": \"3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b\",\n        \"rights\": \"CC0-1.0; attribute bron: KNMI and state no endorsement as requested by publisher\",\n        \"station\": \"260 De Bilt\",\n        \"station_coordinates_wgs84\": [\n          5.177,\n          52.101\n        ],\n        \"description\": \"KNMI hourly RH precipitation amount in 0.1 mm, 2011-2020 station archive; August 2018 selection; trace -1 explicitly imputed at 0.025 mm with \\u00b10.025 mm interval uncertainty.\"\n      },\n      \"metadata\": [\n        {\n          \"filename\": \"publisher-README.md\",\n          \"url\": \"https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/03048849-45e1-4b24-b85d-8a9a8ff1b4dc\"\n        },\n        {\n          \"filename\": \"weather-terms.html\",\n          \"url\": \"https://www.knmi.nl/copyright\"\n        }\n      ],\n      \"attribution\": \"Jorge Alexander Garz\\u00f3n D\\u00edaz (2024), Garz\\u00f3n, Kapelan, Langeveld and Taormina; DOI 10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1, CC BY 4.0. Rain source: KNMI. KNMI was not involved in and does not necessarily endorse this derived work.\"\n    }\n  }\n}\n"
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://models",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://models",
+        "offset": 0,
+        "characters": 120,
+        "text_sha256": "de38887b6b99c3e05f1d425a13ee2830b4eabf4fc13baed8f7458053c9f88859",
+        "next_offset": null,
+        "text": "{\"count\": 3, \"models\": [\"utrecht/baseline.inp\", \"utrecht/capacity75.inp\", \"utrecht/inspection.inp\"], \"truncated\": false}"
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://runtime/status",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://runtime/status",
+        "offset": 0,
+        "characters": 396,
+        "text_sha256": "0cad72ce95e3f303d31b444cd11322fd137f9f53ab7fbb55d11fea3700141653",
+        "next_offset": null,
+        "text": "{\"active_workers\": 0, \"max_dependencies\": 128, \"max_dependency_bytes\": 104857600, \"max_dependency_total_bytes\": 536870912, \"max_hotstart_bytes\": 268435456, \"max_input_bytes\": 33554432, \"max_runs\": null, \"max_workers\": 2, \"retention_seconds\": null, \"run_quota_bytes\": null, \"run_storage_bytes\": 252, \"server_instance_id\": \"6981e96eb6a64b4e8d6d7d149fbc203a\", \"session_idle_timeout_seconds\": 1800.0}"
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "swmm://cities/utrecht/quality",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "swmm://cities/utrecht/quality",
+        "offset": 0,
+        "characters": 8558,
+        "text_sha256": "4f3ba8a292802a0bad4be916add04759e55531eee67a32782daaa535c2828c54",
+        "next_offset": null,
+        "text": "{\"allow_ponding\": \"NO\", \"area_units\": \"ha\", \"calibration_revalidated\": false, \"city\": \"utrecht\", \"coordinate_reference\": \"Original model XY coordinates preserved; no EPSG assignment or full municipal coverage inferred.\", \"counts\": {\"conduits\": 345, \"junctions\": 309, \"orifices\": 0, \"outfalls\": 2, \"pumps\": 0, \"raingages\": 3, \"storage\": 0, \"subcatchments\": 311, \"weirs\": 0}, \"event\": {\"complete_candidate_days\": 31, \"cooldown_hours\": 24, \"end_local\": \"2018-08-27T00:00:00\", \"event_day_mm\": 20.575, \"forcing_total_mm\": 23.025, \"hourly_intervals\": 72, \"observation_kind\": \"KNMI hourly RH precipitation amount in 0.1 mm, 2011-2020 station archive; August 2018 selection; trace -1 explicitly imputed at 0.025 mm with \\u00b10.025 mm interval uncertainty.\", \"selection_day_lower_bound_mm\": 20.5, \"start_local\": \"2018-08-24T00:00:00\", \"timezone\": \"Europe/Amsterdam\", \"trace_intervals\": 9, \"trace_midpoint_mm\": 0.025, \"trace_total_uncertainty_mm\": 0.225, \"warmup_hours\": 24, \"wet_day\": \"2018-08-25\"}, \"flood_volume_report_resolution_m3\": 1, \"flow_units\": \"CMS\", \"forecast_admitted\": false, \"length_units\": \"m\", \"limits\": [\"Historical published neighborhood models, not full municipal inventories or current condition surveys.\", \"No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.\", \"Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.\", \"A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.\", \"Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.\", \"Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.\", \"Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.\", \"Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted.\"], \"node_volume_threshold_m3\": 10, \"product_qualified\": false, \"scope\": \"Tuindorp development division of the published sewer model in Utrecht, Netherlands; transferability division excluded.\", \"source_binding\": {\"method_source_sha256\": \"87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e\", \"original_model_sha256\": \"72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85\", \"recipe_sha256\": \"de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69\", \"weather_content_sha256\": \"3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b\"}, \"target\": {\"conduit_id\": \"c_906791\", \"directly_contributing_area_ha\": 0.155, \"eligible_conduits\": 54, \"from_node\": \"j_90679\", \"scenario_diameter_m\": 0.22499999999999998, \"selection\": \"Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning.\", \"source_diameter_m\": 0.3, \"to_node\": \"j_90678\"}, \"transformations\": {\"edits\": [{\"after\": \"START_DATE 08/24/2018\", \"before\": \"START_DATE           01/05/2014\", \"section\": \"OPTIONS\"}, {\"after\": \"START_TIME 00:00:00\", \"before\": \"START_TIME           00:00:00\", \"section\": \"OPTIONS\"}, {\"after\": \"REPORT_START_DATE 08/24/2018\", \"before\": \"REPORT_START_DATE    01/05/2014\", \"section\": \"OPTIONS\"}, {\"after\": \"REPORT_START_TIME 00:00:00\", \"before\": \"REPORT_START_TIME    00:05:00\", \"section\": \"OPTIONS\"}, {\"after\": \"END_DATE 08/27/2018\", \"before\": \"END_DATE             01/05/2014\", \"section\": \"OPTIONS\"}, {\"after\": \"END_TIME 00:00:00\", \"before\": \"END_TIME             08:05:00\", \"section\": \"OPTIONS\"}, {\"after\": \"THREADS 1\", \"before\": \"THREADS              2\", \"section\": \"OPTIONS\"}, {\"after\": \"R_1 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN\", \"before\": \"R_1              INTENSITY 0:05     1.0      FILE       \\\"PLACEHOLDER1\\\" R1         MM   \", \"section\": \"RAINGAGES\"}, {\"after\": \"R_2 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN\", \"before\": \"R_2              INTENSITY 0:05     1.0      FILE       \\\"PLACEHOLDER1\\\" R1         MM   \", \"section\": \"RAINGAGES\"}, {\"after\": \"R_3 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN\", \"before\": \"R_3              INTENSITY 0:05     1.0      FILE       \\\"PLACEHOLDER1\\\" R1         MM   \", \"section\": \"RAINGAGES\"}, {\"after\": \"sub_90368        R_1              j_90368          0.0000   0      0.0000   0.4056   0.0000                   \", \"before\": \"sub_90368        R_1              j_90368          0.0000   nan      0.0000   0.4056   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_90374        R_1              j_90374          0.0000   0      0.0000   0.0000   0.0000                   \", \"before\": \"sub_90374        R_1              j_90374          0.0000   nan      0.0000   0.0000   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91272        R_1              j_91272          0.0000   0      0.0000   0.1832   0.0000                   \", \"before\": \"sub_91272        R_1              j_91272          0.0000   nan      0.0000   0.1832   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91273        R_1              j_91273          0.0000   0      0.0000   0.0634   0.0000                   \", \"before\": \"sub_91273        R_1              j_91273          0.0000   nan      0.0000   0.0634   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91274        R_1              j_91274          0.0000   0      0.0000   0.0200   0.0000                   \", \"before\": \"sub_91274        R_1              j_91274          0.0000   nan      0.0000   0.0200   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91275        R_1              j_91275          0.0000   0      0.0000   0.0600   0.0000                   \", \"before\": \"sub_91275        R_1              j_91275          0.0000   nan      0.0000   0.0600   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91276        R_1              j_91276          0.0000   0      0.0000   0.0040   0.0000                   \", \"before\": \"sub_91276        R_1              j_91276          0.0000   nan      0.0000   0.0040   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91277        R_1              j_91277          0.0000   0      0.0000   0.0674   0.0000                   \", \"before\": \"sub_91277        R_1              j_91277          0.0000   nan      0.0000   0.0674   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91278        R_1              j_91278          0.0000   0      0.0000   0.0121   0.0000                   \", \"before\": \"sub_91278        R_1              j_91278          0.0000   nan      0.0000   0.0121   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91279        R_1              j_91279          0.0000   0      0.0000   0.0682   0.0000                   \", \"before\": \"sub_91279        R_1              j_91279          0.0000   nan      0.0000   0.0682   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91292        R_1              j_91292          0.0000   0      0.0000   0.0000   0.0000                   \", \"before\": \"sub_91292        R_1              j_91292          0.0000   nan      0.0000   0.0000   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91293        R_1              j_91293          0.0000   0      0.0000   0.0075   0.0000                   \", \"before\": \"sub_91293        R_1              j_91293          0.0000   nan      0.0000   0.0075   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}, {\"after\": \"sub_91294        R_1              j_91294          0.0000   0      0.0000   0.0049   0.0000                   \", \"before\": \"sub_91294        R_1              j_91294          0.0000   nan      0.0000   0.0049   0.0000                   \", \"section\": \"SUBCATCHMENTS\"}], \"inserted_observation_rows\": 72, \"physical_parameter_policy\": \"Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter.\", \"zero_area_nan_normalized_ids\": [\"sub_90368\", \"sub_90374\", \"sub_91272\", \"sub_91273\", \"sub_91274\", \"sub_91275\", \"sub_91276\", \"sub_91277\", \"sub_91278\", \"sub_91279\", \"sub_91292\", \"sub_91293\", \"sub_91294\"]}}"
+      }
+    },
+    {
+      "tool": "model_inspect",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "engine_version": "5.2.4",
+        "system_units": "SI",
+        "flow_units": "CMS",
+        "start_time": "2018-08-24T00:00:00",
+        "end_time": "2018-08-24T00:05:00",
+        "report_start": "2018-08-24T00:00:00",
+        "counts": {
+          "nodes": 311,
+          "links": 345,
+          "subcatchments": 311,
+          "raingages": 3,
+          "lid_controls": 0
+        }
+      }
+    },
+    {
+      "tool": "model_list_objects",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "node"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "node",
+        "object_ids": [
+          "j_9006F",
+          "j_90334",
+          "j_90335",
+          "j_90336",
+          "j_90363",
+          "j_90364",
+          "j_90365",
+          "j_90366",
+          "j_90367",
+          "j_90368",
+          "j_90369",
+          "j_90370",
+          "j_90371",
+          "j_90372",
+          "j_90373",
+          "j_90374",
+          "j_90375",
+          "j_90376",
+          "j_90377",
+          "j_90378",
+          "j_90379",
+          "j_90380",
+          "j_90381",
+          "j_90382",
+          "j_90383",
+          "j_90384",
+          "j_90385",
+          "j_90386",
+          "j_90387",
+          "j_90388",
+          "j_90389",
+          "j_90390",
+          "j_90391",
+          "j_90392",
+          "j_90393",
+          "j_90394",
+          "j_90395",
+          "j_90396",
+          "j_90397",
+          "j_90398",
+          "j_90399",
+          "j_90400",
+          "j_90401",
+          "j_90402",
+          "j_90403",
+          "j_90404",
+          "j_90405",
+          "j_90406",
+          "j_90407",
+          "j_90408",
+          "j_90427",
+          "j_90428",
+          "j_90430",
+          "j_90433",
+          "j_90434",
+          "j_90435",
+          "j_90436",
+          "j_90437",
+          "j_90438",
+          "j_90439",
+          "j_90440",
+          "j_90441",
+          "j_90442",
+          "j_90443",
+          "j_90444",
+          "j_90445",
+          "j_90446",
+          "j_90447",
+          "j_90448",
+          "j_90449",
+          "j_90450",
+          "j_90451",
+          "j_90452",
+          "j_90453",
+          "j_90454",
+          "j_90455",
+          "j_90456",
+          "j_90457",
+          "j_90459",
+          "j_90460",
+          "j_90461",
+          "j_90462",
+          "j_90463",
+          "j_90464",
+          "j_90465",
+          "j_90466",
+          "j_90467",
+          "j_90468",
+          "j_90469",
+          "j_90470",
+          "j_90471",
+          "j_90477",
+          "j_90478",
+          "j_90479",
+          "j_90480",
+          "j_90481",
+          "j_90482",
+          "j_90483",
+          "j_90484",
+          "j_90485",
+          "j_90486",
+          "j_90487",
+          "j_90488",
+          "j_90489",
+          "j_90490",
+          "j_90491",
+          "j_90492",
+          "j_90493",
+          "j_90494",
+          "j_90495",
+          "j_90496",
+          "j_90497",
+          "j_90498",
+          "j_90499",
+          "j_90500",
+          "j_90501",
+          "j_90502",
+          "j_90503",
+          "j_90504",
+          "j_90505",
+          "j_90506",
+          "j_90507",
+          "j_90508",
+          "j_90509",
+          "j_90510",
+          "j_90511",
+          "j_90512",
+          "j_90513",
+          "j_90514",
+          "j_90515",
+          "j_90516",
+          "j_90517",
+          "j_90518",
+          "j_90519",
+          "j_90520",
+          "j_90521",
+          "j_90522",
+          "j_90523",
+          "j_90524",
+          "j_90525",
+          "j_90526",
+          "j_90527",
+          "j_90553",
+          "j_90554",
+          "j_90555",
+          "j_90556",
+          "j_90557",
+          "j_90558",
+          "j_90559",
+          "j_90560",
+          "j_90561",
+          "j_90562",
+          "j_90563",
+          "j_90564",
+          "j_90565",
+          "j_90566",
+          "j_90567",
+          "j_90568",
+          "j_90569",
+          "j_90570",
+          "j_90571",
+          "j_90572",
+          "j_90573",
+          "j_90574",
+          "j_90575",
+          "j_90576",
+          "j_90577",
+          "j_90578",
+          "j_90579",
+          "j_90580",
+          "j_90581",
+          "j_90582",
+          "j_90583",
+          "j_90584",
+          "j_90585",
+          "j_90586",
+          "j_90587",
+          "j_90588",
+          "j_90589",
+          "j_90590",
+          "j_90591",
+          "j_90592",
+          "j_90593",
+          "j_90594",
+          "j_90595",
+          "j_90596",
+          "j_90597",
+          "j_90598",
+          "j_90599",
+          "j_90600",
+          "j_90601",
+          "j_90602",
+          "j_90603",
+          "j_90604",
+          "j_90605",
+          "j_90606",
+          "j_90607",
+          "j_90608",
+          "j_90609",
+          "j_90610",
+          "j_90611",
+          "j_90612",
+          "j_90613",
+          "j_90619",
+          "j_90620",
+          "j_90621",
+          "j_90623",
+          "j_90624",
+          "j_90625",
+          "j_90626",
+          "j_90627",
+          "j_90628",
+          "j_90629",
+          "j_90630",
+          "j_90631",
+          "j_90632",
+          "j_90633",
+          "j_90634",
+          "j_90635",
+          "j_90636",
+          "j_90637",
+          "j_90638",
+          "j_90639",
+          "j_90640",
+          "j_90641",
+          "j_90642",
+          "j_90643",
+          "j_90644",
+          "j_90645",
+          "j_90646",
+          "j_90647",
+          "j_90648",
+          "j_90649",
+          "j_90650",
+          "j_90651",
+          "j_90652",
+          "j_90653",
+          "j_90654",
+          "j_90655",
+          "j_90656",
+          "j_90657",
+          "j_90658",
+          "j_90659",
+          "j_90662",
+          "j_90663",
+          "j_90664",
+          "j_90665",
+          "j_90669",
+          "j_90670",
+          "j_90671",
+          "j_90672",
+          "j_90673",
+          "j_90674",
+          "j_90675",
+          "j_90676",
+          "j_90677",
+          "j_90678",
+          "j_90679",
+          "j_90680",
+          "j_90681",
+          "j_90682",
+          "j_90683",
+          "j_90684",
+          "j_90685",
+          "j_90686",
+          "j_90688",
+          "j_90689",
+          "j_90690",
+          "j_90691",
+          "j_90692",
+          "j_90693",
+          "j_90694",
+          "j_90695",
+          "j_90696",
+          "j_90697",
+          "j_90698",
+          "j_90699",
+          "j_90700",
+          "j_90701",
+          "j_90702",
+          "j_90703",
+          "j_90704",
+          "j_90705",
+          "j_90706",
+          "j_90707",
+          "j_90708",
+          "j_90709",
+          "j_90710",
+          "j_90724",
+          "j_90725",
+          "j_90726",
+          "j_90727",
+          "j_90728",
+          "j_90729",
+          "j_90730",
+          "j_90731",
+          "j_90732",
+          "j_90733",
+          "j_91272",
+          "j_91273",
+          "j_91274",
+          "j_91275",
+          "j_91276",
+          "j_91277",
+          "j_91278",
+          "j_91279",
+          "j_91292",
+          "j_91293",
+          "j_91294",
+          "j_90431",
+          "j_90550"
+        ]
+      }
+    },
+    {
+      "tool": "model_list_objects",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "link"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "link",
+        "object_ids": [
+          "c_903641",
+          "c_903642",
+          "c_903651",
+          "c_903671",
+          "c_903672",
+          "c_903681",
+          "c_903701",
+          "c_903702",
+          "c_903711",
+          "c_903712",
+          "c_903731",
+          "c_903732",
+          "c_903751",
+          "c_903752",
+          "c_903771",
+          "c_903772",
+          "c_903791",
+          "c_903811",
+          "c_903821",
+          "c_903831",
+          "c_903841",
+          "c_903851",
+          "c_903861",
+          "c_903881",
+          "c_903901",
+          "c_903902",
+          "c_903903",
+          "c_903911",
+          "c_903921",
+          "c_903931",
+          "c_903932",
+          "c_903941",
+          "c_903951",
+          "c_903961",
+          "c_903971",
+          "c_903972",
+          "c_903981",
+          "c_903991",
+          "c_904001",
+          "c_904011",
+          "c_904031",
+          "c_904032",
+          "c_904041",
+          "c_904051",
+          "c_904061",
+          "c_904062",
+          "c_904071",
+          "c_904081",
+          "c_904281",
+          "c_904301",
+          "c_904312",
+          "c_904341",
+          "c_904342",
+          "c_904351",
+          "c_904371",
+          "c_904372",
+          "c_904381",
+          "c_904401",
+          "c_904402",
+          "c_904411",
+          "c_904421",
+          "c_904431",
+          "c_904441",
+          "c_904451",
+          "c_904461",
+          "c_904471",
+          "c_904491",
+          "c_904501",
+          "c_904511",
+          "c_904512",
+          "c_904521",
+          "c_904531",
+          "c_904532",
+          "c_904533",
+          "c_904541",
+          "c_904551",
+          "c_904561",
+          "c_904571",
+          "c_904591",
+          "c_904592",
+          "c_904611",
+          "c_904612",
+          "c_904621",
+          "c_904641",
+          "c_904651",
+          "c_904661",
+          "c_904662",
+          "c_904671",
+          "c_904681",
+          "c_904691",
+          "c_904701",
+          "c_904711",
+          "c_904791",
+          "c_904801",
+          "c_904811",
+          "c_904821",
+          "c_904822",
+          "c_904831",
+          "c_904851",
+          "c_904861",
+          "c_904862",
+          "c_904871",
+          "c_904881",
+          "c_904882",
+          "c_904891",
+          "c_904901",
+          "c_904921",
+          "c_904922",
+          "c_904931",
+          "c_904951",
+          "c_904952",
+          "c_904961",
+          "c_904971",
+          "c_904981",
+          "c_904982",
+          "c_904991",
+          "c_905001",
+          "c_905011",
+          "c_905021",
+          "c_905031",
+          "c_905041",
+          "c_905042",
+          "c_905051",
+          "c_905061",
+          "c_905071",
+          "c_905072",
+          "c_905081",
+          "c_905091",
+          "c_905101",
+          "c_905111",
+          "c_905121",
+          "c_905131",
+          "c_905141",
+          "c_905151",
+          "c_905152",
+          "c_905161",
+          "c_905171",
+          "c_905172",
+          "c_905181",
+          "c_905182",
+          "c_905191",
+          "c_905192",
+          "c_905201",
+          "c_905211",
+          "c_905221",
+          "c_905231",
+          "c_905241",
+          "c_905251",
+          "c_905261",
+          "c_905271",
+          "c_905541",
+          "c_905551",
+          "c_905561",
+          "c_905571",
+          "c_905572",
+          "c_905581",
+          "c_905591",
+          "c_905601",
+          "c_905602",
+          "c_905611",
+          "c_905621",
+          "c_905622",
+          "c_905631",
+          "c_905632",
+          "c_905641",
+          "c_905651",
+          "c_905661",
+          "c_905681",
+          "c_905682",
+          "c_905691",
+          "c_905701",
+          "c_905711",
+          "c_905721",
+          "c_905722",
+          "c_905731",
+          "c_905732",
+          "c_905741",
+          "c_905751",
+          "c_905752",
+          "c_905761",
+          "c_905771",
+          "c_905781",
+          "c_905791",
+          "c_905811",
+          "c_905821",
+          "c_905831",
+          "c_905841",
+          "c_905851",
+          "c_905852",
+          "c_905861",
+          "c_905862",
+          "c_905871",
+          "c_905881",
+          "c_905891",
+          "c_905892",
+          "c_905901",
+          "c_905902",
+          "c_905921",
+          "c_905931",
+          "c_905941",
+          "c_905942",
+          "c_905951",
+          "c_905961",
+          "c_905971",
+          "c_905981",
+          "c_905982",
+          "c_905991",
+          "c_906001",
+          "c_906011",
+          "c_906031",
+          "c_906041",
+          "c_906051",
+          "c_906052",
+          "c_906061",
+          "c_906071",
+          "c_906081",
+          "c_906082",
+          "c_906091",
+          "c_906101",
+          "c_906111",
+          "c_906112",
+          "c_906121",
+          "c_906131",
+          "c_906132",
+          "c_906191",
+          "c_906192",
+          "c_906201",
+          "c_906211",
+          "c_906231",
+          "c_906241",
+          "c_906261",
+          "c_906271",
+          "c_906272",
+          "c_906281",
+          "c_906291",
+          "c_906301",
+          "c_906321",
+          "c_906322",
+          "c_906331",
+          "c_906341",
+          "c_906342",
+          "c_906351",
+          "c_906352",
+          "c_906361",
+          "c_906371",
+          "c_906381",
+          "c_906391",
+          "c_906401",
+          "c_906402",
+          "c_906411",
+          "c_906421",
+          "c_906431",
+          "c_906441",
+          "c_906461",
+          "c_906471",
+          "c_906481",
+          "c_906491",
+          "c_906492",
+          "c_906501",
+          "c_906511",
+          "c_906521",
+          "c_906531",
+          "c_906541",
+          "c_906561",
+          "c_906562",
+          "c_906563",
+          "c_906581",
+          "c_906591",
+          "c_906592",
+          "c_906621",
+          "c_906622",
+          "c_906631",
+          "c_906641",
+          "c_906651",
+          "c_906701",
+          "c_906731",
+          "c_906741",
+          "c_906742",
+          "c_906751",
+          "c_906761",
+          "c_906771",
+          "c_906772",
+          "c_906781",
+          "c_906791",
+          "c_906801",
+          "c_906811",
+          "c_906821",
+          "c_906831",
+          "c_906832",
+          "c_906841",
+          "c_906851",
+          "c_906861",
+          "c_906862",
+          "c_906891",
+          "c_906892",
+          "c_906901",
+          "c_906911",
+          "c_906921",
+          "c_906931",
+          "c_906932",
+          "c_906941",
+          "c_906951",
+          "c_906961",
+          "c_906971",
+          "c_906981",
+          "c_906991",
+          "c_906992",
+          "c_907001",
+          "c_907011",
+          "c_907021",
+          "c_907031",
+          "c_907032",
+          "c_907033",
+          "c_907041",
+          "c_907042",
+          "c_907051",
+          "c_907061",
+          "c_907062",
+          "c_907071",
+          "c_907081",
+          "c_907091",
+          "c_907101",
+          "c_907241",
+          "c_907242",
+          "c_907251",
+          "c_907261",
+          "c_907271",
+          "c_907281",
+          "c_907291",
+          "c_907301",
+          "c_907311",
+          "c_907321",
+          "c_907331",
+          "c_907332",
+          "c_912721",
+          "c_912731",
+          "c_912741",
+          "c_912751",
+          "c_912761",
+          "c_912771",
+          "c_912781",
+          "c_912791",
+          "c_912931",
+          "c_912932",
+          "c_912941"
+        ]
+      }
+    },
+    {
+      "tool": "model_list_objects",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "subcatchment"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "subcatchment",
+        "object_ids": [
+          "sub_9006F",
+          "sub_90334",
+          "sub_90335",
+          "sub_90336",
+          "sub_90363",
+          "sub_90364",
+          "sub_90365",
+          "sub_90366",
+          "sub_90367",
+          "sub_90368",
+          "sub_90369",
+          "sub_90370",
+          "sub_90371",
+          "sub_90372",
+          "sub_90373",
+          "sub_90374",
+          "sub_90375",
+          "sub_90376",
+          "sub_90377",
+          "sub_90378",
+          "sub_90379",
+          "sub_90380",
+          "sub_90381",
+          "sub_90382",
+          "sub_90383",
+          "sub_90384",
+          "sub_90385",
+          "sub_90386",
+          "sub_90387",
+          "sub_90388",
+          "sub_90389",
+          "sub_90390",
+          "sub_90391",
+          "sub_90392",
+          "sub_90393",
+          "sub_90394",
+          "sub_90395",
+          "sub_90396",
+          "sub_90397",
+          "sub_90398",
+          "sub_90399",
+          "sub_90400",
+          "sub_90401",
+          "sub_90402",
+          "sub_90403",
+          "sub_90404",
+          "sub_90405",
+          "sub_90406",
+          "sub_90407",
+          "sub_90408",
+          "sub_90427",
+          "sub_90428",
+          "sub_90430",
+          "sub_90431",
+          "sub_90433",
+          "sub_90434",
+          "sub_90435",
+          "sub_90436",
+          "sub_90437",
+          "sub_90438",
+          "sub_90439",
+          "sub_90440",
+          "sub_90441",
+          "sub_90442",
+          "sub_90443",
+          "sub_90444",
+          "sub_90445",
+          "sub_90446",
+          "sub_90447",
+          "sub_90448",
+          "sub_90449",
+          "sub_90450",
+          "sub_90451",
+          "sub_90452",
+          "sub_90453",
+          "sub_90454",
+          "sub_90455",
+          "sub_90456",
+          "sub_90457",
+          "sub_90459",
+          "sub_90460",
+          "sub_90461",
+          "sub_90462",
+          "sub_90463",
+          "sub_90464",
+          "sub_90465",
+          "sub_90466",
+          "sub_90467",
+          "sub_90468",
+          "sub_90469",
+          "sub_90470",
+          "sub_90471",
+          "sub_90477",
+          "sub_90478",
+          "sub_90479",
+          "sub_90480",
+          "sub_90481",
+          "sub_90482",
+          "sub_90483",
+          "sub_90484",
+          "sub_90485",
+          "sub_90486",
+          "sub_90487",
+          "sub_90488",
+          "sub_90489",
+          "sub_90490",
+          "sub_90491",
+          "sub_90492",
+          "sub_90493",
+          "sub_90494",
+          "sub_90495",
+          "sub_90496",
+          "sub_90497",
+          "sub_90498",
+          "sub_90499",
+          "sub_90500",
+          "sub_90501",
+          "sub_90502",
+          "sub_90503",
+          "sub_90504",
+          "sub_90505",
+          "sub_90506",
+          "sub_90507",
+          "sub_90508",
+          "sub_90509",
+          "sub_90510",
+          "sub_90511",
+          "sub_90512",
+          "sub_90513",
+          "sub_90514",
+          "sub_90515",
+          "sub_90516",
+          "sub_90517",
+          "sub_90518",
+          "sub_90519",
+          "sub_90520",
+          "sub_90521",
+          "sub_90522",
+          "sub_90523",
+          "sub_90524",
+          "sub_90525",
+          "sub_90526",
+          "sub_90527",
+          "sub_90550",
+          "sub_90553",
+          "sub_90554",
+          "sub_90555",
+          "sub_90556",
+          "sub_90557",
+          "sub_90558",
+          "sub_90559",
+          "sub_90560",
+          "sub_90561",
+          "sub_90562",
+          "sub_90563",
+          "sub_90564",
+          "sub_90565",
+          "sub_90566",
+          "sub_90567",
+          "sub_90568",
+          "sub_90569",
+          "sub_90570",
+          "sub_90571",
+          "sub_90572",
+          "sub_90573",
+          "sub_90574",
+          "sub_90575",
+          "sub_90576",
+          "sub_90577",
+          "sub_90578",
+          "sub_90579",
+          "sub_90580",
+          "sub_90581",
+          "sub_90582",
+          "sub_90583",
+          "sub_90584",
+          "sub_90585",
+          "sub_90586",
+          "sub_90587",
+          "sub_90588",
+          "sub_90589",
+          "sub_90590",
+          "sub_90591",
+          "sub_90592",
+          "sub_90593",
+          "sub_90594",
+          "sub_90595",
+          "sub_90596",
+          "sub_90597",
+          "sub_90598",
+          "sub_90599",
+          "sub_90600",
+          "sub_90601",
+          "sub_90602",
+          "sub_90603",
+          "sub_90604",
+          "sub_90605",
+          "sub_90606",
+          "sub_90607",
+          "sub_90608",
+          "sub_90609",
+          "sub_90610",
+          "sub_90611",
+          "sub_90612",
+          "sub_90613",
+          "sub_90619",
+          "sub_90620",
+          "sub_90621",
+          "sub_90623",
+          "sub_90624",
+          "sub_90625",
+          "sub_90626",
+          "sub_90627",
+          "sub_90628",
+          "sub_90629",
+          "sub_90630",
+          "sub_90631",
+          "sub_90632",
+          "sub_90633",
+          "sub_90634",
+          "sub_90635",
+          "sub_90636",
+          "sub_90637",
+          "sub_90638",
+          "sub_90639",
+          "sub_90640",
+          "sub_90641",
+          "sub_90642",
+          "sub_90643",
+          "sub_90644",
+          "sub_90645",
+          "sub_90646",
+          "sub_90647",
+          "sub_90648",
+          "sub_90649",
+          "sub_90650",
+          "sub_90651",
+          "sub_90652",
+          "sub_90653",
+          "sub_90654",
+          "sub_90655",
+          "sub_90656",
+          "sub_90657",
+          "sub_90658",
+          "sub_90659",
+          "sub_90662",
+          "sub_90663",
+          "sub_90664",
+          "sub_90665",
+          "sub_90669",
+          "sub_90670",
+          "sub_90671",
+          "sub_90672",
+          "sub_90673",
+          "sub_90674",
+          "sub_90675",
+          "sub_90676",
+          "sub_90677",
+          "sub_90678",
+          "sub_90679",
+          "sub_90680",
+          "sub_90681",
+          "sub_90682",
+          "sub_90683",
+          "sub_90684",
+          "sub_90685",
+          "sub_90686",
+          "sub_90688",
+          "sub_90689",
+          "sub_90690",
+          "sub_90691",
+          "sub_90692",
+          "sub_90693",
+          "sub_90694",
+          "sub_90695",
+          "sub_90696",
+          "sub_90697",
+          "sub_90698",
+          "sub_90699",
+          "sub_90700",
+          "sub_90701",
+          "sub_90702",
+          "sub_90703",
+          "sub_90704",
+          "sub_90705",
+          "sub_90706",
+          "sub_90707",
+          "sub_90708",
+          "sub_90709",
+          "sub_90710",
+          "sub_90724",
+          "sub_90725",
+          "sub_90726",
+          "sub_90727",
+          "sub_90728",
+          "sub_90729",
+          "sub_90730",
+          "sub_90731",
+          "sub_90732",
+          "sub_90733",
+          "sub_91272",
+          "sub_91273",
+          "sub_91274",
+          "sub_91275",
+          "sub_91276",
+          "sub_91277",
+          "sub_91278",
+          "sub_91279",
+          "sub_91292",
+          "sub_91293",
+          "sub_91294"
+        ]
+      }
+    },
+    {
+      "tool": "model_list_objects",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "raingage"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "raingage",
+        "object_ids": [
+          "R_1",
+          "R_2",
+          "R_3"
+        ]
+      }
+    },
+    {
+      "tool": "model_list_objects",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "lid_control"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "object_type": "lid_control",
+        "object_ids": []
+      }
+    },
+    {
+      "tool": "simulation_run",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "run_id": "1448e3cb70664c9fb4c325f03374ab9f",
+        "artifacts": {
+          "report": "1448e3cb70664c9fb4c325f03374ab9f/model.rpt",
+          "output": "1448e3cb70664c9fb4c325f03374ab9f/model.out"
+        },
+        "engine_version": "5.2.4",
+        "system_units": "SI",
+        "flow_units": "CMS",
+        "start_time": "2018-08-24T00:00:00",
+        "end_time": "2018-08-24T00:05:00",
+        "counts": {
+          "nodes": 311,
+          "links": 345,
+          "subcatchments": 311
+        },
+        "runoff_error": 9.999999974752427e-07,
+        "flow_routing_error": 9.999999974752427e-07,
+        "quality_error": 0.0,
+        "resource_uris": {
+          "summary": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/summary",
+          "report": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/report",
+          "output": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/output"
+        }
+      }
+    },
+    {
+      "tool": "run_summary",
+      "arguments": {
+        "run_id": "1448e3cb70664c9fb4c325f03374ab9f"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "run_id": "1448e3cb70664c9fb4c325f03374ab9f",
+        "engine_version": "5.2.4",
+        "model_units": {
+          "flow": "CMS",
+          "system": "SI"
+        },
+        "simulation_time_range": {
+          "end": "2018-08-24T00:05:00",
+          "start": "2018-08-24T00:00:00"
+        },
+        "object_counts": {
+          "links": 345,
+          "nodes": 311,
+          "subcatchments": 311
+        },
+        "balance_errors": {
+          "flow": 9.999999974752427e-07,
+          "runoff": 9.999999974752427e-07,
+          "water_quality": 0.0
+        },
+        "report_file": "1448e3cb70664c9fb4c325f03374ab9f/model.rpt",
+        "output_file": "1448e3cb70664c9fb4c325f03374ab9f/model.out",
+        "hotstart_file": null,
+        "hotstart_source": null,
+        "completion_status": "COMPLETED",
+        "completed": true
+      }
+    },
+    {
+      "tool": "output_inspect",
+      "arguments": {
+        "output_path": "1448e3cb70664c9fb4c325f03374ab9f/model.out"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "output_path": "1448e3cb70664c9fb4c325f03374ab9f/model.out",
+        "version": 52004,
+        "units": {
+          "system": "SI",
+          "flow": "CMS",
+          "pollutant": "NONE"
+        },
+        "project_size": [
+          311,
+          311,
+          345,
+          1,
+          0
+        ],
+        "pollutants": [],
+        "period_count": 5,
+        "start_time": "2018-08-24T00:01:00",
+        "end_time": "2018-08-24T00:05:00",
+        "nodes_count": 311,
+        "nodes_sample": [
+          "j_9006F",
+          "j_90334",
+          "j_90335",
+          "j_90336",
+          "j_90363"
+        ],
+        "links_count": 345,
+        "links_sample": [
+          "c_903641",
+          "c_903642",
+          "c_903651",
+          "c_903671",
+          "c_903672"
+        ],
+        "subcatchments_count": 311,
+        "subcatchments_sample": [
+          "sub_9006F",
+          "sub_90334",
+          "sub_90335",
+          "sub_90336",
+          "sub_90363"
+        ]
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/summary",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/summary",
+        "offset": 0,
+        "characters": 608,
+        "text_sha256": "a3d4a45256ea42965ea512178ffc2a216b3119742c8c2124f5e0eefd059e7661",
+        "next_offset": null,
+        "text": "{\"balance_errors\": {\"flow\": 9.999999974752427e-07, \"runoff\": 9.999999974752427e-07, \"water_quality\": 0.0}, \"completed\": true, \"completion_status\": \"COMPLETED\", \"engine_version\": \"5.2.4\", \"hotstart_file\": null, \"hotstart_source\": null, \"model_units\": {\"flow\": \"CMS\", \"system\": \"SI\"}, \"object_counts\": {\"links\": 345, \"nodes\": 311, \"subcatchments\": 311}, \"output_file\": \"1448e3cb70664c9fb4c325f03374ab9f/model.out\", \"report_file\": \"1448e3cb70664c9fb4c325f03374ab9f/model.rpt\", \"run_id\": \"1448e3cb70664c9fb4c325f03374ab9f\", \"simulation_time_range\": {\"end\": \"2018-08-24T00:05:00\", \"start\": \"2018-08-24T00:00:00\"}}"
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/report",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/report",
+        "offset": 0,
+        "characters": 162602,
+        "text_sha256": "1b86cf3749f18c477eb04170c3a50fc9ede015c141ed83b722875ff33eff666c",
+        "next_offset": 12000,
+        "text": "\n  EPA STORM WATER MANAGEMENT MODEL - VERSION 5.2 (Build 5.2.4)\n  PYSWMM TOOLKIT API - VERSION v1.0 (2026-02-26)\n  ------------------------------------------------------------\n\n  WARNING 04: minimum elevation drop used for Conduit c_903642\n  WARNING 04: minimum elevation drop used for Conduit c_903651\n  WARNING 04: minimum elevation drop used for Conduit c_903672\n  WARNING 04: minimum elevation drop used for Conduit c_905571\n  WARNING 04: minimum elevation drop used for Conduit c_905632\n  WARNING 04: minimum elevation drop used for Conduit c_905821\n  WARNING 04: minimum elevation drop used for Conduit c_905861\n  WARNING 04: minimum elevation drop used for Conduit c_905931\n  WARNING 04: minimum elevation drop used for Conduit c_906201\n  WARNING 04: minimum elevation drop used for Conduit c_906322\n  WARNING 04: minimum elevation drop used for Conduit c_906631\n  WARNING 04: minimum elevation drop used for Conduit c_906641\n  WARNING 04: minimum elevation drop used for Conduit c_906651\n  WARNING 04: minimum elevation drop used for Conduit c_906731\n  WARNING 04: minimum elevation drop used for Conduit c_906741\n  WARNING 04: minimum elevation drop used for Conduit c_907242\n  \n  ****************\n  Analysis Options\n  ****************\n  Flow Units ............... CMS\n  Process Models:\n    Rainfall/Runoff ........ YES\n    RDII ................... NO\n    Snowmelt ............... NO\n    Groundwater ............ NO\n    Flow Routing ........... YES\n    Ponding Allowed ........ NO\n    Water Quality .......... NO\n  Infiltration Method ...... HORTON\n  Flow Routing Method ...... DYNWAVE\n  Surcharge Method ......... EXTRAN\n  Starting Date ............ 08/24/2018 00:00:00\n  Ending Date .............. 08/24/2018 00:05:00\n  Antecedent Dry Days ...... 0.0\n  Report Time Step ......... 00:01:00\n  Wet Time Step ............ 00:01:00\n  Dry Time Step ............ 00:10:00\n  Routing Time Step ........ 1.00 sec\n  Variable Time Step ....... YES\n  Maximum Trials ........... 12\n  Number of Threads ........ 1\n  Head Tolerance ........... 0.000200 m\n  \n  \n  **************************        Volume         Depth\n  Runoff Quantity Continuity     hectare-m            mm\n  **************************     ---------       -------\n  Total Precipitation ......         0.000         0.000\n  Evaporation Loss .........         0.000         0.000\n  Infiltration Loss ........         0.000         0.000\n  Surface Runoff ...........         0.000         0.000\n  Final Storage ............         0.000         0.000\n  Continuity Error (%) .....         0.000\n  \n  \n  **************************        Volume        Volume\n  Flow Routing Continuity        hectare-m      10^6 ltr\n  **************************     ---------     ---------\n  Dry Weather Inflow .......         0.000         0.000\n  Wet Weather Inflow .......         0.000         0.000\n  Groundwater Inflow .......         0.000         0.000\n  RDII Inflow ..............         0.000         0.000\n  External Inflow ..........         0.000         0.000\n  External Outflow .........         0.000         0.000\n  Flooding Loss ............         0.000         0.000\n  Evaporation Loss .........         0.000         0.000\n  Exfiltration Loss ........         0.000         0.000\n  Initial Stored Volume ....         0.000         0.000\n  Final Stored Volume ......         0.000         0.000\n  Continuity Error (%) .....         0.000\n  \n  \n  ***************************\n  Time-Step Critical Elements\n  ***************************\n  None\n  \n  \n  ********************************\n  Highest Flow Instability Indexes\n  ********************************\n  All links are stable.\n  \n  \n  *********************************\n  Most Frequent Nonconverging Nodes\n  *********************************\n  Convergence obtained at all time steps.\n  \n  \n  *************************\n  Routing Time Step Summary\n  *************************\n  Minimum Time Step           :     0.50 sec\n  Average Time Step           :     1.00 sec\n  Maximum Time Step           :     1.00 sec\n  % of Time in Steady State   :     0.00\n  Average Iterations per Step :     2.00\n  % of Steps Not Converging   :     0.00\n  Time Step Frequencies       :\n      1.000 -  0.871 sec      :    99.67 %\n      0.871 -  0.758 sec      :     0.00 %\n      0.758 -  0.660 sec      :     0.00 %\n      0.660 -  0.574 sec      :     0.00 %\n      0.574 -  0.500 sec      :     0.33 %\n  \n  \n  ***************************\n  Subcatchment Runoff Summary\n  ***************************\n  \n  ------------------------------------------------------------------------------------------------------------------------------\n                            Total      Total      Total      Total     Imperv       Perv      Total       Total     Peak  Runoff\n                           Precip      Runon       Evap      Infil     Runoff     Runoff     Runoff      Runoff   Runoff   Coeff\n  Subcatchment                 mm         mm         mm         mm         mm         mm         mm    10^6 ltr      CMS\n  ------------------------------------------------------------------------------------------------------------------------------\n  sub_9006F                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90334                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90335                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90336                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90363                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90364                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90365                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90366                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90367                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90369                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90370                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90371                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90372                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90373                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90375                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90376                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90377                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90378                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90379                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90380                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90381                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90382                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90383                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90384                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90385                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90386                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90387                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90388                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90389                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90390                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90391                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90392                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90393                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90394                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90395                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90396                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90397                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90398                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90399                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90400                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90401                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90402                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90403                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90404                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90405                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90406                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90407                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90408                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90427                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90428                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90430                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90431                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90433                  0.00       0.00       0.00       0.00       0.00       0.00       0.00        0.00     0.00   0.000\n  sub_90434                  0.00   "
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/output",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://runs/1448e3cb70664c9fb4c325f03374ab9f/output",
+        "offset": 0,
+        "characters": 4297,
+        "text_sha256": "5a192516d9045969bf6daad73317759d5d02a93dd3fc11471bcf5313bde79184",
+        "next_offset": null,
+        "text": "{\"file\": \"1448e3cb70664c9fb4c325f03374ab9f/model.out\", \"media_type\": \"application/octet-stream\", \"metadata\": {\"end_time\": \"2018-08-24T00:05:00\", \"output_path\": \"1448e3cb70664c9fb4c325f03374ab9f/model.out\", \"period_count\": 5, \"project_size\": [311, 311, 345, 1, 0], \"start_time\": \"2018-08-24T00:01:00\", \"units\": {\"flow\": \"CMS\", \"pollutant\": \"NONE\", \"system\": \"SI\"}, \"version\": 52004}, \"objects\": {\"links\": {\"count\": 345, \"items\": [\"c_903641\", \"c_903642\", \"c_903651\", \"c_903671\", \"c_903672\", \"c_903681\", \"c_903701\", \"c_903702\", \"c_903711\", \"c_903712\", \"c_903731\", \"c_903732\", \"c_903751\", \"c_903752\", \"c_903771\", \"c_903772\", \"c_903791\", \"c_903811\", \"c_903821\", \"c_903831\", \"c_903841\", \"c_903851\", \"c_903861\", \"c_903881\", \"c_903901\", \"c_903902\", \"c_903903\", \"c_903911\", \"c_903921\", \"c_903931\", \"c_903932\", \"c_903941\", \"c_903951\", \"c_903961\", \"c_903971\", \"c_903972\", \"c_903981\", \"c_903991\", \"c_904001\", \"c_904011\", \"c_904031\", \"c_904032\", \"c_904041\", \"c_904051\", \"c_904061\", \"c_904062\", \"c_904071\", \"c_904081\", \"c_904281\", \"c_904301\", \"c_904312\", \"c_904341\", \"c_904342\", \"c_904351\", \"c_904371\", \"c_904372\", \"c_904381\", \"c_904401\", \"c_904402\", \"c_904411\", \"c_904421\", \"c_904431\", \"c_904441\", \"c_904451\", \"c_904461\", \"c_904471\", \"c_904491\", \"c_904501\", \"c_904511\", \"c_904512\", \"c_904521\", \"c_904531\", \"c_904532\", \"c_904533\", \"c_904541\", \"c_904551\", \"c_904561\", \"c_904571\", \"c_904591\", \"c_904592\", \"c_904611\", \"c_904612\", \"c_904621\", \"c_904641\", \"c_904651\", \"c_904661\", \"c_904662\", \"c_904671\", \"c_904681\", \"c_904691\", \"c_904701\", \"c_904711\", \"c_904791\", \"c_904801\", \"c_904811\", \"c_904821\", \"c_904822\", \"c_904831\", \"c_904851\", \"c_904861\"], \"truncated\": true}, \"nodes\": {\"count\": 311, \"items\": [\"j_9006F\", \"j_90334\", \"j_90335\", \"j_90336\", \"j_90363\", \"j_90364\", \"j_90365\", \"j_90366\", \"j_90367\", \"j_90368\", \"j_90369\", \"j_90370\", \"j_90371\", \"j_90372\", \"j_90373\", \"j_90374\", \"j_90375\", \"j_90376\", \"j_90377\", \"j_90378\", \"j_90379\", \"j_90380\", \"j_90381\", \"j_90382\", \"j_90383\", \"j_90384\", \"j_90385\", \"j_90386\", \"j_90387\", \"j_90388\", \"j_90389\", \"j_90390\", \"j_90391\", \"j_90392\", \"j_90393\", \"j_90394\", \"j_90395\", \"j_90396\", \"j_90397\", \"j_90398\", \"j_90399\", \"j_90400\", \"j_90401\", \"j_90402\", \"j_90403\", \"j_90404\", \"j_90405\", \"j_90406\", \"j_90407\", \"j_90408\", \"j_90427\", \"j_90428\", \"j_90430\", \"j_90433\", \"j_90434\", \"j_90435\", \"j_90436\", \"j_90437\", \"j_90438\", \"j_90439\", \"j_90440\", \"j_90441\", \"j_90442\", \"j_90443\", \"j_90444\", \"j_90445\", \"j_90446\", \"j_90447\", \"j_90448\", \"j_90449\", \"j_90450\", \"j_90451\", \"j_90452\", \"j_90453\", \"j_90454\", \"j_90455\", \"j_90456\", \"j_90457\", \"j_90459\", \"j_90460\", \"j_90461\", \"j_90462\", \"j_90463\", \"j_90464\", \"j_90465\", \"j_90466\", \"j_90467\", \"j_90468\", \"j_90469\", \"j_90470\", \"j_90471\", \"j_90477\", \"j_90478\", \"j_90479\", \"j_90480\", \"j_90481\", \"j_90482\", \"j_90483\", \"j_90484\", \"j_90485\"], \"truncated\": true}, \"pollutants\": {\"count\": 0, \"items\": [], \"truncated\": false}, \"subcatchments\": {\"count\": 311, \"items\": [\"sub_9006F\", \"sub_90334\", \"sub_90335\", \"sub_90336\", \"sub_90363\", \"sub_90364\", \"sub_90365\", \"sub_90366\", \"sub_90367\", \"sub_90368\", \"sub_90369\", \"sub_90370\", \"sub_90371\", \"sub_90372\", \"sub_90373\", \"sub_90374\", \"sub_90375\", \"sub_90376\", \"sub_90377\", \"sub_90378\", \"sub_90379\", \"sub_90380\", \"sub_90381\", \"sub_90382\", \"sub_90383\", \"sub_90384\", \"sub_90385\", \"sub_90386\", \"sub_90387\", \"sub_90388\", \"sub_90389\", \"sub_90390\", \"sub_90391\", \"sub_90392\", \"sub_90393\", \"sub_90394\", \"sub_90395\", \"sub_90396\", \"sub_90397\", \"sub_90398\", \"sub_90399\", \"sub_90400\", \"sub_90401\", \"sub_90402\", \"sub_90403\", \"sub_90404\", \"sub_90405\", \"sub_90406\", \"sub_90407\", \"sub_90408\", \"sub_90427\", \"sub_90428\", \"sub_90430\", \"sub_90431\", \"sub_90433\", \"sub_90434\", \"sub_90435\", \"sub_90436\", \"sub_90437\", \"sub_90438\", \"sub_90439\", \"sub_90440\", \"sub_90441\", \"sub_90442\", \"sub_90443\", \"sub_90444\", \"sub_90445\", \"sub_90446\", \"sub_90447\", \"sub_90448\", \"sub_90449\", \"sub_90450\", \"sub_90451\", \"sub_90452\", \"sub_90453\", \"sub_90454\", \"sub_90455\", \"sub_90456\", \"sub_90457\", \"sub_90459\", \"sub_90460\", \"sub_90461\", \"sub_90462\", \"sub_90463\", \"sub_90464\", \"sub_90465\", \"sub_90466\", \"sub_90467\", \"sub_90468\", \"sub_90469\", \"sub_90470\", \"sub_90471\", \"sub_90477\", \"sub_90478\", \"sub_90479\", \"sub_90480\", \"sub_90481\", \"sub_90482\", \"sub_90483\", \"sub_90484\"], \"truncated\": true}}, \"run_id\": \"1448e3cb70664c9fb4c325f03374ab9f\", \"size_bytes\": 145664}"
+      }
+    },
+    {
+      "tool": "run_swmm_scenario",
+      "arguments": {
+        "city": "utrecht",
+        "scenario": "baseline"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "city": "utrecht",
+        "scenario": "baseline",
+        "nodes": 311,
+        "listed_flooding_nodes": 0,
+        "nodes_at_or_above_10m3": 0,
+        "sum_reported_node_flood_volume_m3": 0.0,
+        "system_flooding_loss_m3": 0.0,
+        "routing_continuity_error_percent": -0.134,
+        "runoff_continuity_error_percent": -0.098,
+        "report_precipitation_mm": 23.025,
+        "warnings": [
+          "\n  WARNING 04: minimum elevation drop used for Conduit c_903642",
+          "  WARNING 04: minimum elevation drop used for Conduit c_903651",
+          "  WARNING 04: minimum elevation drop used for Conduit c_903672",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905571",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905632",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905821",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905861",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905931",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906201",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906322",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906631",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906641",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906651",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906731",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906741",
+          "  WARNING 04: minimum elevation drop used for Conduit c_907242"
+        ],
+        "rounding": "Native report node volumes: 0.001 million litres = 1 m3 resolution, ±0.5 m3 per displayed node. Listed rows may display zero. System loss and summed overflowing-node volumes differ with ponding/re-entry and rounding.",
+        "report_sha256": "3d9ab516e85b65eecee566a8070a40fc5c356326b35f0f51a52cc7bfedd2aeb1",
+        "output_sha256": "2c308a9e829c3fd0af0350982e6e23cd7287b6e026c19440d4eb74b41f4461a9",
+        "artifacts": {
+          "nodes.csv": {
+            "sha256": "d04f3b22bfb6c774eedd8bf990ff537168b90a581bf2c1055fc0287fc096fef3",
+            "bytes": 10007
+          },
+          "outfalls.csv": {
+            "sha256": "db26470030d9ddfec548b675162e92d88ea8e8609e1530db7dea6af64e5e79b9",
+            "bytes": 90
+          }
+        },
+        "forecast_admitted": false,
+        "run_id": "b9d6d9f93a814670b83c1888ba677d1d",
+        "original_result": {
+          "run_id": "b9d6d9f93a814670b83c1888ba677d1d",
+          "artifacts": {
+            "report": "b9d6d9f93a814670b83c1888ba677d1d/model.rpt",
+            "output": "b9d6d9f93a814670b83c1888ba677d1d/model.out"
+          },
+          "engine_version": "5.2.4",
+          "system_units": "SI",
+          "flow_units": "CMS",
+          "start_time": "2018-08-24T00:00:00",
+          "end_time": "2018-08-27T00:00:00",
+          "counts": {
+            "nodes": 311,
+            "links": 345,
+            "subcatchments": 311
+          },
+          "runoff_error": -0.0983719527721405,
+          "flow_routing_error": -0.13406255841255188,
+          "quality_error": 0.0
+        },
+        "resource_uris": {
+          "summary": "pyswmm://runs/b9d6d9f93a814670b83c1888ba677d1d/summary",
+          "report": "pyswmm://runs/b9d6d9f93a814670b83c1888ba677d1d/report",
+          "output": "pyswmm://runs/b9d6d9f93a814670b83c1888ba677d1d/output"
+        }
+      }
+    },
+    {
+      "tool": "run_swmm_scenario",
+      "arguments": {
+        "city": "utrecht",
+        "scenario": "capacity75"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "city": "utrecht",
+        "scenario": "capacity75",
+        "nodes": 311,
+        "listed_flooding_nodes": 0,
+        "nodes_at_or_above_10m3": 0,
+        "sum_reported_node_flood_volume_m3": 0.0,
+        "system_flooding_loss_m3": 0.0,
+        "routing_continuity_error_percent": -0.134,
+        "runoff_continuity_error_percent": -0.098,
+        "report_precipitation_mm": 23.025,
+        "warnings": [
+          "\n  WARNING 04: minimum elevation drop used for Conduit c_903642",
+          "  WARNING 04: minimum elevation drop used for Conduit c_903651",
+          "  WARNING 04: minimum elevation drop used for Conduit c_903672",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905571",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905632",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905821",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905861",
+          "  WARNING 04: minimum elevation drop used for Conduit c_905931",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906201",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906322",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906631",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906641",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906651",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906731",
+          "  WARNING 04: minimum elevation drop used for Conduit c_906741",
+          "  WARNING 04: minimum elevation drop used for Conduit c_907242"
+        ],
+        "rounding": "Native report node volumes: 0.001 million litres = 1 m3 resolution, ±0.5 m3 per displayed node. Listed rows may display zero. System loss and summed overflowing-node volumes differ with ponding/re-entry and rounding.",
+        "report_sha256": "78b967c8208bb07f59fc701f633f270217a368f30ef9feff278db75ae2cf1d1c",
+        "output_sha256": "ea3897d08c15701b8a91b81e58c060e5c15b7b7b8901f21b1a757075ed1ab03d",
+        "artifacts": {
+          "nodes.csv": {
+            "sha256": "d04f3b22bfb6c774eedd8bf990ff537168b90a581bf2c1055fc0287fc096fef3",
+            "bytes": 10007
+          },
+          "outfalls.csv": {
+            "sha256": "db26470030d9ddfec548b675162e92d88ea8e8609e1530db7dea6af64e5e79b9",
+            "bytes": 90
+          }
+        },
+        "forecast_admitted": false,
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "original_result": {
+          "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+          "artifacts": {
+            "report": "8907905bd9e44a918144b1fbc6eb0a70/model.rpt",
+            "output": "8907905bd9e44a918144b1fbc6eb0a70/model.out"
+          },
+          "engine_version": "5.2.4",
+          "system_units": "SI",
+          "flow_units": "CMS",
+          "start_time": "2018-08-24T00:00:00",
+          "end_time": "2018-08-27T00:00:00",
+          "counts": {
+            "nodes": 311,
+            "links": 345,
+            "subcatchments": 311
+          },
+          "runoff_error": -0.0983719527721405,
+          "flow_routing_error": -0.13419345021247864,
+          "quality_error": 0.0
+        },
+        "resource_uris": {
+          "summary": "pyswmm://runs/8907905bd9e44a918144b1fbc6eb0a70/summary",
+          "report": "pyswmm://runs/8907905bd9e44a918144b1fbc6eb0a70/report",
+          "output": "pyswmm://runs/8907905bd9e44a918144b1fbc6eb0a70/output"
+        }
+      }
+    },
+    {
+      "tool": "compare_swmm_runs",
+      "arguments": {
+        "city": "utrecht",
+        "baseline_run_id": "b9d6d9f93a814670b83c1888ba677d1d",
+        "scenario_run_id": "8907905bd9e44a918144b1fbc6eb0a70"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "city": "utrecht",
+        "baseline_run_id": "b9d6d9f93a814670b83c1888ba677d1d",
+        "scenario_run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "nodes": 311,
+        "threshold_m3": 10,
+        "newly_at_or_above_10m3": 0,
+        "baseline_nodes_at_or_above_10m3": 0,
+        "scenario_nodes_at_or_above_10m3": 0,
+        "baseline_sum_reported_node_flood_volume_m3": 0.0,
+        "scenario_sum_reported_node_flood_volume_m3": 0.0,
+        "delta_sum_reported_node_flood_volume_m3": 0.0,
+        "routing_continuity_error_percent": [
+          -0.134,
+          -0.134
+        ],
+        "target": {
+          "conduit_id": "c_906791",
+          "from_node": "j_90679",
+          "to_node": "j_90678",
+          "source_diameter_m": 0.3,
+          "scenario_diameter_m": 0.22499999999999998,
+          "directly_contributing_area_ha": 0.155,
+          "eligible_conduits": 54,
+          "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+        },
+        "comparison_csv": {
+          "sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+          "bytes": 16067,
+          "rows": 311
+        },
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false
+      }
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "comparison.csv",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "comparison.csv",
+        "bytes": 16067,
+        "sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+        "offset": 0,
+        "next_offset": 12000,
+        "characters": 16067,
+        "text": "node_id,baseline_flood_volume_m3,scenario_flood_volume_m3,delta_flood_volume_m3,baseline_at_or_above_10m3,scenario_at_or_above_10m3,newly_at_or_above_10m3,baseline_listed_flooding,scenario_listed_flooding\r\nj_9006F,0.0,0.0,0.0,False,False,False,False,False\r\nj_90334,0.0,0.0,0.0,False,False,False,False,False\r\nj_90335,0.0,0.0,0.0,False,False,False,False,False\r\nj_90336,0.0,0.0,0.0,False,False,False,False,False\r\nj_90363,0.0,0.0,0.0,False,False,False,False,False\r\nj_90364,0.0,0.0,0.0,False,False,False,False,False\r\nj_90365,0.0,0.0,0.0,False,False,False,False,False\r\nj_90366,0.0,0.0,0.0,False,False,False,False,False\r\nj_90367,0.0,0.0,0.0,False,False,False,False,False\r\nj_90368,0.0,0.0,0.0,False,False,False,False,False\r\nj_90369,0.0,0.0,0.0,False,False,False,False,False\r\nj_90370,0.0,0.0,0.0,False,False,False,False,False\r\nj_90371,0.0,0.0,0.0,False,False,False,False,False\r\nj_90372,0.0,0.0,0.0,False,False,False,False,False\r\nj_90373,0.0,0.0,0.0,False,False,False,False,False\r\nj_90374,0.0,0.0,0.0,False,False,False,False,False\r\nj_90375,0.0,0.0,0.0,False,False,False,False,False\r\nj_90376,0.0,0.0,0.0,False,False,False,False,False\r\nj_90377,0.0,0.0,0.0,False,False,False,False,False\r\nj_90378,0.0,0.0,0.0,False,False,False,False,False\r\nj_90379,0.0,0.0,0.0,False,False,False,False,False\r\nj_90380,0.0,0.0,0.0,False,False,False,False,False\r\nj_90381,0.0,0.0,0.0,False,False,False,False,False\r\nj_90382,0.0,0.0,0.0,False,False,False,False,False\r\nj_90383,0.0,0.0,0.0,False,False,False,False,False\r\nj_90384,0.0,0.0,0.0,False,False,False,False,False\r\nj_90385,0.0,0.0,0.0,False,False,False,False,False\r\nj_90386,0.0,0.0,0.0,False,False,False,False,False\r\nj_90387,0.0,0.0,0.0,False,False,False,False,False\r\nj_90388,0.0,0.0,0.0,False,False,False,False,False\r\nj_90389,0.0,0.0,0.0,False,False,False,False,False\r\nj_90390,0.0,0.0,0.0,False,False,False,False,False\r\nj_90391,0.0,0.0,0.0,False,False,False,False,False\r\nj_90392,0.0,0.0,0.0,False,False,False,False,False\r\nj_90393,0.0,0.0,0.0,False,False,False,False,False\r\nj_90394,0.0,0.0,0.0,False,False,False,False,False\r\nj_90395,0.0,0.0,0.0,False,False,False,False,False\r\nj_90396,0.0,0.0,0.0,False,False,False,False,False\r\nj_90397,0.0,0.0,0.0,False,False,False,False,False\r\nj_90398,0.0,0.0,0.0,False,False,False,False,False\r\nj_90399,0.0,0.0,0.0,False,False,False,False,False\r\nj_90400,0.0,0.0,0.0,False,False,False,False,False\r\nj_90401,0.0,0.0,0.0,False,False,False,False,False\r\nj_90402,0.0,0.0,0.0,False,False,False,False,False\r\nj_90403,0.0,0.0,0.0,False,False,False,False,False\r\nj_90404,0.0,0.0,0.0,False,False,False,False,False\r\nj_90405,0.0,0.0,0.0,False,False,False,False,False\r\nj_90406,0.0,0.0,0.0,False,False,False,False,False\r\nj_90407,0.0,0.0,0.0,False,False,False,False,False\r\nj_90408,0.0,0.0,0.0,False,False,False,False,False\r\nj_90427,0.0,0.0,0.0,False,False,False,False,False\r\nj_90428,0.0,0.0,0.0,False,False,False,False,False\r\nj_90430,0.0,0.0,0.0,False,False,False,False,False\r\nj_90431,0.0,0.0,0.0,False,False,False,False,False\r\nj_90433,0.0,0.0,0.0,False,False,False,False,False\r\nj_90434,0.0,0.0,0.0,False,False,False,False,False\r\nj_90435,0.0,0.0,0.0,False,False,False,False,False\r\nj_90436,0.0,0.0,0.0,False,False,False,False,False\r\nj_90437,0.0,0.0,0.0,False,False,False,False,False\r\nj_90438,0.0,0.0,0.0,False,False,False,False,False\r\nj_90439,0.0,0.0,0.0,False,False,False,False,False\r\nj_90440,0.0,0.0,0.0,False,False,False,False,False\r\nj_90441,0.0,0.0,0.0,False,False,False,False,False\r\nj_90442,0.0,0.0,0.0,False,False,False,False,False\r\nj_90443,0.0,0.0,0.0,False,False,False,False,False\r\nj_90444,0.0,0.0,0.0,False,False,False,False,False\r\nj_90445,0.0,0.0,0.0,False,False,False,False,False\r\nj_90446,0.0,0.0,0.0,False,False,False,False,False\r\nj_90447,0.0,0.0,0.0,False,False,False,False,False\r\nj_90448,0.0,0.0,0.0,False,False,False,False,False\r\nj_90449,0.0,0.0,0.0,False,False,False,False,False\r\nj_90450,0.0,0.0,0.0,False,False,False,False,False\r\nj_90451,0.0,0.0,0.0,False,False,False,False,False\r\nj_90452,0.0,0.0,0.0,False,False,False,False,False\r\nj_90453,0.0,0.0,0.0,False,False,False,False,False\r\nj_90454,0.0,0.0,0.0,False,False,False,False,False\r\nj_90455,0.0,0.0,0.0,False,False,False,False,False\r\nj_90456,0.0,0.0,0.0,False,False,False,False,False\r\nj_90457,0.0,0.0,0.0,False,False,False,False,False\r\nj_90459,0.0,0.0,0.0,False,False,False,False,False\r\nj_90460,0.0,0.0,0.0,False,False,False,False,False\r\nj_90461,0.0,0.0,0.0,False,False,False,False,False\r\nj_90462,0.0,0.0,0.0,False,False,False,False,False\r\nj_90463,0.0,0.0,0.0,False,False,False,False,False\r\nj_90464,0.0,0.0,0.0,False,False,False,False,False\r\nj_90465,0.0,0.0,0.0,False,False,False,False,False\r\nj_90466,0.0,0.0,0.0,False,False,False,False,False\r\nj_90467,0.0,0.0,0.0,False,False,False,False,False\r\nj_90468,0.0,0.0,0.0,False,False,False,False,False\r\nj_90469,0.0,0.0,0.0,False,False,False,False,False\r\nj_90470,0.0,0.0,0.0,False,False,False,False,False\r\nj_90471,0.0,0.0,0.0,False,False,False,False,False\r\nj_90477,0.0,0.0,0.0,False,False,False,False,False\r\nj_90478,0.0,0.0,0.0,False,False,False,False,False\r\nj_90479,0.0,0.0,0.0,False,False,False,False,False\r\nj_90480,0.0,0.0,0.0,False,False,False,False,False\r\nj_90481,0.0,0.0,0.0,False,False,False,False,False\r\nj_90482,0.0,0.0,0.0,False,False,False,False,False\r\nj_90483,0.0,0.0,0.0,False,False,False,False,False\r\nj_90484,0.0,0.0,0.0,False,False,False,False,False\r\nj_90485,0.0,0.0,0.0,False,False,False,False,False\r\nj_90486,0.0,0.0,0.0,False,False,False,False,False\r\nj_90487,0.0,0.0,0.0,False,False,False,False,False\r\nj_90488,0.0,0.0,0.0,False,False,False,False,False\r\nj_90489,0.0,0.0,0.0,False,False,False,False,False\r\nj_90490,0.0,0.0,0.0,False,False,False,False,False\r\nj_90491,0.0,0.0,0.0,False,False,False,False,False\r\nj_90492,0.0,0.0,0.0,False,False,False,False,False\r\nj_90493,0.0,0.0,0.0,False,False,False,False,False\r\nj_90494,0.0,0.0,0.0,False,False,False,False,False\r\nj_90495,0.0,0.0,0.0,False,False,False,False,False\r\nj_90496,0.0,0.0,0.0,False,False,False,False,False\r\nj_90497,0.0,0.0,0.0,False,False,False,False,False\r\nj_90498,0.0,0.0,0.0,False,False,False,False,False\r\nj_90499,0.0,0.0,0.0,False,False,False,False,False\r\nj_90500,0.0,0.0,0.0,False,False,False,False,False\r\nj_90501,0.0,0.0,0.0,False,False,False,False,False\r\nj_90502,0.0,0.0,0.0,False,False,False,False,False\r\nj_90503,0.0,0.0,0.0,False,False,False,False,False\r\nj_90504,0.0,0.0,0.0,False,False,False,False,False\r\nj_90505,0.0,0.0,0.0,False,False,False,False,False\r\nj_90506,0.0,0.0,0.0,False,False,False,False,False\r\nj_90507,0.0,0.0,0.0,False,False,False,False,False\r\nj_90508,0.0,0.0,0.0,False,False,False,False,False\r\nj_90509,0.0,0.0,0.0,False,False,False,False,False\r\nj_90510,0.0,0.0,0.0,False,False,False,False,False\r\nj_90511,0.0,0.0,0.0,False,False,False,False,False\r\nj_90512,0.0,0.0,0.0,False,False,False,False,False\r\nj_90513,0.0,0.0,0.0,False,False,False,False,False\r\nj_90514,0.0,0.0,0.0,False,False,False,False,False\r\nj_90515,0.0,0.0,0.0,False,False,False,False,False\r\nj_90516,0.0,0.0,0.0,False,False,False,False,False\r\nj_90517,0.0,0.0,0.0,False,False,False,False,False\r\nj_90518,0.0,0.0,0.0,False,False,False,False,False\r\nj_90519,0.0,0.0,0.0,False,False,False,False,False\r\nj_90520,0.0,0.0,0.0,False,False,False,False,False\r\nj_90521,0.0,0.0,0.0,False,False,False,False,False\r\nj_90522,0.0,0.0,0.0,False,False,False,False,False\r\nj_90523,0.0,0.0,0.0,False,False,False,False,False\r\nj_90524,0.0,0.0,0.0,False,False,False,False,False\r\nj_90525,0.0,0.0,0.0,False,False,False,False,False\r\nj_90526,0.0,0.0,0.0,False,False,False,False,False\r\nj_90527,0.0,0.0,0.0,False,False,False,False,False\r\nj_90550,0.0,0.0,0.0,False,False,False,False,False\r\nj_90553,0.0,0.0,0.0,False,False,False,False,False\r\nj_90554,0.0,0.0,0.0,False,False,False,False,False\r\nj_90555,0.0,0.0,0.0,False,False,False,False,False\r\nj_90556,0.0,0.0,0.0,False,False,False,False,False\r\nj_90557,0.0,0.0,0.0,False,False,False,False,False\r\nj_90558,0.0,0.0,0.0,False,False,False,False,False\r\nj_90559,0.0,0.0,0.0,False,False,False,False,False\r\nj_90560,0.0,0.0,0.0,False,False,False,False,False\r\nj_90561,0.0,0.0,0.0,False,False,False,False,False\r\nj_90562,0.0,0.0,0.0,False,False,False,False,False\r\nj_90563,0.0,0.0,0.0,False,False,False,False,False\r\nj_90564,0.0,0.0,0.0,False,False,False,False,False\r\nj_90565,0.0,0.0,0.0,False,False,False,False,False\r\nj_90566,0.0,0.0,0.0,False,False,False,False,False\r\nj_90567,0.0,0.0,0.0,False,False,False,False,False\r\nj_90568,0.0,0.0,0.0,False,False,False,False,False\r\nj_90569,0.0,0.0,0.0,False,False,False,False,False\r\nj_90570,0.0,0.0,0.0,False,False,False,False,False\r\nj_90571,0.0,0.0,0.0,False,False,False,False,False\r\nj_90572,0.0,0.0,0.0,False,False,False,False,False\r\nj_90573,0.0,0.0,0.0,False,False,False,False,False\r\nj_90574,0.0,0.0,0.0,False,False,False,False,False\r\nj_90575,0.0,0.0,0.0,False,False,False,False,False\r\nj_90576,0.0,0.0,0.0,False,False,False,False,False\r\nj_90577,0.0,0.0,0.0,False,False,False,False,False\r\nj_90578,0.0,0.0,0.0,False,False,False,False,False\r\nj_90579,0.0,0.0,0.0,False,False,False,False,False\r\nj_90580,0.0,0.0,0.0,False,False,False,False,False\r\nj_90581,0.0,0.0,0.0,False,False,False,False,False\r\nj_90582,0.0,0.0,0.0,False,False,False,False,False\r\nj_90583,0.0,0.0,0.0,False,False,False,False,False\r\nj_90584,0.0,0.0,0.0,False,False,False,False,False\r\nj_90585,0.0,0.0,0.0,False,False,False,False,False\r\nj_90586,0.0,0.0,0.0,False,False,False,False,False\r\nj_90587,0.0,0.0,0.0,False,False,False,False,False\r\nj_90588,0.0,0.0,0.0,False,False,False,False,False\r\nj_90589,0.0,0.0,0.0,False,False,False,False,False\r\nj_90590,0.0,0.0,0.0,False,False,False,False,False\r\nj_90591,0.0,0.0,0.0,False,False,False,False,False\r\nj_90592,0.0,0.0,0.0,False,False,False,False,False\r\nj_90593,0.0,0.0,0.0,False,False,False,False,False\r\nj_90594,0.0,0.0,0.0,False,False,False,False,False\r\nj_90595,0.0,0.0,0.0,False,False,False,False,False\r\nj_90596,0.0,0.0,0.0,False,False,False,False,False\r\nj_90597,0.0,0.0,0.0,False,False,False,False,False\r\nj_90598,0.0,0.0,0.0,False,False,False,False,False\r\nj_90599,0.0,0.0,0.0,False,False,False,False,False\r\nj_90600,0.0,0.0,0.0,False,False,False,False,False\r\nj_90601,0.0,0.0,0.0,False,False,False,False,False\r\nj_90602,0.0,0.0,0.0,False,False,False,False,False\r\nj_90603,0.0,0.0,0.0,False,False,False,False,False\r\nj_90604,0.0,0.0,0.0,False,False,False,False,False\r\nj_90605,0.0,0.0,0.0,False,False,False,False,False\r\nj_90606,0.0,0.0,0.0,False,False,False,False,False\r\nj_90607,0.0,0.0,0.0,False,False,False,False,False\r\nj_90608,0.0,0.0,0.0,False,False,False,False,False\r\nj_90609,0.0,0.0,0.0,False,False,False,False,False\r\nj_90610,0.0,0.0,0.0,False,False,False,False,False\r\nj_90611,0.0,0.0,0.0,False,False,False,False,False\r\nj_90612,0.0,0.0,0.0,False,False,False,False,False\r\nj_90613,0.0,0.0,0.0,False,False,False,False,False\r\nj_90619,0.0,0.0,0.0,False,False,False,False,False\r\nj_90620,0.0,0.0,0.0,False,False,False,False,False\r\nj_90621,0.0,0.0,0.0,False,False,False,False,False\r\nj_90623,0.0,0.0,0.0,False,False,False,False,False\r\nj_90624,0.0,0.0,0.0,False,False,False,False,False\r\nj_90625,0.0,0.0,0.0,False,False,False,False,False\r\nj_90626,0.0,0.0,0.0,False,False,False,False,False\r\nj_90627,0.0,0.0,0.0,False,False,False,False,False\r\nj_90628,0.0,0.0,0.0,False,False,False,False,False\r\nj_90629,0.0,0.0,0.0,False,False,False,False,False\r\nj_90630,0.0,0.0,0.0,False,False,False,False,False\r\nj_90631,0.0,0.0,0.0,False,False,False,False,False\r\nj_90632,0.0,0.0,0.0,False,False,False,False,False\r\nj_90633,0.0,0.0,0.0,False,False,False,False,False\r\nj_90634,0.0,0.0,0.0,False,False,False,False,False\r\nj_90635,0.0,0.0,0.0,False,False,False,False,False\r\nj_90636,0.0,0.0,0.0,False,False,False,False,False\r\nj_90637,0.0,0.0,0.0,False,False,False,False,False\r\nj_90638,0.0,0.0,0.0,False,False,False,False,False\r\nj_90639,0.0,0.0,0.0,False,False,False,False,False\r\nj_90640,0.0,0.0,0.0,False,False,False,False,False\r\nj_90641,0.0,0.0,0.0,False,False,False,False,False\r\nj_90642,0.0,0.0,0.0,False,False,False,False,False\r\nj_90643,0.0,0.0,0.0,False,False,False,False,False\r\nj_90644,0.0,0.0,0.0,False,False,False,False,False\r\nj_90645,0.0,0.0,0.0,False,False,False,False,False\r\nj_90646,0.0,0"
+      }
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "comparison.json",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "comparison.json",
+        "bytes": 1182,
+        "sha256": "355981ae1408bca24a9b546b302ad81054055a48a543e0c27d43175041bea113",
+        "offset": 0,
+        "next_offset": null,
+        "characters": 1182,
+        "text": "{\n  \"city\": \"utrecht\",\n  \"baseline_run_id\": \"b9d6d9f93a814670b83c1888ba677d1d\",\n  \"scenario_run_id\": \"8907905bd9e44a918144b1fbc6eb0a70\",\n  \"nodes\": 311,\n  \"threshold_m3\": 10,\n  \"newly_at_or_above_10m3\": 0,\n  \"baseline_nodes_at_or_above_10m3\": 0,\n  \"scenario_nodes_at_or_above_10m3\": 0,\n  \"baseline_sum_reported_node_flood_volume_m3\": 0.0,\n  \"scenario_sum_reported_node_flood_volume_m3\": 0.0,\n  \"delta_sum_reported_node_flood_volume_m3\": 0.0,\n  \"routing_continuity_error_percent\": [\n    -0.134,\n    -0.134\n  ],\n  \"target\": {\n    \"conduit_id\": \"c_906791\",\n    \"from_node\": \"j_90679\",\n    \"to_node\": \"j_90678\",\n    \"source_diameter_m\": 0.3,\n    \"scenario_diameter_m\": 0.22499999999999998,\n    \"directly_contributing_area_ha\": 0.155,\n    \"eligible_conduits\": 54,\n    \"selection\": \"Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning.\"\n  },\n  \"comparison_csv\": {\n    \"sha256\": \"7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af\",\n    \"bytes\": 16067,\n    \"rows\": 311\n  },\n  \"forecast_admitted\": false,\n  \"calibration_revalidated\": false,\n  \"product_qualified\": false\n}\n"
+      }
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "nodes.csv",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "nodes.csv",
+        "bytes": 10007,
+        "sha256": "d04f3b22bfb6c774eedd8bf990ff537168b90a581bf2c1055fc0287fc096fef3",
+        "offset": 0,
+        "next_offset": null,
+        "characters": 10007,
+        "text": "node_id,listed_flooding,flood_volume_m3,flood_hours,peak_flood_rate_m3_s,maximum_depth_m\r\nj_9006F,False,0.0,0.0,0.0,0.09\r\nj_90334,False,0.0,0.0,0.0,0.05\r\nj_90335,False,0.0,0.0,0.0,0.07\r\nj_90336,False,0.0,0.0,0.0,0.09\r\nj_90363,False,0.0,0.0,0.0,0.13\r\nj_90364,False,0.0,0.0,0.0,0.13\r\nj_90365,False,0.0,0.0,0.0,0.13\r\nj_90366,False,0.0,0.0,0.0,0.05\r\nj_90367,False,0.0,0.0,0.0,0.15\r\nj_90368,False,0.0,0.0,0.0,0.0\r\nj_90369,False,0.0,0.0,0.0,0.04\r\nj_90370,False,0.0,0.0,0.0,0.16\r\nj_90371,False,0.0,0.0,0.0,0.2\r\nj_90372,False,0.0,0.0,0.0,0.02\r\nj_90373,False,0.0,0.0,0.0,0.12\r\nj_90374,False,0.0,0.0,0.0,0.0\r\nj_90375,False,0.0,0.0,0.0,0.05\r\nj_90376,False,0.0,0.0,0.0,0.03\r\nj_90377,False,0.0,0.0,0.0,0.03\r\nj_90378,False,0.0,0.0,0.0,0.08\r\nj_90379,False,0.0,0.0,0.0,0.05\r\nj_90380,False,0.0,0.0,0.0,0.05\r\nj_90381,False,0.0,0.0,0.0,0.11\r\nj_90382,False,0.0,0.0,0.0,0.28\r\nj_90383,False,0.0,0.0,0.0,0.24\r\nj_90384,False,0.0,0.0,0.0,0.14\r\nj_90385,False,0.0,0.0,0.0,0.05\r\nj_90386,False,0.0,0.0,0.0,0.05\r\nj_90387,False,0.0,0.0,0.0,0.03\r\nj_90388,False,0.0,0.0,0.0,0.1\r\nj_90389,False,0.0,0.0,0.0,0.19\r\nj_90390,False,0.0,0.0,0.0,0.19\r\nj_90391,False,0.0,0.0,0.0,0.13\r\nj_90392,False,0.0,0.0,0.0,0.15\r\nj_90393,False,0.0,0.0,0.0,0.1\r\nj_90394,False,0.0,0.0,0.0,0.06\r\nj_90395,False,0.0,0.0,0.0,0.06\r\nj_90396,False,0.0,0.0,0.0,0.02\r\nj_90397,False,0.0,0.0,0.0,0.25\r\nj_90398,False,0.0,0.0,0.0,0.1\r\nj_90399,False,0.0,0.0,0.0,0.05\r\nj_90400,False,0.0,0.0,0.0,0.03\r\nj_90401,False,0.0,0.0,0.0,0.05\r\nj_90402,False,0.0,0.0,0.0,0.05\r\nj_90403,False,0.0,0.0,0.0,0.02\r\nj_90404,False,0.0,0.0,0.0,0.05\r\nj_90405,False,0.0,0.0,0.0,0.08\r\nj_90406,False,0.0,0.0,0.0,0.08\r\nj_90407,False,0.0,0.0,0.0,0.03\r\nj_90408,False,0.0,0.0,0.0,0.06\r\nj_90427,False,0.0,0.0,0.0,0.15\r\nj_90428,False,0.0,0.0,0.0,0.1\r\nj_90430,False,0.0,0.0,0.0,0.07\r\nj_90431,False,0.0,0.0,0.0,0.07\r\nj_90433,False,0.0,0.0,0.0,0.08\r\nj_90434,False,0.0,0.0,0.0,0.14\r\nj_90435,False,0.0,0.0,0.0,0.07\r\nj_90436,False,0.0,0.0,0.0,0.1\r\nj_90437,False,0.0,0.0,0.0,0.34\r\nj_90438,False,0.0,0.0,0.0,0.42\r\nj_90439,False,0.0,0.0,0.0,0.05\r\nj_90440,False,0.0,0.0,0.0,0.04\r\nj_90441,False,0.0,0.0,0.0,0.03\r\nj_90442,False,0.0,0.0,0.0,0.3\r\nj_90443,False,0.0,0.0,0.0,0.42\r\nj_90444,False,0.0,0.0,0.0,0.26\r\nj_90445,False,0.0,0.0,0.0,0.08\r\nj_90446,False,0.0,0.0,0.0,0.06\r\nj_90447,False,0.0,0.0,0.0,0.05\r\nj_90448,False,0.0,0.0,0.0,0.05\r\nj_90449,False,0.0,0.0,0.0,0.08\r\nj_90450,False,0.0,0.0,0.0,0.06\r\nj_90451,False,0.0,0.0,0.0,0.25\r\nj_90452,False,0.0,0.0,0.0,0.06\r\nj_90453,False,0.0,0.0,0.0,0.28\r\nj_90454,False,0.0,0.0,0.0,0.07\r\nj_90455,False,0.0,0.0,0.0,0.09\r\nj_90456,False,0.0,0.0,0.0,0.14\r\nj_90457,False,0.0,0.0,0.0,0.18\r\nj_90459,False,0.0,0.0,0.0,0.2\r\nj_90460,False,0.0,0.0,0.0,0.15\r\nj_90461,False,0.0,0.0,0.0,0.27\r\nj_90462,False,0.0,0.0,0.0,0.23\r\nj_90463,False,0.0,0.0,0.0,0.12\r\nj_90464,False,0.0,0.0,0.0,0.09\r\nj_90465,False,0.0,0.0,0.0,0.08\r\nj_90466,False,0.0,0.0,0.0,0.06\r\nj_90467,False,0.0,0.0,0.0,0.09\r\nj_90468,False,0.0,0.0,0.0,0.13\r\nj_90469,False,0.0,0.0,0.0,0.1\r\nj_90470,False,0.0,0.0,0.0,0.14\r\nj_90471,False,0.0,0.0,0.0,0.13\r\nj_90477,False,0.0,0.0,0.0,0.05\r\nj_90478,False,0.0,0.0,0.0,0.1\r\nj_90479,False,0.0,0.0,0.0,0.03\r\nj_90480,False,0.0,0.0,0.0,0.04\r\nj_90481,False,0.0,0.0,0.0,0.11\r\nj_90482,False,0.0,0.0,0.0,0.14\r\nj_90483,False,0.0,0.0,0.0,0.07\r\nj_90484,False,0.0,0.0,0.0,0.04\r\nj_90485,False,0.0,0.0,0.0,0.07\r\nj_90486,False,0.0,0.0,0.0,0.17\r\nj_90487,False,0.0,0.0,0.0,0.21\r\nj_90488,False,0.0,0.0,0.0,0.27\r\nj_90489,False,0.0,0.0,0.0,0.04\r\nj_90490,False,0.0,0.0,0.0,0.05\r\nj_90491,False,0.0,0.0,0.0,0.21\r\nj_90492,False,0.0,0.0,0.0,0.27\r\nj_90493,False,0.0,0.0,0.0,0.05\r\nj_90494,False,0.0,0.0,0.0,0.35\r\nj_90495,False,0.0,0.0,0.0,0.34\r\nj_90496,False,0.0,0.0,0.0,0.06\r\nj_90497,False,0.0,0.0,0.0,0.03\r\nj_90498,False,0.0,0.0,0.0,0.16\r\nj_90499,False,0.0,0.0,0.0,0.17\r\nj_90500,False,0.0,0.0,0.0,0.1\r\nj_90501,False,0.0,0.0,0.0,0.07\r\nj_90502,False,0.0,0.0,0.0,0.05\r\nj_90503,False,0.0,0.0,0.0,0.04\r\nj_90504,False,0.0,0.0,0.0,0.09\r\nj_90505,False,0.0,0.0,0.0,0.14\r\nj_90506,False,0.0,0.0,0.0,0.17\r\nj_90507,False,0.0,0.0,0.0,0.06\r\nj_90508,False,0.0,0.0,0.0,0.12\r\nj_90509,False,0.0,0.0,0.0,0.03\r\nj_90510,False,0.0,0.0,0.0,0.04\r\nj_90511,False,0.0,0.0,0.0,0.28\r\nj_90512,False,0.0,0.0,0.0,0.23\r\nj_90513,False,0.0,0.0,0.0,0.04\r\nj_90514,False,0.0,0.0,0.0,0.06\r\nj_90515,False,0.0,0.0,0.0,0.1\r\nj_90516,False,0.0,0.0,0.0,0.12\r\nj_90517,False,0.0,0.0,0.0,0.22\r\nj_90518,False,0.0,0.0,0.0,0.22\r\nj_90519,False,0.0,0.0,0.0,0.2\r\nj_90520,False,0.0,0.0,0.0,0.12\r\nj_90521,False,0.0,0.0,0.0,0.06\r\nj_90522,False,0.0,0.0,0.0,0.09\r\nj_90523,False,0.0,0.0,0.0,0.06\r\nj_90524,False,0.0,0.0,0.0,0.16\r\nj_90525,False,0.0,0.0,0.0,0.1\r\nj_90526,False,0.0,0.0,0.0,0.07\r\nj_90527,False,0.0,0.0,0.0,0.05\r\nj_90550,False,0.0,0.0,0.0,0.34\r\nj_90553,False,0.0,0.0,0.0,0.14\r\nj_90554,False,0.0,0.0,0.0,0.09\r\nj_90555,False,0.0,0.0,0.0,0.06\r\nj_90556,False,0.0,0.0,0.0,0.13\r\nj_90557,False,0.0,0.0,0.0,0.13\r\nj_90558,False,0.0,0.0,0.0,0.31\r\nj_90559,False,0.0,0.0,0.0,0.18\r\nj_90560,False,0.0,0.0,0.0,0.17\r\nj_90561,False,0.0,0.0,0.0,0.07\r\nj_90562,False,0.0,0.0,0.0,0.13\r\nj_90563,False,0.0,0.0,0.0,0.29\r\nj_90564,False,0.0,0.0,0.0,0.4\r\nj_90565,False,0.0,0.0,0.0,0.06\r\nj_90566,False,0.0,0.0,0.0,0.04\r\nj_90567,False,0.0,0.0,0.0,0.04\r\nj_90568,False,0.0,0.0,0.0,0.45\r\nj_90569,False,0.0,0.0,0.0,0.11\r\nj_90570,False,0.0,0.0,0.0,0.03\r\nj_90571,False,0.0,0.0,0.0,0.08\r\nj_90572,False,0.0,0.0,0.0,0.44\r\nj_90573,False,0.0,0.0,0.0,0.05\r\nj_90574,False,0.0,0.0,0.0,0.4\r\nj_90575,False,0.0,0.0,0.0,0.49\r\nj_90576,False,0.0,0.0,0.0,0.44\r\nj_90577,False,0.0,0.0,0.0,0.47\r\nj_90578,False,0.0,0.0,0.0,0.44\r\nj_90579,False,0.0,0.0,0.0,0.37\r\nj_90580,False,0.0,0.0,0.0,0.04\r\nj_90581,False,0.0,0.0,0.0,0.06\r\nj_90582,False,0.0,0.0,0.0,0.06\r\nj_90583,False,0.0,0.0,0.0,0.06\r\nj_90584,False,0.0,0.0,0.0,0.08\r\nj_90585,False,0.0,0.0,0.0,0.42\r\nj_90586,False,0.0,0.0,0.0,0.42\r\nj_90587,False,0.0,0.0,0.0,0.4\r\nj_90588,False,0.0,0.0,0.0,0.05\r\nj_90589,False,0.0,0.0,0.0,0.05\r\nj_90590,False,0.0,0.0,0.0,0.04\r\nj_90591,False,0.0,0.0,0.0,0.27\r\nj_90592,False,0.0,0.0,0.0,0.32\r\nj_90593,False,0.0,0.0,0.0,0.41\r\nj_90594,False,0.0,0.0,0.0,0.33\r\nj_90595,False,0.0,0.0,0.0,0.08\r\nj_90596,False,0.0,0.0,0.0,0.06\r\nj_90597,False,0.0,0.0,0.0,0.08\r\nj_90598,False,0.0,0.0,0.0,0.05\r\nj_90599,False,0.0,0.0,0.0,0.1\r\nj_90600,False,0.0,0.0,0.0,0.06\r\nj_90601,False,0.0,0.0,0.0,0.05\r\nj_90602,False,0.0,0.0,0.0,0.07\r\nj_90603,False,0.0,0.0,0.0,0.06\r\nj_90604,False,0.0,0.0,0.0,0.06\r\nj_90605,False,0.0,0.0,0.0,0.16\r\nj_90606,False,0.0,0.0,0.0,0.17\r\nj_90607,False,0.0,0.0,0.0,0.12\r\nj_90608,False,0.0,0.0,0.0,0.09\r\nj_90609,False,0.0,0.0,0.0,0.03\r\nj_90610,False,0.0,0.0,0.0,0.06\r\nj_90611,False,0.0,0.0,0.0,0.07\r\nj_90612,False,0.0,0.0,0.0,0.06\r\nj_90613,False,0.0,0.0,0.0,0.04\r\nj_90619,False,0.0,0.0,0.0,0.47\r\nj_90620,False,0.0,0.0,0.0,0.53\r\nj_90621,False,0.0,0.0,0.0,0.47\r\nj_90623,False,0.0,0.0,0.0,0.4\r\nj_90624,False,0.0,0.0,0.0,0.29\r\nj_90625,False,0.0,0.0,0.0,0.22\r\nj_90626,False,0.0,0.0,0.0,0.33\r\nj_90627,False,0.0,0.0,0.0,0.39\r\nj_90628,False,0.0,0.0,0.0,0.1\r\nj_90629,False,0.0,0.0,0.0,0.06\r\nj_90630,False,0.0,0.0,0.0,0.07\r\nj_90631,False,0.0,0.0,0.0,0.09\r\nj_90632,False,0.0,0.0,0.0,0.1\r\nj_90633,False,0.0,0.0,0.0,0.08\r\nj_90634,False,0.0,0.0,0.0,0.41\r\nj_90635,False,0.0,0.0,0.0,0.23\r\nj_90636,False,0.0,0.0,0.0,0.11\r\nj_90637,False,0.0,0.0,0.0,0.25\r\nj_90638,False,0.0,0.0,0.0,0.13\r\nj_90639,False,0.0,0.0,0.0,0.09\r\nj_90640,False,0.0,0.0,0.0,0.05\r\nj_90641,False,0.0,0.0,0.0,0.33\r\nj_90642,False,0.0,0.0,0.0,0.22\r\nj_90643,False,0.0,0.0,0.0,0.21\r\nj_90644,False,0.0,0.0,0.0,0.06\r\nj_90645,False,0.0,0.0,0.0,0.02\r\nj_90646,False,0.0,0.0,0.0,0.09\r\nj_90647,False,0.0,0.0,0.0,0.03\r\nj_90648,False,0.0,0.0,0.0,0.06\r\nj_90649,False,0.0,0.0,0.0,0.07\r\nj_90650,False,0.0,0.0,0.0,0.12\r\nj_90651,False,0.0,0.0,0.0,0.07\r\nj_90652,False,0.0,0.0,0.0,0.08\r\nj_90653,False,0.0,0.0,0.0,0.03\r\nj_90654,False,0.0,0.0,0.0,0.24\r\nj_90655,False,0.0,0.0,0.0,0.28\r\nj_90656,False,0.0,0.0,0.0,0.28\r\nj_90657,False,0.0,0.0,0.0,0.03\r\nj_90658,False,0.0,0.0,0.0,0.05\r\nj_90659,False,0.0,0.0,0.0,0.05\r\nj_90662,False,0.0,0.0,0.0,0.04\r\nj_90663,False,0.0,0.0,0.0,0.09\r\nj_90664,False,0.0,0.0,0.0,0.04\r\nj_90665,False,0.0,0.0,0.0,0.45\r\nj_90669,False,0.0,0.0,0.0,0.18\r\nj_90670,False,0.0,0.0,0.0,0.2\r\nj_90671,False,0.0,0.0,0.0,0.21\r\nj_90672,False,0.0,0.0,0.0,0.14\r\nj_90673,False,0.0,0.0,0.0,0.21\r\nj_90674,False,0.0,0.0,0.0,0.24\r\nj_90675,False,0.0,0.0,0.0,0.16\r\nj_90676,False,0.0,0.0,0.0,0.19\r\nj_90677,False,0.0,0.0,0.0,0.24\r\nj_90678,False,0.0,0.0,0.0,0.05\r\nj_90679,False,0.0,0.0,0.0,0.05\r\nj_90680,False,0.0,0.0,0.0,0.17\r\nj_90681,False,0.0,0.0,0.0,0.19\r\nj_90682,False,0.0,0.0,0.0,0.02\r\nj_90683,False,0.0,0.0,0.0,0.18\r\nj_90684,False,0.0,0.0,0.0,0.09\r\nj_90685,False,0.0,0.0,0.0,0.03\r\nj_90686,False,0.0,0.0,0.0,0.13\r\nj_90688,False,0.0,0.0,0.0,0.03\r\nj_90689,False,0.0,0.0,0.0,0.07\r\nj_90690,False,0.0,0.0,0.0,0.06\r\nj_90691,False,0.0,0.0,0.0,0.04\r\nj_90692,False,0.0,0.0,0.0,0.02\r\nj_90693,False,0.0,0.0,0.0,0.02\r\nj_90694,False,0.0,0.0,0.0,0.03\r\nj_90695,False,0.0,0.0,0.0,0.03\r\nj_90696,False,0.0,0.0,0.0,0.04\r\nj_90697,False,0.0,0.0,0.0,0.05\r\nj_90698,False,0.0,0.0,0.0,0.05\r\nj_90699,False,0.0,0.0,0.0,0.06\r\nj_90700,False,0.0,0.0,0.0,0.02\r\nj_90701,False,0.0,0.0,0.0,0.02\r\nj_90702,False,0.0,0.0,0.0,0.02\r\nj_90703,False,0.0,0.0,0.0,0.15\r\nj_90704,False,0.0,0.0,0.0,0.06\r\nj_90705,False,0.0,0.0,0.0,0.05\r\nj_90706,False,0.0,0.0,0.0,0.22\r\nj_90707,False,0.0,0.0,0.0,0.09\r\nj_90708,False,0.0,0.0,0.0,0.04\r\nj_90709,False,0.0,0.0,0.0,0.05\r\nj_90710,False,0.0,0.0,0.0,0.04\r\nj_90724,False,0.0,0.0,0.0,0.21\r\nj_90725,False,0.0,0.0,0.0,0.02\r\nj_90726,False,0.0,0.0,0.0,0.02\r\nj_90727,False,0.0,0.0,0.0,0.01\r\nj_90728,False,0.0,0.0,0.0,0.03\r\nj_90729,False,0.0,0.0,0.0,0.02\r\nj_90730,False,0.0,0.0,0.0,0.05\r\nj_90731,False,0.0,0.0,0.0,0.03\r\nj_90732,False,0.0,0.0,0.0,0.01\r\nj_90733,False,0.0,0.0,0.0,0.09\r\nj_91272,False,0.0,0.0,0.0,0.0\r\nj_91273,False,0.0,0.0,0.0,0.0\r\nj_91274,False,0.0,0.0,0.0,0.0\r\nj_91275,False,0.0,0.0,0.0,0.0\r\nj_91276,False,0.0,0.0,0.0,0.0\r\nj_91277,False,0.0,0.0,0.0,0.0\r\nj_91278,False,0.0,0.0,0.0,0.0\r\nj_91279,False,0.0,0.0,0.0,0.0\r\nj_91292,False,0.0,0.0,0.0,0.0\r\nj_91293,False,0.0,0.0,0.0,0.0\r\nj_91294,False,0.0,0.0,0.0,0.0\r\n"
+      }
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "outfalls.csv",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "outfalls.csv",
+        "bytes": 90,
+        "sha256": "db26470030d9ddfec548b675162e92d88ea8e8609e1530db7dea6af64e5e79b9",
+        "offset": 0,
+        "next_offset": null,
+        "characters": 90,
+        "text": "outfall_id,maximum_flow_m3_s,total_volume_m3\r\nj_90431,0.168,1853.0\r\nj_90550,0.235,2620.0\r\n"
+      }
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "comparison.csv",
+        "offset": 12000,
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "name": "comparison.csv",
+        "bytes": 16067,
+        "sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+        "offset": 12000,
+        "next_offset": null,
+        "characters": 16067,
+        "text": ".0,0.0,False,False,False,False,False\r\nj_90647,0.0,0.0,0.0,False,False,False,False,False\r\nj_90648,0.0,0.0,0.0,False,False,False,False,False\r\nj_90649,0.0,0.0,0.0,False,False,False,False,False\r\nj_90650,0.0,0.0,0.0,False,False,False,False,False\r\nj_90651,0.0,0.0,0.0,False,False,False,False,False\r\nj_90652,0.0,0.0,0.0,False,False,False,False,False\r\nj_90653,0.0,0.0,0.0,False,False,False,False,False\r\nj_90654,0.0,0.0,0.0,False,False,False,False,False\r\nj_90655,0.0,0.0,0.0,False,False,False,False,False\r\nj_90656,0.0,0.0,0.0,False,False,False,False,False\r\nj_90657,0.0,0.0,0.0,False,False,False,False,False\r\nj_90658,0.0,0.0,0.0,False,False,False,False,False\r\nj_90659,0.0,0.0,0.0,False,False,False,False,False\r\nj_90662,0.0,0.0,0.0,False,False,False,False,False\r\nj_90663,0.0,0.0,0.0,False,False,False,False,False\r\nj_90664,0.0,0.0,0.0,False,False,False,False,False\r\nj_90665,0.0,0.0,0.0,False,False,False,False,False\r\nj_90669,0.0,0.0,0.0,False,False,False,False,False\r\nj_90670,0.0,0.0,0.0,False,False,False,False,False\r\nj_90671,0.0,0.0,0.0,False,False,False,False,False\r\nj_90672,0.0,0.0,0.0,False,False,False,False,False\r\nj_90673,0.0,0.0,0.0,False,False,False,False,False\r\nj_90674,0.0,0.0,0.0,False,False,False,False,False\r\nj_90675,0.0,0.0,0.0,False,False,False,False,False\r\nj_90676,0.0,0.0,0.0,False,False,False,False,False\r\nj_90677,0.0,0.0,0.0,False,False,False,False,False\r\nj_90678,0.0,0.0,0.0,False,False,False,False,False\r\nj_90679,0.0,0.0,0.0,False,False,False,False,False\r\nj_90680,0.0,0.0,0.0,False,False,False,False,False\r\nj_90681,0.0,0.0,0.0,False,False,False,False,False\r\nj_90682,0.0,0.0,0.0,False,False,False,False,False\r\nj_90683,0.0,0.0,0.0,False,False,False,False,False\r\nj_90684,0.0,0.0,0.0,False,False,False,False,False\r\nj_90685,0.0,0.0,0.0,False,False,False,False,False\r\nj_90686,0.0,0.0,0.0,False,False,False,False,False\r\nj_90688,0.0,0.0,0.0,False,False,False,False,False\r\nj_90689,0.0,0.0,0.0,False,False,False,False,False\r\nj_90690,0.0,0.0,0.0,False,False,False,False,False\r\nj_90691,0.0,0.0,0.0,False,False,False,False,False\r\nj_90692,0.0,0.0,0.0,False,False,False,False,False\r\nj_90693,0.0,0.0,0.0,False,False,False,False,False\r\nj_90694,0.0,0.0,0.0,False,False,False,False,False\r\nj_90695,0.0,0.0,0.0,False,False,False,False,False\r\nj_90696,0.0,0.0,0.0,False,False,False,False,False\r\nj_90697,0.0,0.0,0.0,False,False,False,False,False\r\nj_90698,0.0,0.0,0.0,False,False,False,False,False\r\nj_90699,0.0,0.0,0.0,False,False,False,False,False\r\nj_90700,0.0,0.0,0.0,False,False,False,False,False\r\nj_90701,0.0,0.0,0.0,False,False,False,False,False\r\nj_90702,0.0,0.0,0.0,False,False,False,False,False\r\nj_90703,0.0,0.0,0.0,False,False,False,False,False\r\nj_90704,0.0,0.0,0.0,False,False,False,False,False\r\nj_90705,0.0,0.0,0.0,False,False,False,False,False\r\nj_90706,0.0,0.0,0.0,False,False,False,False,False\r\nj_90707,0.0,0.0,0.0,False,False,False,False,False\r\nj_90708,0.0,0.0,0.0,False,False,False,False,False\r\nj_90709,0.0,0.0,0.0,False,False,False,False,False\r\nj_90710,0.0,0.0,0.0,False,False,False,False,False\r\nj_90724,0.0,0.0,0.0,False,False,False,False,False\r\nj_90725,0.0,0.0,0.0,False,False,False,False,False\r\nj_90726,0.0,0.0,0.0,False,False,False,False,False\r\nj_90727,0.0,0.0,0.0,False,False,False,False,False\r\nj_90728,0.0,0.0,0.0,False,False,False,False,False\r\nj_90729,0.0,0.0,0.0,False,False,False,False,False\r\nj_90730,0.0,0.0,0.0,False,False,False,False,False\r\nj_90731,0.0,0.0,0.0,False,False,False,False,False\r\nj_90732,0.0,0.0,0.0,False,False,False,False,False\r\nj_90733,0.0,0.0,0.0,False,False,False,False,False\r\nj_91272,0.0,0.0,0.0,False,False,False,False,False\r\nj_91273,0.0,0.0,0.0,False,False,False,False,False\r\nj_91274,0.0,0.0,0.0,False,False,False,False,False\r\nj_91275,0.0,0.0,0.0,False,False,False,False,False\r\nj_91276,0.0,0.0,0.0,False,False,False,False,False\r\nj_91277,0.0,0.0,0.0,False,False,False,False,False\r\nj_91278,0.0,0.0,0.0,False,False,False,False,False\r\nj_91279,0.0,0.0,0.0,False,False,False,False,False\r\nj_91292,0.0,0.0,0.0,False,False,False,False,False\r\nj_91293,0.0,0.0,0.0,False,False,False,False,False\r\nj_91294,0.0,0.0,0.0,False,False,False,False,False\r\n"
+      }
+    },
+    {
+      "tool": "output_query_series",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "node",
+        "object_id": "j_90679",
+        "attribute": "depth",
+        "max_points": 5
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "node",
+        "object_id": "j_90679",
+        "attribute": "depth",
+        "unit": "m",
+        "start_time": "2018-08-24T00:01:00",
+        "end_time": "2018-08-27T00:00:00",
+        "original_point_count": 4320,
+        "returned_point_count": 5,
+        "downsampled": true,
+        "points": [
+          {
+            "time": "2018-08-24T00:01:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-24T18:00:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-25T12:00:00",
+            "value": 3.0346329367603175e-05
+          },
+          {
+            "time": "2018-08-26T06:00:00",
+            "value": 3.034991277672816e-05
+          },
+          {
+            "time": "2018-08-27T00:00:00",
+            "value": 3.034991277672816e-05
+          }
+        ]
+      }
+    },
+    {
+      "tool": "output_query_snapshot",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "node",
+        "object_ids": [
+          "j_90679"
+        ],
+        "attributes": [
+          "depth"
+        ],
+        "target_time": "2018-08-24T01:00:00"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "node",
+        "object_ids": [
+          "j_90679"
+        ],
+        "attributes": [
+          "depth"
+        ],
+        "units": {
+          "depth": "m"
+        },
+        "target_time": "2018-08-24T01:00:00",
+        "report_time": "2018-08-24T01:00:00",
+        "time_match": "at_or_before",
+        "values": {
+          "j_90679": {
+            "depth": 0.0
+          }
+        }
+      }
+    },
+    {
+      "tool": "output_query_series",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "link",
+        "object_id": "c_906791",
+        "attribute": "flow",
+        "max_points": 5
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "link",
+        "object_id": "c_906791",
+        "attribute": "flow",
+        "unit": "cu m/sec",
+        "start_time": "2018-08-24T00:01:00",
+        "end_time": "2018-08-27T00:00:00",
+        "original_point_count": 4320,
+        "returned_point_count": 5,
+        "downsampled": true,
+        "points": [
+          {
+            "time": "2018-08-24T00:01:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-24T18:00:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-25T12:00:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-26T06:00:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-27T00:00:00",
+            "value": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tool": "output_query_snapshot",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "link",
+        "object_ids": [
+          "c_906791"
+        ],
+        "attributes": [
+          "flow"
+        ],
+        "target_time": "2018-08-24T01:00:00"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "link",
+        "object_ids": [
+          "c_906791"
+        ],
+        "attributes": [
+          "flow"
+        ],
+        "units": {
+          "flow": "cu m/sec"
+        },
+        "target_time": "2018-08-24T01:00:00",
+        "report_time": "2018-08-24T01:00:00",
+        "time_match": "at_or_before",
+        "values": {
+          "c_906791": {
+            "flow": 0.0
+          }
+        }
+      }
+    },
+    {
+      "tool": "output_query_series",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "subcatchment",
+        "object_id": "sub_9006F",
+        "attribute": "rainfall",
+        "max_points": 5
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "subcatchment",
+        "object_id": "sub_9006F",
+        "attribute": "rainfall",
+        "unit": "mm/hr",
+        "start_time": "2018-08-24T00:01:00",
+        "end_time": "2018-08-27T00:00:00",
+        "original_point_count": 4320,
+        "returned_point_count": 5,
+        "downsampled": true,
+        "points": [
+          {
+            "time": "2018-08-24T00:01:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-24T18:00:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-25T12:00:00",
+            "value": 0.10000000149011612
+          },
+          {
+            "time": "2018-08-26T06:00:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-27T00:00:00",
+            "value": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "tool": "output_query_snapshot",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "subcatchment",
+        "object_ids": [
+          "sub_9006F"
+        ],
+        "attributes": [
+          "rainfall"
+        ],
+        "target_time": "2018-08-24T01:00:00"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "subcatchment",
+        "object_ids": [
+          "sub_9006F"
+        ],
+        "attributes": [
+          "rainfall"
+        ],
+        "units": {
+          "rainfall": "mm/hr"
+        },
+        "target_time": "2018-08-24T01:00:00",
+        "report_time": "2018-08-24T01:00:00",
+        "time_match": "at_or_before",
+        "values": {
+          "sub_9006F": {
+            "rainfall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "tool": "output_query_series",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "system",
+        "object_id": "system",
+        "attribute": "outfall_flow",
+        "max_points": 5
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "system",
+        "object_id": "system",
+        "attribute": "outfall_flow",
+        "unit": "cu m/sec",
+        "start_time": "2018-08-24T00:01:00",
+        "end_time": "2018-08-27T00:00:00",
+        "original_point_count": 4320,
+        "returned_point_count": 5,
+        "downsampled": true,
+        "points": [
+          {
+            "time": "2018-08-24T00:01:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-24T18:00:00",
+            "value": 0.0
+          },
+          {
+            "time": "2018-08-25T12:00:00",
+            "value": 6.55781477689743e-05
+          },
+          {
+            "time": "2018-08-26T06:00:00",
+            "value": 5.954759762971662e-05
+          },
+          {
+            "time": "2018-08-27T00:00:00",
+            "value": 1.76394809869862e-08
+          }
+        ]
+      }
+    },
+    {
+      "tool": "output_query_snapshot",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "system",
+        "object_ids": [
+          "system"
+        ],
+        "attributes": [
+          "outfall_flow"
+        ],
+        "target_time": "2018-08-24T01:00:00"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "object_type": "system",
+        "object_ids": [
+          "system"
+        ],
+        "attributes": [
+          "outfall_flow"
+        ],
+        "units": {
+          "outfall_flow": "cu m/sec"
+        },
+        "target_time": "2018-08-24T01:00:00",
+        "report_time": "2018-08-24T01:00:00",
+        "time_match": "at_or_before",
+        "values": {
+          "system": {
+            "outfall_flow": 0.0
+          }
+        }
+      }
+    },
+    {
+      "tool": "simulation_create",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "run_id": "2a3e3a711cb741f48696d5ce934641a8",
+        "state": "OPEN",
+        "artifacts": {
+          "report": "2a3e3a711cb741f48696d5ce934641a8/model.rpt",
+          "output": "2a3e3a711cb741f48696d5ce934641a8/model.out"
+        },
+        "manifest": {
+          "engine_version": "5.2.4",
+          "system_units": "SI",
+          "flow_units": "CMS",
+          "start_time": "2018-08-24T00:00:00",
+          "end_time": "2018-08-24T00:05:00",
+          "nodes_count": 311,
+          "nodes_sample": [
+            "j_9006F",
+            "j_90334",
+            "j_90335",
+            "j_90336",
+            "j_90363"
+          ],
+          "links_count": 345,
+          "links_sample": [
+            "c_903641",
+            "c_903642",
+            "c_903651",
+            "c_903671",
+            "c_903672"
+          ],
+          "subcatchments_count": 311,
+          "subcatchments_sample": [
+            "sub_9006F",
+            "sub_90334",
+            "sub_90335",
+            "sub_90336",
+            "sub_90363"
+          ],
+          "outfalls_count": 2,
+          "outfalls_sample": [
+            "j_90431",
+            "j_90550"
+          ],
+          "raingages_count": 3,
+          "raingages_sample": [
+            "R_1",
+            "R_2",
+            "R_3"
+          ]
+        },
+        "hotstart_loaded": false,
+        "resource_uri": "pyswmm://sessions/t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM/status"
+      }
+    },
+    {
+      "tool": "simulation_start",
+      "arguments": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "run_id": "2a3e3a711cb741f48696d5ce934641a8",
+        "state": "STARTED",
+        "artifacts": {
+          "report": "2a3e3a711cb741f48696d5ce934641a8/model.rpt",
+          "output": "2a3e3a711cb741f48696d5ce934641a8/model.out"
+        },
+        "observation": {
+          "current_time": "2018-08-24T00:00:00",
+          "percent_complete": 0.0,
+          "nodes": {},
+          "links": {},
+          "subcatchments": {},
+          "raingages": {},
+          "system": {}
+        }
+      }
+    },
+    {
+      "tool": "simulation_observe",
+      "arguments": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "observe": {
+          "nodes": [
+            {
+              "id": "j_90679",
+              "fields": [
+                "depth",
+                "flooding"
+              ]
+            }
+          ],
+          "links": [
+            {
+              "id": "c_906791",
+              "fields": [
+                "flow"
+              ]
+            }
+          ],
+          "subcatchments": [
+            {
+              "id": "sub_9006F",
+              "fields": [
+                "rainfall",
+                "runoff"
+              ]
+            }
+          ],
+          "raingages": [
+            {
+              "id": "R_1",
+              "fields": [
+                "rainfall",
+                "total_precip"
+              ]
+            }
+          ],
+          "system": [
+            "runoff_stats",
+            "routing_stats"
+          ]
+        }
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "run_id": "2a3e3a711cb741f48696d5ce934641a8",
+        "state": "STARTED",
+        "artifacts": {
+          "report": "2a3e3a711cb741f48696d5ce934641a8/model.rpt",
+          "output": "2a3e3a711cb741f48696d5ce934641a8/model.out"
+        },
+        "observation": {
+          "current_time": "2018-08-24T00:00:00",
+          "percent_complete": 0.0,
+          "nodes": {
+            "j_90679": {
+              "depth": 0.0,
+              "flooding": 0.0
+            }
+          },
+          "links": {
+            "c_906791": {
+              "flow": 0.0
+            }
+          },
+          "subcatchments": {
+            "sub_9006F": {
+              "rainfall": 0.0,
+              "runoff": 0.0
+            }
+          },
+          "raingages": {
+            "R_1": {
+              "rainfall": 0.0,
+              "total_precip": 0.0
+            }
+          },
+          "system": {
+            "runoff_stats": {
+              "drains": 0.0,
+              "evaporation": 0.0,
+              "final_snow_cover": 0.0,
+              "final_storage": 0.0,
+              "infiltration": 0.0,
+              "init_snow_cover": 0.0,
+              "init_storage": 0.0,
+              "routing_error": 1e-06,
+              "rainfall": 0.0,
+              "runoff": 0.0,
+              "runon": 0.0,
+              "snow_removed": 0.0
+            },
+            "routing_stats": {
+              "dry_weather_inflow": 0.0,
+              "evaporation_loss": 0.0,
+              "external_inflow": 0.0,
+              "final_storage": 0.6199406617381168,
+              "flooding": 0.0,
+              "groundwater_inflow": 0.0,
+              "II_inflow": 0.0,
+              "initial_storage": 0.6199406617381168,
+              "outflow": 0.0,
+              "routing_error": 1e-06,
+              "reacted": 0.0,
+              "seepage_loss": 0.0,
+              "wet_weather_inflow": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "tool": "simulation_step",
+      "arguments": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "advance_seconds": 30,
+        "link_target_settings": [
+          {
+            "id": "c_906791",
+            "value": 1
+          }
+        ],
+        "node_generated_inflows": [
+          {
+            "id": "j_90679",
+            "value": 0
+          }
+        ],
+        "outfall_stages": [
+          {
+            "id": "j_90431",
+            "value": 0
+          }
+        ],
+        "raingage_total_precipitation": [
+          {
+            "id": "R_1",
+            "value": 0
+          }
+        ],
+        "observe": {
+          "nodes": [
+            {
+              "id": "j_90679",
+              "fields": [
+                "depth",
+                "flooding"
+              ]
+            }
+          ],
+          "links": [
+            {
+              "id": "c_906791",
+              "fields": [
+                "flow"
+              ]
+            }
+          ],
+          "subcatchments": [
+            {
+              "id": "sub_9006F",
+              "fields": [
+                "rainfall",
+                "runoff"
+              ]
+            }
+          ],
+          "raingages": [
+            {
+              "id": "R_1",
+              "fields": [
+                "rainfall",
+                "total_precip"
+              ]
+            }
+          ],
+          "system": [
+            "runoff_stats",
+            "routing_stats"
+          ]
+        }
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "run_id": "2a3e3a711cb741f48696d5ce934641a8",
+        "state": "RUNNING",
+        "artifacts": {
+          "report": "2a3e3a711cb741f48696d5ce934641a8/model.rpt",
+          "output": "2a3e3a711cb741f48696d5ce934641a8/model.out"
+        },
+        "observation": {
+          "current_time": "2018-08-24T00:00:30",
+          "percent_complete": 0.1,
+          "nodes": {
+            "j_90679": {
+              "depth": 0.0,
+              "flooding": 0.0
+            }
+          },
+          "links": {
+            "c_906791": {
+              "flow": 0.0
+            }
+          },
+          "subcatchments": {
+            "sub_9006F": {
+              "rainfall": 0.0,
+              "runoff": 0.0
+            }
+          },
+          "raingages": {
+            "R_1": {
+              "rainfall": 0.0,
+              "total_precip": 0.0
+            }
+          },
+          "system": {
+            "runoff_stats": {
+              "drains": 0.0,
+              "evaporation": 0.0,
+              "final_snow_cover": 0.0,
+              "final_storage": 0.0,
+              "infiltration": 0.0,
+              "init_snow_cover": 0.0,
+              "init_storage": 0.0,
+              "routing_error": 1e-06,
+              "rainfall": 0.0,
+              "runoff": 0.0,
+              "runon": 0.0,
+              "snow_removed": 0.0
+            },
+            "routing_stats": {
+              "dry_weather_inflow": 0.0,
+              "evaporation_loss": 0.0,
+              "external_inflow": 55.788469277064145,
+              "final_storage": 1757.4783151165752,
+              "flooding": 5.506819779919213,
+              "groundwater_inflow": 0.0,
+              "II_inflow": 0.0,
+              "initial_storage": 0.6199406617381168,
+              "outflow": 0.0,
+              "routing_error": 0.9450956651456122,
+              "reacted": 0.0,
+              "seepage_loss": 0.0,
+              "wet_weather_inflow": 0.0
+            }
+          }
+        },
+        "applied_actions": {
+          "link_target_settings": [
+            {
+              "id": "c_906791",
+              "value": 1.0
+            }
+          ],
+          "node_generated_inflows": [
+            {
+              "id": "j_90679",
+              "value": 0.0
+            }
+          ],
+          "outfall_stages": [
+            {
+              "id": "j_90431",
+              "value": 0.0
+            }
+          ],
+          "raingage_total_precipitation": [
+            {
+              "id": "R_1",
+              "value": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://sessions/t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM/status",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://sessions/t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM/status",
+        "offset": 0,
+        "characters": 254,
+        "text_sha256": "2a562341cb9e9ce7fdfdeed4a0a69639c622f383e533819eb4203b62aed3dd67",
+        "next_offset": null,
+        "text": "{\"artifacts\": {\"output\": \"2a3e3a711cb741f48696d5ce934641a8/model.out\", \"report\": \"2a3e3a711cb741f48696d5ce934641a8/model.rpt\"}, \"run_id\": \"2a3e3a711cb741f48696d5ce934641a8\", \"session_id\": \"t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM\", \"state\": \"RUNNING\"}"
+      }
+    },
+    {
+      "tool": "simulation_save_hotstart",
+      "arguments": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "run_id": "2a3e3a711cb741f48696d5ce934641a8",
+        "state": "RUNNING",
+        "artifacts": {
+          "report": "2a3e3a711cb741f48696d5ce934641a8/model.rpt",
+          "output": "2a3e3a711cb741f48696d5ce934641a8/model.out",
+          "hotstart": "2a3e3a711cb741f48696d5ce934641a8/hotstart.hsf"
+        },
+        "hotstart_saved": true,
+        "size_bytes": 31547
+      }
+    },
+    {
+      "tool": "simulation_stop",
+      "arguments": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "run_id": "2a3e3a711cb741f48696d5ce934641a8",
+        "state": "ENDED",
+        "artifacts": {
+          "report": "2a3e3a711cb741f48696d5ce934641a8/model.rpt",
+          "output": "2a3e3a711cb741f48696d5ce934641a8/model.out",
+          "hotstart": "2a3e3a711cb741f48696d5ce934641a8/hotstart.hsf"
+        }
+      }
+    },
+    {
+      "tool": "simulation_close",
+      "arguments": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "t5MNpgQOKIwFmeE4xDIwcYx8A3mKUQIxhvEH9ThZpmM",
+        "run_id": "2a3e3a711cb741f48696d5ce934641a8",
+        "state": "CLOSED",
+        "artifacts": {
+          "report": "2a3e3a711cb741f48696d5ce934641a8/model.rpt",
+          "output": "2a3e3a711cb741f48696d5ce934641a8/model.out",
+          "hotstart": "2a3e3a711cb741f48696d5ce934641a8/hotstart.hsf"
+        },
+        "runoff_error": 0.0,
+        "flow_routing_error": 0.0,
+        "quality_error": 0.0,
+        "already_closed": false,
+        "forced": false,
+        "previous_state": "ENDED",
+        "failure_reason": null,
+        "finalization_pending": false
+      }
+    },
+    {
+      "tool": "simulation_create",
+      "arguments": {
+        "input_path": "utrecht/inspection.inp",
+        "hotstart_path": "2a3e3a711cb741f48696d5ce934641a8/hotstart.hsf"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "input_path": "utrecht/inspection.inp",
+        "session_id": "2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA",
+        "run_id": "94c0e0c2b9f942b580764c76c3289d82",
+        "state": "OPEN",
+        "artifacts": {
+          "report": "94c0e0c2b9f942b580764c76c3289d82/model.rpt",
+          "output": "94c0e0c2b9f942b580764c76c3289d82/model.out"
+        },
+        "manifest": {
+          "engine_version": "5.2.4",
+          "system_units": "SI",
+          "flow_units": "CMS",
+          "start_time": "2018-08-24T00:00:00",
+          "end_time": "2018-08-24T00:05:00",
+          "nodes_count": 311,
+          "nodes_sample": [
+            "j_9006F",
+            "j_90334",
+            "j_90335",
+            "j_90336",
+            "j_90363"
+          ],
+          "links_count": 345,
+          "links_sample": [
+            "c_903641",
+            "c_903642",
+            "c_903651",
+            "c_903671",
+            "c_903672"
+          ],
+          "subcatchments_count": 311,
+          "subcatchments_sample": [
+            "sub_9006F",
+            "sub_90334",
+            "sub_90335",
+            "sub_90336",
+            "sub_90363"
+          ],
+          "outfalls_count": 2,
+          "outfalls_sample": [
+            "j_90431",
+            "j_90550"
+          ],
+          "raingages_count": 3,
+          "raingages_sample": [
+            "R_1",
+            "R_2",
+            "R_3"
+          ]
+        },
+        "hotstart_loaded": true,
+        "resource_uri": "pyswmm://sessions/2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA/status"
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://sessions/2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA/status",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://sessions/2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA/status",
+        "offset": 0,
+        "characters": 251,
+        "text_sha256": "9fcdb4e51e972e573f2101fc6a94dace4f6e60e214dd8cf93c555dfcdee4b007",
+        "next_offset": null,
+        "text": "{\"artifacts\": {\"output\": \"94c0e0c2b9f942b580764c76c3289d82/model.out\", \"report\": \"94c0e0c2b9f942b580764c76c3289d82/model.rpt\"}, \"run_id\": \"94c0e0c2b9f942b580764c76c3289d82\", \"session_id\": \"2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA\", \"state\": \"OPEN\"}"
+      }
+    },
+    {
+      "tool": "simulation_start",
+      "arguments": {
+        "session_id": "2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA",
+        "run_id": "94c0e0c2b9f942b580764c76c3289d82",
+        "state": "STARTED",
+        "artifacts": {
+          "report": "94c0e0c2b9f942b580764c76c3289d82/model.rpt",
+          "output": "94c0e0c2b9f942b580764c76c3289d82/model.out"
+        },
+        "observation": {
+          "current_time": "2018-08-24T00:00:00",
+          "percent_complete": 0.0,
+          "nodes": {},
+          "links": {},
+          "subcatchments": {},
+          "raingages": {},
+          "system": {}
+        }
+      }
+    },
+    {
+      "tool": "simulation_close",
+      "arguments": {
+        "session_id": "2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "session_id": "2RXev7Aj5HP15JK99rFAqs904HhxAa5FTWuwVDCO8EA",
+        "run_id": "94c0e0c2b9f942b580764c76c3289d82",
+        "state": "CLOSED",
+        "artifacts": {
+          "report": "94c0e0c2b9f942b580764c76c3289d82/model.rpt",
+          "output": "94c0e0c2b9f942b580764c76c3289d82/model.out"
+        },
+        "runoff_error": 0.0,
+        "flow_routing_error": 0.0,
+        "quality_error": 0.0,
+        "already_closed": false,
+        "forced": false,
+        "previous_state": "STARTED",
+        "failure_reason": null,
+        "finalization_pending": false
+      }
+    },
+    {
+      "tool": "simulation_run_start",
+      "arguments": {
+        "input_path": "utrecht/baseline.inp"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "task_id": "4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk",
+        "run_id": "f7a1b35e85384c44baff6888247c3f37",
+        "state": "RUNNING",
+        "created_at": "2026-11-10T23:42:16.855390+00:00",
+        "updated_at": "2026-11-10T23:42:16.855733+00:00",
+        "worker_started": false,
+        "worker_pid": null,
+        "resource_uri": "pyswmm://tasks/4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk/status"
+      }
+    },
+    {
+      "tool": "simulation_task_status",
+      "arguments": {
+        "task_id": "4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "task_id": "4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk",
+        "run_id": "f7a1b35e85384c44baff6888247c3f37",
+        "state": "RUNNING",
+        "created_at": "2026-11-10T23:42:16.855390+00:00",
+        "updated_at": "2026-11-10T23:42:16.955702+00:00",
+        "worker_started": true,
+        "worker_pid": 72
+      }
+    },
+    {
+      "tool": "read_swmm_resource",
+      "arguments": {
+        "uri": "pyswmm://tasks/4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk/status",
+        "limit": 12000
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "uri": "pyswmm://tasks/4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk/status",
+        "offset": 0,
+        "characters": 266,
+        "text_sha256": "b19755deb17ac2d31bff15391fa6118aa92a03d09be531ce12348eb22e8e85b6",
+        "next_offset": null,
+        "text": "{\"created_at\": \"2026-11-10T23:42:16.855390+00:00\", \"run_id\": \"f7a1b35e85384c44baff6888247c3f37\", \"state\": \"RUNNING\", \"task_id\": \"4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk\", \"updated_at\": \"2026-11-10T23:42:16.955702+00:00\", \"worker_pid\": 72, \"worker_started\": true}"
+      }
+    },
+    {
+      "tool": "simulation_task_cancel",
+      "arguments": {
+        "task_id": "4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "task_id": "4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk",
+        "run_id": "f7a1b35e85384c44baff6888247c3f37",
+        "state": "CANCELLED",
+        "created_at": "2026-11-10T23:42:16.855390+00:00",
+        "updated_at": "2026-11-10T23:42:21.904440+00:00",
+        "error": "Simulation task was cancelled",
+        "worker_started": true,
+        "worker_pid": 72,
+        "already_finished": false
+      }
+    },
+    {
+      "tool": "simulation_task_status",
+      "arguments": {
+        "task_id": "4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk"
+      },
+      "status": "completed",
+      "error": null,
+      "result": {
+        "task_id": "4QVa1nupcfUOAbOEWIeKuPjHSL3SIUBnSp1h076o3zk",
+        "run_id": "f7a1b35e85384c44baff6888247c3f37",
+        "state": "CANCELLED",
+        "created_at": "2026-11-10T23:42:16.855390+00:00",
+        "updated_at": "2026-11-10T23:42:21.904440+00:00",
+        "error": "Simulation task was cancelled",
+        "worker_started": true,
+        "worker_pid": 72
+      }
+    },
+    {
+      "tool": "model_inspect",
+      "arguments": {
+        "input_path": "../utrecht/baseline.inp"
+      },
+      "status": "failed",
+      "error": null,
+      "result": "Error executing tool model_inspect: model path is outside its configured root"
+    },
+    {
+      "tool": "swmm_status",
+      "arguments": {},
+      "status": "completed",
+      "error": null,
+      "result": {
+        "capability": "historical-drainage-capacity",
+        "cities": [
+          "odense",
+          "utrecht"
+        ],
+        "upstream_mcp": "foundanotusedname/pyswmm-mcp@a4db37b45d3b30dcfbd80fc0162a8238e727a80f",
+        "native": "EPA SWMM 5.2.4 / PySWMM 2.2.0 / swmm-toolkit 0.17.0",
+        "framework": "official Python MCP SDK 2.3.0, original MCPServer",
+        "scenarios": [
+          "baseline",
+          "capacity75"
+        ],
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "qualification": "Independent person and third city required.",
+        "method": {
+          "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+          "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+          "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+          "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+          "threshold_m3": 10,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "thread_count": 1,
+          "knmi_trace_midpoint_mm": 0.025,
+          "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+          "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+        },
+        "available_sources": [
+          "utrecht"
+        ],
+        "output_attributes": {
+          "node": [
+            "depth",
+            "head",
+            "ponded_volume",
+            "lateral_inflow",
+            "total_inflow",
+            "flooding_loss"
+          ],
+          "link": [
+            "flow",
+            "depth",
+            "velocity",
+            "volume",
+            "capacity"
+          ],
+          "subcatchment": [
+            "rainfall",
+            "snow_depth",
+            "evaporation_loss",
+            "infiltration_loss",
+            "runoff_rate",
+            "groundwater_outflow_rate",
+            "groundwater_elevation",
+            "soil_moisture"
+          ],
+          "system": [
+            "air_temperature",
+            "rainfall",
+            "snow_depth",
+            "evaporation_infiltration_loss",
+            "runoff_flow",
+            "dry_weather_inflow",
+            "groundwater_inflow",
+            "rdii_inflow",
+            "direct_inflow",
+            "total_lateral_inflow",
+            "flood_losses",
+            "outfall_flow",
+            "stored_volume",
+            "evaporation_rate",
+            "potential_evaporation_rate"
+          ]
+        },
+        "vocabulary_note": "Live node observation uses flooding; binary output queries use flooding_loss. Do not mix the vocabularies.",
+        "worker_budget": 2,
+        "worker_budget_note": "Finish binary output/report-resource checks before opening interactive sessions. Each open session occupies one worker; binary inspection/query needs another. Close saved/hotstart sessions after checking them.",
+        "resource_uris": {
+          "models": "pyswmm://models",
+          "runtime_status": "pyswmm://runtime/status"
+        }
+      }
+    },
+    {
+      "tool": "output_query_series",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "node",
+        "object_id": "MISSING",
+        "attribute": "depth",
+        "max_points": 5
+      },
+      "status": "failed",
+      "error": null,
+      "result": "Error executing tool output_query_series: Unknown node id"
+    },
+    {
+      "tool": "swmm_status",
+      "arguments": {},
+      "status": "completed",
+      "error": null,
+      "result": {
+        "capability": "historical-drainage-capacity",
+        "cities": [
+          "odense",
+          "utrecht"
+        ],
+        "upstream_mcp": "foundanotusedname/pyswmm-mcp@a4db37b45d3b30dcfbd80fc0162a8238e727a80f",
+        "native": "EPA SWMM 5.2.4 / PySWMM 2.2.0 / swmm-toolkit 0.17.0",
+        "framework": "official Python MCP SDK 2.3.0, original MCPServer",
+        "scenarios": [
+          "baseline",
+          "capacity75"
+        ],
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "qualification": "Independent person and third city required.",
+        "method": {
+          "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+          "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+          "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+          "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+          "threshold_m3": 10,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "thread_count": 1,
+          "knmi_trace_midpoint_mm": 0.025,
+          "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+          "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+        },
+        "available_sources": [
+          "utrecht"
+        ],
+        "output_attributes": {
+          "node": [
+            "depth",
+            "head",
+            "ponded_volume",
+            "lateral_inflow",
+            "total_inflow",
+            "flooding_loss"
+          ],
+          "link": [
+            "flow",
+            "depth",
+            "velocity",
+            "volume",
+            "capacity"
+          ],
+          "subcatchment": [
+            "rainfall",
+            "snow_depth",
+            "evaporation_loss",
+            "infiltration_loss",
+            "runoff_rate",
+            "groundwater_outflow_rate",
+            "groundwater_elevation",
+            "soil_moisture"
+          ],
+          "system": [
+            "air_temperature",
+            "rainfall",
+            "snow_depth",
+            "evaporation_infiltration_loss",
+            "runoff_flow",
+            "dry_weather_inflow",
+            "groundwater_inflow",
+            "rdii_inflow",
+            "direct_inflow",
+            "total_lateral_inflow",
+            "flood_losses",
+            "outfall_flow",
+            "stored_volume",
+            "evaporation_rate",
+            "potential_evaporation_rate"
+          ]
+        },
+        "vocabulary_note": "Live node observation uses flooding; binary output queries use flooding_loss. Do not mix the vocabularies.",
+        "worker_budget": 2,
+        "worker_budget_note": "Finish binary output/report-resource checks before opening interactive sessions. Each open session occupies one worker; binary inspection/query needs another. Close saved/hotstart sessions after checking them.",
+        "resource_uris": {
+          "models": "pyswmm://models",
+          "runtime_status": "pyswmm://runtime/status"
+        }
+      }
+    },
+    {
+      "tool": "run_cleanup",
+      "arguments": {},
+      "status": "completed",
+      "error": null,
+      "result": {
+        "removed_runs": 0,
+        "removed_bytes": 0,
+        "run_storage_bytes": 213047161
+      }
+    },
+    {
+      "tool": "swmm_status",
+      "arguments": {},
+      "status": "completed",
+      "error": null,
+      "result": {
+        "capability": "historical-drainage-capacity",
+        "cities": [
+          "odense",
+          "utrecht"
+        ],
+        "upstream_mcp": "foundanotusedname/pyswmm-mcp@a4db37b45d3b30dcfbd80fc0162a8238e727a80f",
+        "native": "EPA SWMM 5.2.4 / PySWMM 2.2.0 / swmm-toolkit 0.17.0",
+        "framework": "official Python MCP SDK 2.3.0, original MCPServer",
+        "scenarios": [
+          "baseline",
+          "capacity75"
+        ],
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "qualification": "Independent person and third city required.",
+        "method": {
+          "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+          "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+          "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+          "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+          "threshold_m3": 10,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "thread_count": 1,
+          "knmi_trace_midpoint_mm": 0.025,
+          "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+          "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+        },
+        "available_sources": [
+          "utrecht"
+        ],
+        "output_attributes": {
+          "node": [
+            "depth",
+            "head",
+            "ponded_volume",
+            "lateral_inflow",
+            "total_inflow",
+            "flooding_loss"
+          ],
+          "link": [
+            "flow",
+            "depth",
+            "velocity",
+            "volume",
+            "capacity"
+          ],
+          "subcatchment": [
+            "rainfall",
+            "snow_depth",
+            "evaporation_loss",
+            "infiltration_loss",
+            "runoff_rate",
+            "groundwater_outflow_rate",
+            "groundwater_elevation",
+            "soil_moisture"
+          ],
+          "system": [
+            "air_temperature",
+            "rainfall",
+            "snow_depth",
+            "evaporation_infiltration_loss",
+            "runoff_flow",
+            "dry_weather_inflow",
+            "groundwater_inflow",
+            "rdii_inflow",
+            "direct_inflow",
+            "total_lateral_inflow",
+            "flood_losses",
+            "outfall_flow",
+            "stored_volume",
+            "evaporation_rate",
+            "potential_evaporation_rate"
+          ]
+        },
+        "vocabulary_note": "Live node observation uses flooding; binary output queries use flooding_loss. Do not mix the vocabularies.",
+        "worker_budget": 2,
+        "worker_budget_note": "Finish binary output/report-resource checks before opening interactive sessions. Each open session occupies one worker; binary inspection/query needs another. Close saved/hotstart sessions after checking them.",
+        "resource_uris": {
+          "models": "pyswmm://models",
+          "runtime_status": "pyswmm://runtime/status"
+        }
+      }
+    }
+  ],
+  "other_tool_use": [],
+  "city": "utrecht",
+  "note": "Complete public SWMM tool payloads only. Expected validation failures are retained. No reasoning, private configuration, credentials or system prompts exported. A null host ended_at is preserved; process exit is reviewed separately."
+}

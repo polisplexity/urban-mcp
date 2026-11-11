@@ -1,0 +1,105 @@
+{
+  "schema_version": "0.1.0",
+  "id": "odense-swmm",
+  "tool_id": "pyswmm--pyswmm",
+  "reused_mcp_tool_id": "foundanotusedname--pyswmm-mcp",
+  "status": "admitted",
+  "data_class": "declared_scenario",
+  "source_ids": [
+    "swmm-bellinge",
+    "weather-dmi-climate",
+    "urban-mcp-snapshots"
+  ],
+  "assets": [
+    {
+      "file": "odense-swmm-sources.tar.gz",
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-swmm-20261110/odense-swmm-sources.tar.gz",
+      "sha256": "fee1cf2244abee9d9661507a02db11bf67bf5b6ca1a7143a1998e94f1ad526c6",
+      "bytes": 228152,
+      "source_id": "urban-mcp-snapshots",
+      "license_status": "reviewed_for_declared_use",
+      "license": "CC-BY-4.0 model; CC-BY-4.0",
+      "attribution": "Bellinge dataset authors (Pedersen et al., 2021), DOI 10.11583/DTU.12513428.v2; DMI Open Data. No endorsement of the derived experiment."
+    }
+  ],
+  "input_binding": {
+    "raw": "Exact original published hydraulic model and independently harvested regional hourly rain; source/member/rights/request/hash manifests.",
+    "native": "Unmodified EPA C SWMM 5.2.4 CLI oracle; PySWMM 2.2.0 with swmm-toolkit 0.17.0.",
+    "mcp": "Original Apache-2.0 PySWMM MCP with official Python MCP SDK 2.3.0 MCPServer, 18 reused function families and 9 municipal additions.",
+    "method": {
+      "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+      "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+      "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+      "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+      "threshold_m3": 10,
+      "warmup_hours": 24,
+      "cooldown_hours": 24,
+      "thread_count": 1,
+      "knmi_trace_midpoint_mm": 0.025,
+      "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+      "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+    },
+    "coordinate_reference": "Original model XY coordinates preserved. No EPSG assignment or municipal boundary coverage inferred by this adapter."
+  },
+  "runtime_lock": "adapters/swmm/runtime.lock.txt",
+  "engine_status": "verified",
+  "mcp_binding_status": "verified",
+  "expected_result_status": "verified",
+  "ready_to_run": true,
+  "blockers": [],
+  "mcp_tools": [
+    "compare_swmm_runs",
+    "harvest_swmm_data",
+    "inspect_swmm_case",
+    "model_inspect",
+    "model_list_objects",
+    "output_inspect",
+    "output_query_series",
+    "output_query_snapshot",
+    "prepare_swmm_case",
+    "read_swmm_artifact",
+    "read_swmm_resource",
+    "read_swmm_source",
+    "run_cleanup",
+    "run_summary",
+    "run_swmm_scenario",
+    "simulation_close",
+    "simulation_create",
+    "simulation_observe",
+    "simulation_run",
+    "simulation_run_start",
+    "simulation_save_hotstart",
+    "simulation_start",
+    "simulation_step",
+    "simulation_stop",
+    "simulation_task_cancel",
+    "simulation_task_status",
+    "swmm_status"
+  ],
+  "scope": "Computational reproduction for the declared neighborhood models/forcing and exposed profile only. Native warnings remain; no current infrastructure diagnosis, field calibration, 2D flood extent or forecast admission.",
+  "municipal_case": {
+    "municipality": {
+      "country_code": "DK",
+      "name": "Odense",
+      "geographic_id": "local-case:DK/Odense/odense-swmm",
+      "identifier_note": "Local case identifier; not represented as an official administrative code."
+    },
+    "question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+    "data_access": "public_reproducible",
+    "harvest_manifest": "cases/two-city-swmm/evidence/odense/harvest.json",
+    "native_evidence": "cases/two-city-swmm/evidence/odense/baseline-summary.json",
+    "mcp_evidence": "cases/two-city-swmm/evidence/odense/native-mcp.json",
+    "reproduction_evidence": "cases/two-city-swmm/evidence/agents.json"
+  },
+  "calibration_revalidated": false,
+  "forecast_admitted": false,
+  "product_qualified": false,
+  "admission_meaning": "Scoped computational functions; host task/prose verdicts and independent-person qualification remain separate.",
+  "agent_acceptance": {
+    "codex": "All 27 tools, complete artifacts/pages, native binary query values and JSON claims pass; bounded prose passes manual review.",
+    "hermes": "All 27 function families, full numerical artifacts/pages, binary queries and JSON pass. The full task omits live subcatchment runoff, verified in a separate supplemental test. Broader prose fails facts/length and remains unaccepted.",
+    "evidence": "cases/two-city-swmm/evidence/agents.json",
+    "narrative_evidence": "cases/two-city-swmm/evidence/narrative-review.json",
+    "supplementary_live_observations": "cases/two-city-swmm/evidence/live-observations.json"
+  }
+}

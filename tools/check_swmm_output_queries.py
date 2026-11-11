@@ -9,9 +9,10 @@ from pathlib import Path
 from pyswmm import Output
 from swmm.toolkit.output_metadata import OutputMetadata
 from swmm.toolkit.shared_enum import NodeAttribute,LinkAttribute,SubcatchAttribute,SystemAttribute
+from pyswmm_mcp.output_catalog import OUTPUT_ATTRIBUTES
 
-ATTRS={'node':{'depth':NodeAttribute.INVERT_DEPTH},'link':{'flow':LinkAttribute.FLOW_RATE},
-    'subcatchment':{'rainfall':SubcatchAttribute.RAINFALL},'system':{'outfall_flow':SystemAttribute.OUTFALL_FLOWS}}
+ENUMS={'node':NodeAttribute,'link':LinkAttribute,'subcatchment':SubcatchAttribute,'system':SystemAttribute}
+ATTRS={kind:{key:getattr(ENUMS[kind],value) for key,value in attributes.items()} for kind,attributes in OUTPUT_ATTRIBUTES.items()}
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()

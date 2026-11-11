@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "call 42 output_query_series node/G75F65Y/depth original count",
+      "passed": true
+    },
+    {
+      "name": "call 42 output_query_series node/G75F65Y/depth returned count",
+      "passed": true
+    },
+    {
+      "name": "call 42 output_query_series node/G75F65Y/depth every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 42 output_query_series node/G75F65Y/depth ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 42 output_query_series node/G75F65Y/depth unit",
+      "passed": true
+    },
+    {
+      "name": "call 43 output_query_series link/G75F65Y_G75S541_l1/flow original count",
+      "passed": true
+    },
+    {
+      "name": "call 43 output_query_series link/G75F65Y_G75S541_l1/flow returned count",
+      "passed": true
+    },
+    {
+      "name": "call 43 output_query_series link/G75F65Y_G75S541_l1/flow every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 43 output_query_series link/G75F65Y_G75S541_l1/flow ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 43 output_query_series link/G75F65Y_G75S541_l1/flow unit",
+      "passed": true
+    },
+    {
+      "name": "call 44 output_query_series subcatchment/BellAa_1358_17896_6/rainfall original count",
+      "passed": true
+    },
+    {
+      "name": "call 44 output_query_series subcatchment/BellAa_1358_17896_6/rainfall returned count",
+      "passed": true
+    },
+    {
+      "name": "call 44 output_query_series subcatchment/BellAa_1358_17896_6/rainfall every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 44 output_query_series subcatchment/BellAa_1358_17896_6/rainfall ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 44 output_query_series subcatchment/BellAa_1358_17896_6/rainfall unit",
+      "passed": true
+    },
+    {
+      "name": "call 45 output_query_series system/system/outfall_flow original count",
+      "passed": true
+    },
+    {
+      "name": "call 45 output_query_series system/system/outfall_flow returned count",
+      "passed": true
+    },
+    {
+      "name": "call 45 output_query_series system/system/outfall_flow every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 45 output_query_series system/system/outfall_flow ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 45 output_query_series system/system/outfall_flow unit",
+      "passed": true
+    },
+    {
+      "name": "call 46 output_query_snapshot node/G75F65Y/depth report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 46 output_query_snapshot node/G75F65Y/depth value",
+      "passed": true
+    },
+    {
+      "name": "call 46 output_query_snapshot node/G75F65Y/depth unit",
+      "passed": true
+    },
+    {
+      "name": "call 47 output_query_snapshot link/G75F65Y_G75S541_l1/flow report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 47 output_query_snapshot link/G75F65Y_G75S541_l1/flow value",
+      "passed": true
+    },
+    {
+      "name": "call 47 output_query_snapshot link/G75F65Y_G75S541_l1/flow unit",
+      "passed": true
+    },
+    {
+      "name": "call 48 output_query_snapshot subcatchment/BellAa_1358_17896_6/rainfall report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 48 output_query_snapshot subcatchment/BellAa_1358_17896_6/rainfall value",
+      "passed": true
+    },
+    {
+      "name": "call 48 output_query_snapshot subcatchment/BellAa_1358_17896_6/rainfall unit",
+      "passed": true
+    },
+    {
+      "name": "call 49 output_query_snapshot system/system/outfall_flow report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 49 output_query_snapshot system/system/outfall_flow value",
+      "passed": true
+    },
+    {
+      "name": "call 49 output_query_snapshot system/system/outfall_flow unit",
+      "passed": true
+    },
+    {
+      "name": "all four object types in both query families",
+      "passed": true
+    }
+  ],
+  "check_count": 33,
+  "trace_sha256": "3b58719b97ffdf589918b9162422d1de4f9944ae3f03d42cff8c0af4a05fda7c",
+  "native_output_sha256": "8b01f63778f4b0886c9fb668f3a6386dc634538278c6e540fd1f226b8e7bc5bc",
+  "scope": "Actual host query responses versus separately compiled EPA native binary; no agent reasoning or expected-answer replay."
+}

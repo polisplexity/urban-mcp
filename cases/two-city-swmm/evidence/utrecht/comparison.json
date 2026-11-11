@@ -1,0 +1,35 @@
+{
+  "city": "utrecht",
+  "baseline_run_id": "0d5af778da33486abf6a6dbe263140a6",
+  "scenario_run_id": "df26b055962b435882a827694523a181",
+  "nodes": 311,
+  "threshold_m3": 10,
+  "newly_at_or_above_10m3": 0,
+  "baseline_nodes_at_or_above_10m3": 0,
+  "scenario_nodes_at_or_above_10m3": 0,
+  "baseline_sum_reported_node_flood_volume_m3": 0.0,
+  "scenario_sum_reported_node_flood_volume_m3": 0.0,
+  "delta_sum_reported_node_flood_volume_m3": 0.0,
+  "routing_continuity_error_percent": [
+    -0.134,
+    -0.134
+  ],
+  "target": {
+    "conduit_id": "c_906791",
+    "from_node": "j_90679",
+    "to_node": "j_90678",
+    "source_diameter_m": 0.3,
+    "scenario_diameter_m": 0.22499999999999998,
+    "directly_contributing_area_ha": 0.155,
+    "eligible_conduits": 54,
+    "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+  },
+  "comparison_csv": {
+    "sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+    "bytes": 16067,
+    "rows": 311
+  },
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false
+}

@@ -1,0 +1,40 @@
+{
+  "city": "utrecht",
+  "mode": "live",
+  "files": [
+    {
+      "name": "model.inp",
+      "bytes": 206770,
+      "sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85"
+    },
+    {
+      "name": "publisher-README.md",
+      "bytes": 4701,
+      "sha256": "38fb6627dbb831a4dc7ea828fbdd9e66bf86399ea931ac0bd696e1edaf2ed528"
+    },
+    {
+      "name": "rainfall.zip",
+      "bytes": 1758375,
+      "sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b"
+    },
+    {
+      "name": "requests.json",
+      "bytes": 3575,
+      "sha256": "d2737a0b259373020b9b31e1a0370e57011b486104765d43ae3153095f3dd6ca"
+    },
+    {
+      "name": "rights.json",
+      "bytes": 549,
+      "sha256": "d5778f1c4408e691e67156a40d7792c7b32801c0d2e8401069e6bdf4fe0ce1bb"
+    },
+    {
+      "name": "weather-terms.html",
+      "bytes": 12698,
+      "sha256": "a7fda31b45b7123c5eeb05180cda70cc9ccf6e37f1e73b2c24e9e4af9c378ebb"
+    }
+  ],
+  "model_member": "Tuindorp development - 1 min resolution/networks/Tuindorp development - 1 min resolution.inp",
+  "model_license": "CC-BY-4.0",
+  "weather_license": "CC0-1.0; attribute bron: KNMI and state no endorsement as requested by publisher",
+  "weather_content_sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b"
+}

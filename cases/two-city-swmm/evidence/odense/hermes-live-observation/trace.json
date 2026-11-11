@@ -1,0 +1,693 @@
+{
+  "host": "Hermes",
+  "model": "claude-sonnet-4-6",
+  "started_at": 1794355312.9477048,
+  "ended_at": null,
+  "calls": [
+    {
+      "tool": "swmm_status",
+      "arguments": {},
+      "status": "completed",
+      "result": {
+        "capability": "historical-drainage-capacity",
+        "cities": [
+          "odense",
+          "utrecht"
+        ],
+        "upstream_mcp": "foundanotusedname/pyswmm-mcp@a4db37b45d3b30dcfbd80fc0162a8238e727a80f",
+        "native": "EPA SWMM 5.2.4 / PySWMM 2.2.0 / swmm-toolkit 0.17.0",
+        "framework": "official Python MCP SDK 2.3.0, original MCPServer",
+        "scenarios": [
+          "baseline",
+          "capacity75"
+        ],
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "qualification": "Independent person and third city required.",
+        "method": {
+          "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+          "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+          "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+          "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+          "threshold_m3": 10,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "thread_count": 1,
+          "knmi_trace_midpoint_mm": 0.025,
+          "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+          "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+        },
+        "available_sources": [],
+        "output_attributes": {
+          "node": [
+            "depth",
+            "head",
+            "ponded_volume",
+            "lateral_inflow",
+            "total_inflow",
+            "flooding_loss"
+          ],
+          "link": [
+            "flow",
+            "depth",
+            "velocity",
+            "volume",
+            "capacity"
+          ],
+          "subcatchment": [
+            "rainfall",
+            "snow_depth",
+            "evaporation_loss",
+            "infiltration_loss",
+            "runoff_rate",
+            "groundwater_outflow_rate",
+            "groundwater_elevation",
+            "soil_moisture"
+          ],
+          "system": [
+            "air_temperature",
+            "rainfall",
+            "snow_depth",
+            "evaporation_infiltration_loss",
+            "runoff_flow",
+            "dry_weather_inflow",
+            "groundwater_inflow",
+            "rdii_inflow",
+            "direct_inflow",
+            "total_lateral_inflow",
+            "flood_losses",
+            "outfall_flow",
+            "stored_volume",
+            "evaporation_rate",
+            "potential_evaporation_rate"
+          ]
+        },
+        "vocabulary_note": "Live node observation uses flooding; binary output queries use flooding_loss. Do not mix the vocabularies.",
+        "worker_budget": 2,
+        "worker_budget_note": "Finish binary output/report-resource checks before opening interactive sessions. Each open session occupies one worker; binary inspection/query needs another. Close saved/hotstart sessions after checking them.",
+        "resource_uris": {
+          "models": "pyswmm://models",
+          "runtime_status": "pyswmm://runtime/status"
+        }
+      }
+    },
+    {
+      "tool": "harvest_swmm_data",
+      "arguments": {
+        "city": "odense",
+        "mode": "snapshot"
+      },
+      "status": "completed",
+      "result": {
+        "city": "odense",
+        "mode": "snapshot",
+        "manifest_sha256": "081c3b98c45a344c6b82f36513f71cfe19faf4ff4d285567ee1b1faa7bba98ad",
+        "sources": 6
+      }
+    },
+    {
+      "tool": "prepare_swmm_case",
+      "arguments": {
+        "city": "odense"
+      },
+      "status": "completed",
+      "result": {
+        "city": "odense",
+        "scope": "Bellinge combined-sewer study network, Odense, Denmark; original published model, approximately 1.7 km2 study area.",
+        "source_binding": {
+          "original_model_sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c",
+          "weather_content_sha256": "f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a",
+          "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+          "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+        },
+        "event": {
+          "wet_day": "2018-08-12",
+          "selection_day_lower_bound_mm": 19.7,
+          "event_day_mm": 19.7,
+          "start_local": "2018-08-11T00:00:00",
+          "end_local": "2018-08-14T00:00:00",
+          "timezone": "Europe/Copenhagen",
+          "hourly_intervals": 72,
+          "forcing_total_mm": 31.0,
+          "trace_intervals": 0,
+          "trace_midpoint_mm": 0.025,
+          "trace_total_uncertainty_mm": 0.0,
+          "complete_candidate_days": 30,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "observation_kind": "DMI climateData hourly acc_precip with validity=true and qcStatus retained; regional airport observations, not Bellinge local gauges."
+        },
+        "target": {
+          "conduit_id": "G75F65Y_G75S541_l1",
+          "from_node": "G75F65Y",
+          "to_node": "G75S541",
+          "source_diameter_m": 0.10400000000000001,
+          "scenario_diameter_m": 0.07800000000000001,
+          "directly_contributing_area_ha": 10.568999999999999,
+          "eligible_conduits": 579,
+          "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+        },
+        "transformations": {
+          "edits": [
+            {
+              "section": "OPTIONS",
+              "before": "START_DATE           06/29/2012",
+              "after": "START_DATE 08/11/2018"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "START_TIME           00:01:00",
+              "after": "START_TIME 00:00:00"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "REPORT_START_DATE    06/29/2012",
+              "after": "REPORT_START_DATE 08/11/2018"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "REPORT_START_TIME    04:00:00",
+              "after": "REPORT_START_TIME 00:00:00"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "END_DATE             06/30/2012",
+              "after": "END_DATE 08/14/2018"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "END_TIME             23:59:00",
+              "after": "END_TIME 00:00:00"
+            },
+            {
+              "section": "OPTIONS",
+              "before": "THREADS              2",
+              "after": "THREADS 1"
+            },
+            {
+              "section": "RAINGAGES",
+              "before": "rg5425           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5425     MM   ",
+              "after": "rg5425 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+            },
+            {
+              "section": "RAINGAGES",
+              "before": "rg5427           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5427     MM   ",
+              "after": "rg5427 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+            }
+          ],
+          "zero_area_nan_normalized_ids": [],
+          "inserted_observation_rows": 72,
+          "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+        },
+        "counts": {
+          "subcatchments": 713,
+          "junctions": 995,
+          "outfalls": 9,
+          "storage": 16,
+          "conduits": 1015,
+          "pumps": 6,
+          "orifices": 3,
+          "weirs": 13,
+          "raingages": 2
+        },
+        "allow_ponding": "YES",
+        "flow_units": "CMS",
+        "length_units": "m",
+        "area_units": "ha",
+        "coordinate_reference": "Original model XY coordinates preserved. No EPSG assignment or municipal boundary coverage inferred by this adapter.",
+        "flood_volume_report_resolution_m3": 1,
+        "node_volume_threshold_m3": 10,
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "limits": [
+          "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+          "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+          "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+          "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+          "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+          "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+          "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+          "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+        ],
+        "baseline_input_path": "odense/baseline.inp",
+        "scenario_input_path": "odense/capacity75.inp",
+        "inspection_input_path": "odense/inspection.inp",
+        "quality_sha256": "b3f4ecd56212845c726f2b03edf8c22fe54a9fd7e8497be53e724d3d470e45c2"
+      }
+    },
+    {
+      "tool": "inspect_swmm_case",
+      "arguments": {
+        "city": "odense"
+      },
+      "status": "completed",
+      "result": {
+        "quality": {
+          "city": "odense",
+          "scope": "Bellinge combined-sewer study network, Odense, Denmark; original published model, approximately 1.7 km2 study area.",
+          "source_binding": {
+            "original_model_sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c",
+            "weather_content_sha256": "f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a",
+            "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+            "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+          },
+          "event": {
+            "wet_day": "2018-08-12",
+            "selection_day_lower_bound_mm": 19.7,
+            "event_day_mm": 19.7,
+            "start_local": "2018-08-11T00:00:00",
+            "end_local": "2018-08-14T00:00:00",
+            "timezone": "Europe/Copenhagen",
+            "hourly_intervals": 72,
+            "forcing_total_mm": 31.0,
+            "trace_intervals": 0,
+            "trace_midpoint_mm": 0.025,
+            "trace_total_uncertainty_mm": 0.0,
+            "complete_candidate_days": 30,
+            "warmup_hours": 24,
+            "cooldown_hours": 24,
+            "observation_kind": "DMI climateData hourly acc_precip with validity=true and qcStatus retained; regional airport observations, not Bellinge local gauges."
+          },
+          "target": {
+            "conduit_id": "G75F65Y_G75S541_l1",
+            "from_node": "G75F65Y",
+            "to_node": "G75S541",
+            "source_diameter_m": 0.10400000000000001,
+            "scenario_diameter_m": 0.07800000000000001,
+            "directly_contributing_area_ha": 10.568999999999999,
+            "eligible_conduits": 579,
+            "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+          },
+          "transformations": {
+            "edits": [
+              {
+                "section": "OPTIONS",
+                "before": "START_DATE           06/29/2012",
+                "after": "START_DATE 08/11/2018"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "START_TIME           00:01:00",
+                "after": "START_TIME 00:00:00"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "REPORT_START_DATE    06/29/2012",
+                "after": "REPORT_START_DATE 08/11/2018"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "REPORT_START_TIME    04:00:00",
+                "after": "REPORT_START_TIME 00:00:00"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "END_DATE             06/30/2012",
+                "after": "END_DATE 08/14/2018"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "END_TIME             23:59:00",
+                "after": "END_TIME 00:00:00"
+              },
+              {
+                "section": "OPTIONS",
+                "before": "THREADS              2",
+                "after": "THREADS 1"
+              },
+              {
+                "section": "RAINGAGES",
+                "before": "rg5425           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5425     MM   ",
+                "after": "rg5425 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+              },
+              {
+                "section": "RAINGAGES",
+                "before": "rg5427           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5427     MM   ",
+                "after": "rg5427 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+              }
+            ],
+            "zero_area_nan_normalized_ids": [],
+            "inserted_observation_rows": 72,
+            "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+          },
+          "counts": {
+            "subcatchments": 713,
+            "junctions": 995,
+            "outfalls": 9,
+            "storage": 16,
+            "conduits": 1015,
+            "pumps": 6,
+            "orifices": 3,
+            "weirs": 13,
+            "raingages": 2
+          },
+          "allow_ponding": "YES",
+          "flow_units": "CMS",
+          "length_units": "m",
+          "area_units": "ha",
+          "coordinate_reference": "Original model XY coordinates preserved. No EPSG assignment or municipal boundary coverage inferred by this adapter.",
+          "flood_volume_report_resolution_m3": 1,
+          "node_volume_threshold_m3": 10,
+          "forecast_admitted": false,
+          "calibration_revalidated": false,
+          "product_qualified": false,
+          "limits": [
+            "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+            "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+            "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+            "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+            "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+            "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+            "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+            "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+          ]
+        },
+        "inspection_ids": {
+          "node": "G75F65Y",
+          "link": "G75F65Y_G75S541_l1",
+          "outfall": "F74F360",
+          "subcatchment": "BellAa_1358_17896_6",
+          "raingage": "rg5425"
+        },
+        "input_paths": {
+          "baseline": "odense/baseline.inp",
+          "capacity75": "odense/capacity75.inp",
+          "inspection": "odense/inspection.inp"
+        },
+        "quality_resource_uri": "swmm://cities/odense/quality"
+      }
+    },
+    {
+      "tool": "simulation_create",
+      "arguments": {
+        "input_path": "odense/inspection.inp"
+      },
+      "status": "completed",
+      "result": {
+        "input_path": "odense/inspection.inp",
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "run_id": "232d7f932e5b4168bc0129f99a4523f9",
+        "state": "OPEN",
+        "artifacts": {
+          "report": "232d7f932e5b4168bc0129f99a4523f9/model.rpt",
+          "output": "232d7f932e5b4168bc0129f99a4523f9/model.out"
+        },
+        "manifest": {
+          "engine_version": "5.2.4",
+          "system_units": "SI",
+          "flow_units": "CMS",
+          "start_time": "2018-08-11T00:00:00",
+          "end_time": "2018-08-11T00:05:00",
+          "nodes_count": 1020,
+          "nodes_sample": [
+            "F74F370",
+            "F74F380",
+            "F74F390",
+            "F74F410",
+            "F74F420"
+          ],
+          "links_count": 1044,
+          "links_sample": [
+            "F74F370_F74F360_l1",
+            "F74F380_F74F370_l1",
+            "F74F390_F74F380_l1",
+            "F74F410_F74F390_l1",
+            "F74F420_F74F410_l1"
+          ],
+          "subcatchments_count": 713,
+          "subcatchments_sample": [
+            "BellAa_1358_17896_6",
+            "G72R272_8122",
+            "G72R280_8123",
+            "G72R290_8124",
+            "G72R291_8125"
+          ],
+          "outfalls_count": 9,
+          "outfalls_sample": [
+            "F74F360",
+            "G60K220",
+            "G60U02F",
+            "G70U01F",
+            "G71U02F"
+          ],
+          "raingages_count": 2,
+          "raingages_sample": [
+            "rg5425",
+            "rg5427"
+          ]
+        },
+        "hotstart_loaded": false,
+        "resource_uri": "pyswmm://sessions/J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U/status"
+      }
+    },
+    {
+      "tool": "simulation_start",
+      "arguments": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U"
+      },
+      "status": "completed",
+      "result": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "run_id": "232d7f932e5b4168bc0129f99a4523f9",
+        "state": "STARTED",
+        "artifacts": {
+          "report": "232d7f932e5b4168bc0129f99a4523f9/model.rpt",
+          "output": "232d7f932e5b4168bc0129f99a4523f9/model.out"
+        },
+        "observation": {
+          "current_time": "2018-08-11T00:00:00",
+          "percent_complete": 0.0,
+          "nodes": {},
+          "links": {},
+          "subcatchments": {},
+          "raingages": {},
+          "system": {}
+        }
+      }
+    },
+    {
+      "tool": "simulation_observe",
+      "arguments": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "observe": {
+          "subcatchments": [
+            {
+              "id": "BellAa_1358_17896_6",
+              "fields": [
+                "rainfall",
+                "runoff"
+              ]
+            }
+          ]
+        }
+      },
+      "status": "completed",
+      "result": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "run_id": "232d7f932e5b4168bc0129f99a4523f9",
+        "state": "STARTED",
+        "artifacts": {
+          "report": "232d7f932e5b4168bc0129f99a4523f9/model.rpt",
+          "output": "232d7f932e5b4168bc0129f99a4523f9/model.out"
+        },
+        "observation": {
+          "current_time": "2018-08-11T00:00:00",
+          "percent_complete": 0.0,
+          "nodes": {},
+          "links": {},
+          "subcatchments": {
+            "BellAa_1358_17896_6": {
+              "rainfall": 0.0,
+              "runoff": 0.0
+            }
+          },
+          "raingages": {},
+          "system": {}
+        }
+      }
+    },
+    {
+      "tool": "simulation_step",
+      "arguments": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "advance_seconds": 30,
+        "observe": {
+          "subcatchments": [
+            {
+              "id": "BellAa_1358_17896_6",
+              "fields": [
+                "rainfall",
+                "runoff"
+              ]
+            }
+          ]
+        }
+      },
+      "status": "completed",
+      "result": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "run_id": "232d7f932e5b4168bc0129f99a4523f9",
+        "state": "RUNNING",
+        "artifacts": {
+          "report": "232d7f932e5b4168bc0129f99a4523f9/model.rpt",
+          "output": "232d7f932e5b4168bc0129f99a4523f9/model.out"
+        },
+        "observation": {
+          "current_time": "2018-08-11T00:00:30",
+          "percent_complete": 0.1,
+          "nodes": {},
+          "links": {},
+          "subcatchments": {
+            "BellAa_1358_17896_6": {
+              "rainfall": 0.0,
+              "runoff": 0.0
+            }
+          },
+          "raingages": {},
+          "system": {}
+        },
+        "applied_actions": {
+          "link_target_settings": [],
+          "node_generated_inflows": [],
+          "outfall_stages": [],
+          "raingage_total_precipitation": []
+        }
+      }
+    },
+    {
+      "tool": "simulation_stop",
+      "arguments": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U"
+      },
+      "status": "completed",
+      "result": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "run_id": "232d7f932e5b4168bc0129f99a4523f9",
+        "state": "ENDED",
+        "artifacts": {
+          "report": "232d7f932e5b4168bc0129f99a4523f9/model.rpt",
+          "output": "232d7f932e5b4168bc0129f99a4523f9/model.out"
+        }
+      }
+    },
+    {
+      "tool": "simulation_close",
+      "arguments": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U"
+      },
+      "status": "completed",
+      "result": {
+        "session_id": "J89gAHFnc_xp08odgBHyxz7yzOcPAttil9n25nqKn6U",
+        "run_id": "232d7f932e5b4168bc0129f99a4523f9",
+        "state": "CLOSED",
+        "artifacts": {
+          "report": "232d7f932e5b4168bc0129f99a4523f9/model.rpt",
+          "output": "232d7f932e5b4168bc0129f99a4523f9/model.out"
+        },
+        "runoff_error": 0.0,
+        "flow_routing_error": 0.0,
+        "quality_error": 0.0,
+        "already_closed": false,
+        "forced": false,
+        "previous_state": "ENDED",
+        "failure_reason": null,
+        "finalization_pending": false
+      }
+    },
+    {
+      "tool": "swmm_status",
+      "arguments": {},
+      "status": "completed",
+      "result": {
+        "capability": "historical-drainage-capacity",
+        "cities": [
+          "odense",
+          "utrecht"
+        ],
+        "upstream_mcp": "foundanotusedname/pyswmm-mcp@a4db37b45d3b30dcfbd80fc0162a8238e727a80f",
+        "native": "EPA SWMM 5.2.4 / PySWMM 2.2.0 / swmm-toolkit 0.17.0",
+        "framework": "official Python MCP SDK 2.3.0, original MCPServer",
+        "scenarios": [
+          "baseline",
+          "capacity75"
+        ],
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false,
+        "qualification": "Independent person and third city required.",
+        "method": {
+          "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+          "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+          "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+          "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+          "threshold_m3": 10,
+          "warmup_hours": 24,
+          "cooldown_hours": 24,
+          "thread_count": 1,
+          "knmi_trace_midpoint_mm": 0.025,
+          "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+          "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+        },
+        "available_sources": [
+          "odense"
+        ],
+        "output_attributes": {
+          "node": [
+            "depth",
+            "head",
+            "ponded_volume",
+            "lateral_inflow",
+            "total_inflow",
+            "flooding_loss"
+          ],
+          "link": [
+            "flow",
+            "depth",
+            "velocity",
+            "volume",
+            "capacity"
+          ],
+          "subcatchment": [
+            "rainfall",
+            "snow_depth",
+            "evaporation_loss",
+            "infiltration_loss",
+            "runoff_rate",
+            "groundwater_outflow_rate",
+            "groundwater_elevation",
+            "soil_moisture"
+          ],
+          "system": [
+            "air_temperature",
+            "rainfall",
+            "snow_depth",
+            "evaporation_infiltration_loss",
+            "runoff_flow",
+            "dry_weather_inflow",
+            "groundwater_inflow",
+            "rdii_inflow",
+            "direct_inflow",
+            "total_lateral_inflow",
+            "flood_losses",
+            "outfall_flow",
+            "stored_volume",
+            "evaporation_rate",
+            "potential_evaporation_rate"
+          ]
+        },
+        "vocabulary_note": "Live node observation uses flooding; binary output queries use flooding_loss. Do not mix the vocabularies.",
+        "worker_budget": 2,
+        "worker_budget_note": "Finish binary output/report-resource checks before opening interactive sessions. Each open session occupies one worker; binary inspection/query needs another. Close saved/hotstart sessions after checking them.",
+        "resource_uris": {
+          "models": "pyswmm://models",
+          "runtime_status": "pyswmm://runtime/status"
+        }
+      }
+    }
+  ],
+  "other_tool_use": [],
+  "city": "odense",
+  "note": "Complete public SWMM tool payloads only. Expected validation failures are retained. No reasoning, private configuration, credentials or system prompts exported. A null host ended_at is preserved; process exit is reviewed separately."
+}

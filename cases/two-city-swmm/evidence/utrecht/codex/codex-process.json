@@ -1,0 +1,12 @@
+{
+  "host": "codex",
+  "city": "utrecht",
+  "capability": "swmm",
+  "exit_code": 0,
+  "started_at": "2026-11-10T23:38:47.657652+00:00",
+  "elapsed_seconds": 282.36,
+  "submitted_prompt_sha256": "7169d4b3f558b428db34f35cf19cc9b8468a643cb0970e734c3d843ed46c195a",
+  "task_path": "cases/two-city-swmm/agent-task-v3.md",
+  "task_template_sha256": "e8efaf23b8fb835c20aef53d8f1485e8c0057764acc6e8efbc9ae52f715847e5",
+  "code_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb"
+}

@@ -87,6 +87,28 @@
         "An independent person must harvest/reproduce a distinct third city through native/MCP and both hosts, preserve physical-model quality limitations and submit evidence for accepted public review. Another model or author-operated runner is not independent."
       ],
       "tracking_issue": "https://github.com/polisplexity/urban-mcp/issues/44"
+    },
+    {
+      "id": "historical-drainage-capacity",
+      "tool_id": "pyswmm--pyswmm",
+      "initial_cases": [
+        "odense-swmm",
+        "utrecht-swmm"
+      ],
+      "initial_team": [
+        "ekaropolus: operator of original implementation and both host tests"
+      ],
+      "product_qualified": false,
+      "status": "pending_independent_third_city",
+      "tracking_issue": "https://github.com/polisplexity/urban-mcp/issues/46",
+      "independent_operator": null,
+      "third_city_case": null,
+      "reproduction_pr": null,
+      "review": null,
+      "promotion_destination": null,
+      "blockers": [
+        "An independent person outside the original team must harvest and reproduce a distinct third city through original native/MCP and both hosts, preserve model-quality/input limits, and obtain an accepted public review. Another original-team agent/model instance is not independent."
+      ]
     }
   ],
   "limits": "Declarations require human evidence review. A different agent/model or passing metadata CI is not independent third-party qualification. Existing case-scoped admission and data prereleases do not authorize final-product promotion."

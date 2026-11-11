@@ -1,0 +1,15 @@
+{
+  "city": "odense",
+  "sha256": "f9e108c5b984f8e933b0c622fc4ada54bdc98ac81bfca2108fc2c23ad7b8d16c",
+  "bytes": 276974,
+  "source_model_sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c",
+  "coordinate_nodes": 1020,
+  "drawn_links": 1044,
+  "links_missing_endpoint_coordinates": [],
+  "inputs": {
+    "baseline-nodes.csv": "882c4db636ccbd6c5dfa357a6db338b40b7b7122bac4b9b1e59d6f4c4ee79316",
+    "capacity75-nodes.csv": "8db10fb3559c2f1992849208409638347a081e3936d40abcecd253008856d05c",
+    "quality.json": "b3f4ecd56212845c726f2b03edf8c22fe54a9fd7e8497be53e724d3d470e45c2"
+  },
+  "meaning": "Original model geometry and native rounded overflow rows; no flood polygon, geographic CRS or field validation inferred."
+}

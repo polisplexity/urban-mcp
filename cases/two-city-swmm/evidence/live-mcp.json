@@ -1,0 +1,598 @@
+{
+  "passed": true,
+  "retrieved_at": "2026-11-10T23:42:51.040315+00:00",
+  "cities": {
+    "odense": {
+      "calls": [
+        {
+          "tool": "harvest_swmm_data",
+          "arguments": {
+            "city": "odense",
+            "mode": "live"
+          },
+          "result": {
+            "city": "odense",
+            "mode": "live",
+            "manifest_sha256": "407ea24d1c53f299e069114889e2d59b84213133f635550dc8bad8d7bb804967",
+            "sources": 6
+          }
+        },
+        {
+          "tool": "prepare_swmm_case",
+          "arguments": {
+            "city": "odense"
+          },
+          "result": {
+            "city": "odense",
+            "scope": "Bellinge combined-sewer study network, Odense, Denmark; original published model, approximately 1.7 km2 study area.",
+            "source_binding": {
+              "original_model_sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c",
+              "weather_content_sha256": "f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a",
+              "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+              "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+            },
+            "event": {
+              "wet_day": "2018-08-12",
+              "selection_day_lower_bound_mm": 19.7,
+              "event_day_mm": 19.7,
+              "start_local": "2018-08-11T00:00:00",
+              "end_local": "2018-08-14T00:00:00",
+              "timezone": "Europe/Copenhagen",
+              "hourly_intervals": 72,
+              "forcing_total_mm": 31.0,
+              "trace_intervals": 0,
+              "trace_midpoint_mm": 0.025,
+              "trace_total_uncertainty_mm": 0.0,
+              "complete_candidate_days": 30,
+              "warmup_hours": 24,
+              "cooldown_hours": 24,
+              "observation_kind": "DMI climateData hourly acc_precip with validity=true and qcStatus retained; regional airport observations, not Bellinge local gauges."
+            },
+            "target": {
+              "conduit_id": "G75F65Y_G75S541_l1",
+              "from_node": "G75F65Y",
+              "to_node": "G75S541",
+              "source_diameter_m": 0.10400000000000001,
+              "scenario_diameter_m": 0.07800000000000001,
+              "directly_contributing_area_ha": 10.568999999999999,
+              "eligible_conduits": 579,
+              "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+            },
+            "transformations": {
+              "edits": [
+                {
+                  "section": "OPTIONS",
+                  "before": "START_DATE           06/29/2012",
+                  "after": "START_DATE 08/11/2018"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "START_TIME           00:01:00",
+                  "after": "START_TIME 00:00:00"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "REPORT_START_DATE    06/29/2012",
+                  "after": "REPORT_START_DATE 08/11/2018"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "REPORT_START_TIME    04:00:00",
+                  "after": "REPORT_START_TIME 00:00:00"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "END_DATE             06/30/2012",
+                  "after": "END_DATE 08/14/2018"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "END_TIME             23:59:00",
+                  "after": "END_TIME 00:00:00"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "THREADS              2",
+                  "after": "THREADS 1"
+                },
+                {
+                  "section": "RAINGAGES",
+                  "before": "rg5425           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5425     MM   ",
+                  "after": "rg5425 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+                },
+                {
+                  "section": "RAINGAGES",
+                  "before": "rg5427           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5427     MM   ",
+                  "after": "rg5427 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+                }
+              ],
+              "zero_area_nan_normalized_ids": [],
+              "inserted_observation_rows": 72,
+              "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+            },
+            "counts": {
+              "subcatchments": 713,
+              "junctions": 995,
+              "outfalls": 9,
+              "storage": 16,
+              "conduits": 1015,
+              "pumps": 6,
+              "orifices": 3,
+              "weirs": 13,
+              "raingages": 2
+            },
+            "allow_ponding": "YES",
+            "flow_units": "CMS",
+            "length_units": "m",
+            "area_units": "ha",
+            "coordinate_reference": "Original model XY coordinates preserved. No EPSG assignment or municipal boundary coverage inferred by this adapter.",
+            "flood_volume_report_resolution_m3": 1,
+            "node_volume_threshold_m3": 10,
+            "forecast_admitted": false,
+            "calibration_revalidated": false,
+            "product_qualified": false,
+            "limits": [
+              "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+              "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+              "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+              "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+              "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+              "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+              "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+              "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+            ],
+            "baseline_input_path": "odense/baseline.inp",
+            "scenario_input_path": "odense/capacity75.inp",
+            "inspection_input_path": "odense/inspection.inp",
+            "quality_sha256": "b3f4ecd56212845c726f2b03edf8c22fe54a9fd7e8497be53e724d3d470e45c2"
+          }
+        }
+      ],
+      "manifest": {
+        "city": "odense",
+        "mode": "live",
+        "files": [
+          {
+            "name": "model.inp",
+            "bytes": 1227640,
+            "sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c"
+          },
+          {
+            "name": "publisher-model-record.json",
+            "bytes": 6144,
+            "sha256": "b6358075b90cbfbc6735f1a840462ccd8ea66d7755dfdc8ebc929f08e3bbae29"
+          },
+          {
+            "name": "rainfall.json",
+            "bytes": 328177,
+            "sha256": "e33ea7dceb96e8433ed8f128cb94f29e48946a26e2c0aa672a7003179eed3e95"
+          },
+          {
+            "name": "requests.json",
+            "bytes": 1380,
+            "sha256": "3f1fdc63bd8cb457397e1740fb02b1fc2d0b9e173a998f7ebbfd9b058f1ac48f"
+          },
+          {
+            "name": "rights.json",
+            "bytes": 363,
+            "sha256": "d43722d43653731e5dd695438f1942786275179e402b928c6769d86e1b3fdd77"
+          },
+          {
+            "name": "weather-terms.html",
+            "bytes": 62065,
+            "sha256": "cfe8ecfcca64b78161220d265eaef57c9b7c231bd037b8ed68d44fbf2c5f0036"
+          }
+        ],
+        "model_member": "7_SWMM/BellingeSWMM_v021_nopervious.inp",
+        "model_license": "CC-BY-4.0",
+        "weather_license": "CC-BY-4.0",
+        "weather_content_sha256": "f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a"
+      },
+      "requests": [
+        {
+          "url": "https://ndownloader.figshare.com/files/30592830",
+          "retrieved_at": "2026-11-10T23:42:39.466901+00:00",
+          "http_status": 200,
+          "bytes": 2517391,
+          "sha256": "fe07d487925cef647d1657def9c6316f952c9ae75304d28f2e1798d5dd8a646b",
+          "etag": "\"-rHdhTkAAAAAAwAAAAAAAAA\"",
+          "content_range": null
+        },
+        {
+          "url": "https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000",
+          "retrieved_at": "2026-11-10T23:42:41.384685+00:00",
+          "http_status": 200,
+          "bytes": 328177,
+          "sha256": "e33ea7dceb96e8433ed8f128cb94f29e48946a26e2c0aa672a7003179eed3e95",
+          "etag": null,
+          "content_range": null
+        },
+        {
+          "url": "https://api.figshare.com/v2/articles/12513428/versions/2",
+          "retrieved_at": "2026-11-10T23:42:42.362137+00:00",
+          "http_status": 200,
+          "bytes": 6144,
+          "sha256": "b6358075b90cbfbc6735f1a840462ccd8ea66d7755dfdc8ebc929f08e3bbae29",
+          "etag": null,
+          "content_range": null
+        },
+        {
+          "url": "https://www.dmi.dk/friedata/dokumentation/terms-of-use",
+          "retrieved_at": "2026-11-10T23:42:43.684441+00:00",
+          "http_status": 200,
+          "bytes": 62065,
+          "sha256": "cfe8ecfcca64b78161220d265eaef57c9b7c231bd037b8ed68d44fbf2c5f0036",
+          "etag": null,
+          "content_range": null
+        }
+      ],
+      "prepared_sha256": {
+        "baseline.inp": "a9ff1442307de67c4fccba13070ce708e3eed8ca704c65b682d800cc21f2748e",
+        "capacity75.inp": "9a163efe7095c9450da93ceccce903422335fcb0c9b2a7e8dd4919533a6f115b",
+        "inspection.inp": "0ae770d0a4107605add78e1b38c6dae60399333ca2c76b988c35dd2918b1bee1"
+      },
+      "prepared_matches_locked_input_experiment": true
+    },
+    "utrecht": {
+      "calls": [
+        {
+          "tool": "harvest_swmm_data",
+          "arguments": {
+            "city": "utrecht",
+            "mode": "live"
+          },
+          "result": {
+            "city": "utrecht",
+            "mode": "live",
+            "manifest_sha256": "d2fcd6660bf01c3b865d4d880ac213e35772b7a56240c0c6ec4d639991e280eb",
+            "sources": 6
+          }
+        },
+        {
+          "tool": "prepare_swmm_case",
+          "arguments": {
+            "city": "utrecht"
+          },
+          "result": {
+            "city": "utrecht",
+            "scope": "Tuindorp development division of the published sewer model in Utrecht, Netherlands; transferability division excluded.",
+            "source_binding": {
+              "original_model_sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85",
+              "weather_content_sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b",
+              "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+              "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+            },
+            "event": {
+              "wet_day": "2018-08-25",
+              "selection_day_lower_bound_mm": 20.5,
+              "event_day_mm": 20.575,
+              "start_local": "2018-08-24T00:00:00",
+              "end_local": "2018-08-27T00:00:00",
+              "timezone": "Europe/Amsterdam",
+              "hourly_intervals": 72,
+              "forcing_total_mm": 23.025,
+              "trace_intervals": 9,
+              "trace_midpoint_mm": 0.025,
+              "trace_total_uncertainty_mm": 0.225,
+              "complete_candidate_days": 31,
+              "warmup_hours": 24,
+              "cooldown_hours": 24,
+              "observation_kind": "KNMI hourly RH precipitation amount in 0.1 mm, 2011-2020 station archive; August 2018 selection; trace -1 explicitly imputed at 0.025 mm with ±0.025 mm interval uncertainty."
+            },
+            "target": {
+              "conduit_id": "c_906791",
+              "from_node": "j_90679",
+              "to_node": "j_90678",
+              "source_diameter_m": 0.3,
+              "scenario_diameter_m": 0.22499999999999998,
+              "directly_contributing_area_ha": 0.155,
+              "eligible_conduits": 54,
+              "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+            },
+            "transformations": {
+              "edits": [
+                {
+                  "section": "OPTIONS",
+                  "before": "START_DATE           01/05/2014",
+                  "after": "START_DATE 08/24/2018"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "START_TIME           00:00:00",
+                  "after": "START_TIME 00:00:00"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "REPORT_START_DATE    01/05/2014",
+                  "after": "REPORT_START_DATE 08/24/2018"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "REPORT_START_TIME    00:05:00",
+                  "after": "REPORT_START_TIME 00:00:00"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "END_DATE             01/05/2014",
+                  "after": "END_DATE 08/27/2018"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "END_TIME             08:05:00",
+                  "after": "END_TIME 00:00:00"
+                },
+                {
+                  "section": "OPTIONS",
+                  "before": "THREADS              2",
+                  "after": "THREADS 1"
+                },
+                {
+                  "section": "RAINGAGES",
+                  "before": "R_1              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+                  "after": "R_1 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+                },
+                {
+                  "section": "RAINGAGES",
+                  "before": "R_2              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+                  "after": "R_2 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+                },
+                {
+                  "section": "RAINGAGES",
+                  "before": "R_3              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+                  "after": "R_3 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_90368        R_1              j_90368          0.0000   nan      0.0000   0.4056   0.0000                   ",
+                  "after": "sub_90368        R_1              j_90368          0.0000   0      0.0000   0.4056   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_90374        R_1              j_90374          0.0000   nan      0.0000   0.0000   0.0000                   ",
+                  "after": "sub_90374        R_1              j_90374          0.0000   0      0.0000   0.0000   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91272        R_1              j_91272          0.0000   nan      0.0000   0.1832   0.0000                   ",
+                  "after": "sub_91272        R_1              j_91272          0.0000   0      0.0000   0.1832   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91273        R_1              j_91273          0.0000   nan      0.0000   0.0634   0.0000                   ",
+                  "after": "sub_91273        R_1              j_91273          0.0000   0      0.0000   0.0634   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91274        R_1              j_91274          0.0000   nan      0.0000   0.0200   0.0000                   ",
+                  "after": "sub_91274        R_1              j_91274          0.0000   0      0.0000   0.0200   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91275        R_1              j_91275          0.0000   nan      0.0000   0.0600   0.0000                   ",
+                  "after": "sub_91275        R_1              j_91275          0.0000   0      0.0000   0.0600   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91276        R_1              j_91276          0.0000   nan      0.0000   0.0040   0.0000                   ",
+                  "after": "sub_91276        R_1              j_91276          0.0000   0      0.0000   0.0040   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91277        R_1              j_91277          0.0000   nan      0.0000   0.0674   0.0000                   ",
+                  "after": "sub_91277        R_1              j_91277          0.0000   0      0.0000   0.0674   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91278        R_1              j_91278          0.0000   nan      0.0000   0.0121   0.0000                   ",
+                  "after": "sub_91278        R_1              j_91278          0.0000   0      0.0000   0.0121   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91279        R_1              j_91279          0.0000   nan      0.0000   0.0682   0.0000                   ",
+                  "after": "sub_91279        R_1              j_91279          0.0000   0      0.0000   0.0682   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91292        R_1              j_91292          0.0000   nan      0.0000   0.0000   0.0000                   ",
+                  "after": "sub_91292        R_1              j_91292          0.0000   0      0.0000   0.0000   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91293        R_1              j_91293          0.0000   nan      0.0000   0.0075   0.0000                   ",
+                  "after": "sub_91293        R_1              j_91293          0.0000   0      0.0000   0.0075   0.0000                   "
+                },
+                {
+                  "section": "SUBCATCHMENTS",
+                  "before": "sub_91294        R_1              j_91294          0.0000   nan      0.0000   0.0049   0.0000                   ",
+                  "after": "sub_91294        R_1              j_91294          0.0000   0      0.0000   0.0049   0.0000                   "
+                }
+              ],
+              "zero_area_nan_normalized_ids": [
+                "sub_90368",
+                "sub_90374",
+                "sub_91272",
+                "sub_91273",
+                "sub_91274",
+                "sub_91275",
+                "sub_91276",
+                "sub_91277",
+                "sub_91278",
+                "sub_91279",
+                "sub_91292",
+                "sub_91293",
+                "sub_91294"
+              ],
+              "inserted_observation_rows": 72,
+              "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+            },
+            "counts": {
+              "subcatchments": 311,
+              "junctions": 309,
+              "outfalls": 2,
+              "storage": 0,
+              "conduits": 345,
+              "pumps": 0,
+              "orifices": 0,
+              "weirs": 0,
+              "raingages": 3
+            },
+            "allow_ponding": "NO",
+            "flow_units": "CMS",
+            "length_units": "m",
+            "area_units": "ha",
+            "coordinate_reference": "Original model XY coordinates preserved; no EPSG assignment or full municipal coverage inferred.",
+            "flood_volume_report_resolution_m3": 1,
+            "node_volume_threshold_m3": 10,
+            "forecast_admitted": false,
+            "calibration_revalidated": false,
+            "product_qualified": false,
+            "limits": [
+              "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+              "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+              "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+              "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+              "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+              "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+              "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+              "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+            ],
+            "baseline_input_path": "utrecht/baseline.inp",
+            "scenario_input_path": "utrecht/capacity75.inp",
+            "inspection_input_path": "utrecht/inspection.inp",
+            "quality_sha256": "5ab5f011d1295899d73554cb5c2ca115394ffb6b34cec4bba52477112a081a45"
+          }
+        }
+      ],
+      "manifest": {
+        "city": "utrecht",
+        "mode": "live",
+        "files": [
+          {
+            "name": "model.inp",
+            "bytes": 206770,
+            "sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85"
+          },
+          {
+            "name": "publisher-README.md",
+            "bytes": 4701,
+            "sha256": "38fb6627dbb831a4dc7ea828fbdd9e66bf86399ea931ac0bd696e1edaf2ed528"
+          },
+          {
+            "name": "rainfall.zip",
+            "bytes": 1758375,
+            "sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b"
+          },
+          {
+            "name": "requests.json",
+            "bytes": 3575,
+            "sha256": "19c51f3c06aead51a7cbf28d5bbfe005b203708cbda62b987ea907e5f22ac592"
+          },
+          {
+            "name": "rights.json",
+            "bytes": 549,
+            "sha256": "d5778f1c4408e691e67156a40d7792c7b32801c0d2e8401069e6bdf4fe0ce1bb"
+          },
+          {
+            "name": "weather-terms.html",
+            "bytes": 12698,
+            "sha256": "a7fda31b45b7123c5eeb05180cda70cc9ccf6e37f1e73b2c24e9e4af9c378ebb"
+          }
+        ],
+        "model_member": "Tuindorp development - 1 min resolution/networks/Tuindorp development - 1 min resolution.inp",
+        "model_license": "CC-BY-4.0",
+        "weather_license": "CC0-1.0; attribute bron: KNMI and state no endorsement as requested by publisher",
+        "weather_content_sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b"
+      },
+      "requests": [
+        {
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd",
+          "retrieved_at": "2026-11-10T23:42:45.792169+00:00",
+          "http_status": 206,
+          "bytes": 22,
+          "sha256": "3ab1de9348600170abfbbf84e44b4e8345ffdec4aff430f5179395bd2e9fc6f3",
+          "etag": "\"1722078782.072251-2761626547-3252886696\"",
+          "content_range": "bytes 2761626525-2761626546/2761626547"
+        },
+        {
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd",
+          "retrieved_at": "2026-11-10T23:42:46.448675+00:00",
+          "http_status": 206,
+          "bytes": 20,
+          "sha256": "711c587203a052721e983fb852cfd197f84f3513369c0889e5757653513e5356",
+          "etag": "\"1722078782.072251-2761626547-3252886696\"",
+          "content_range": "bytes 2761626505-2761626524/2761626547"
+        },
+        {
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd",
+          "retrieved_at": "2026-11-10T23:42:48.106688+00:00",
+          "http_status": 206,
+          "bytes": 555072,
+          "sha256": "c239dea5bb9fc3a8d2e8e3ae5e92f8e03f6c65b8a72a527130c463b3c05a9025",
+          "etag": "\"1722078782.072251-2761626547-3252886696\"",
+          "content_range": "bytes 2761071453-2761626524/2761626547"
+        },
+        {
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd",
+          "retrieved_at": "2026-11-10T23:42:48.775831+00:00",
+          "http_status": 206,
+          "bytes": 30,
+          "sha256": "3fcd7e13c610f5e769287788f484fee1f48ab45b6b8f66985683a6e9d3ce42b0",
+          "etag": "\"1722078782.072251-2761626547-3252886696\"",
+          "content_range": "bytes 79-108/2761626547"
+        },
+        {
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd",
+          "retrieved_at": "2026-11-10T23:42:49.403030+00:00",
+          "http_status": 206,
+          "bytes": 92,
+          "sha256": "0f5c6a1d4dede545d547743d16ed885025233d88ed0fc314bf21ba33543d74d5",
+          "etag": "\"1722078782.072251-2761626547-3252886696\"",
+          "content_range": "bytes 109-200/2761626547"
+        },
+        {
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd",
+          "retrieved_at": "2026-11-10T23:42:50.243105+00:00",
+          "http_status": 206,
+          "bytes": 24411,
+          "sha256": "9472807490f426aca77aa4470698141989d4961c36838a08cba1b01708130ef0",
+          "etag": "\"1722078782.072251-2761626547-3252886696\"",
+          "content_range": "bytes 201-24611/2761626547"
+        },
+        {
+          "url": "https://cdn.knmi.nl/knmi/map/page/klimatologie/gegevens/uurgegevens/uurgeg_260_2011-2020.zip",
+          "retrieved_at": "2026-11-10T23:42:49.187638+00:00",
+          "http_status": 200,
+          "bytes": 1758375,
+          "sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b",
+          "etag": "\"dcb7d42f8286216e1ab46be9ca750f42\"",
+          "content_range": null
+        },
+        {
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/03048849-45e1-4b24-b85d-8a9a8ff1b4dc",
+          "retrieved_at": "2026-11-10T23:42:50.004558+00:00",
+          "http_status": 200,
+          "bytes": 4701,
+          "sha256": "38fb6627dbb831a4dc7ea828fbdd9e66bf86399ea931ac0bd696e1edaf2ed528",
+          "etag": "\"599ae8ab7805c9c00081d5d3b335ab80\"",
+          "content_range": null
+        },
+        {
+          "url": "https://www.knmi.nl/copyright",
+          "retrieved_at": "2026-11-10T23:42:50.390557+00:00",
+          "http_status": 200,
+          "bytes": 12698,
+          "sha256": "a7fda31b45b7123c5eeb05180cda70cc9ccf6e37f1e73b2c24e9e4af9c378ebb",
+          "etag": "W/\"a7fda31b45b7123c5eeb05180cda70cc\"",
+          "content_range": null
+        }
+      ],
+      "prepared_sha256": {
+        "baseline.inp": "93d30f93bb5c53b43ffa0692e4f3052dccdac63b3c32bd79c34a62dfa709a79f",
+        "capacity75.inp": "bed03fc1d002ffd068bfa5dd86dc2ae4d76e3bf78b8dd74de38cdef678786cdf",
+        "inspection.inp": "c8a99c9b36f1607453ccefec13fd62ee3c333c9f25a05a0fc4cb9b75f9b107e4"
+      },
+      "prepared_matches_locked_input_experiment": true
+    }
+  },
+  "scope": "Actual live publisher acquisition and preparation via MCP. Different raw DMI envelope/metadata request timestamps do not imply different observations or simulations. No LLM or new field validation is claimed."
+}

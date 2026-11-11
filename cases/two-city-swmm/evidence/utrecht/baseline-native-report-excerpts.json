@@ -1,0 +1,10 @@
+{
+  "original_report_sha256": "c79466acff8ac8ec470e1e328cffdf52144d639ea800a1e540444ea063d376b7",
+  "decoding": "CP1252, original bytes retained in local run",
+  "blocks": {
+    "Runoff Quantity Continuity": "     hectare-m            mm\n  **************************     ---------       -------\n  Total Precipitation ......         0.614        23.025\n  Evaporation Loss .........         0.051         1.906\n  Infiltration Loss ........         0.025         0.933\n  Surface Runoff ...........         0.447        16.767\n  Final Storage ............         0.092         3.442\n  Continuity Error (%) .....        -0.098\n  \n  \n  **************************        Volume        Volume\n  ",
+    "Flow Routing Continuity": "        hectare-m      10^6 ltr\n  **************************     ---------     ---------\n  Dry Weather Inflow .......         0.000         0.000\n  Wet Weather Inflow .......         0.447         4.472\n  Groundwater Inflow .......         0.000         0.000\n  RDII Inflow ..............         0.000         0.000\n  External Inflow ..........         0.000         0.000\n  External Outflow .........         0.447         4.473\n  Flooding Loss ............         0.000         0.000\n  Evaporation Loss .........         0.000         0.000\n  Exfiltration Loss ........         0.000         0.000\n  Initial Stored Volume ....         0.000         0.000\n  Final Stored Volume ......         0.000         0.004\n  Continuity Error (%) .....        -0.134\n  \n  \n  *************************\n  ",
+    "Node Flooding Summary": "\n  *********************\n  \n  No nodes were flooded.\n  \n  \n  ***********************\n  ",
+    "Node Surcharge Summary": "\n  **********************\n  \n  No nodes were surcharged.\n  \n  \n  *********************\n  "
+  }
+}

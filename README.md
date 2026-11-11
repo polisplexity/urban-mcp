@@ -18,6 +18,14 @@ The ordered integration is [RFC #1](https://github.com/polisplexity/urban-mcp/pu
 
 ## Reproduce and contribute
 
+The [Odense/Utrecht SWMM drainage-capacity case](cases/two-city-swmm/README.md)
+is proposed in [PR #45](https://github.com/polisplexity/urban-mcp/pull/45), on
+`feat/two-city-swmm`. It joins published hydraulic models with observed DMI/KNMI
+rain, reuses the original PySWMM MCP, and documents native/Docker/protocol and
+two-host evidence separately. It is not merged into `main` or qualified as a
+field forecast/final product. [Issue #46](https://github.com/polisplexity/urban-mcp/issues/46)
+requests an independent person's third-city reproduction.
+
 The [Bologna/Ingolstadt SUMO experiment](cases/two-city-sumo/README.md) is available on `main` after [PR #43](https://github.com/polisplexity/urban-mcp/pull/43). It harvests licensed historical city models, reuses original SUMO MCP functions, and compares a 30 km/h corridor works scenario with full trip/censor/teleport accounting through Docker, MCP, Codex and Hermes. See [source review](cases/two-city-sumo/upstream-audit.md), [findings](cases/two-city-sumo/findings.md) and the master for actual evidence and limits. The [integration receipt](docs/integration/2026-11-10-sumo-main.json) records source/evidence equality and CI. Native model problems and host prose verdicts remain explicit; no current forecast or final-product qualification is implied.
 
 The [two-city historical vegetation case merged in PR #42](https://github.com/polisplexity/urban-mcp/pull/42) is available on `main`. Its [guide](cases/two-city-vegetation/README.md) reuses the audited original GDAL MCP and adds eight municipal operations. Native/stdio suites pass 110/131 checks across 21 tools, 12 synthetic regressions and 69 original-server tests. All four recorded Codex/Hermes observations reproduce artifacts, full CSV pages and answer JSON. Codex Helsinki's brief passes; Codex Amsterdam exceeds the length limit; both broader Hermes briefs fail factual review. [Findings](cases/two-city-vegetation/findings.md), [verdicts](cases/two-city-vegetation/evidence/narrative-review.json), [integration receipt](docs/integration/2026-11-10-vegetation-main.json).

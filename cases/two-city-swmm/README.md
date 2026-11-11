@@ -7,9 +7,10 @@ The conduit is selected from original catchment areas, before examining results.
 This is a reproducible computational experiment on historical neighborhood
 models. It does not establish a current blockage or a calibrated flood forecast.
 
-This capability is under development on `feat/two-city-swmm`; it has not been
-merged into `main`. See the [recipe](recipe.json), [source snapshot lock](snapshot.lock.json)
-and [blind agent task](agent-task.md). Evidence and host verdicts are recorded
+This capability is proposed in [PR #45](https://github.com/polisplexity/urban-mcp/pull/45)
+on `feat/two-city-swmm`; it has not been merged into `main`. See the
+[recipe](recipe.json), [source snapshot lock](snapshot.lock.json) and final
+[blind agent task v3](agent-task-v3.md). Evidence and host verdicts are recorded
 separately in the [master](../../MASTER_TEST_RECORD.md). Independent-person,
 third-city acceptance remains required before final-product qualification.
 
@@ -42,7 +43,9 @@ Tuindorp has 13 `NaN` impervious percentages on **zero-area** subcatchments;
 these become zero with every original row/ID retained and each edit recorded.
 The unmodified publisher file remains in the snapshot. A non-finite parameter
 on a positive-area catchment is refused. Original timeseries remain present;
-the observed series is added and bound to each source gauge. The time window,
+the observed series is added and bound to each source gauge. Prepared INP files
+normalize line endings to LF; original source bytes remain hash-preserved.
+The time window,
 hourly volume forcing and one-thread setting are explicit transformations.
 
 ## Docker reproduction
@@ -97,7 +100,9 @@ We reuse its 18 function families and seven resource families using the
 **official Python MCP SDK 2.3.0 `MCPServer`**. Two metadata responses replace
 unbounded ID arrays with counts/samples; full IDs remain queryable. Nine
 additions provide sources, binding, comparison and paging. A reviewed Linux
-parent-death patch supplements the original Windows watchdog; the pristine
+process-pidfd watcher supplements the original Windows watchdog. Native balance
+metadata are captured after end/before close, and the internal state getter
+uses its existing teardown lock. All changes are marked; the pristine
 checkout remains `/opt/pyswmm-mcp`, the marked runtime copy is separate.
 The original EPA solver source is compiled without mathematical changes.
 Runtime pins are in [the lock](../../adapters/swmm/runtime.lock.txt) and
@@ -146,11 +151,43 @@ python tools/run_agent_check.py hermes --capability swmm --city odense --label s
 # Repeat with utrecht, a distinct label/profile and a fresh mount.
 ```
 
-Use only the [public blind task](agent-task.md). Read complete source/comparison
+Use only the [public blind task v3](agent-task-v3.md). Read complete source/comparison
 CSV pages; each page is ≤12,000 characters and identifies original byte hashes.
+The schema/status advertise binary output fields: live `flooding` is binary
+`flooding_loss`. Copy returned resource URIs exactly. Query run/output metadata
+before opening live sessions: each open session holds one of two worker slots.
+Read a session's returned status URI before closing it. Expected domain errors
+return an actionable SDK ToolError message.
 Review successful operations, exact numeric claims and prose separately.
 An exit code, a corrected answer or a different model operated by the original
-team does not supply independent third-person qualification.
+team does not supply independent third-person qualification. The failed initial
+batches [v1](evidence/initial-observations) and [v2](evidence/initial-observations-v2)
+remain unchanged. [Issue #46](https://github.com/polisplexity/urban-mcp/issues/46)
+tracks the independent person's third-city contribution.
+
+The observed full Hermes runs omit live subcatchment `runoff` and fail prose
+review despite correct numeric artifacts. The separate
+[live-observation task](agent-live-observation-task.md) and
+[two-city supplement](evidence/live-observations.json) demonstrate live rainfall
+and runoff against direct original PySWMM. They do not replace the original
+full-task verdicts. Reproduce supplements in fresh profiles/mounts using
+`tools/run_agent_check.py` with `--task cases/two-city-swmm/agent-live-observation-task.md`,
+then review with `tools/check_swmm_live_observations.py --help`.
+
+For additional live-acquisition evidence through actual MCP, use another fresh
+mount and the public checker (no LLM account required):
+
+```sh
+export URBAN_MCP_SWMM_WORKDIR="$PWD/.urban-mcp/my-swmm-live-mcp"
+mkdir -p "$URBAN_MCP_SWMM_WORKDIR"
+docker compose --profile swmm run --rm -v "$PWD/tools/check_swmm_live.py:/live.py:ro" --entrypoint python swmm-harvest /live.py
+```
+
+The [live receipt](evidence/live-mcp.json) is acquisition/preparation evidence,
+not an additional simulation or agent observation. Frozen and reharvested
+prepared model bytes agree; original request/envelope timestamps remain distinct.
+See [operation coverage](functionality.md), [code audit](upstream-audit.md),
+[rights](LICENSE.md) and [development failures](evidence/development-failures.json).
 
 ## What another municipality must supply
 

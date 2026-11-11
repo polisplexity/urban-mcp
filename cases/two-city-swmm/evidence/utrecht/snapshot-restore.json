@@ -1,0 +1,14 @@
+{
+  "requests": [
+    {
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-swmm-20261110/utrecht-swmm-sources.tar.gz",
+      "retrieved_at": "2026-11-10T23:38:46.179098+00:00",
+      "http_status": 200,
+      "bytes": 1774724,
+      "sha256": "641fa07bbfcd0cc22444cf8c3662ea1cb982995a382e8c24980ac9b245c6c697",
+      "etag": "\"0x8DF3F7C37D8E9BD\"",
+      "content_range": null
+    }
+  ],
+  "archive_sha256": "641fa07bbfcd0cc22444cf8c3662ea1cb982995a382e8c24980ac9b245c6c697"
+}

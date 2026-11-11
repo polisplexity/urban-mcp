@@ -1,0 +1,120 @@
+{
+  "city": "odense",
+  "scope": "Bellinge combined-sewer study network, Odense, Denmark; original published model, approximately 1.7 km2 study area.",
+  "source_binding": {
+    "original_model_sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c",
+    "weather_content_sha256": "f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a",
+    "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+    "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+  },
+  "event": {
+    "wet_day": "2018-08-12",
+    "selection_day_lower_bound_mm": 19.7,
+    "event_day_mm": 19.7,
+    "start_local": "2018-08-11T00:00:00",
+    "end_local": "2018-08-14T00:00:00",
+    "timezone": "Europe/Copenhagen",
+    "hourly_intervals": 72,
+    "forcing_total_mm": 31.0,
+    "trace_intervals": 0,
+    "trace_midpoint_mm": 0.025,
+    "trace_total_uncertainty_mm": 0.0,
+    "complete_candidate_days": 30,
+    "warmup_hours": 24,
+    "cooldown_hours": 24,
+    "observation_kind": "DMI climateData hourly acc_precip with validity=true and qcStatus retained; regional airport observations, not Bellinge local gauges."
+  },
+  "target": {
+    "conduit_id": "G75F65Y_G75S541_l1",
+    "from_node": "G75F65Y",
+    "to_node": "G75S541",
+    "source_diameter_m": 0.10400000000000001,
+    "scenario_diameter_m": 0.07800000000000001,
+    "directly_contributing_area_ha": 10.568999999999999,
+    "eligible_conduits": 579,
+    "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+  },
+  "transformations": {
+    "edits": [
+      {
+        "section": "OPTIONS",
+        "before": "START_DATE           06/29/2012",
+        "after": "START_DATE 08/11/2018"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "START_TIME           00:01:00",
+        "after": "START_TIME 00:00:00"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "REPORT_START_DATE    06/29/2012",
+        "after": "REPORT_START_DATE 08/11/2018"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "REPORT_START_TIME    04:00:00",
+        "after": "REPORT_START_TIME 00:00:00"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "END_DATE             06/30/2012",
+        "after": "END_DATE 08/14/2018"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "END_TIME             23:59:00",
+        "after": "END_TIME 00:00:00"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "THREADS              2",
+        "after": "THREADS 1"
+      },
+      {
+        "section": "RAINGAGES",
+        "before": "rg5425           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5425     MM   ",
+        "after": "rg5425 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+      },
+      {
+        "section": "RAINGAGES",
+        "before": "rg5427           VOLUME    00:01    1        FILE       \"rg_bellinge_Jun2010_Aug2021.dat\"        rg5427     MM   ",
+        "after": "rg5427 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+      }
+    ],
+    "zero_area_nan_normalized_ids": [],
+    "inserted_observation_rows": 72,
+    "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+  },
+  "counts": {
+    "subcatchments": 713,
+    "junctions": 995,
+    "outfalls": 9,
+    "storage": 16,
+    "conduits": 1015,
+    "pumps": 6,
+    "orifices": 3,
+    "weirs": 13,
+    "raingages": 2
+  },
+  "allow_ponding": "YES",
+  "flow_units": "CMS",
+  "length_units": "m",
+  "area_units": "ha",
+  "coordinate_reference": "Original model XY coordinates preserved. No EPSG assignment or municipal boundary coverage inferred by this adapter.",
+  "flood_volume_report_resolution_m3": 1,
+  "node_volume_threshold_m3": 10,
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false,
+  "limits": [
+    "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+    "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+    "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+    "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+    "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+    "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+    "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+    "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+  ]
+}

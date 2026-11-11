@@ -245,7 +245,7 @@
       "source_commit_observed": "97cb36ff7820ba23ed6c09d9a38551aa619ea88a",
       "research_date": "2026-11-10",
       "data_profile": "swmm",
-      "data_note": "Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.",
+      "data_note": "Case-scoped original native/API/MCP evidence for Odense and Utrecht; source physics and model-quality limitations retained.",
       "scope_proposal": "base",
       "reuse": "Control programático de SWMM y lectura por paso.",
       "original_interface": "API Python y motor asociado.",
@@ -253,14 +253,110 @@
       "implementation_proposal": "PY: API nativa evita un puente C construido por nosotros.",
       "critical_limit": "No duplicar simulación ni elegirlo además de otro wrapper sin necesidad.",
       "acceptance_case_proposal": "Mismo INP, versión y lluvia producen mismas series directas y por MCP.",
-      "license_detection": "NOASSERTION",
-      "license_review": "license_review_required",
+      "license_detection": "BSD-2-Clause",
+      "license_review": "open_source_license_detected",
       "execution_role": "candidate",
-      "input_binding_status": "not_implemented",
-      "engine_runtime_status": "not_verified",
-      "reference_case_status": "not_verified",
-      "real_city_status": "needs_input_review",
-      "ready_to_run": false
+      "input_binding_status": "verified",
+      "engine_runtime_status": "verified",
+      "reference_case_status": "verified",
+      "real_city_status": "verified_for_declared_scope",
+      "ready_to_run": true,
+      "admitted_scope": [
+        {
+          "case_id": "odense-swmm",
+          "operations": [
+            "compare_swmm_runs",
+            "harvest_swmm_data",
+            "inspect_swmm_case",
+            "model_inspect",
+            "model_list_objects",
+            "output_inspect",
+            "output_query_series",
+            "output_query_snapshot",
+            "prepare_swmm_case",
+            "read_swmm_artifact",
+            "read_swmm_resource",
+            "read_swmm_source",
+            "run_cleanup",
+            "run_summary",
+            "run_swmm_scenario",
+            "simulation_close",
+            "simulation_create",
+            "simulation_observe",
+            "simulation_run",
+            "simulation_run_start",
+            "simulation_save_hotstart",
+            "simulation_start",
+            "simulation_step",
+            "simulation_stop",
+            "simulation_task_cancel",
+            "simulation_task_status",
+            "swmm_status"
+          ],
+          "evidence": {
+            "municipality": {
+              "country_code": "DK",
+              "name": "Odense",
+              "geographic_id": "local-case:DK/Odense/odense-swmm",
+              "identifier_note": "Local case identifier; not represented as an official administrative code."
+            },
+            "question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "cases/two-city-swmm/evidence/odense/harvest.json",
+            "native_evidence": "cases/two-city-swmm/evidence/odense/baseline-summary.json",
+            "mcp_evidence": "cases/two-city-swmm/evidence/odense/native-mcp.json",
+            "reproduction_evidence": "cases/two-city-swmm/evidence/agents.json"
+          },
+          "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
+        },
+        {
+          "case_id": "utrecht-swmm",
+          "operations": [
+            "compare_swmm_runs",
+            "harvest_swmm_data",
+            "inspect_swmm_case",
+            "model_inspect",
+            "model_list_objects",
+            "output_inspect",
+            "output_query_series",
+            "output_query_snapshot",
+            "prepare_swmm_case",
+            "read_swmm_artifact",
+            "read_swmm_resource",
+            "read_swmm_source",
+            "run_cleanup",
+            "run_summary",
+            "run_swmm_scenario",
+            "simulation_close",
+            "simulation_create",
+            "simulation_observe",
+            "simulation_run",
+            "simulation_run_start",
+            "simulation_save_hotstart",
+            "simulation_start",
+            "simulation_step",
+            "simulation_stop",
+            "simulation_task_cancel",
+            "simulation_task_status",
+            "swmm_status"
+          ],
+          "evidence": {
+            "municipality": {
+              "country_code": "NL",
+              "name": "Utrecht",
+              "geographic_id": "local-case:NL/Utrecht/utrecht-swmm",
+              "identifier_note": "Local case identifier; not represented as an official administrative code."
+            },
+            "question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+            "data_access": "public_reproducible",
+            "harvest_manifest": "cases/two-city-swmm/evidence/utrecht/harvest.json",
+            "native_evidence": "cases/two-city-swmm/evidence/utrecht/baseline-summary.json",
+            "mcp_evidence": "cases/two-city-swmm/evidence/utrecht/native-mcp.json",
+            "reproduction_evidence": "cases/two-city-swmm/evidence/agents.json"
+          },
+          "limit": "Only the declared operations/parameters/municipal reference case, not every upstream function or city"
+        }
+      ]
     },
     {
       "id": "usepa--epanet2.2",
@@ -297,7 +393,7 @@
       "source_commit_observed": "07c371f8a0d477da1d9d4e7c0d75719664f62fec",
       "research_date": "2026-11-10",
       "data_profile": "swmm",
-      "data_note": "Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.",
+      "data_note": "Original C 5.2.4 CLI is the independent native oracle in the Odense/Utrecht cases; no standalone general MCP/city admission.",
       "scope_proposal": "base",
       "reuse": "Motor SWMM y formatos de entrada/salida.",
       "original_interface": "Toolkit o ejecutable nativo.",
@@ -307,12 +403,17 @@
       "acceptance_case_proposal": "Caso oficial con reporte y errores contrastados.",
       "license_detection": null,
       "license_review": "license_review_required",
-      "execution_role": "candidate",
-      "input_binding_status": "not_implemented",
-      "engine_runtime_status": "not_verified",
-      "reference_case_status": "not_verified",
-      "real_city_status": "needs_input_review",
-      "ready_to_run": false
+      "execution_role": "dependency",
+      "input_binding_status": "verified",
+      "engine_runtime_status": "verified",
+      "reference_case_status": "verified",
+      "real_city_status": "verified_for_declared_scope",
+      "ready_to_run": false,
+      "reused_by_cases": [
+        "odense-swmm",
+        "utrecht-swmm"
+      ],
+      "evidence": "cases/two-city-swmm/evidence/reproduction.json"
     },
     {
       "id": "usepa--wntr",
@@ -6213,6 +6314,37 @@
       "reference_case_status": "not_verified",
       "real_city_status": "needs_input_review",
       "ready_to_run": false
+    },
+    {
+      "id": "foundanotusedname--pyswmm-mcp",
+      "repository": "foundanotusedname/pyswmm-mcp",
+      "url": "https://github.com/foundanotusedname/pyswmm-mcp",
+      "category": "Water, drainage and flooding",
+      "kind": "mcp_adapter",
+      "source_commit_observed": "a4db37b45d3b30dcfbd80fc0162a8238e727a80f",
+      "research_date": "2026-11-10",
+      "data_profile": "swmm",
+      "data_note": "Reused dependency in the bounded Odense/Utrecht computational cases; no standalone/general municipal admission.",
+      "scope_proposal": "reused_dependency",
+      "reuse": "Original official Python MCP SDK 2 server; process-isolated PySWMM batch/live/output/task tools and resource families.",
+      "original_interface": "Original official Python MCP SDK 2 server; process-isolated PySWMM batch/live/output/task tools and resource families.",
+      "proposed_delta": "Reuse 18 function families with bounded manifests; add municipal source/recipe/comparison bindings and marked worker metadata/lifecycle fixes.",
+      "implementation_proposal": "Preserve original runtime and public native APIs; apply only reviewed interface/metadata/lifecycle changes.",
+      "critical_limit": "Historical neighborhood models and regional hourly rain do not establish current field calibration, 2D inundation or final-product qualification.",
+      "acceptance_case_proposal": "Full native report/CSV/binary equality, all exposed tools/resources/prompt, isolated hosts and separate prose review.",
+      "license_detection": "Apache-2.0",
+      "license_review": "open_source_license_detected",
+      "execution_role": "dependency",
+      "input_binding_status": "verified",
+      "engine_runtime_status": "verified",
+      "reference_case_status": "verified",
+      "real_city_status": "verified_for_declared_scope",
+      "ready_to_run": false,
+      "reused_by_cases": [
+        "odense-swmm",
+        "utrecht-swmm"
+      ],
+      "evidence": "cases/two-city-swmm/evidence/reproduction.json"
     }
   ]
 }

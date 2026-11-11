@@ -1,0 +1,60 @@
+{
+  "failures": [
+    {
+      "stage": "acquisition",
+      "observation": "Tuindorp archive exceeds 2.7 GB; a bounded full-download probe stopped at its acquisition budget.",
+      "resolution": "Use ETag-consistent ZIP ranges, selected member SHA-256 and ZIP CRC. No bulk simulations or learned weights are used."
+    },
+    {
+      "stage": "weather",
+      "observation": "DMI raw hourly precipitation query contained missing intervals.",
+      "resolution": "Reject missing-to-zero fill; use independently harvested quality-controlled climateData acc_precip with explicit intervals/validity. The selected downloaded window admits 30 August candidate days in Odense and 31 in Utrecht."
+    },
+    {
+      "stage": "native sandbox",
+      "observation": "Initial native-library search path was wrong; global LD_LIBRARY_PATH then shadowed the toolkit output ABI (undefined SMO_getDateTime).",
+      "resolution": "Original CLI gets its own install RPATH; no global native-library override."
+    },
+    {
+      "stage": "native report parsing",
+      "observation": "Original EPA report contains a single-byte superscript-three heading; UTF-8 decoding failed.",
+      "resolution": "Preserve raw bytes and use declared CP1252 report decoding."
+    },
+    {
+      "stage": "prototype client harness",
+      "observation": "MCP SDK 1-style property names and timedelta timeout were incompatible with the pinned SDK 2 client.",
+      "resolution": "Use actual SDK 2 snake_case fields and numeric timeout; final protocol tests execute the client."
+    },
+    {
+      "stage": "unmodified original MCP",
+      "observation": "Original Linux parent-force-kill test failed: 21 passed, one failed.",
+      "resolution": "Marked process-lifetime portability patch; original source remains pristine."
+    },
+    {
+      "stage": "first host batch",
+      "source_commit": "7d90339096fc23582b77b5246b24b8cb9c006a0a",
+      "observation": "Initial PDEATHSIG approach passed short tests but long AnyIO sessions died when a creator thread retired. Original batch metadata also queried balances after close and returned misleading zeros.",
+      "resolution": "Process pidfd watcher outside the worker GIL; public PySWMM after-end capture before close. Fresh v2 workspaces and task; v1 raw observations retained."
+    },
+    {
+      "stage": "CI",
+      "source_commit": "2be991b4692a4d51ee3747efb2e50ad964d0d128",
+      "run_url": "https://github.com/polisplexity/urban-mcp/actions/runs/42922124599",
+      "observation": "Odense original idle-reaping test observed CLOSED before worker accounting finished (active_workers 1 instead of 0); Utrecht passed.",
+      "resolution": "Synchronize the internal state getter with the existing teardown lock; deterministic regression and unchanged original suite pass. Failed CI attempt retained."
+    },
+    {
+      "stage": "second host batch",
+      "source_commit": "2be991b4692a4d51ee3747efb2e50ad964d0d128",
+      "observation": "Hermes Odense never completed output_query_snapshot: it repeatedly used live flooding as a binary attribute. Generic errors hid that problem and a full two-worker budget.",
+      "resolution": "Publish original binary vocabulary in schema enums/status; safe domain ToolError messages, exact lifecycle URIs and explicit slot/lifecycle ordering. Preserve all v2 observations; use fresh v3 workspaces."
+    },
+    {
+      "stage": "final prose",
+      "observation": "All final operations, complete numeric artifacts/pages, binary queries and JSON claims pass. Both Hermes prose briefs still fail factual/length review.",
+      "resolution": "Preserve raw answers and answer-hash-bound negative verdicts. Do not treat correct JSON or low continuity error as accepted municipal advice."
+    }
+  ],
+  "private_raw_logs_preserved": ".urban-mcp; excluded from Git because full host logs can contain reasoning/configuration. Public exports contain only reviewed tool calls, answers and process receipts.",
+  "product_qualified": false
+}

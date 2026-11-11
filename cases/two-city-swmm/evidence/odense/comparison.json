@@ -1,0 +1,35 @@
+{
+  "city": "odense",
+  "baseline_run_id": "1a18afba581f4d1d8018d37fc4cd2e22",
+  "scenario_run_id": "96148a8632a44c599f4d6d572e2b6982",
+  "nodes": 1020,
+  "threshold_m3": 10,
+  "newly_at_or_above_10m3": 0,
+  "baseline_nodes_at_or_above_10m3": 2,
+  "scenario_nodes_at_or_above_10m3": 2,
+  "baseline_sum_reported_node_flood_volume_m3": 245.0,
+  "scenario_sum_reported_node_flood_volume_m3": 245.0,
+  "delta_sum_reported_node_flood_volume_m3": 0.0,
+  "routing_continuity_error_percent": [
+    0.322,
+    0.323
+  ],
+  "target": {
+    "conduit_id": "G75F65Y_G75S541_l1",
+    "from_node": "G75F65Y",
+    "to_node": "G75S541",
+    "source_diameter_m": 0.10400000000000001,
+    "scenario_diameter_m": 0.07800000000000001,
+    "directly_contributing_area_ha": 10.568999999999999,
+    "eligible_conduits": 579,
+    "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+  },
+  "comparison_csv": {
+    "sha256": "f510fd2292163995a67bcabee19e948d340fa58884e08d253bdd3ca96d6b7b06",
+    "bytes": 52207,
+    "rows": 1020
+  },
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false
+}

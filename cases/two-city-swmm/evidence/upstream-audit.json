@@ -1,0 +1,255 @@
+{
+  "scope": "Isolated original AST methods with explicit stubs and original generic CLI functions. These are not full alternative MCP-server executions. Selected PySWMM MCP original suite/native/city/host results are recorded separately.",
+  "archives": {
+    "klab": {
+      "url": "https://codeload.github.com/kLabUM/SWMM-MCP-PUB/tar.gz/0c299b24196d1c8c32e92e8d4437958f237e4a88",
+      "sha256": "12c81335d1b4b3c104bd6642abe8e72889d778938ef46c8eba120fb72d85c024",
+      "bytes": 112385,
+      "selected_files": [
+        "LICENSE",
+        "server.py",
+        "utils/ModelManager.py"
+      ]
+    },
+    "workflow": {
+      "url": "https://codeload.github.com/Zhonghao1995/agentic-swmm-workflow/tar.gz/a3bf4f23469cf4252955901176c86b9c94578963",
+      "sha256": "ea87680174c39102978a3367e2bd79c03b912d3a1872568b1e166eefba0e2756",
+      "bytes": 17241817,
+      "selected_files": [
+        "LICENSE",
+        "mcp/swmm-runner/server.js",
+        "skills/swmm-runner/scripts/swmm_runner.py"
+      ]
+    }
+  },
+  "files": {
+    "klab/LICENSE": {
+      "sha256": "50976631a5aaefd935b71b005986ae381a7a4017336b71b0d7a16deedbcc54e4",
+      "bytes": 1084
+    },
+    "klab/server.py": {
+      "sha256": "20a1b2ac9212e8ba6dcca279e81bf1350437925137d9028f3812bda3f4bdbac1",
+      "bytes": 17913
+    },
+    "klab/utils/ModelManager.py": {
+      "sha256": "54b23f95fb1bd2a7abfa666f3e67ca97e2a42f868616916122fc109b1eb801e3",
+      "bytes": 6439
+    },
+    "workflow/LICENSE": {
+      "sha256": "6003e6e095923fc2b7cfb3624758ff416faadf27a53b8c6ab45dfa3c29c02f70",
+      "bytes": 1088
+    },
+    "workflow/mcp/swmm-runner/server.js": {
+      "sha256": "d383b5842a6476814f9037a583954c4a14da6d001e8bd33f264d0e0c14a32deb",
+      "bytes": 6205
+    },
+    "workflow/skills/swmm-runner/scripts/swmm_runner.py": {
+      "sha256": "c3308aaf0596f1302bceef23001e0d90e34b5fc017d30a6cb3200e68ede0f7cb",
+      "bytes": 20714
+    }
+  },
+  "checks": [
+    {
+      "name": "original duplicate passes unquoted/unvalidated operands to shell",
+      "passed": true,
+      "observed": {
+        "intercepted_command": "cp /synthetic/models/with spaces.inp /synthetic/models/../outside; literal.inp",
+        "shell_executed": false
+      }
+    },
+    {
+      "name": "original duplicate reports new model despite failed copy",
+      "passed": true,
+      "observed": {
+        "copy_exit_code_stub": 1,
+        "returned": "../outside; literal"
+      }
+    },
+    {
+      "name": "original run skips native execution when any output exists",
+      "passed": true,
+      "observed": {
+        "returned": "Model already ran.",
+        "native_invocations": 0,
+        "partial_output_stub": true
+      }
+    },
+    {
+      "name": "original storage creation fails against tested parser property",
+      "passed": true,
+      "observed": {
+        "parser_version": "0.4.74",
+        "error": "property 'STORAGE' of 'SwmmInput' object has no setter",
+        "full_original_locked_stack_tested": false
+      }
+    },
+    {
+      "name": "original cuft storage argument is treated as native metric volume",
+      "passed": true,
+      "observed": {
+        "argument_cuft": 100,
+        "source_depth_m": 2,
+        "actual_area_m2": 50.0,
+        "converted_area_m2": 1.4158423296,
+        "result": "Successfully added Storage(name='J', elevation=0.0, depth_max=2.0, depth_init=0.0, kind='FUNCTIONAL', data=[50.0, 0, 0], depth_surcharge=0.0, frac_evaporation=0.0, suction_head=nan, hydraulic_conductivity=nan, moisture_deficit_init=nan)",
+        "native_solver_executed": false
+      }
+    },
+    {
+      "name": "original workflow compare returns continuity only",
+      "passed": true,
+      "observed": {
+        "keys": [
+          "a",
+          "a_err",
+          "b",
+          "b_err"
+        ],
+        "different_flooding_rows_compared": false,
+        "a_err": {
+          "runoff_quantity": null,
+          "flow_routing": 0.1
+        },
+        "b_err": {
+          "runoff_quantity": null,
+          "flow_routing": 0.1
+        }
+      }
+    },
+    {
+      "name": "original workflow detects native report error despite exit ambiguity",
+      "passed": true,
+      "observed": {
+        "detected": [
+          "ERROR 209: undefined object"
+        ]
+      }
+    }
+  ],
+  "selected_upstream_files": {
+    "src/pyswmm_mcp/server.py": "ba23987cc48ada29c72784c2f86fa9b94de824348ac046d9c2954f61f468757b",
+    "src/pyswmm_mcp/tasks.py": "782aace1e865d24207adc2579be2b5d0a8daffce0fefa59f09e6c37cb2ec49f0",
+    "src/pyswmm_mcp/sessions.py": "c34beae0b1930695bdc75966a9231e9aa1f7e565004c9d8298002082cdad3e24",
+    "src/pyswmm_mcp/__init__.py": "a529960de7d90a623c1faa2f5d688753f098bdd3d45a650537378c57f43e4aec",
+    "src/pyswmm_mcp/errors.py": "d56d6f73c38fe8606b3b7faba88c15865d1c558bfcdf0c163c6da155188a3803",
+    "src/pyswmm_mcp/output_catalog.py": "dda415ef24cfbb03d222ee27819b4eab889758e321a6aaa32405ab217f20e699",
+    "src/pyswmm_mcp/storage.py": "8affe6629aeea3215fda3fc24d30ed651445b1fe52db3da51070acf74823194a",
+    "src/pyswmm_mcp/worker.py": "2d28bbe9b8998311064d184c6d8c21b9b18e0504f95bfaf913cc391c5ed0154b",
+    "src/pyswmm_mcp/runtime.py": "064796c4b911cdd59505ed8ef78e9508b7a67963cbd42db15f017a5d2f58e8b0",
+    "src/pyswmm_mcp/schemas.py": "3d89e0baf921d4c7ae099f72cb868539480d4fe4a5f9e05c3168b1766447533a",
+    "src/pyswmm_mcp/services.py": "8630cc855b0eacc5d190727266fb625d2ce5cb8060fe7ba40c77a38d628b1d49"
+  },
+  "linux_watchdog_patch": {
+    "original_worker_sha256": "2d28bbe9b8998311064d184c6d8c21b9b18e0504f95bfaf913cc391c5ed0154b",
+    "patched_worker_sha256": "5d26555a0550d240d314d4bb11fdcd7697e92bf58c0860275197ae8f8aab83db",
+    "changes": [
+      "Linux process pidfd watcher with race check, outside the native worker GIL; creator-thread exit is harmless. Container init reaps orphan watchers/workers. Original Windows implementation retained.",
+      "Original PySWMM context/iterator/after_end callback captures native balances after end and before close. No solver mathematics, model parameters, time steps or routing are changed.",
+      "Internal SessionManager.state getter acquires the existing record lock, preventing observation of CLOSED during unfinished worker/accounting teardown. Public status/close already use this lock."
+    ],
+    "original_sessions_sha256": "c34beae0b1930695bdc75966a9231e9aa1f7e565004c9d8298002082cdad3e24",
+    "patched_sessions_sha256": "f4f6ebe10d80342d5bcaf05a39da3d7c1fba9943acb1089b699c9047c9837292",
+    "original_batch_sha256": "b3a28a3a6148162e99f3e7f04a1eba038e7c36a219934647b3012115b25bf715"
+  },
+  "runtime": [
+    {
+      "package": "mcp",
+      "version": "2.3.0",
+      "license_expression": null,
+      "license_files": [
+        {
+          "path": "mcp-2.3.0.dist-info/licenses/LICENSE",
+          "sha256": "5e13dbbc1d120fc2a03cecde7c91424ae2d7de11b63d58ded2f4431e261ee50d"
+        }
+      ]
+    },
+    {
+      "package": "mcp-types",
+      "version": "2.3.0",
+      "license_expression": null,
+      "license_files": [
+        {
+          "path": "mcp_types-2.3.0.dist-info/licenses/LICENSE",
+          "sha256": "5e13dbbc1d120fc2a03cecde7c91424ae2d7de11b63d58ded2f4431e261ee50d"
+        }
+      ]
+    },
+    {
+      "package": "pyswmm",
+      "version": "2.2.0",
+      "license_expression": "BSD-2-Clause",
+      "license_files": []
+    },
+    {
+      "package": "swmm-toolkit",
+      "version": "0.17.0",
+      "license_expression": "CC0-1.0 AND (MIT OR Apache-2.0)",
+      "license_files": [
+        {
+          "path": "LICENSE",
+          "sha256": "dadc02439364fbb190308ea38dea3f5f71ebf5383c54262f2f803bc88240f15c"
+        },
+        {
+          "path": "swmm_toolkit-0.17.0.dist-info/licenses/AUTHORS",
+          "sha256": "ff14053ac79550032548979c11dcd50cefee4d62d3f358b41d8b6124c6ae3758"
+        },
+        {
+          "path": "swmm_toolkit-0.17.0.dist-info/licenses/LICENSE.md",
+          "sha256": "882185ef4aea93d73075ef4c0cfbc2762df57dbce7fcb525be1c623bbbad62cd"
+        },
+        {
+          "path": "swmm_toolkit-0.17.0.dist-info/licenses/extern/openmp.LICENSE",
+          "sha256": "500505dae93ee67fe4495162861bda21722913e014b32073a42203ce3d1af363"
+        }
+      ]
+    },
+    {
+      "package": "swmm-api",
+      "version": "0.4.74",
+      "license_expression": null,
+      "license_files": [
+        {
+          "path": "swmm_api-0.4.74.dist-info/LICENSE",
+          "sha256": "19bee9f2a2df3a4c9e22bdc4c1676277a866b3f1a4fbfe7c2e0d94bb543d075d"
+        }
+      ]
+    },
+    {
+      "package": "pyswmm-mcp",
+      "version": "0.1.0a3",
+      "license_expression": null,
+      "license_files": [
+        {
+          "path": "pyswmm_mcp-0.1.0a3.dist-info/licenses/LICENSE",
+          "sha256": "3dcad4e5dde36bcfc4128edc050a99d6d2446253b956e2cd3eb4512d4d59f163"
+        }
+      ]
+    },
+    {
+      "package": "pydantic",
+      "version": "2.14.3",
+      "license_expression": "MIT",
+      "license_files": [
+        {
+          "path": "pydantic-2.14.3.dist-info/licenses/LICENSE",
+          "sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3"
+        }
+      ]
+    }
+  ],
+  "native_cli": {
+    "path": "/opt/native/bin/runswmm",
+    "sha256": "42d818b7b9e2dad31003bc6ff2762d09a954feb8212c2b2853540cc6ae9036cd",
+    "library_sha256": "26698c1139f0a05e7e5cfa235c47629c2c634db1d24ed48925960d0be75fa33d",
+    "source_version": "5.2.4",
+    "source_commit": "07c371f8a0d477da1d9d4e7c0d75719664f62fec",
+    "source_files": {
+      "src/solver/gage.c": "3f96712207b58e923ad6ac8f198a0278d3d4efda6f0a670f8e536e0f078738a8",
+      "src/solver/statsrpt.c": "115ef15f54b318b79526ab149304a7562f0f1cc859c0279a68327d64b90d7ebb",
+      "src/solver/report.c": "0237998af9a36a6e397ca7a3c07d333a0c78188a668bcf82ed4b0d000c0f3efb",
+      "src/solver/swmm5.c": "fac69d9d4438ae17043889b683747305229740caed2e60e2ff9f0a1186ee06ac"
+    }
+  },
+  "passed": true,
+  "check_count": 7
+}

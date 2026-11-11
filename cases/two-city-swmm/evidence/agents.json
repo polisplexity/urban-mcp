@@ -1,0 +1,424 @@
+{
+  "record_kind": "Actual independent host processes operated by the original team; not independent-person third-city qualification.",
+  "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+  "task_path": "cases/two-city-swmm/agent-task-v3.md",
+  "runs": [
+    {
+      "city": "odense",
+      "host": "codex",
+      "model": "Host-selected; no model override or inference from the parent chat.",
+      "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+      "task_path": "cases/two-city-swmm/agent-task-v3.md",
+      "task_sha256": "e8efaf23b8fb835c20aef53d8f1485e8c0057764acc6e8efbc9ae52f715847e5",
+      "tool_calls": 66,
+      "successful_tool_families": 27,
+      "numeric_artifact_page_checks_passed": true,
+      "structured_claims_passed": true,
+      "native_binary_query_checks": 33,
+      "session_status_read_before_close": true,
+      "prose_words": 157,
+      "prose_length_passed": true,
+      "failed_or_recovered_calls": [
+        {
+          "index": 60,
+          "tool": "model_inspect",
+          "arguments": {
+            "input_path": "/etc/passwd"
+          }
+        },
+        {
+          "index": 62,
+          "tool": "output_query_series",
+          "arguments": {
+            "output_path": "bbbccaaa74524a2485acca835ac45959/model.out",
+            "object_type": "node",
+            "object_id": "MISSING",
+            "attribute": "depth",
+            "max_points": 5
+          }
+        }
+      ],
+      "review": "cases/two-city-swmm/evidence/odense/codex/review.json",
+      "files": {
+        "codex-answer.md": {
+          "sha256": "86679c579bd6c4409eaea77bfc9030e08b8d35ad11fbcaf571b3bc946527a9db",
+          "bytes": 2200
+        },
+        "codex-process.json": {
+          "sha256": "0333f0e4367cd77188f012477633ba272c75b950984ec1ed814118eb03f3933a",
+          "bytes": 484
+        },
+        "query-oracle.json": {
+          "sha256": "76a71ffc1d124f837a798b841cac548d10479a5a21f411ec9872f128a8dde25c",
+          "bytes": 4366
+        },
+        "review.json": {
+          "sha256": "3a9a9f7e6c15cb20eb3714cec20608b85cc10a7b416e7d3e6d96ff15cddfa106",
+          "bytes": 14360
+        },
+        "trace.json": {
+          "sha256": "dc085b6b90ab380252cd78338ab8c67c677c5ed7c60bef98aba1403dd0b099cd",
+          "bytes": 283295
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 470.61,
+      "fine_grained_task_coverage": {
+        "required_live_fields_exercised": true,
+        "missing_live_fields": {},
+        "note": "Separate from 27 function-family/numeric/page acceptance. Supplementary observations may test omissions but do not rewrite this run."
+      }
+    },
+    {
+      "city": "odense",
+      "host": "hermes",
+      "model": "claude-sonnet-4-6",
+      "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+      "task_path": "cases/two-city-swmm/agent-task-v3.md",
+      "task_sha256": "e8efaf23b8fb835c20aef53d8f1485e8c0057764acc6e8efbc9ae52f715847e5",
+      "tool_calls": 72,
+      "successful_tool_families": 27,
+      "numeric_artifact_page_checks_passed": true,
+      "structured_claims_passed": true,
+      "native_binary_query_checks": 33,
+      "session_status_read_before_close": true,
+      "prose_words": 223,
+      "prose_length_passed": false,
+      "failed_or_recovered_calls": [
+        {
+          "index": 26,
+          "tool": "read_swmm_artifact",
+          "arguments": {
+            "run_id": "ef50c4907f1047f9b4c8f2ce292fac5c",
+            "name": "comparison.csv",
+            "limit": 12000,
+            "offset": 0
+          }
+        },
+        {
+          "index": 27,
+          "tool": "read_swmm_artifact",
+          "arguments": {
+            "run_id": "ef50c4907f1047f9b4c8f2ce292fac5c",
+            "name": "comparison.json",
+            "limit": 12000,
+            "offset": 0
+          }
+        },
+        {
+          "index": 52,
+          "tool": "simulation_observe",
+          "arguments": {
+            "observe": {
+              "nodes": [
+                {
+                  "id": "G75F65Y",
+                  "fields": [
+                    "depth",
+                    "flooding"
+                  ]
+                },
+                {
+                  "id": "F74F360",
+                  "fields": [
+                    "depth",
+                    "flooding"
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "G75F65Y_G75S541_l1",
+                  "fields": [
+                    "flow"
+                  ]
+                }
+              ],
+              "subcatchments": [
+                {
+                  "id": "BellAa_1358_17896_6",
+                  "fields": [
+                    "rainfall",
+                    "runoff_rate"
+                  ]
+                }
+              ],
+              "raingages": [
+                {
+                  "id": "rg5425",
+                  "fields": [
+                    "rainfall",
+                    "total_precip"
+                  ]
+                }
+              ],
+              "system": [
+                "runoff_stats",
+                "routing_stats"
+              ]
+            },
+            "session_id": "10aRQr4sVYbBcpz0cVwdtdK9UL0Yns9l3XubUcHds4A"
+          }
+        },
+        {
+          "index": 66,
+          "tool": "model_inspect",
+          "arguments": {
+            "input_path": "/etc/passwd"
+          }
+        },
+        {
+          "index": 68,
+          "tool": "output_query_series",
+          "arguments": {
+            "attribute": "depth",
+            "max_points": 5,
+            "object_id": "MISSING",
+            "object_type": "node",
+            "output_path": "ef50c4907f1047f9b4c8f2ce292fac5c/model.out"
+          }
+        }
+      ],
+      "review": "cases/two-city-swmm/evidence/odense/hermes/review.json",
+      "files": {
+        "hermes-answer.md": {
+          "sha256": "28c65c68d1c105568eecc0ccdeb659294e08da561085c43ed0b9aceee2907676",
+          "bytes": 2599
+        },
+        "hermes-process.json": {
+          "sha256": "f5766eaaf3cab6a5975490d8b895fe64ebdcde83ce3add97a981c8e57da7ad02",
+          "bytes": 474
+        },
+        "query-oracle.json": {
+          "sha256": "c2512d85de7c316fc852a75ce056e3322dd13b746c74b0c5f640e31cd70bc336",
+          "bytes": 4366
+        },
+        "review.json": {
+          "sha256": "3815c988d691cf7e50f2020993a43e56c3b45276894e461973189e30ceb7f082",
+          "bytes": 16070
+        },
+        "trace.json": {
+          "sha256": "3b58719b97ffdf589918b9162422d1de4f9944ae3f03d42cff8c0af4a05fda7c",
+          "bytes": 314688
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 516.479,
+      "fine_grained_task_coverage": {
+        "required_live_fields_exercised": false,
+        "missing_live_fields": {
+          "subcatchments": [
+            "runoff"
+          ]
+        },
+        "note": "Separate from 27 function-family/numeric/page acceptance. Supplementary observations may test omissions but do not rewrite this run."
+      },
+      "task_limit": "Full run omitted live subcatchment runoff. The separate narrowly scoped supplemental run validates that field; it does not make the original full task complete."
+    },
+    {
+      "city": "utrecht",
+      "host": "codex",
+      "model": "Host-selected; no model override or inference from the parent chat.",
+      "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+      "task_path": "cases/two-city-swmm/agent-task-v3.md",
+      "task_sha256": "e8efaf23b8fb835c20aef53d8f1485e8c0057764acc6e8efbc9ae52f715847e5",
+      "tool_calls": 62,
+      "successful_tool_families": 27,
+      "numeric_artifact_page_checks_passed": true,
+      "structured_claims_passed": true,
+      "native_binary_query_checks": 33,
+      "session_status_read_before_close": true,
+      "prose_words": 156,
+      "prose_length_passed": true,
+      "failed_or_recovered_calls": [
+        {
+          "index": 56,
+          "tool": "model_inspect",
+          "arguments": {
+            "input_path": "../utrecht/baseline.inp"
+          }
+        },
+        {
+          "index": 58,
+          "tool": "output_query_series",
+          "arguments": {
+            "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+            "object_type": "node",
+            "object_id": "MISSING",
+            "attribute": "depth",
+            "max_points": 5
+          }
+        }
+      ],
+      "review": "cases/two-city-swmm/evidence/utrecht/codex/review.json",
+      "files": {
+        "codex-answer.md": {
+          "sha256": "cb853ce1d29ac27195d1ee5f22c4906ceb92d70fc45398db55deb1a0a1cf2f51",
+          "bytes": 2310
+        },
+        "codex-process.json": {
+          "sha256": "6b56cee2d40afc30983902757f1feb0b29ecf276886358a5d7e11889fb08ca9b",
+          "bytes": 485
+        },
+        "query-oracle.json": {
+          "sha256": "f2f8a0668605629848fb98e9c671297f1b0443660f47fdfc75681464a351f71c",
+          "bytes": 4206
+        },
+        "review.json": {
+          "sha256": "e1d4dd3a0eeaf51cdad23cfd0928077c4da1b4a897ddb1c71859307403078d19",
+          "bytes": 13352
+        },
+        "trace.json": {
+          "sha256": "b06bd39c2aea70314f53cf99ec1767841d3723e62942e4e9463696dc64dd1321",
+          "bytes": 182127
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 282.36,
+      "fine_grained_task_coverage": {
+        "required_live_fields_exercised": true,
+        "missing_live_fields": {},
+        "note": "Separate from 27 function-family/numeric/page acceptance. Supplementary observations may test omissions but do not rewrite this run."
+      }
+    },
+    {
+      "city": "utrecht",
+      "host": "hermes",
+      "model": "claude-sonnet-4-6",
+      "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+      "task_path": "cases/two-city-swmm/agent-task-v3.md",
+      "task_sha256": "e8efaf23b8fb835c20aef53d8f1485e8c0057764acc6e8efbc9ae52f715847e5",
+      "tool_calls": 62,
+      "successful_tool_families": 27,
+      "numeric_artifact_page_checks_passed": true,
+      "structured_claims_passed": true,
+      "native_binary_query_checks": 33,
+      "session_status_read_before_close": true,
+      "prose_words": 228,
+      "prose_length_passed": false,
+      "failed_or_recovered_calls": [
+        {
+          "index": 42,
+          "tool": "simulation_observe",
+          "arguments": {
+            "observe": {
+              "nodes": [
+                {
+                  "id": "j_90679",
+                  "fields": [
+                    "depth",
+                    "flooding"
+                  ]
+                },
+                {
+                  "id": "j_90431",
+                  "fields": [
+                    "depth",
+                    "flooding"
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "c_906791",
+                  "fields": [
+                    "flow"
+                  ]
+                }
+              ],
+              "subcatchments": [
+                {
+                  "id": "sub_9006F",
+                  "fields": [
+                    "rainfall",
+                    "runoff_rate"
+                  ]
+                }
+              ],
+              "raingages": [
+                {
+                  "id": "R_1",
+                  "fields": [
+                    "rainfall",
+                    "total_precip"
+                  ]
+                }
+              ],
+              "system": [
+                "runoff_stats",
+                "routing_stats"
+              ]
+            },
+            "session_id": "AKMOxoCex3rfP5phdBE74YITBw3lo0kFJiYlFKj14o0"
+          }
+        },
+        {
+          "index": 56,
+          "tool": "model_inspect",
+          "arguments": {
+            "input_path": "/etc/passwd"
+          }
+        },
+        {
+          "index": 58,
+          "tool": "output_query_series",
+          "arguments": {
+            "attribute": "depth",
+            "max_points": 5,
+            "object_id": "MISSING",
+            "object_type": "node",
+            "output_path": "318aae3633e448aeab3e2d2e0be0c2e8/model.out"
+          }
+        }
+      ],
+      "review": "cases/two-city-swmm/evidence/utrecht/hermes/review.json",
+      "files": {
+        "hermes-answer.md": {
+          "sha256": "2d3d81197cbc666e5b7a234b97fdb45e5bafd848a3f75e8023dea90ee9a8413e",
+          "bytes": 2547
+        },
+        "hermes-process.json": {
+          "sha256": "93c22fb0374f4007e25e9ebd63416f27c16ab4a01d1d535c63bb26fbb219cedf",
+          "bytes": 475
+        },
+        "query-oracle.json": {
+          "sha256": "5004922654b2962efb741b00e8611cb19e66c13dde0c8a52f87307ed0d49b923",
+          "bytes": 4206
+        },
+        "review.json": {
+          "sha256": "691dcc4890ed94daa86a74e072d709a234e42fb58f88d2f0eedb03e34fe2b432",
+          "bytes": 14568
+        },
+        "trace.json": {
+          "sha256": "dd5fdd0a66a40d79d1bdb6b0765bac4b6fa5d9a32c11665a11300170230374d7",
+          "bytes": 177064
+        }
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 301.262,
+      "fine_grained_task_coverage": {
+        "required_live_fields_exercised": false,
+        "missing_live_fields": {
+          "subcatchments": [
+            "runoff"
+          ]
+        },
+        "note": "Separate from 27 function-family/numeric/page acceptance. Supplementary observations may test omissions but do not rewrite this run."
+      },
+      "task_limit": "Full run omitted live subcatchment runoff. The separate narrowly scoped supplemental run validates that field; it does not make the original full task complete."
+    }
+  ],
+  "initial_observations": [
+    "evidence/initial-observations",
+    "evidence/initial-observations-v2"
+  ],
+  "numeric_artifact_page_checks_passed": true,
+  "all_27_tools_in_all_four_runs": true,
+  "all_four_query_object_types_and_seven_original_resources": true,
+  "municipal_quality_resource_exercised": true,
+  "narrative_review": "cases/two-city-swmm/evidence/narrative-review.json",
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false,
+  "supplementary_live_observations": "cases/two-city-swmm/evidence/live-observations.json"
+}

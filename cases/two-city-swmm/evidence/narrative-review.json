@@ -1,0 +1,89 @@
+{
+  "record_kind": "Answer-hash-bound manual prose review, separate from numerical/artifact acceptance. Observed answers are never edited to pass.",
+  "runs": [
+    {
+      "city": "odense",
+      "host": "codex",
+      "answer_sha256": "86679c579bd6c4409eaea77bfc9030e08b8d35ad11fbcaf571b3bc946527a9db",
+      "facts_passed": true,
+      "prose_word_count": 157,
+      "maximum_prose_words": 180,
+      "count_rule": "Whitespace-separated tokens outside the JSON code block, including prefatory prose.",
+      "length_passed": true,
+      "passed": true,
+      "issues": [],
+      "review_scope": "Manual comparison with original source rights, full native rows/reports, observed calls and bounded case limits. Numerical JSON and task coverage remain separate."
+    },
+    {
+      "city": "odense",
+      "host": "hermes",
+      "answer_sha256": "28c65c68d1c105568eecc0ccdeb659294e08da561085c43ed0b9aceee2907676",
+      "facts_passed": false,
+      "prose_word_count": 223,
+      "maximum_prose_words": 180,
+      "count_rule": "Whitespace-separated tokens outside the JSON code block, including prefatory prose.",
+      "length_passed": false,
+      "passed": false,
+      "issues": [
+        {
+          "kind": "incorrect_native_warning_classification",
+          "claim": "15 WARNING 04 plus continuity warnings",
+          "evidence": "Native reports contain 15 total warning lines: 10 WARNING 04, one WARNING 10 and four WARNING 02. Reported continuity errors are not additional WARNING lines."
+        },
+        {
+          "kind": "incorrect_license_identifier",
+          "claim": "NC-BY-4.0",
+          "evidence": "The excluded local gauge collection is CC-BY-NC-4.0. The used model/DMI data are CC-BY-4.0."
+        },
+        {
+          "kind": "overstated_task_completion",
+          "claim": "All steps complete",
+          "evidence": "The full trace omits requested live subcatchment runoff, although all 27 function families/numerical outputs pass. The separate supplementary test is recorded independently."
+        }
+      ],
+      "review_scope": "Manual comparison with original source rights, full native rows/reports, observed calls and bounded case limits. Numerical JSON and task coverage remain separate."
+    },
+    {
+      "city": "utrecht",
+      "host": "codex",
+      "answer_sha256": "cb853ce1d29ac27195d1ee5f22c4906ceb92d70fc45398db55deb1a0a1cf2f51",
+      "facts_passed": true,
+      "prose_word_count": 156,
+      "maximum_prose_words": 180,
+      "count_rule": "Whitespace-separated tokens outside the JSON code block, including prefatory prose.",
+      "length_passed": true,
+      "passed": true,
+      "issues": [],
+      "review_scope": "Manual comparison with original source rights, full native rows/reports, observed calls and bounded case limits. Numerical JSON and task coverage remain separate."
+    },
+    {
+      "city": "utrecht",
+      "host": "hermes",
+      "answer_sha256": "2d3d81197cbc666e5b7a234b97fdb45e5bafd848a3f75e8023dea90ee9a8413e",
+      "facts_passed": false,
+      "prose_word_count": 228,
+      "maximum_prose_words": 180,
+      "count_rule": "Whitespace-separated tokens outside the JSON code block, including prefatory prose.",
+      "length_passed": false,
+      "passed": false,
+      "issues": [
+        {
+          "kind": "unsupported_quality_acceptance",
+          "claim": "within acceptable limits",
+          "evidence": "The case defines no accepted model-quality or forecast threshold; low continuity error alone does not establish calibration or acceptable physical validity."
+        },
+        {
+          "kind": "incomplete_source_identifier",
+          "claim": "10.4121/fec1e3de",
+          "evidence": "The actual dataset DOI is 10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1."
+        },
+        {
+          "kind": "overstated_task_completion",
+          "claim": "All steps complete",
+          "evidence": "The full trace omits requested live subcatchment runoff, although all 27 function families/numerical outputs pass. The separate supplementary test is recorded independently."
+        }
+      ],
+      "review_scope": "Manual comparison with original source rights, full native rows/reports, observed calls and bounded case limits. Numerical JSON and task coverage remain separate."
+    }
+  ]
+}

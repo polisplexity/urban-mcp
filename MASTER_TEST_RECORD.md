@@ -12,10 +12,114 @@ The [required qualification rule](docs/product-qualification.md) separates devel
 | Service inventory | Helsinki; second initial city pending | Pending | Blocked |
 | Historical vegetation | Helsinki, Amsterdam, original team | Pending; no independent person/city/evidence accepted | Blocked |
 | Historical SUMO works experiment | Bologna Acosta, Ingolstadt, original team | Pending; no independent person/city/evidence accepted | Blocked |
+| Historical SWMM drainage-capacity experiment | Odense/Bellinge, Utrecht/Tuindorp, original team | Pending; issue #46; no independent person/city/evidence accepted | Blocked |
 
 [Issue #44](https://github.com/polisplexity/urban-mcp/issues/44) is the independent SUMO third-city task; [its checklist](docs/tasks/sumo-third-city.md) requires accepted public evidence. It does not replace the walking task in issue #41.
 
-The [qualification register](registry/product-qualification.json) records `product_qualified=false` for all four capabilities. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed. The destination final repository/release must be named in a later reviewed promotion change.
+The [qualification register](registry/product-qualification.json) records `product_qualified=false` for all five capabilities. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed. The destination final repository/release must be named in a later reviewed promotion change.
+
+## Historical SWMM: two-city drainage-capacity experiment, PR #45
+
+Municipal purpose: determine which modeled sewer nodes reach **10 m³ of
+reported overflow** and which newly cross that threshold under a declared
+single-conduit diameter loss, while exposing missing field-validation inputs.
+[PR #45](https://github.com/polisplexity/urban-mcp/pull/45) proposes this development
+capability on `feat/two-city-swmm`; it is **not merged into main**. See the
+[reproduction guide](cases/two-city-swmm/README.md), [findings/maps](cases/two-city-swmm/findings.md),
+[27-operation coverage](cases/two-city-swmm/functionality.md), [original-code audit](cases/two-city-swmm/upstream-audit.md)
+and [license boundaries](cases/two-city-swmm/LICENSE.md).
+
+The harvested inputs are actual published neighborhood hydraulic models and
+observed regional rain: Bellinge in **Odense, Denmark**, DOI
+`10.11583/DTU.12513428.v2`, and the Tuindorp development division in **Utrecht,
+Netherlands**, DOI `10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1`, both CC BY 4.0.
+DMI climateData hourly observations at station 06120 are CC BY 4.0; KNMI station
+260's historical hourly archive is CC0 with attribution/no-endorsement notice.
+The separately licensed CC BY-NC Bellinge local gauge collection is excluded.
+The [data prerelease](https://github.com/polisplexity/urban-mcp/releases/tag/data-swmm-20261110)
+preserves original bytes, selected member hashes, request receipts and rights.
+Tuindorp acquisition reads only the chosen network through consistent ZIP
+ranges; learned GNN weights and bulk generated simulations are excluded.
+
+Original **EPA C SWMM 5.2.4** is the independent native oracle. Numerical work
+uses **PySWMM 2.2.0 / swmm-toolkit 0.17.0** and original report parsing through
+**swmm-api 0.4.74**. We reuse the Apache-2.0 existing PySWMM MCP's 18 function
+families/seven resource families with the **official Python MCP SDK 2.3.0
+MCPServer**, adding nine municipal bindings, quality resource/prompt, bounded
+metadata and typed output vocabulary. No new solver or mandatory LLM framework
+is introduced. Marked runtime fixes cover process ownership, native balance
+lifetime and synchronized state observation; pristine upstream source remains
+separate in the image.
+
+| Verified stage / result | Odense / Bellinge | Utrecht / Tuindorp | Meaning |
+| --- | --- | --- | --- |
+| Original nodes / conduits | 1,020 / 1,015 | 311 / 345 | Published neighborhood networks, not complete current municipal inventories |
+| Selected local wet day / 72 h forcing | 2018-08-12 / 31.0 mm | 2018-08-25 / 23.025 mm | Complete eligible hourly windows, 24 h warm-up/cooldown; regional spatially uniform observations |
+| Target pipe and original → scenario diameter | G75F65Y_G75S541_l1, 0.104 → 0.078 m | c_906791, 0.300 → 0.225 m | Source-area selection before results; hypothetical effective geometry loss, not diagnosed blockage |
+| Native/stdio checks | **176 passed** | **160 passed** | Full node/outfall CSVs, original native binary observations, all 27 tools/eight resources/prompt, control/hotstart/cancel and invalid-input recovery |
+| Listed overflowing nodes | 17 → 14 | 0 → 0 | Listed rows can round to zero; not a 2D inundation footprint |
+| Nodes ≥10 m³ / newly crossing | 2 → 2 / 0 | 0 → 0 / 0 | Full per-node comparison retained, including every zero |
+| Sum of displayed node volumes | 245 → 245 m³ | 0 → 0 m³ | Native report resolution 1 m³; system loss is a separately defined quantity |
+| Routing / runoff continuity error | 0.322 → 0.323% / −0.003% | −0.134% / −0.098%, both runs | Numerical diagnostics, not calibration/forecast admission |
+| Native geometry warnings, each run | 15 total: 10 WARNING 04, one 10, four 02 | 16 WARNING 04 | Original model problems remain visible |
+| Codex actual tools, full pages/artifacts and JSON | Passed, 66 calls | Passed, 62 calls | Same frozen source/task, separate initially empty mounts |
+| Hermes same computational checks | Passed after retained recovery, 72 calls | Passed after retained recovery, 62 calls | Original-team-operated host observations; not independent-person qualification |
+| Independent native binary query comparisons | 33 per host passed | 33 per host passed | Actual returned series/snapshot points and units, four object types |
+| Broader final prose | Codex passes; Hermes fails facts/length | Codex passes; Hermes fails facts/length | Structured correctness does not admit unsupported municipal briefs |
+
+Odense's two ≥10 m³ nodes are **G70F030 (22 m³)** and **G70F100 (220 m³)** in
+both scenarios. No new threshold crossings occur in either city. The original
+source-selected pipe and observed rain are retained despite the null aggregate
+scenario change. We do not tune a demonstration to force an impact or infer
+that maintenance is unnecessary. Original ponding settings differ between
+models; equality of current node sums and system loss is observed, not a
+general equivalence.
+
+The [native index](cases/two-city-swmm/evidence/reproduction.json),
+[four host receipts](cases/two-city-swmm/evidence/agents.json) and
+[answer-hash-bound prose review](cases/two-city-swmm/evidence/narrative-review.json)
+retain exact provenance. Final hosts launched from
+`f87a41c7fd97c778345c78e88e60771eb37271bb` with
+[task v3](cases/two-city-swmm/agent-task-v3.md), Codex CLI
+0.167.0-alpha.3.2 and Hermes 0.18.2. All full required source/CSV pages agree
+with original bytes; binary query responses independently agree with native
+output. Both Codex briefs pass facts/length (157/156 words). Hermes Odense
+misclassifies warnings and a license identifier; Hermes Utrecht truncates a
+DOI and calls diagnostics acceptable without a defined criterion. Both exceed
+180 words (223/228). Their unedited answers and negative verdicts remain public.
+
+Both full Hermes tasks also omit the requested live subcatchment `runoff`;
+family coverage is not complete task coverage. The separate
+[live-observation supplement](cases/two-city-swmm/evidence/live-observations.json)
+checks actual rainfall/runoff at initialization and 30 seconds against direct
+original PySWMM, with eight checks passed per city. Both values are zero in
+that initial dry interval. Odense's supplement omits its own open-resource
+read, already covered in the full run. Original omissions and prose failures
+remain unchanged.
+
+**22 original MCP tests, 12 synthetic regressions and seven isolated
+original-method probes** pass separately. Both cities were also reharvested
+from publishers through actual MCP in a fresh mount; prepared input bytes
+match the frozen experiment. [Live receipt](cases/two-city-swmm/evidence/live-mcp.json).
+The [development failure record](cases/two-city-swmm/evidence/development-failures.json)
+preserves the initial Linux orphan failure, a creator-thread lifetime error,
+post-close zero balances, an idle-state CI race and a host vocabulary failure.
+The two initial host batches remain immutable. These findings drove the final
+process-pidfd watcher, after-end capture, state lock, schema enums, actionable
+errors and exact resource URIs; an initial success badge did not replace the
+long host tests.
+
+The inherited model physics, uniform hourly regional rain, unresolved local
+extremes and unverified empty-start warm-up limit interpretation. Tuindorp's
+13 zero-area NaN percentages are explicitly normalized, with original rows/
+bytes retained; no positive-area parameter is invented. Original Bellinge
+models were uncalibrated; the original Tuindorp study used SWMM 5.1.015.
+`calibration_revalidated`, `forecast_admitted` and `product_qualified` remain
+false. [Issue #46](https://github.com/polisplexity/urban-mcp/issues/46) and its
+[public checklist](docs/tasks/swmm-third-city.md) require an independent person
+reproducing a third city before final-product promotion. Walking #41 and SUMO
+#44 remain separate. CI evidence is recorded by exact revision in the case;
+metadata validation alone does not establish a working hydraulic capability.
 
 ## Historical SUMO: integrated two-city experiment, PR #43
 
