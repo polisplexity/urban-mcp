@@ -4,9 +4,17 @@
 
 [Issue #41: independent third-city walking reproduction](https://github.com/polisplexity/urban-mcp/issues/41) is required before final-product promotion. A person outside the original implementation/initial test team must harvest another city's inputs, run the complete native/MCP case and both hosts, and submit public evidence for review. The [policy](product-qualification.md), [qualification register](../registry/product-qualification.json) and [master](../MASTER_TEST_RECORD.md) keep that stage pending. Initial developer-operated cases and another model run by the same team do not satisfy it.
 
+SWMM [issue #46](https://github.com/polisplexity/urban-mcp/issues/46) and its
+[checklist](tasks/swmm-third-city.md) request an independent person's third-city
+reproduction of the [Odense/Utrecht case](../cases/two-city-swmm/README.md),
+integrated into `main` in PR #45. Native/MCP reproduction, source rights,
+two-host artifacts, task coverage and prose require separate evidence. The
+original Hermes omissions and failed prose remain visible; numerical matches
+do not admit them. This task does not replace walking #41 or SUMO #44.
+
 ## Historical planning backlog
 
-Current implementation is on `main`: [Helsinki inventory](../cases/helsinki-service-inventory/README.md), [two-city walking diagnostics](../cases/two-city-walking/issue-39.md), [Helsinki/Amsterdam historical vegetation](../cases/two-city-vegetation/README.md) and [Bologna/Ingolstadt historical SUMO](../cases/two-city-sumo/README.md). Vegetation [issue #35](https://github.com/polisplexity/urban-mcp/issues/35) was closed by merged [PR #42](https://github.com/polisplexity/urban-mcp/pull/42). The original planning text below is historical; use the [master](../MASTER_TEST_RECORD.md) and exact case evidence for current readiness. Independent-person qualification remains pending.
+Current implementation is on `main`: [Helsinki inventory](../cases/helsinki-service-inventory/README.md), [two-city walking diagnostics](../cases/two-city-walking/issue-39.md), [Helsinki/Amsterdam historical vegetation](../cases/two-city-vegetation/README.md), [Bologna/Ingolstadt historical SUMO](../cases/two-city-sumo/README.md) and [Odense/Utrecht historical SWMM](../cases/two-city-swmm/README.md). Vegetation [issue #35](https://github.com/polisplexity/urban-mcp/issues/35) was closed by merged [PR #42](https://github.com/polisplexity/urban-mcp/pull/42). The original planning text below is historical; use the [master](../MASTER_TEST_RECORD.md) and exact case evidence for current readiness. Independent-person qualification remains pending.
 
 El primer caso ejecutable es [Helsinki: bibliotecas y salud](../cases/helsinki-service-inventory/README.md), con cosecha, original/MCP y dos agentes. Las prioridades siguientes son accesibilidad y cobertura vegetal. Cada capacidad se admite con cosecha, resultado municipal y reproducción independiente; SUMO Hello es una referencia técnica auxiliar. Ver [criterios](cases/municipal-first.md) y [plantilla](cases/municipal-case-template.md). Las tareas de familia seleccionan operaciones/casos y datos, no ordenan implementar todo el inventario.
 

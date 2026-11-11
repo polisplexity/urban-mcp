@@ -12,13 +12,13 @@ The acceptance goal is that an independently configured agent can complete an ad
 | Optional SOUL.md | Host-specific identity/style | Not an MCP standard or substitute for data, permissions or validation |
 | Agent runtime | User-selected orchestration/model | Not a mandatory dependency of the capability package |
 
-Select a capability and read its requirements progressively rather than loading the entire 229-entry catalog into every session. The repository skill supports an existing host; it does not require a new proprietary agent, framework or provider.
+Select a capability and read its requirements progressively rather than loading the entire 230-entry catalog into every session. The repository skill supports an existing host; it does not require a new proprietary agent, framework or provider.
 
 ## Reproduce the implemented cases
 
-Clone `main` and record `git rev-parse HEAD`. Follow the complete data/Docker/MCP instructions in the [Helsinki inventory guide](../../cases/helsinki-service-inventory/README.md), [Helsinki/Amsterdam walking guide](../../cases/two-city-walking/README.md), [two-city historical vegetation guide](../../cases/two-city-vegetation/README.md) or [historical SUMO guide](../../cases/two-city-sumo/README.md). For walking use the [issue-39 task and procedure](../../cases/two-city-walking/issue-39.md); for vegetation use [agent-task-v2.md](../../cases/two-city-vegetation/agent-task-v2.md); for SUMO use [agent-task.md](../../cases/two-city-sumo/agent-task.md). Earlier tasks remain historical observations. Deterministic suites require no model account. Host maintenance scripts need Python 3.11+ and `requirements-dev.txt`; GIS engines run in Docker.
+Clone `main` and record `git rev-parse HEAD`. Follow the complete data/Docker/MCP instructions in the [Helsinki inventory guide](../../cases/helsinki-service-inventory/README.md), [Helsinki/Amsterdam walking guide](../../cases/two-city-walking/README.md), [two-city historical vegetation guide](../../cases/two-city-vegetation/README.md), [historical SUMO guide](../../cases/two-city-sumo/README.md) or [historical SWMM guide](../../cases/two-city-swmm/README.md). For walking use the [issue-39 task and procedure](../../cases/two-city-walking/issue-39.md); for vegetation use [agent-task-v2.md](../../cases/two-city-vegetation/agent-task-v2.md); for SUMO use [agent-task.md](../../cases/two-city-sumo/agent-task.md); for SWMM use [agent-task-v3.md](../../cases/two-city-swmm/agent-task-v3.md). Earlier tasks remain historical observations. Deterministic suites require no model account. Host maintenance scripts need Python 3.11+ and `requirements-dev.txt`; native engines run in Docker.
 
-Generate configuration with `tools/client_config.py --capability inventory|walking|vegetation|sumo --format mcp-json|codex|hermes --data-dir <fresh-workspace>`. The alternatives separated by `|` describe choices, not a literal shell command. The generator supplies only the case server. Preserve production host settings and use an independent data mount for each city/host. On Linux, its Hermes output establishes the repository working directory with GNU `env -C` before starting Docker.
+Generate configuration with `tools/client_config.py --capability inventory|walking|vegetation|sumo|swmm --format mcp-json|codex|hermes --data-dir <fresh-workspace>`. The alternatives separated by `|` describe choices, not a literal shell command. The generator supplies only the case server. Preserve production host settings and use an independent data mount for each city/host. On Linux, its Hermes output establishes the repository working directory with GNU `env -C` before starting Docker.
 
 For example, after building the walking image and configuring an isolated Hermes profile:
 
@@ -57,3 +57,27 @@ exit zero, a numeric match or a successful model answer. Preserve source-model
 warnings, censored trips, teleport exclusions, recovered argument failures and
 explicit prose verdicts. The existing earlier capability guides below retain
 their original scopes.
+
+## Historical SWMM profile
+
+The [Odense/Utrecht guide](../../cases/two-city-swmm/README.md) is available on
+`main` after PR #45. It reuses 18 PySWMM MCP function families through the
+official Python MCP SDK 2.3.0 `MCPServer` and adds nine municipal operations.
+Generate configuration with `--capability swmm`; use a new city/host mount and
+the unchanged [v3 task](../../cases/two-city-swmm/agent-task-v3.md). Follow the
+guide's exact Hermes label-to-mount mapping and explicit `--task` when exporting.
+
+Start with status → snapshot harvest → preparation/quality → full baseline and
+capacity75 → comparison → complete source/artifact pages. Query binary output
+before holding live sessions: the runtime has two worker slots. Live `runoff`
+and `flooding` use different names from binary `runoff_rate` and `flooding_loss`.
+Copy returned resource URIs and read open-session status before closing it.
+Native budgets, isolation and the separate inspection model are part of the
+case contract, not permission to actuate infrastructure.
+
+Compare actual query values with the independent EPA binary output, then review
+full artifact/JSON equality, fine-grained task coverage and prose separately.
+Hermes' original omissions and failed prose remain unchanged after integration;
+the narrow live-field supplement does not complete those original full tasks.
+Historical neighborhood assets and hourly regional rain do not establish field
+calibration or a forecast. Independent-person third-city issue #46 remains open.

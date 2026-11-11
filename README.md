@@ -13,18 +13,23 @@ Open infrastructure that lets any MCP-capable agent operate urban open-source to
 - [Current walking diagnostics](cases/two-city-walking/issue-39.md): exact per-school threshold transitions and per-path closed-edge membership, with a versioned blind task and four reviewed Codex/Hermes observations. Numerical artifacts, answer JSON and broader prose have separate verdicts.
 - [Helsinki and Amsterdam historical vegetation](cases/two-city-vegetation/README.md): WorldCover 2021 categorical zone shares with 2025 aggregate population, source harvesting/snapshots, audited original GDAL MCP, complete paged results and four reviewed host observations.
 - [Bologna Acosta and Ingolstadt historical SUMO](cases/two-city-sumo/README.md): licensed published traffic models, fixed-seed 30 km/h works scenario, original MCP reuse, complete trip/censor/teleport accounting and separate Codex/Hermes numerical/prose verdicts.
+- [Odense/Bellinge and Utrecht/Tuindorp historical SWMM](cases/two-city-swmm/README.md): published hydraulic models, independently observed DMI/KNMI rainfall, original PySWMM MCP reuse and a declared diameter-loss experiment with complete per-node overflow accounting and separate host task/prose verdicts.
 
-The ordered integration is [RFC #1](https://github.com/polisplexity/urban-mcp/pull/1) → [inventory #37](https://github.com/polisplexity/urban-mcp/pull/37) → [walking #38](https://github.com/polisplexity/urban-mcp/pull/38) → [diagnostics #40](https://github.com/polisplexity/urban-mcp/pull/40) → [vegetation #42](https://github.com/polisplexity/urban-mcp/pull/42) → [SUMO #43](https://github.com/polisplexity/urban-mcp/pull/43). Use `main` for current reproduction. Historical branches and versioned failed observations remain available for audit.
+The ordered integration is [RFC #1](https://github.com/polisplexity/urban-mcp/pull/1) → [inventory #37](https://github.com/polisplexity/urban-mcp/pull/37) → [walking #38](https://github.com/polisplexity/urban-mcp/pull/38) → [diagnostics #40](https://github.com/polisplexity/urban-mcp/pull/40) → [vegetation #42](https://github.com/polisplexity/urban-mcp/pull/42) → [SUMO #43](https://github.com/polisplexity/urban-mcp/pull/43) → [SWMM #45](https://github.com/polisplexity/urban-mcp/pull/45). Use `main` for current reproduction. Historical branches and versioned failed observations remain available for audit.
 
 ## Reproduce and contribute
 
 The [Odense/Utrecht SWMM drainage-capacity case](cases/two-city-swmm/README.md)
-is proposed in [PR #45](https://github.com/polisplexity/urban-mcp/pull/45), on
-`feat/two-city-swmm`. It joins published hydraulic models with observed DMI/KNMI
-rain, reuses the original PySWMM MCP, and documents native/Docker/protocol and
-two-host evidence separately. It is not merged into `main` or qualified as a
-field forecast/final product. [Issue #46](https://github.com/polisplexity/urban-mcp/issues/46)
-requests an independent person's third-city reproduction.
+is available on `main` after [PR #45](https://github.com/polisplexity/urban-mcp/pull/45).
+It joins published hydraulic models with observed DMI/KNMI rain and reuses the
+original PySWMM MCP. Both cities exercise all 27 tools, eight resource families
+and the prompt, with 176/160 native/stdio checks. All four recorded hosts
+reproduce numerical artifacts; Hermes' full tasks omit live runoff and their
+prose fails review. Separate live-field probes retain those original verdicts.
+Read the [findings](cases/two-city-swmm/findings.md) and master for exact scope.
+Field forecasts and final-product qualification remain unadmitted.
+[Issue #46](https://github.com/polisplexity/urban-mcp/issues/46) requests an
+independent person's third-city reproduction.
 
 The [Bologna/Ingolstadt SUMO experiment](cases/two-city-sumo/README.md) is available on `main` after [PR #43](https://github.com/polisplexity/urban-mcp/pull/43). It harvests licensed historical city models, reuses original SUMO MCP functions, and compares a 30 km/h corridor works scenario with full trip/censor/teleport accounting through Docker, MCP, Codex and Hermes. See [source review](cases/two-city-sumo/upstream-audit.md), [findings](cases/two-city-sumo/findings.md) and the master for actual evidence and limits. The [integration receipt](docs/integration/2026-11-10-sumo-main.json) records source/evidence equality and CI. Native model problems and host prose verdicts remain explicit; no current forecast or final-product qualification is implied.
 

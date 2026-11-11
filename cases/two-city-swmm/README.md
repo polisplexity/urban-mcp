@@ -7,8 +7,11 @@ The conduit is selected from original catchment areas, before examining results.
 This is a reproducible computational experiment on historical neighborhood
 models. It does not establish a current blockage or a calibrated flood forecast.
 
-This capability is proposed in [PR #45](https://github.com/polisplexity/urban-mcp/pull/45)
-on `feat/two-city-swmm`; it has not been merged into `main`. See the
+This development capability is available on `main` after
+[PR #45](https://github.com/polisplexity/urban-mcp/pull/45), merge `27c38c7`.
+Record your exact checkout with `git rev-parse HEAD`. The original full host
+observations ran from `f87a41c7fd97c778345c78e88e60771eb37271bb`; integration
+does not create new agent observations or change their verdicts. See the
 [recipe](recipe.json), [source snapshot lock](snapshot.lock.json) and final
 [blind agent task v3](agent-task-v3.md). Evidence and host verdicts are recorded
 separately in the [master](../../MASTER_TEST_RECORD.md). Independent-person,
@@ -55,7 +58,7 @@ The pinned runtime targets linux/amd64. No model account or provider key is
 needed for source, native, protocol or deterministic contract checks.
 
 ```sh
-git clone --branch feat/two-city-swmm https://github.com/polisplexity/urban-mcp.git
+git clone --branch main https://github.com/polisplexity/urban-mcp.git
 cd urban-mcp
 git rev-parse HEAD
 export URBAN_MCP_UID="$(id -u)" URBAN_MCP_GID="$(id -g)"
@@ -66,6 +69,7 @@ docker compose --profile swmm run --rm swmm-harvest harvest --city odense --mode
 docker compose --profile swmm run --rm swmm-harvest harvest --city utrecht --mode snapshot
 docker compose --profile swmm run --rm --entrypoint python swmm -m unittest urban_mcp_swmm.test_contracts -v
 docker compose --profile swmm run --rm --entrypoint python -e PYSWMM_MCP_TEST_MODEL=/opt/fixture/model_full_features.inp swmm -m unittest discover -s /opt/pyswmm-mcp/tests -v
+docker compose --profile swmm run --rm --entrypoint python swmm-harvest /opt/urban-mcp/tools/audit_swmm_upstream.py --output /data/evidence/upstream-audit.json
 docker compose --profile swmm run --rm swmm test --city odense
 docker compose --profile swmm run --rm swmm test --city utrecht
 ```
@@ -79,6 +83,11 @@ invalid inputs and recovery. Logs, original reports/binary outputs and
 versioned receipts remain in the data mount. `evidence/<city>/latest.json`
 points to the latest test without erasing failed attempts. Odense can take
 several minutes; each native batch has a 300 s budget and MCP calls 360 s.
+
+Expected deterministic coverage is 12 synthetic regressions, 22 unchanged
+original tests, seven isolated original-method probes, and 176/160 city checks
+for Odense/Utrecht. Probe scope is explained in the [code audit](upstream-audit.md);
+these are not executions of complete alternative MCP servers.
 
 For individual native runs use new immutable run IDs:
 
@@ -146,10 +155,22 @@ authentication, an isolated Hermes profile and initially empty mounts for
 each host/city. No credentials or messaging connectors belong in evidence.
 
 ```sh
-python tools/run_agent_check.py codex --capability swmm --city odense --label swmm-odense-v1
-python tools/run_agent_check.py hermes --capability swmm --city odense --label swmm-odense-v1 --hermes-home /your/isolated/profile --hermes-executable /your/hermes
+python tools/run_agent_check.py codex --capability swmm --city odense --label swmm-odense-review-1
+python tools/client_config.py --capability swmm --format hermes --data-dir .urban-mcp/hermes-swmm-odense-review-1
+# Add that generated MCP entry to your isolated, privately authenticated profile.
+python tools/run_agent_check.py hermes --capability swmm --city odense --label swmm-odense-review-1 --hermes-home /your/isolated/profile --hermes-executable /your/hermes
 # Repeat with utrecht, a distinct label/profile and a fresh mount.
 ```
+
+The runner writes private process/events/answer files under
+`.urban-mcp/agent-evidence/<host>-<label>`. Codex receives an isolated case
+configuration using `.urban-mcp/codex-<label>` automatically. Hermes uses the
+configuration already in its profile: the runner does not change its MCP data
+mount. For the example above it must point to
+`.urban-mcp/hermes-swmm-odense-review-1`, not the earlier manual-client example.
+Do not reuse a label, data mount or production profile. These commands use the
+installed host and its existing authentication; no provider is required inside
+the MCP server.
 
 Use only the [public blind task v3](agent-task-v3.md). Read complete source/comparison
 CSV pages; each page is ≤12,000 characters and identifies original byte hashes.
@@ -173,6 +194,47 @@ and runoff against direct original PySWMM. They do not replace the original
 full-task verdicts. Reproduce supplements in fresh profiles/mounts using
 `tools/run_agent_check.py` with `--task cases/two-city-swmm/agent-live-observation-task.md`,
 then review with `tools/check_swmm_live_observations.py --help`.
+
+### Export and review a new host observation
+
+Keep raw logs and profiles private. The exporter retains only this case's
+observed MCP payloads. Pass the task explicitly: its historical default is v1,
+while the full current task is v3. For the example labels above:
+
+```sh
+python tools/export_swmm_trace.py codex --city odense --events .urban-mcp/agent-evidence/codex-swmm-odense-review-1/events.log --output .urban-mcp/agent-evidence/codex-swmm-odense-review-1/trace.json --task cases/two-city-swmm/agent-task-v3.md
+python tools/export_swmm_trace.py hermes --city odense --state-db /your/isolated/profile/state.db --output .urban-mcp/agent-evidence/hermes-swmm-odense-review-1/trace.json --answer-output .urban-mcp/agent-evidence/hermes-swmm-odense-review-1/answer.md --task cases/two-city-swmm/agent-task-v3.md
+```
+
+First finish the deterministic city test in the separate reproduction mount.
+Read `evidence/odense/latest.json`, then its named receipt: the
+`native.baseline.run_id` identifies the independent EPA output. Use that actual
+ID below; it is not an MCP run ID. For example, from a Linux shell:
+
+```sh
+export URBAN_MCP_SWMM_WORKDIR="$PWD/.urban-mcp/my-swmm-reproduction"
+swmm_native_run_id="$(python - <<'PY'
+import json, os
+from pathlib import Path, PurePosixPath
+root = Path(os.environ['URBAN_MCP_SWMM_WORKDIR'])
+latest = json.loads((root / 'evidence/odense/latest.json').read_text())
+receipt = json.loads((root / PurePosixPath(latest['path']).relative_to('/data')).read_text())
+assert latest['passed'] and receipt['passed']
+print(receipt['native']['baseline']['run_id'])
+PY
+)"
+docker compose --profile swmm run --rm -v "$PWD/tools:/review-tools:ro" -v "$PWD/.urban-mcp/agent-evidence:/observations" --entrypoint python swmm /review-tools/check_swmm_output_queries.py --trace /observations/codex-swmm-odense-review-1/trace.json --native-output "/data/native/odense/$swmm_native_run_id/model.out" --output /observations/codex-swmm-odense-review-1/query-oracle.json
+python tools/review_swmm_agents.py --host codex --city odense --workspace .urban-mcp/codex-swmm-odense-review-1 --observations .urban-mcp/agent-evidence/codex-swmm-odense-review-1 --output .urban-mcp/agent-evidence/codex-swmm-odense-review-1/review.json
+```
+
+Repeat the query oracle and review for Hermes using its own trace, workspace
+and observation directory; repeat the entire sequence with Utrecht's receipt
+and labels. Review `fine_grained_task_coverage`, recovered errors and prose
+separately even when numeric checks pass. Bind a manual factual/length verdict
+to the unedited answer's SHA-256. Publish only reviewed compact exports, source/
+task/process receipts and findings; the complete private profile/database,
+raw host logs and bulk native binary outputs stay outside Git. A different
+checkout or edited answer is not a new observed agent test.
 
 For additional live-acquisition evidence through actual MCP, use another fresh
 mount and the public checker (no LLM account required):

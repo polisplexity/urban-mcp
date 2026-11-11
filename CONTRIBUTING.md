@@ -31,6 +31,19 @@ For walking changes, follow [the two-city case](cases/two-city-walking/README.md
 
 For SUMO changes, run [both historical-city suites](cases/two-city-sumo/README.md), all 13 MCP tools/resources/prompt, the ten synthetic contracts and isolated original-source probes. Preserve the exact publisher demand, signal files/order, vehicle attributes, seed/processing/time and every censored/teleport-identified row. Review all comparison pages, actual host responses and complete artifact/JSON equality; independently review prose and recovered failures. These are computational model experiments, not inherited calibration or current forecasts. A third city operated by an independent person is still required for final-product qualification.
 
+For SWMM changes, follow [the Odense/Utrecht guide](cases/two-city-swmm/README.md):
+12 synthetic regressions, 22 unchanged original MCP tests, seven explicitly
+isolated alternative-method probes, and both native/stdio city suites across
+all 27 tools, eight resource families and the prompt. Preserve model physics,
+hourly interval/timezone handling, source rights, full node/outfall denominators,
+report rounding, warnings and balances captured before engine close. Use the
+separate inspection input for live controls/hotstarts/cancellation. Review
+complete actual host pages, native binary queries, structured claims, task
+omissions and prose independently. Merging code does not rerun the agents or
+replace their failed answers. [Issue #46](https://github.com/polisplexity/urban-mcp/issues/46)
+requires a different person harvesting/reproducing a third city before
+final-product qualification; current forecasts remain unadmitted.
+
 ## Review questions
 
 - Do these data actually feed this operation, with explicit transformations and omissions?

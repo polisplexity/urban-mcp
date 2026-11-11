@@ -18,13 +18,14 @@ The [required qualification rule](docs/product-qualification.md) separates devel
 
 The [qualification register](registry/product-qualification.json) records `product_qualified=false` for all five capabilities. [Issue #41](https://github.com/polisplexity/urban-mcp/issues/41) is the public independent walking reproduction task. Existing case admission, numerical results, observed host verdicts and merged PRs remain valid for their stated development scopes. No third-party reproduction is claimed. The destination final repository/release must be named in a later reviewed promotion change.
 
-## Historical SWMM: two-city drainage-capacity experiment, PR #45
+## Historical SWMM: integrated two-city drainage-capacity experiment, PR #45
 
 Municipal purpose: determine which modeled sewer nodes reach **10 m³ of
 reported overflow** and which newly cross that threshold under a declared
 single-conduit diameter loss, while exposing missing field-validation inputs.
-[PR #45](https://github.com/polisplexity/urban-mcp/pull/45) proposes this development
-capability on `feat/two-city-swmm`; it is **not merged into main**. See the
+[PR #45](https://github.com/polisplexity/urban-mcp/pull/45) merged this development
+capability into `main` at `27c38c7`. Clone `main` and record the exact commit;
+the original host observations remain bound to their earlier source/tasks. See the
 [reproduction guide](cases/two-city-swmm/README.md), [findings/maps](cases/two-city-swmm/findings.md),
 [27-operation coverage](cases/two-city-swmm/functionality.md), [original-code audit](cases/two-city-swmm/upstream-audit.md)
 and [license boundaries](cases/two-city-swmm/LICENSE.md).
