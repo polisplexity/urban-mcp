@@ -1,0 +1,27 @@
+test_parent_force_kill_releases_worker_and_repairs_run (test_mcp_protocol.McpProtocolTests.test_parent_force_kill_releases_worker_and_repairs_run) ... ok
+test_stdio_interactive_tool_calls (test_mcp_protocol.McpProtocolTests.test_stdio_interactive_tool_calls) ... ok
+test_stdio_resource_discovery (test_mcp_protocol.McpProtocolTests.test_stdio_resource_discovery) ... ok
+test_stdio_tool_discovery (test_mcp_protocol.McpProtocolTests.test_stdio_tool_discovery) ... ok
+test_cancellable_batch_task (test_service_integration.ServiceIntegrationTests.test_cancellable_batch_task) ... ok
+test_close_all_releases_active_session (test_service_integration.ServiceIntegrationTests.test_close_all_releases_active_session) ... ok
+test_close_retries_failed_metadata_finalization (test_service_integration.ServiceIntegrationTests.test_close_retries_failed_metadata_finalization) ... ok
+test_interactive_session_lifecycle_and_controls (test_service_integration.ServiceIntegrationTests.test_interactive_session_lifecycle_and_controls) ... ok
+test_invalid_state_and_object_are_rejected (test_service_integration.ServiceIntegrationTests.test_invalid_state_and_object_are_rejected) ... ok
+test_output_queries_summary_and_limits (test_service_integration.ServiceIntegrationTests.test_output_queries_summary_and_limits) ... ok
+test_output_query_invalid_inputs_are_stable (test_service_integration.ServiceIntegrationTests.test_output_query_invalid_inputs_are_stable) ... ok
+test_timeout_terminates_worker_and_close_remains_idempotent (test_service_integration.ServiceIntegrationTests.test_timeout_terminates_worker_and_close_remains_idempotent) ... ok
+test_worker_crash_is_converted_to_domain_error (test_service_integration.ServiceIntegrationTests.test_worker_crash_is_converted_to_domain_error) ... ok
+test_worker_limit_and_idle_reaping (test_service_integration.ServiceIntegrationTests.test_worker_limit_and_idle_reaping) ... ok
+test_workflow (test_service_integration.ServiceIntegrationTests.test_workflow) ... ok
+test_active_owner_is_preserved_and_lost_owner_is_repaired (test_service_integration.StorageGovernanceTests.test_active_owner_is_preserved_and_lost_owner_is_repaired) ... ok
+test_dependency_staging_and_outside_reference_rejection (test_service_integration.StorageGovernanceTests.test_dependency_staging_and_outside_reference_rejection) ... ok
+test_model_operations_use_transient_staging (test_service_integration.StorageGovernanceTests.test_model_operations_use_transient_staging) ... ok
+test_model_staging_limits_are_enforced (test_service_integration.StorageGovernanceTests.test_model_staging_limits_are_enforced) ... ok
+test_quota_and_history_retention (test_service_integration.StorageGovernanceTests.test_quota_and_history_retention) ... ok
+test_spawn_import_does_not_initialize_runtime (test_service_integration.StorageGovernanceTests.test_spawn_import_does_not_initialize_runtime) ... ok
+test_staging_manifest_detects_source_change (test_service_integration.StorageGovernanceTests.test_staging_manifest_detects_source_change) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 8.018s
+
+OK

@@ -1,0 +1,87 @@
+{
+  "scope": "Pull-request CI for the final executable backend. Later documentation/evidence commits do not create new host observations.",
+  "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+  "workflow_runs": [
+    {
+      "id": 42925065700,
+      "name": "Planning contracts and reference data",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065700"
+    },
+    {
+      "id": 42925065475,
+      "name": "Helsinki municipal native and MCP case",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065475"
+    },
+    {
+      "id": 42925065466,
+      "name": "Two-city vegetation native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065466"
+    },
+    {
+      "id": 42925065607,
+      "name": "Two-city walking native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065607"
+    },
+    {
+      "id": 42925065488,
+      "name": "Two-city historical SWMM native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065488"
+    },
+    {
+      "id": 42925065500,
+      "name": "Two-city historical SUMO native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065500"
+    }
+  ],
+  "swmm_jobs": [
+    {
+      "id": 130209358204,
+      "name": "swmm (utrecht)",
+      "conclusion": "success",
+      "test_counts": [
+        12,
+        22
+      ],
+      "native_counts": [
+        160
+      ],
+      "isolated": [
+        7
+      ],
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065488/job/130209358204"
+    },
+    {
+      "id": 130209358513,
+      "name": "swmm (odense)",
+      "conclusion": "success",
+      "test_counts": [
+        12,
+        22
+      ],
+      "native_counts": [
+        176
+      ],
+      "isolated": [
+        7
+      ],
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42925065488/job/130209358513"
+    }
+  ],
+  "limits": [
+    "The 22 original tests and 12 regressions are distinct from the 176/160 city checks and seven isolated original-method probes.",
+    "CI reproduces native/MCP behavior; recorded Codex/Hermes observations remain bound to their source/task/answer hashes.",
+    "No independent-person third-city acceptance, calibration or forecast qualification is claimed."
+  ]
+}

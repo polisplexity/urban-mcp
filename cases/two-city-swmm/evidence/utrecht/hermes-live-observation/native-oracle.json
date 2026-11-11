@@ -1,0 +1,54 @@
+{
+  "city": "utrecht",
+  "passed": true,
+  "checks": [
+    {
+      "name": "initial native clock",
+      "passed": true
+    },
+    {
+      "name": "initial rainfall",
+      "passed": true
+    },
+    {
+      "name": "initial runoff",
+      "passed": true
+    },
+    {
+      "name": "after_step native clock",
+      "passed": true
+    },
+    {
+      "name": "after_step rainfall",
+      "passed": true
+    },
+    {
+      "name": "after_step runoff",
+      "passed": true
+    },
+    {
+      "name": "session closed",
+      "passed": true
+    },
+    {
+      "name": "actual answer JSON",
+      "passed": true
+    }
+  ],
+  "trace_sha256": "8f42ddac884624056a181ad946c3bb3a9bf352497f2eb706ea7eb7ff7d09eccc",
+  "answer_sha256": "6bde55f066ee83acf9e6f03a7bc361853c92fecd601a8e3a15f8fdbec90901e7",
+  "input_sha256": "c8a99c9b36f1607453ccefec13fd62ee3c333c9f25a05a0fc4cb9b75f9b107e4",
+  "native_initial": {
+    "rainfall": 0.0,
+    "runoff": 0.0,
+    "current_time": "2018-08-24T00:00:00"
+  },
+  "native_after_step": {
+    "rainfall": 0.0,
+    "runoff": 0.0,
+    "current_time": "2018-08-24T00:00:30"
+  },
+  "subcatchment_id": "sub_9006F",
+  "open_resource_read_in_this_supplement": true,
+  "scope": "Live rainfall/runoff observations at initialization and 30 s versus direct original PySWMM, not a new municipal forecast or a replacement for full-task observations."
+}

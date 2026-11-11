@@ -1,0 +1,16 @@
+The SWMM development workflow uses Bellinge (Odense) and Tuindorp (Utrecht) as two original-team cities. Final-product qualification requires a **different person outside the original implementation/test team** reproducing a third, distinct municipality. Another Codex/Hermes instance operated by the original team is insufficient.
+
+Candidate implementation: [PR #45](https://github.com/polisplexity/urban-mcp/pull/45), `feat/two-city-swmm`. Start from the eventual reviewed/merged source revision and record the exact commit. Follow `cases/two-city-swmm/README.md` and `docs/product-qualification.md`; merging experimental code is not product qualification.
+
+- [ ] State public operator identity, role and independence from the initial implementation/test team.
+- [ ] Choose another actual municipality/neighborhood with an openly licensed, coherent hydraulic model and permitted observed rainfall. Record asset IDs, units, coordinates/time conventions, coverage, calibration history and unresolved boundary/DWF/condition assumptions. OSM streets, invented pipes, learned GNN weights and synthetic rainfall are not replacements for original municipal assets.
+- [ ] Harvest original bytes with requests, time, rights, attribution, archive/member sizes and hashes; publish a permitted immutable snapshot and refresh route. Do not relabel noncommercial or private utilities data as unrestricted.
+- [ ] Add an English city recipe and explicit transformation ledger. Preserve original model parameters except the declared, justified experiment. Missing rain is not zero; trace handling and regional/coarse forcing must be explicit. Do not tune target/rainfall to force a positive result.
+- [ ] Reproduce the original EPA native oracle, original PySWMM MCP and full protocol suite. Test all advertised tools, resource/prompt families, full node/outfall/comparison rows, invalid inputs/recovery, asynchronous cancellation, controls and hotstarts. Preserve model warnings, mass balances and interval/unit conversion checks.
+- [ ] Test fresh independent Codex and Hermes workspaces with the same versioned blind task and the operator's own host authentication. Preserve failed attempts. Compare complete actual pages, native binary queries/artifacts, structured claims and prose separately; never replace a failed observed answer with edited prose.
+- [ ] Submit a public reproduction PR with exact source/image/task/host versions, source/evidence hashes, permitted compact traces, findings and all author assistance/undocumented prerequisites. Keep private reasoning, credentials, full host profiles and messaging connectors out of Git.
+- [ ] Obtain an accepted maintainer review of the evidence and independence declaration. Only then may a separate change name the final repository/release destination and set product qualification.
+
+Until accepted, `product_qualified=false`, `calibration_revalidated=false` and `forecast_admitted=false`. Successful computational reproduction alone does not establish current field calibration, 2D inundation, damage, exposure, safety or flood forecasting. No particular overflow count or positive scenario change is required.
+
+This task does not close or replace walking issue #41 or SUMO issue #44.

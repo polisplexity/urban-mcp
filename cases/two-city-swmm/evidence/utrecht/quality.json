@@ -1,0 +1,204 @@
+{
+  "city": "utrecht",
+  "scope": "Tuindorp development division of the published sewer model in Utrecht, Netherlands; transferability division excluded.",
+  "source_binding": {
+    "original_model_sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85",
+    "weather_content_sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b",
+    "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+    "method_source_sha256": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e"
+  },
+  "event": {
+    "wet_day": "2018-08-25",
+    "selection_day_lower_bound_mm": 20.5,
+    "event_day_mm": 20.575,
+    "start_local": "2018-08-24T00:00:00",
+    "end_local": "2018-08-27T00:00:00",
+    "timezone": "Europe/Amsterdam",
+    "hourly_intervals": 72,
+    "forcing_total_mm": 23.025,
+    "trace_intervals": 9,
+    "trace_midpoint_mm": 0.025,
+    "trace_total_uncertainty_mm": 0.225,
+    "complete_candidate_days": 31,
+    "warmup_hours": 24,
+    "cooldown_hours": 24,
+    "observation_kind": "KNMI hourly RH precipitation amount in 0.1 mm, 2011-2020 station archive; August 2018 selection; trace -1 explicitly imputed at 0.025 mm with \u00b10.025 mm interval uncertainty."
+  },
+  "target": {
+    "conduit_id": "c_906791",
+    "from_node": "j_90679",
+    "to_node": "j_90678",
+    "source_diameter_m": 0.3,
+    "scenario_diameter_m": 0.22499999999999998,
+    "directly_contributing_area_ha": 0.155,
+    "eligible_conduits": 54,
+    "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+  },
+  "transformations": {
+    "edits": [
+      {
+        "section": "OPTIONS",
+        "before": "START_DATE           01/05/2014",
+        "after": "START_DATE 08/24/2018"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "START_TIME           00:00:00",
+        "after": "START_TIME 00:00:00"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "REPORT_START_DATE    01/05/2014",
+        "after": "REPORT_START_DATE 08/24/2018"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "REPORT_START_TIME    00:05:00",
+        "after": "REPORT_START_TIME 00:00:00"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "END_DATE             01/05/2014",
+        "after": "END_DATE 08/27/2018"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "END_TIME             08:05:00",
+        "after": "END_TIME 00:00:00"
+      },
+      {
+        "section": "OPTIONS",
+        "before": "THREADS              2",
+        "after": "THREADS 1"
+      },
+      {
+        "section": "RAINGAGES",
+        "before": "R_1              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+        "after": "R_1 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+      },
+      {
+        "section": "RAINGAGES",
+        "before": "R_2              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+        "after": "R_2 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+      },
+      {
+        "section": "RAINGAGES",
+        "before": "R_3              INTENSITY 0:05     1.0      FILE       \"PLACEHOLDER1\" R1         MM   ",
+        "after": "R_3 VOLUME 1:00 1.0 TIMESERIES OBS_RAIN"
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_90368        R_1              j_90368          0.0000   nan      0.0000   0.4056   0.0000                   ",
+        "after": "sub_90368        R_1              j_90368          0.0000   0      0.0000   0.4056   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_90374        R_1              j_90374          0.0000   nan      0.0000   0.0000   0.0000                   ",
+        "after": "sub_90374        R_1              j_90374          0.0000   0      0.0000   0.0000   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91272        R_1              j_91272          0.0000   nan      0.0000   0.1832   0.0000                   ",
+        "after": "sub_91272        R_1              j_91272          0.0000   0      0.0000   0.1832   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91273        R_1              j_91273          0.0000   nan      0.0000   0.0634   0.0000                   ",
+        "after": "sub_91273        R_1              j_91273          0.0000   0      0.0000   0.0634   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91274        R_1              j_91274          0.0000   nan      0.0000   0.0200   0.0000                   ",
+        "after": "sub_91274        R_1              j_91274          0.0000   0      0.0000   0.0200   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91275        R_1              j_91275          0.0000   nan      0.0000   0.0600   0.0000                   ",
+        "after": "sub_91275        R_1              j_91275          0.0000   0      0.0000   0.0600   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91276        R_1              j_91276          0.0000   nan      0.0000   0.0040   0.0000                   ",
+        "after": "sub_91276        R_1              j_91276          0.0000   0      0.0000   0.0040   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91277        R_1              j_91277          0.0000   nan      0.0000   0.0674   0.0000                   ",
+        "after": "sub_91277        R_1              j_91277          0.0000   0      0.0000   0.0674   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91278        R_1              j_91278          0.0000   nan      0.0000   0.0121   0.0000                   ",
+        "after": "sub_91278        R_1              j_91278          0.0000   0      0.0000   0.0121   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91279        R_1              j_91279          0.0000   nan      0.0000   0.0682   0.0000                   ",
+        "after": "sub_91279        R_1              j_91279          0.0000   0      0.0000   0.0682   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91292        R_1              j_91292          0.0000   nan      0.0000   0.0000   0.0000                   ",
+        "after": "sub_91292        R_1              j_91292          0.0000   0      0.0000   0.0000   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91293        R_1              j_91293          0.0000   nan      0.0000   0.0075   0.0000                   ",
+        "after": "sub_91293        R_1              j_91293          0.0000   0      0.0000   0.0075   0.0000                   "
+      },
+      {
+        "section": "SUBCATCHMENTS",
+        "before": "sub_91294        R_1              j_91294          0.0000   nan      0.0000   0.0049   0.0000                   ",
+        "after": "sub_91294        R_1              j_91294          0.0000   0      0.0000   0.0049   0.0000                   "
+      }
+    ],
+    "zero_area_nan_normalized_ids": [
+      "sub_90368",
+      "sub_90374",
+      "sub_91272",
+      "sub_91273",
+      "sub_91274",
+      "sub_91275",
+      "sub_91276",
+      "sub_91277",
+      "sub_91278",
+      "sub_91279",
+      "sub_91292",
+      "sub_91293",
+      "sub_91294"
+    ],
+    "inserted_observation_rows": 72,
+    "physical_parameter_policy": "Original hydraulic/hydrologic/control/DWF values preserved except declared zero-area NaN normalization and scenario diameter."
+  },
+  "counts": {
+    "subcatchments": 311,
+    "junctions": 309,
+    "outfalls": 2,
+    "storage": 0,
+    "conduits": 345,
+    "pumps": 0,
+    "orifices": 0,
+    "weirs": 0,
+    "raingages": 3
+  },
+  "allow_ponding": "NO",
+  "flow_units": "CMS",
+  "length_units": "m",
+  "area_units": "ha",
+  "coordinate_reference": "Original model XY coordinates preserved; no EPSG assignment or full municipal coverage inferred.",
+  "flood_volume_report_resolution_m3": 1,
+  "node_volume_threshold_m3": 10,
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false,
+  "limits": [
+    "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+    "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+    "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+    "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+    "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+    "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+    "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+    "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+  ]
+}

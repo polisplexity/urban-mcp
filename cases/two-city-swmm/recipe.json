@@ -1,0 +1,100 @@
+{
+  "schema_version": "0.1.0",
+  "method": {
+    "municipal_question": "Which modeled nodes cross 10 m3 of reported overflow under a hypothetical loss of diameter in a source-selected conduit, with independently observed regional rainfall?",
+    "event_selection": "Largest complete local-calendar wet day in August 2018 by observed lower-bound daily rainfall; ties earliest. Require the complete preceding and following day (72 hourly intervals); no missing-to-zero fill.",
+    "scenario": "capacity75: multiply ONE selected source circular conduit diameter by 0.75; retain all other source physics. This is hypothetical effective geometry, not observed blockage or literal sediment depth.",
+    "target_selection": "Largest sum of source subcatchment areas directly assigned to the upstream node, among original positive-length circular conduits; ties conduit ID. No result-based target selection.",
+    "threshold_m3": 10,
+    "warmup_hours": 24,
+    "cooldown_hours": 24,
+    "thread_count": 1,
+    "knmi_trace_midpoint_mm": 0.025,
+    "swmm_time_convention": "VOLUME hourly values at interval START in local standard/daylight model clock. DMI climateData explicitly gives from/to. KNMI HH labels interval END in UTC; subtract one hour before timezone conversion. August has no DST transition.",
+    "inspection": "Separate five-minute full-network input for control, hotstart and cancellation tests, never mixed with municipal scenario results."
+  },
+  "limitations": [
+    "Historical published neighborhood models, not full municipal inventories or current condition surveys.",
+    "No new calibration or field validation. Original Bellinge models are explicitly uncalibrated; Tuindorp was adapted from InfoWorks and originally simulated with SWMM 5.1.015. This experiment uses 5.2.4.",
+    "Hourly observations at regional stations, spatially uniform across all source gauges; local convective extremes and spatial variability are unresolved. No synthetic temporal disaggregation.",
+    "A 24-hour warm-up from the original empty initialization is a declared convention, not demonstrated hydrologic/sewer equilibrium.",
+    "Preserve original ponding differences. Node overflowing volumes can include water that ponds/re-enters; they are not identical to system flooding loss.",
+    "Native report node volume resolution is 1 m3. A displayed zero in a listed flooding row is not proof of no overflow.",
+    "Overflow volume is not a 2D flood extent, damage estimate, health/safety judgment, current blockage diagnosis or city ranking.",
+    "Native warnings and continuity errors remain reviewable. No quantitative forecast, calibration or final-product qualification is admitted."
+  ],
+  "cities": {
+    "odense": {
+      "scope": "Bellinge combined-sewer study network, Odense, Denmark; original published model, approximately 1.7 km2 study area.",
+      "timezone": "Europe/Copenhagen",
+      "coordinate_reference": "Original model XY coordinates preserved. No EPSG assignment or municipal boundary coverage inferred by this adapter.",
+      "model": {
+        "url": "https://ndownloader.figshare.com/files/30592830",
+        "doi": "10.11583/DTU.12513428.v2",
+        "member": "7_SWMM/BellingeSWMM_v021_nopervious.inp",
+        "sha256": "1ac98b81fbce2a42898423e2cf120ed46d36910637f73ad27c2a1004973c472c",
+        "archive_sha256": "fe07d487925cef647d1657def9c6316f952c9ae75304d28f2e1798d5dd8a646b",
+        "rights": "CC-BY-4.0"
+      },
+      "weather": {
+        "url": "https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000",
+        "filename": "rainfall.json",
+        "content_sha256": "f86c77172cb459f116033bd396584bc165fa8f466d8d993176ae8e5679dfb53a",
+        "rights": "CC-BY-4.0",
+        "station": "06120 Odense Lufthavn / H. C. Andersen Airport",
+        "station_coordinates_wgs84": [
+          10.3304,
+          55.4748
+        ],
+        "description": "DMI climateData hourly acc_precip with validity=true and qcStatus retained; regional airport observations, not Bellinge local gauges."
+      },
+      "metadata": [
+        {
+          "filename": "publisher-model-record.json",
+          "url": "https://api.figshare.com/v2/articles/12513428/versions/2"
+        },
+        {
+          "filename": "weather-terms.html",
+          "url": "https://www.dmi.dk/friedata/dokumentation/terms-of-use"
+        }
+      ],
+      "attribution": "Bellinge dataset authors (Pedersen et al., 2021), DOI 10.11583/DTU.12513428.v2; DMI Open Data. No endorsement of the derived experiment."
+    },
+    "utrecht": {
+      "scope": "Tuindorp development division of the published sewer model in Utrecht, Netherlands; transferability division excluded.",
+      "timezone": "Europe/Amsterdam",
+      "coordinate_reference": "Original model XY coordinates preserved; no EPSG assignment or full municipal coverage inferred.",
+      "model": {
+        "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/db67c31a-4794-49bb-b8be-b0c01eb56cdd",
+        "doi": "10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1",
+        "archive_bytes": 2761626547,
+        "member": "Tuindorp development - 1 min resolution/networks/Tuindorp development - 1 min resolution.inp",
+        "sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85",
+        "rights": "CC-BY-4.0"
+      },
+      "weather": {
+        "url": "https://cdn.knmi.nl/knmi/map/page/klimatologie/gegevens/uurgegevens/uurgeg_260_2011-2020.zip",
+        "filename": "rainfall.zip",
+        "content_sha256": "3e343fbe8d8964ab2273981747701e2d21beec5cfa2e2e5535c881710c6ac94b",
+        "rights": "CC0-1.0; attribute bron: KNMI and state no endorsement as requested by publisher",
+        "station": "260 De Bilt",
+        "station_coordinates_wgs84": [
+          5.177,
+          52.101
+        ],
+        "description": "KNMI hourly RH precipitation amount in 0.1 mm, 2011-2020 station archive; August 2018 selection; trace -1 explicitly imputed at 0.025 mm with \u00b10.025 mm interval uncertainty."
+      },
+      "metadata": [
+        {
+          "filename": "publisher-README.md",
+          "url": "https://data.4tu.nl/file/fec1e3de-9586-4a61-b3a1-02382592e52c/03048849-45e1-4b24-b85d-8a9a8ff1b4dc"
+        },
+        {
+          "filename": "weather-terms.html",
+          "url": "https://www.knmi.nl/copyright"
+        }
+      ],
+      "attribution": "Jorge Alexander Garz\u00f3n D\u00edaz (2024), Garz\u00f3n, Kapelan, Langeveld and Taormina; DOI 10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1, CC BY 4.0. Rain source: KNMI. KNMI was not involved in and does not necessarily endorse this derived work."
+    }
+  }
+}

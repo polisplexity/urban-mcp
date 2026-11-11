@@ -1,0 +1,504 @@
+{
+  "host": "codex",
+  "city": "utrecht",
+  "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+  "task_path": "cases/two-city-swmm/agent-task-v3.md",
+  "task_sha256": "e8efaf23b8fb835c20aef53d8f1485e8c0057764acc6e8efbc9ae52f715847e5",
+  "trace_sha256": "b06bd39c2aea70314f53cf99ec1767841d3723e62942e4e9463696dc64dd1321",
+  "process_sha256": "6b56cee2d40afc30983902757f1feb0b29ecf276886358a5d7e11889fb08ca9b",
+  "answer_sha256": "cb853ce1d29ac27195d1ee5f22c4906ceb92d70fc45398db55deb1a0a1cf2f51",
+  "tool_calls": 62,
+  "successful_tool_families": 27,
+  "failed_or_recovered_calls": [
+    {
+      "index": 56,
+      "tool": "model_inspect",
+      "arguments": {
+        "input_path": "../utrecht/baseline.inp"
+      }
+    },
+    {
+      "index": 58,
+      "tool": "output_query_series",
+      "arguments": {
+        "output_path": "b9d6d9f93a814670b83c1888ba677d1d/model.out",
+        "object_type": "node",
+        "object_id": "MISSING",
+        "attribute": "depth",
+        "max_points": 5
+      }
+    }
+  ],
+  "host_provided_discovery_helpers": [],
+  "checks": [
+    {
+      "name": "host process exited zero",
+      "passed": true
+    },
+    {
+      "name": "exact public task at launch",
+      "passed": true
+    },
+    {
+      "name": "submitted task and host identity",
+      "passed": true
+    },
+    {
+      "name": "no unrelated tools",
+      "passed": true
+    },
+    {
+      "name": "all 27 tool families succeeded",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source data.py",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source engine.py",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source server.py",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source checks.py",
+      "passed": true
+    },
+    {
+      "name": "one completed municipal baseline",
+      "passed": true
+    },
+    {
+      "name": "actual baseline city",
+      "passed": true
+    },
+    {
+      "name": "actual baseline scenario",
+      "passed": true
+    },
+    {
+      "name": "actual baseline nodes",
+      "passed": true
+    },
+    {
+      "name": "actual baseline listed_flooding_nodes",
+      "passed": true
+    },
+    {
+      "name": "actual baseline nodes_at_or_above_10m3",
+      "passed": true
+    },
+    {
+      "name": "actual baseline sum_reported_node_flood_volume_m3",
+      "passed": true
+    },
+    {
+      "name": "actual baseline system_flooding_loss_m3",
+      "passed": true
+    },
+    {
+      "name": "actual baseline routing_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual baseline runoff_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual baseline report_precipitation_mm",
+      "passed": true
+    },
+    {
+      "name": "actual baseline warnings",
+      "passed": true
+    },
+    {
+      "name": "actual baseline forecast_admitted",
+      "passed": true
+    },
+    {
+      "name": "complete baseline nodes.csv",
+      "passed": true
+    },
+    {
+      "name": "complete baseline outfalls.csv",
+      "passed": true
+    },
+    {
+      "name": "original source quality binding baseline",
+      "passed": true
+    },
+    {
+      "name": "original native metadata baseline",
+      "passed": true
+    },
+    {
+      "name": "original balances agree with report baseline",
+      "passed": true
+    },
+    {
+      "name": "one completed municipal capacity75",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 city",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 scenario",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 nodes",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 listed_flooding_nodes",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 nodes_at_or_above_10m3",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 sum_reported_node_flood_volume_m3",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 system_flooding_loss_m3",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 routing_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 runoff_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 report_precipitation_mm",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 warnings",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 forecast_admitted",
+      "passed": true
+    },
+    {
+      "name": "complete capacity75 nodes.csv",
+      "passed": true
+    },
+    {
+      "name": "complete capacity75 outfalls.csv",
+      "passed": true
+    },
+    {
+      "name": "original source quality binding capacity75",
+      "passed": true
+    },
+    {
+      "name": "original native metadata capacity75",
+      "passed": true
+    },
+    {
+      "name": "original balances agree with report capacity75",
+      "passed": true
+    },
+    {
+      "name": "complete comparison response equals native",
+      "passed": true
+    },
+    {
+      "name": "complete comparison artifact",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'utrecht', 'name': 'manifest.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'utrecht', 'name': 'requests.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'utrecht', 'name': 'rights.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'utrecht', 'name': 'recipe.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': '8907905bd9e44a918144b1fbc6eb0a70', 'name': 'comparison.csv'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': '8907905bd9e44a918144b1fbc6eb0a70', 'name': 'comparison.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': '8907905bd9e44a918144b1fbc6eb0a70', 'name': 'nodes.csv'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': '8907905bd9e44a918144b1fbc6eb0a70', 'name': 'outfalls.csv'}",
+      "passed": true
+    },
+    {
+      "name": "all five object listings",
+      "passed": true
+    },
+    {
+      "name": "four result types output_query_series",
+      "passed": true
+    },
+    {
+      "name": "four result types output_query_snapshot",
+      "passed": true
+    },
+    {
+      "name": "all four approved model-control families",
+      "passed": true
+    },
+    {
+      "name": "hotstart state actually loaded",
+      "passed": true
+    },
+    {
+      "name": "native asynchronous cancellation observed",
+      "passed": true
+    },
+    {
+      "name": "seven original resource families",
+      "passed": true
+    },
+    {
+      "name": "complete municipal quality resource equals native",
+      "passed": true
+    },
+    {
+      "name": "cleanup preserved all runs",
+      "passed": true
+    },
+    {
+      "name": "final status successful",
+      "passed": true
+    },
+    {
+      "name": "public model-query oracle passed",
+      "passed": true
+    }
+  ],
+  "checks_passed": true,
+  "missing_tools": [],
+  "structured_claims": {
+    "passed": true,
+    "mismatched_fields": [],
+    "observed": {
+      "city": "utrecht",
+      "target_conduit_id": "c_906791",
+      "event_day": "2018-08-25",
+      "event_day_mm": 20.575,
+      "forcing_total_mm": 23.025,
+      "source_nodes": 311,
+      "baseline_listed_flooding_nodes": 0,
+      "scenario_listed_flooding_nodes": 0,
+      "baseline_nodes_at_or_above_10m3": 0,
+      "scenario_nodes_at_or_above_10m3": 0,
+      "newly_at_or_above_10m3": 0,
+      "newly_crossing_node_ids": [],
+      "baseline_sum_reported_node_flood_volume_m3": 0.0,
+      "scenario_sum_reported_node_flood_volume_m3": 0.0,
+      "delta_sum_reported_node_flood_volume_m3": 0.0,
+      "baseline_system_flooding_loss_m3": 0.0,
+      "scenario_system_flooding_loss_m3": 0.0,
+      "routing_continuity_error_percent": [
+        -0.134,
+        -0.134
+      ],
+      "runoff_continuity_error_percent": [
+        -0.098,
+        -0.098
+      ],
+      "warning_counts": [
+        16,
+        16
+      ],
+      "comparison_sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+      "controls_physically_actuated": false,
+      "calibration_revalidated": false,
+      "forecast_admitted": false,
+      "product_qualified": false
+    }
+  },
+  "complete_pages": [
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "manifest.json"
+      },
+      "file_sha256": "22e7bebb30f23010068a37f47abbb4cfdb8b1bdd5dcd534b4c0191ea8391ae04",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 1303,
+          "text_sha256": "22e7bebb30f23010068a37f47abbb4cfdb8b1bdd5dcd534b4c0191ea8391ae04"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "requests.json"
+      },
+      "file_sha256": "d2737a0b259373020b9b31e1a0370e57011b486104765d43ae3153095f3dd6ca",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 3575,
+          "text_sha256": "d2737a0b259373020b9b31e1a0370e57011b486104765d43ae3153095f3dd6ca"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "rights.json"
+      },
+      "file_sha256": "d5778f1c4408e691e67156a40d7792c7b32801c0d2e8401069e6bdf4fe0ce1bb",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 549,
+          "text_sha256": "d5778f1c4408e691e67156a40d7792c7b32801c0d2e8401069e6bdf4fe0ce1bb"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "utrecht",
+        "name": "recipe.json"
+      },
+      "file_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 6759,
+          "text_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "comparison.csv"
+      },
+      "file_sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": 12000,
+          "characters": 12000,
+          "text_sha256": "ac58dfe11794a12410854762157728111be2f0c60d548eb875b77b3f24eeb24b"
+        },
+        {
+          "offset": 12000,
+          "next_offset": null,
+          "characters": 4067,
+          "text_sha256": "d202c24aeac8dd7280860078fcd4d139eb0e52e0fbbef0758eb4a7b87e179bde"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "comparison.json"
+      },
+      "file_sha256": "355981ae1408bca24a9b546b302ad81054055a48a543e0c27d43175041bea113",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 1182,
+          "text_sha256": "355981ae1408bca24a9b546b302ad81054055a48a543e0c27d43175041bea113"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "nodes.csv"
+      },
+      "file_sha256": "d04f3b22bfb6c774eedd8bf990ff537168b90a581bf2c1055fc0287fc096fef3",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 10007,
+          "text_sha256": "d04f3b22bfb6c774eedd8bf990ff537168b90a581bf2c1055fc0287fc096fef3"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "8907905bd9e44a918144b1fbc6eb0a70",
+        "name": "outfalls.csv"
+      },
+      "file_sha256": "db26470030d9ddfec548b675162e92d88ea8e8609e1530db7dea6af64e5e79b9",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 90,
+          "text_sha256": "db26470030d9ddfec548b675162e92d88ea8e8609e1530db7dea6af64e5e79b9"
+        }
+      ],
+      "all_pages_match": true
+    }
+  ],
+  "query_oracle_sha256": "f2f8a0668605629848fb98e9c671297f1b0443660f47fdfc75681464a351f71c",
+  "task_ordering": {
+    "session_resource_states": [
+      "RUNNING",
+      "OPEN"
+    ],
+    "session_status_read_before_close": true
+  },
+  "fine_grained_task_coverage": {
+    "required_live_fields_exercised": true,
+    "missing_live_fields": {},
+    "note": "Separate from 27 function-family/numeric/page acceptance. Supplementary observations may test omissions but do not rewrite this run."
+  },
+  "prose_word_count": 156,
+  "prose_length_passed": true,
+  "narrative_factual_review": "Separate manual answer-hash-bound review required; no automatic prose admission.",
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false
+}

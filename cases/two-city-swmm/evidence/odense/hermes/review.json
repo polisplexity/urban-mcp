@@ -1,0 +1,612 @@
+{
+  "host": "hermes",
+  "city": "odense",
+  "source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+  "task_path": "cases/two-city-swmm/agent-task-v3.md",
+  "task_sha256": "e8efaf23b8fb835c20aef53d8f1485e8c0057764acc6e8efbc9ae52f715847e5",
+  "trace_sha256": "3b58719b97ffdf589918b9162422d1de4f9944ae3f03d42cff8c0af4a05fda7c",
+  "process_sha256": "f5766eaaf3cab6a5975490d8b895fe64ebdcde83ce3add97a981c8e57da7ad02",
+  "answer_sha256": "28c65c68d1c105568eecc0ccdeb659294e08da561085c43ed0b9aceee2907676",
+  "tool_calls": 72,
+  "successful_tool_families": 27,
+  "failed_or_recovered_calls": [
+    {
+      "index": 26,
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "ef50c4907f1047f9b4c8f2ce292fac5c",
+        "name": "comparison.csv",
+        "limit": 12000,
+        "offset": 0
+      }
+    },
+    {
+      "index": 27,
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "ef50c4907f1047f9b4c8f2ce292fac5c",
+        "name": "comparison.json",
+        "limit": 12000,
+        "offset": 0
+      }
+    },
+    {
+      "index": 52,
+      "tool": "simulation_observe",
+      "arguments": {
+        "observe": {
+          "nodes": [
+            {
+              "id": "G75F65Y",
+              "fields": [
+                "depth",
+                "flooding"
+              ]
+            },
+            {
+              "id": "F74F360",
+              "fields": [
+                "depth",
+                "flooding"
+              ]
+            }
+          ],
+          "links": [
+            {
+              "id": "G75F65Y_G75S541_l1",
+              "fields": [
+                "flow"
+              ]
+            }
+          ],
+          "subcatchments": [
+            {
+              "id": "BellAa_1358_17896_6",
+              "fields": [
+                "rainfall",
+                "runoff_rate"
+              ]
+            }
+          ],
+          "raingages": [
+            {
+              "id": "rg5425",
+              "fields": [
+                "rainfall",
+                "total_precip"
+              ]
+            }
+          ],
+          "system": [
+            "runoff_stats",
+            "routing_stats"
+          ]
+        },
+        "session_id": "10aRQr4sVYbBcpz0cVwdtdK9UL0Yns9l3XubUcHds4A"
+      }
+    },
+    {
+      "index": 66,
+      "tool": "model_inspect",
+      "arguments": {
+        "input_path": "/etc/passwd"
+      }
+    },
+    {
+      "index": 68,
+      "tool": "output_query_series",
+      "arguments": {
+        "attribute": "depth",
+        "max_points": 5,
+        "object_id": "MISSING",
+        "object_type": "node",
+        "output_path": "ef50c4907f1047f9b4c8f2ce292fac5c/model.out"
+      }
+    }
+  ],
+  "host_provided_discovery_helpers": [],
+  "checks": [
+    {
+      "name": "host process exited zero",
+      "passed": true
+    },
+    {
+      "name": "exact public task at launch",
+      "passed": true
+    },
+    {
+      "name": "submitted task and host identity",
+      "passed": true
+    },
+    {
+      "name": "no unrelated tools",
+      "passed": true
+    },
+    {
+      "name": "all 27 tool families succeeded",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source data.py",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source engine.py",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source server.py",
+      "passed": true
+    },
+    {
+      "name": "frozen host/native source checks.py",
+      "passed": true
+    },
+    {
+      "name": "one completed municipal baseline",
+      "passed": true
+    },
+    {
+      "name": "actual baseline city",
+      "passed": true
+    },
+    {
+      "name": "actual baseline scenario",
+      "passed": true
+    },
+    {
+      "name": "actual baseline nodes",
+      "passed": true
+    },
+    {
+      "name": "actual baseline listed_flooding_nodes",
+      "passed": true
+    },
+    {
+      "name": "actual baseline nodes_at_or_above_10m3",
+      "passed": true
+    },
+    {
+      "name": "actual baseline sum_reported_node_flood_volume_m3",
+      "passed": true
+    },
+    {
+      "name": "actual baseline system_flooding_loss_m3",
+      "passed": true
+    },
+    {
+      "name": "actual baseline routing_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual baseline runoff_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual baseline report_precipitation_mm",
+      "passed": true
+    },
+    {
+      "name": "actual baseline warnings",
+      "passed": true
+    },
+    {
+      "name": "actual baseline forecast_admitted",
+      "passed": true
+    },
+    {
+      "name": "complete baseline nodes.csv",
+      "passed": true
+    },
+    {
+      "name": "complete baseline outfalls.csv",
+      "passed": true
+    },
+    {
+      "name": "original source quality binding baseline",
+      "passed": true
+    },
+    {
+      "name": "original native metadata baseline",
+      "passed": true
+    },
+    {
+      "name": "original balances agree with report baseline",
+      "passed": true
+    },
+    {
+      "name": "one completed municipal capacity75",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 city",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 scenario",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 nodes",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 listed_flooding_nodes",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 nodes_at_or_above_10m3",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 sum_reported_node_flood_volume_m3",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 system_flooding_loss_m3",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 routing_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 runoff_continuity_error_percent",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 report_precipitation_mm",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 warnings",
+      "passed": true
+    },
+    {
+      "name": "actual capacity75 forecast_admitted",
+      "passed": true
+    },
+    {
+      "name": "complete capacity75 nodes.csv",
+      "passed": true
+    },
+    {
+      "name": "complete capacity75 outfalls.csv",
+      "passed": true
+    },
+    {
+      "name": "original source quality binding capacity75",
+      "passed": true
+    },
+    {
+      "name": "original native metadata capacity75",
+      "passed": true
+    },
+    {
+      "name": "original balances agree with report capacity75",
+      "passed": true
+    },
+    {
+      "name": "complete comparison response equals native",
+      "passed": true
+    },
+    {
+      "name": "complete comparison artifact",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'odense', 'name': 'manifest.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'odense', 'name': 'requests.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'odense', 'name': 'rights.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'city': 'odense', 'name': 'recipe.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': 'b2ae512449ce4b28abd1140646ffb24e', 'name': 'comparison.csv'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': 'b2ae512449ce4b28abd1140646ffb24e', 'name': 'comparison.json'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': 'b2ae512449ce4b28abd1140646ffb24e', 'name': 'nodes.csv'}",
+      "passed": true
+    },
+    {
+      "name": "all observed pages {'run_id': 'b2ae512449ce4b28abd1140646ffb24e', 'name': 'outfalls.csv'}",
+      "passed": true
+    },
+    {
+      "name": "all five object listings",
+      "passed": true
+    },
+    {
+      "name": "four result types output_query_series",
+      "passed": true
+    },
+    {
+      "name": "four result types output_query_snapshot",
+      "passed": true
+    },
+    {
+      "name": "all four approved model-control families",
+      "passed": true
+    },
+    {
+      "name": "hotstart state actually loaded",
+      "passed": true
+    },
+    {
+      "name": "native asynchronous cancellation observed",
+      "passed": true
+    },
+    {
+      "name": "seven original resource families",
+      "passed": true
+    },
+    {
+      "name": "complete municipal quality resource equals native",
+      "passed": true
+    },
+    {
+      "name": "cleanup preserved all runs",
+      "passed": true
+    },
+    {
+      "name": "final status successful",
+      "passed": true
+    },
+    {
+      "name": "public model-query oracle passed",
+      "passed": true
+    }
+  ],
+  "checks_passed": true,
+  "missing_tools": [],
+  "structured_claims": {
+    "passed": true,
+    "mismatched_fields": [],
+    "observed": {
+      "city": "odense",
+      "target_conduit_id": "G75F65Y_G75S541_l1",
+      "event_day": "2018-08-12",
+      "event_day_mm": 19.7,
+      "forcing_total_mm": 31.0,
+      "source_nodes": 1020,
+      "baseline_listed_flooding_nodes": 17,
+      "scenario_listed_flooding_nodes": 14,
+      "baseline_nodes_at_or_above_10m3": 2,
+      "scenario_nodes_at_or_above_10m3": 2,
+      "newly_at_or_above_10m3": 0,
+      "newly_crossing_node_ids": [],
+      "baseline_sum_reported_node_flood_volume_m3": 245.0,
+      "scenario_sum_reported_node_flood_volume_m3": 245.0,
+      "delta_sum_reported_node_flood_volume_m3": 0.0,
+      "baseline_system_flooding_loss_m3": 245.0,
+      "scenario_system_flooding_loss_m3": 245.0,
+      "routing_continuity_error_percent": [
+        0.322,
+        0.323
+      ],
+      "runoff_continuity_error_percent": [
+        -0.003,
+        -0.003
+      ],
+      "warning_counts": [
+        15,
+        15
+      ],
+      "comparison_sha256": "f510fd2292163995a67bcabee19e948d340fa58884e08d253bdd3ca96d6b7b06",
+      "controls_physically_actuated": false,
+      "calibration_revalidated": false,
+      "forecast_admitted": false,
+      "product_qualified": false
+    }
+  },
+  "complete_pages": [
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "odense",
+        "name": "manifest.json"
+      },
+      "file_sha256": "081c3b98c45a344c6b82f36513f71cfe19faf4ff4d285567ee1b1faa7bba98ad",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 1187,
+          "text_sha256": "081c3b98c45a344c6b82f36513f71cfe19faf4ff4d285567ee1b1faa7bba98ad"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "odense",
+        "name": "requests.json"
+      },
+      "file_sha256": "984a626b48a681df0e043b6a15305f48629af36925cf88948f3207dd0a0aa36a",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 1380,
+          "text_sha256": "984a626b48a681df0e043b6a15305f48629af36925cf88948f3207dd0a0aa36a"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "odense",
+        "name": "rights.json"
+      },
+      "file_sha256": "d43722d43653731e5dd695438f1942786275179e402b928c6769d86e1b3fdd77",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 363,
+          "text_sha256": "d43722d43653731e5dd695438f1942786275179e402b928c6769d86e1b3fdd77"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_source",
+      "arguments": {
+        "city": "odense",
+        "name": "recipe.json"
+      },
+      "file_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 6759,
+          "text_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "b2ae512449ce4b28abd1140646ffb24e",
+        "name": "comparison.csv"
+      },
+      "file_sha256": "f510fd2292163995a67bcabee19e948d340fa58884e08d253bdd3ca96d6b7b06",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": 12000,
+          "characters": 12000,
+          "text_sha256": "ed36d02a1b6efc82cd1f793274623944101b6e0d73fb3bb38e278425d008e5ca"
+        },
+        {
+          "offset": 12000,
+          "next_offset": 24000,
+          "characters": 12000,
+          "text_sha256": "cee30164732bf0e0aa531a3b8c4a3d01049be686da6c204198cd2de8de201dff"
+        },
+        {
+          "offset": 24000,
+          "next_offset": 36000,
+          "characters": 12000,
+          "text_sha256": "f93beab26f37e6d756ea7d44dad4c21e702c1fc2ec3c2078f94d4a894fc6b195"
+        },
+        {
+          "offset": 36000,
+          "next_offset": 48000,
+          "characters": 12000,
+          "text_sha256": "71ee6503b11535ad24a3e8a03818dc1dadbf386ba2e268af6a5cc0507d4c89a1"
+        },
+        {
+          "offset": 48000,
+          "next_offset": null,
+          "characters": 4207,
+          "text_sha256": "41d393a1c838399a3f1e0283d4f2682c820663ec0fdc31d6998baa052ccc5a3b"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "b2ae512449ce4b28abd1140646ffb24e",
+        "name": "comparison.json"
+      },
+      "file_sha256": "7815380d985702f53c70b4a269d50811ef320493dbcfd512c7e92fd50e1730b5",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 1225,
+          "text_sha256": "7815380d985702f53c70b4a269d50811ef320493dbcfd512c7e92fd50e1730b5"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "b2ae512449ce4b28abd1140646ffb24e",
+        "name": "nodes.csv"
+      },
+      "file_sha256": "8db10fb3559c2f1992849208409638347a081e3936d40abcecd253008856d05c",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": 12000,
+          "characters": 12000,
+          "text_sha256": "b78f007df85af9c911c33652882987b8dae35e4eaaa5ada243ee4fa7367ddaa3"
+        },
+        {
+          "offset": 12000,
+          "next_offset": 24000,
+          "characters": 12000,
+          "text_sha256": "2a85846d71cfc3bcde0dccb020469d72882f3e1cba28fa55b9f9ba04314b3af3"
+        },
+        {
+          "offset": 24000,
+          "next_offset": null,
+          "characters": 8662,
+          "text_sha256": "83e05fedc358875ff279946749bb7cc50979c17a2501057cf421f6171e99fdea"
+        }
+      ],
+      "all_pages_match": true
+    },
+    {
+      "tool": "read_swmm_artifact",
+      "arguments": {
+        "run_id": "b2ae512449ce4b28abd1140646ffb24e",
+        "name": "outfalls.csv"
+      },
+      "file_sha256": "5710f308c57ba6765bbee97026b893ba0d0d82abe3072ee0c710bf95e63c3d6f",
+      "pages": [
+        {
+          "offset": 0,
+          "next_offset": null,
+          "characters": 224,
+          "text_sha256": "5710f308c57ba6765bbee97026b893ba0d0d82abe3072ee0c710bf95e63c3d6f"
+        }
+      ],
+      "all_pages_match": true
+    }
+  ],
+  "query_oracle_sha256": "c2512d85de7c316fc852a75ce056e3322dd13b746c74b0c5f640e31cd70bc336",
+  "task_ordering": {
+    "session_resource_states": [
+      "RUNNING"
+    ],
+    "session_status_read_before_close": true
+  },
+  "fine_grained_task_coverage": {
+    "required_live_fields_exercised": false,
+    "missing_live_fields": {
+      "subcatchments": [
+        "runoff"
+      ]
+    },
+    "note": "Separate from 27 function-family/numeric/page acceptance. Supplementary observations may test omissions but do not rewrite this run."
+  },
+  "prose_word_count": 223,
+  "prose_length_passed": false,
+  "narrative_factual_review": "Separate manual answer-hash-bound review required; no automatic prose admission.",
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false
+}

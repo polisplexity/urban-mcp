@@ -1,0 +1,15 @@
+{
+  "city": "utrecht",
+  "sha256": "b4ec64a0d0971d8cc9d7490d7ff2176b4586f0894f9cf63c876191dca0933003",
+  "bytes": 253863,
+  "source_model_sha256": "72b51ba44dda035cd195545a9fc4b0fdf1ca31ad9c7569d342ab2ae851423a85",
+  "coordinate_nodes": 311,
+  "drawn_links": 345,
+  "links_missing_endpoint_coordinates": [],
+  "inputs": {
+    "baseline-nodes.csv": "d04f3b22bfb6c774eedd8bf990ff537168b90a581bf2c1055fc0287fc096fef3",
+    "capacity75-nodes.csv": "d04f3b22bfb6c774eedd8bf990ff537168b90a581bf2c1055fc0287fc096fef3",
+    "quality.json": "5ab5f011d1295899d73554cb5c2ca115394ffb6b34cec4bba52477112a081a45"
+  },
+  "meaning": "Original model geometry and native rounded overflow rows; no flood polygon, geographic CRS or field validation inferred."
+}

@@ -1,0 +1,104 @@
+{
+  "record_kind": "Original-team computational reproduction, not independent-person qualification",
+  "frozen_backend_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+  "recipe_sha256": "de5ac0aaf4ac078ef23dd9a750186d5e29bd9a3d5bba19c9ad66a231784c7a69",
+  "cities": {
+    "odense": {
+      "native_stdio_checks": 176,
+      "successful_tools": 27,
+      "resources": "7 original families + municipal quality",
+      "prompt": "municipal_drainage_review",
+      "input_manifest_sha256": "081c3b98c45a344c6b82f36513f71cfe19faf4ff4d285567ee1b1faa7bba98ad",
+      "quality_sha256": "b3f4ecd56212845c726f2b03edf8c22fe54a9fd7e8497be53e724d3d470e45c2",
+      "comparison": {
+        "city": "odense",
+        "baseline_run_id": "1a18afba581f4d1d8018d37fc4cd2e22",
+        "scenario_run_id": "96148a8632a44c599f4d6d572e2b6982",
+        "nodes": 1020,
+        "threshold_m3": 10,
+        "newly_at_or_above_10m3": 0,
+        "baseline_nodes_at_or_above_10m3": 2,
+        "scenario_nodes_at_or_above_10m3": 2,
+        "baseline_sum_reported_node_flood_volume_m3": 245.0,
+        "scenario_sum_reported_node_flood_volume_m3": 245.0,
+        "delta_sum_reported_node_flood_volume_m3": 0.0,
+        "routing_continuity_error_percent": [
+          0.322,
+          0.323
+        ],
+        "target": {
+          "conduit_id": "G75F65Y_G75S541_l1",
+          "from_node": "G75F65Y",
+          "to_node": "G75S541",
+          "source_diameter_m": 0.10400000000000001,
+          "scenario_diameter_m": 0.07800000000000001,
+          "directly_contributing_area_ha": 10.568999999999999,
+          "eligible_conduits": 579,
+          "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+        },
+        "comparison_csv": {
+          "sha256": "f510fd2292163995a67bcabee19e948d340fa58884e08d253bdd3ca96d6b7b06",
+          "bytes": 52207,
+          "rows": 1020
+        },
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false
+      }
+    },
+    "utrecht": {
+      "native_stdio_checks": 160,
+      "successful_tools": 27,
+      "resources": "7 original families + municipal quality",
+      "prompt": "municipal_drainage_review",
+      "input_manifest_sha256": "22e7bebb30f23010068a37f47abbb4cfdb8b1bdd5dcd534b4c0191ea8391ae04",
+      "quality_sha256": "5ab5f011d1295899d73554cb5c2ca115394ffb6b34cec4bba52477112a081a45",
+      "comparison": {
+        "city": "utrecht",
+        "baseline_run_id": "0d5af778da33486abf6a6dbe263140a6",
+        "scenario_run_id": "df26b055962b435882a827694523a181",
+        "nodes": 311,
+        "threshold_m3": 10,
+        "newly_at_or_above_10m3": 0,
+        "baseline_nodes_at_or_above_10m3": 0,
+        "scenario_nodes_at_or_above_10m3": 0,
+        "baseline_sum_reported_node_flood_volume_m3": 0.0,
+        "scenario_sum_reported_node_flood_volume_m3": 0.0,
+        "delta_sum_reported_node_flood_volume_m3": 0.0,
+        "routing_continuity_error_percent": [
+          -0.134,
+          -0.134
+        ],
+        "target": {
+          "conduit_id": "c_906791",
+          "from_node": "j_90679",
+          "to_node": "j_90678",
+          "source_diameter_m": 0.3,
+          "scenario_diameter_m": 0.22499999999999998,
+          "directly_contributing_area_ha": 0.155,
+          "eligible_conduits": 54,
+          "selection": "Largest sum of source subcatchment areas directly assigned to the upstream node; positive-length circular conduit; tie by source ID. No result-based tuning."
+        },
+        "comparison_csv": {
+          "sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+          "bytes": 16067,
+          "rows": 311
+        },
+        "forecast_admitted": false,
+        "calibration_revalidated": false,
+        "product_qualified": false
+      }
+    }
+  },
+  "original_mcp_tests": {
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0,
+    "linux_patch_applied": true
+  },
+  "synthetic_contract_tests": 12,
+  "isolated_original_method_probes": 7,
+  "forecast_admitted": false,
+  "calibration_revalidated": false,
+  "product_qualified": false
+}

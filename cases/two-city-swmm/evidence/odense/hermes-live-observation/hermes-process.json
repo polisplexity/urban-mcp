@@ -1,0 +1,12 @@
+{
+  "host": "hermes",
+  "city": "odense",
+  "capability": "swmm",
+  "exit_code": 0,
+  "started_at": "2026-11-11T00:01:46.005278+00:00",
+  "elapsed_seconds": 63.762,
+  "submitted_prompt_sha256": "c6fe518f00b9677a89a7f67b97577d45f77e5524a4b3006997aeb3c34d5bc4c9",
+  "task_path": "cases/two-city-swmm/agent-live-observation-task.md",
+  "task_template_sha256": "7635ae58142889de5c3b01988fe4e4a529b4edb31f78171656b3cf1747c9a81c",
+  "code_commit": "abc6a22698c2edbae22e92eb87c37529546a97ca"
+}

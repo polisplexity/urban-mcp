@@ -528,7 +528,9 @@
         "helsinki-service-inventory",
         "helsinki-vegetation",
         "helsinki-walking",
-        "ingolstadt-sumo"
+        "ingolstadt-sumo",
+        "odense-swmm",
+        "utrecht-swmm"
       ]
     },
     {
@@ -580,6 +582,74 @@
       "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
       "implemented_cases": [
         "ingolstadt-sumo"
+      ]
+    },
+    {
+      "id": "swmm-bellinge",
+      "name": "DTU Bellinge original hydraulic model v2",
+      "url": "https://doi.org/10.11583/DTU.12513428.v2",
+      "access": "public",
+      "coverage": "Bellinge historical sewer study network in Odense",
+      "provides": "CC-BY-4.0 original SWMM input and publisher metadata",
+      "does_not_provide": "current asset condition or inherited calibration; original NC rain excluded",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "odense-swmm"
+      ]
+    },
+    {
+      "id": "swmm-tuindorp",
+      "name": "4TU Tuindorp development hydraulic network v1",
+      "url": "https://doi.org/10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1",
+      "access": "public",
+      "coverage": "Published Tuindorp development division in Utrecht",
+      "provides": "CC-BY-4.0 original SWMM input and README; version-consistent ZIP ranges",
+      "does_not_provide": "complete municipal network, new calibration or learned GNN weights as hydraulic inputs",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "utrecht-swmm"
+      ]
+    },
+    {
+      "id": "weather-dmi-climate",
+      "name": "DMI climateData station 06120 hourly precipitation",
+      "url": "https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000",
+      "access": "public-api",
+      "coverage": "Regional Odense airport observations, August 2018 windows",
+      "provides": "CC-BY-4.0 hourly acc_precip with interval start/end, validity and quality metadata",
+      "does_not_provide": "local rain spatial variability, subhourly extremes or unchanged future QA records",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "odense-swmm"
+      ]
+    },
+    {
+      "id": "weather-knmi-hourly",
+      "name": "KNMI station 260 De Bilt hourly archive",
+      "url": "https://www.knmi.nl/nederland-nu/klimatologie/uurgegevens",
+      "access": "public",
+      "coverage": "Station 260 historical 2011-2020 archive; bounded August 2018 use",
+      "provides": "CC0 hourly RH with explicit trace and interval-end conventions; attribute KNMI with no endorsement",
+      "does_not_provide": "Tuindorp local gauge observations, subhourly peaks or climate-trend suitability",
+      "evidence": "publisher-case-verified",
+      "checked_on": "2026-11-10",
+      "asset_admission": "per_asset_review_required",
+      "download_implemented": true,
+      "license_policy": "Record exact asset terms and attribution; code license does not cover all datasets or weights",
+      "implemented_cases": [
+        "utrecht-swmm"
       ]
     }
   ]

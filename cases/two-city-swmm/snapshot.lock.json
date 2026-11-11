@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "release_tag": "data-swmm-20261110",
+  "cities": {
+    "odense": {
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-swmm-20261110/odense-swmm-sources.tar.gz",
+      "sha256": "fee1cf2244abee9d9661507a02db11bf67bf5b6ca1a7143a1998e94f1ad526c6",
+      "bytes": 228152,
+      "manifest_sha256": "081c3b98c45a344c6b82f36513f71cfe19faf4ff4d285567ee1b1faa7bba98ad"
+    },
+    "utrecht": {
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-swmm-20261110/utrecht-swmm-sources.tar.gz",
+      "sha256": "641fa07bbfcd0cc22444cf8c3662ea1cb982995a382e8c24980ac9b245c6c697",
+      "bytes": 1774724,
+      "manifest_sha256": "22e7bebb30f23010068a37f47abbb4cfdb8b1bdd5dcd534b4c0191ea8391ae04"
+    }
+  },
+  "rights": "Model CC-BY-4.0; DMI CC-BY-4.0; KNMI CC0 with publisher attribution/no-endorsement notice. Code MIT does not relicense inputs.",
+  "exclusions": "No Bellinge rain-gauge collection, learned GNN weights, proprietary utilities data, calibration claims or generated simulation outputs."
+}

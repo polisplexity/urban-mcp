@@ -1,0 +1,73 @@
+{
+  "scope": "Actual supplementary Hermes observations in fresh city profiles versus direct original PySWMM, initialization and 30 s; no replacement of full-run conclusions.",
+  "runs": [
+    {
+      "city": "odense",
+      "host": "hermes",
+      "source_commit": "abc6a22698c2edbae22e92eb87c37529546a97ca",
+      "task_path": "cases/two-city-swmm/agent-live-observation-task.md",
+      "task_sha256": "7635ae58142889de5c3b01988fe4e4a529b4edb31f78171656b3cf1747c9a81c",
+      "checks_passed": true,
+      "checks": 8,
+      "calls": 11,
+      "initial_and_30s_live_fields": [
+        "rainfall",
+        "runoff"
+      ],
+      "open_resource_read_in_this_supplement": false,
+      "files": {
+        "hermes-answer.md": {
+          "sha256": "6837fcf9147fe00ba8551de0d675b8a553cd4a39da80805374243dd2d6fb02e2",
+          "bytes": 606
+        },
+        "hermes-process.json": {
+          "sha256": "74dd77dc21b3f1d43a4a44be898c1ffaf4aea575c04310c7a241d4a952dbe58e",
+          "bytes": 487
+        },
+        "native-oracle.json": {
+          "sha256": "70d2bae1e1932d28424c86380014cd855539c68c4d4e9002c339082dd8811053",
+          "bytes": 1370
+        },
+        "trace.json": {
+          "sha256": "9fe7d0aceaea0c90c3dbb91be6ba45b116ec48cbeacfd905dd2b6e6e996cb7cb",
+          "bytes": 28393
+        }
+      },
+      "note": "Narrow supplemental evidence for the live field omitted in the full Hermes task. Earlier answers/task omissions remain unchanged; not another municipal forecast."
+    },
+    {
+      "city": "utrecht",
+      "host": "hermes",
+      "source_commit": "abc6a22698c2edbae22e92eb87c37529546a97ca",
+      "task_path": "cases/two-city-swmm/agent-live-observation-task.md",
+      "task_sha256": "7635ae58142889de5c3b01988fe4e4a529b4edb31f78171656b3cf1747c9a81c",
+      "checks_passed": true,
+      "checks": 8,
+      "calls": 12,
+      "initial_and_30s_live_fields": [
+        "rainfall",
+        "runoff"
+      ],
+      "open_resource_read_in_this_supplement": true,
+      "files": {
+        "hermes-answer.md": {
+          "sha256": "6bde55f066ee83acf9e6f03a7bc361853c92fecd601a8e3a15f8fdbec90901e7",
+          "bytes": 910
+        },
+        "hermes-process.json": {
+          "sha256": "9f863b9bc73f01c6a95f9f3b27398c2127aa8b6fcb9ca03d664d282d24cff344",
+          "bytes": 488
+        },
+        "native-oracle.json": {
+          "sha256": "48b1358ab412f4e2db2eab9ba6cef6d9c6788fad88d4ec8e792ee6412bef2588",
+          "bytes": 1360
+        },
+        "trace.json": {
+          "sha256": "8f42ddac884624056a181ad946c3bb3a9bf352497f2eb706ea7eb7ff7d09eccc",
+          "bytes": 39199
+        }
+      },
+      "note": "Narrow supplemental evidence for the live field omitted in the full Hermes task. Earlier answers/task omissions remain unchanged; not another municipal forecast."
+    }
+  ]
+}

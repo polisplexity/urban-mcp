@@ -228,3 +228,4 @@ Deltares/hydromt_wflow|hydrology|Proposed representative-case requirements only;
 openstreams/wflow|hydrology|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
 AequilibraE/aequilibrae|traffic-assignment|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
 ropensci/stplanr|traffic-assignment|Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+foundanotusedname/pyswmm-mcp|swmm|Reused dependency in the explicit two-city historical SWMM case; case evidence does not admit every engine operation.

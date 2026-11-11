@@ -2,7 +2,7 @@
 
 **Status: proposed requirements, not general operational availability.** Each tool has a profile. These describe a first representative case; every operation needs its own native binding and may use a different subset. Dependencies inherit the parent capability's inputs. GTFS is not mandatory for geometric validation, nor HVAC inputs for a daylight calculation. Historical research descriptions retain their original language.
 
-Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 4 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
+Candidate sources are not automatically downloaded, licensed or suitable assets. Operator sources require a specific project and authorization. 5 entry/entries have case-scoped admission; the rest retain `ready_to_run=false`. Admission does not cover every upstream function. See [the master test record](../../MASTER_TEST_RECORD.md) for executed evidence.
 
 | Tool | Proposed profile | Status |
 |---|---|---|
@@ -15,9 +15,9 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 | [MarkusPic/swmm_api](#data-markuspic--swmm_api) | `swmm` | dependency; binding pending |
 | [openstreams/wflow](#data-openstreams--wflow) | `hydrology` | candidate; binding pending |
 | [OpenWaterAnalytics/EPANET](#data-openwateranalytics--epanet) | `epanet` | candidate; binding pending |
-| [pyswmm/pyswmm](#data-pyswmm--pyswmm) | `swmm` | candidate; binding pending |
+| [pyswmm/pyswmm](#data-pyswmm--pyswmm) | `swmm` | candidate; case-scoped admission |
 | [USEPA/EPANET2.2](#data-usepa--epanet2.2) | `epanet` | candidate; binding pending |
-| [USEPA/Stormwater-Management-Model](#data-usepa--stormwater-management-model) | `swmm` | candidate; binding pending |
+| [USEPA/Stormwater-Management-Model](#data-usepa--stormwater-management-model) | `swmm` | dependency; binding pending |
 | [USEPA/WNTR](#data-usepa--wntr) | `epanet` | candidate; binding pending |
 | [blender/blender](#data-blender--blender) | `cad` | candidate; binding pending |
 | [buildingSMART/BCF-XML](#data-buildingsmart--bcf-xml) | `bcf` | dependency; binding pending |
@@ -235,6 +235,7 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 | [external:palm](#data-palm) | `microclimate` | candidate; binding pending |
 | [external:telemac](#data-telemac) | `coastal` | candidate; binding pending |
 | [external:simstadt](#data-simstadt) | `urban-energy` | candidate; binding pending |
+| [foundanotusedname/pyswmm-mcp](#data-foundanotusedname--pyswmm-mcp) | `swmm` | dependency; binding pending |
 
 <a id="data-deltares--delft3d"></a>
 
@@ -365,8 +366,8 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
-| model | SWMM INP | Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
-| rainfall | series or embedded INP series | Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
+| model | SWMM INP | [DTU Bellinge original hydraulic model v2](https://doi.org/10.11583/DTU.12513428.v2); [4TU Tuindorp development hydraulic network v1](https://doi.org/10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1); Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
+| rainfall | series or embedded INP series | [DMI climateData station 06120 hourly precipitation](https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000); [KNMI station 260 De Bilt hourly archive](https://www.knmi.nl/nederland-nu/klimatologie/uurgegevens); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
 | scenario | parameter changes | Model author or qualified project team (configuration required); Authorized files supplied for the case (configuration required) | base revision and physical bounds |
 
 - **Preparation required:** Parse/validate INP, check referenced series, use copies for alternatives and preserve declared units.
@@ -420,18 +421,20 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 ## pyswmm/pyswmm
 
 - **Original interface:** API Python y motor asociado.
-- **Profile scope:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Profile scope:** candidate. Case-scoped original native/API/MCP evidence for Odense and Utrecht; source physics and model-quality limitations retained.
+- **Scoped executable case:** [odense-swmm](../../cases/odense-swmm/README.md); operations: compare_swmm_runs, harvest_swmm_data, inspect_swmm_case, model_inspect, model_list_objects, output_inspect, output_query_series, output_query_snapshot, prepare_swmm_case, read_swmm_artifact, read_swmm_resource, read_swmm_source, run_cleanup, run_summary, run_swmm_scenario, simulation_close, simulation_create, simulation_observe, simulation_run, simulation_run_start, simulation_save_hotstart, simulation_start, simulation_step, simulation_stop, simulation_task_cancel, simulation_task_status, swmm_status. The generic profile below remains a proposal for other operations.
+- **Scoped executable case:** [utrecht-swmm](../../cases/utrecht-swmm/README.md); operations: compare_swmm_runs, harvest_swmm_data, inspect_swmm_case, model_inspect, model_list_objects, output_inspect, output_query_series, output_query_snapshot, prepare_swmm_case, read_swmm_artifact, read_swmm_resource, read_swmm_source, run_cleanup, run_summary, run_swmm_scenario, simulation_close, simulation_create, simulation_observe, simulation_run, simulation_run_start, simulation_save_hotstart, simulation_start, simulation_step, simulation_stop, simulation_task_cancel, simulation_task_status, swmm_status. The generic profile below remains a proposal for other operations.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
-| model | SWMM INP | Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
-| rainfall | series or embedded INP series | Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
+| model | SWMM INP | [DTU Bellinge original hydraulic model v2](https://doi.org/10.11583/DTU.12513428.v2); [4TU Tuindorp development hydraulic network v1](https://doi.org/10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1); Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
+| rainfall | series or embedded INP series | [DMI climateData station 06120 hourly precipitation](https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000); [KNMI station 260 De Bilt hourly archive](https://www.knmi.nl/nederland-nu/klimatologie/uurgegevens); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
 | scenario | parameter changes | Model author or qualified project team (configuration required); Authorized files supplied for the case (configuration required) | base revision and physical bounds |
 
 - **Preparation required:** Parse/validate INP, check referenced series, use copies for alternatives and preserve declared units.
 - **Validation required:** Topology, conduit/node references, catchment coverage, rainfall interval, continuity and native diagnostics.
 - **Real-city blocker:** Street maps and global DEM do not provide a hydraulic drainage model or design rainfall.
-- **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
+- **Native binding:** verified only for the linked case and operations; the generic profile does not admit additional operations.
 - **Project critique:** No duplicar simulación ni elegirlo además de otro wrapper sin necesidad.
 - **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.
 
@@ -459,12 +462,12 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 ## USEPA/Stormwater-Management-Model
 
 - **Original interface:** Toolkit o ejecutable nativo.
-- **Profile scope:** candidate. Proposed representative-case requirements only; operation-specific native bindings and admissible source assets still require review.
+- **Profile scope:** dependency. Original C 5.2.4 CLI is the independent native oracle in the Odense/Utrecht cases; no standalone general MCP/city admission.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
-| model | SWMM INP | Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
-| rainfall | series or embedded INP series | Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
+| model | SWMM INP | [DTU Bellinge original hydraulic model v2](https://doi.org/10.11583/DTU.12513428.v2); [4TU Tuindorp development hydraulic network v1](https://doi.org/10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1); Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
+| rainfall | series or embedded INP series | [DMI climateData station 06120 hourly precipitation](https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000); [KNMI station 260 De Bilt hourly archive](https://www.knmi.nl/nederland-nu/klimatologie/uurgegevens); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
 | scenario | parameter changes | Model author or qualified project team (configuration required); Authorized files supplied for the case (configuration required) | base revision and physical bounds |
 
 - **Preparation required:** Parse/validate INP, check referenced series, use copies for alternatives and preserve declared units.
@@ -2277,8 +2280,8 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
-| model | SWMM INP | Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
-| rainfall | series or embedded INP series | Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
+| model | SWMM INP | [DTU Bellinge original hydraulic model v2](https://doi.org/10.11583/DTU.12513428.v2); [4TU Tuindorp development hydraulic network v1](https://doi.org/10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1); Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
+| rainfall | series or embedded INP series | [DMI climateData station 06120 hourly precipitation](https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000); [KNMI station 260 De Bilt hourly archive](https://www.knmi.nl/nederland-nu/klimatologie/uurgegevens); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
 | scenario | parameter changes | Model author or qualified project team (configuration required); Authorized files supplied for the case (configuration required) | base revision and physical bounds |
 
 - **Preparation required:** Parse/validate INP, check referenced series, use copies for alternatives and preserve declared units.
@@ -2561,8 +2564,8 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 
 | Candidate input | Format/contract | Candidate sources | Admission condition |
 |---|---|---|---|
-| model | SWMM INP | Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
-| rainfall | series or embedded INP series | Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
+| model | SWMM INP | [DTU Bellinge original hydraulic model v2](https://doi.org/10.11583/DTU.12513428.v2); [4TU Tuindorp development hydraulic network v1](https://doi.org/10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1); Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
+| rainfall | series or embedded INP series | [DMI climateData station 06120 hourly precipitation](https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000); [KNMI station 260 De Bilt hourly archive](https://www.knmi.nl/nederland-nu/klimatologie/uurgegevens); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
 | scenario | parameter changes | Model author or qualified project team (configuration required); Authorized files supplied for the case (configuration required) | base revision and physical bounds |
 
 - **Preparation required:** Parse/validate INP, check referenced series, use copies for alternatives and preserve declared units.
@@ -4673,4 +4676,24 @@ Candidate sources are not automatically downloaded, licensed or suitable assets.
 - **Real-city blocker:** Global building data does not supply local building physics or occupancy.
 - **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
 - **Project critique:** Source, data and runtime admission are pending; documented commands are not execution evidence
+- **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.
+
+<a id="data-foundanotusedname--pyswmm-mcp"></a>
+
+## foundanotusedname/pyswmm-mcp
+
+- **Original interface:** Original official Python MCP SDK 2 server; process-isolated PySWMM batch/live/output/task tools and resource families.
+- **Profile scope:** dependency. Reused dependency in the bounded Odense/Utrecht computational cases; no standalone/general municipal admission.
+
+| Candidate input | Format/contract | Candidate sources | Admission condition |
+|---|---|---|---|
+| model | SWMM INP | [DTU Bellinge original hydraulic model v2](https://doi.org/10.11583/DTU.12513428.v2); [4TU Tuindorp development hydraulic network v1](https://doi.org/10.4121/fec1e3de-9586-4a61-b3a1-02382592e52c.v1); Municipality, utility, transit agency or project owner (configuration required); Authorized files supplied for the case (configuration required); Original tool examples/tests (configuration required) | nodes, conduits, invert levels, sections, roughness and catchments |
+| rainfall | series or embedded INP series | [DMI climateData station 06120 hourly precipitation](https://opendataapi.dmi.dk/v2/climateData/collections/stationValue/items?stationId=06120&parameterId=acc_precip&timeResolution=hour&datetime=2018-07-31T00:00:00Z/2018-09-02T00:00:00Z&limit=1000); [KNMI station 260 De Bilt hourly archive](https://www.knmi.nl/nederland-nu/klimatologie/uurgegevens); Municipality, utility, transit agency or project owner (configuration required); Model author or qualified project team (configuration required); Original tool examples/tests (configuration required) | units, timestep and event explicit |
+| scenario | parameter changes | Model author or qualified project team (configuration required); Authorized files supplied for the case (configuration required) | base revision and physical bounds |
+
+- **Preparation required:** Parse/validate INP, check referenced series, use copies for alternatives and preserve declared units.
+- **Validation required:** Topology, conduit/node references, catchment coverage, rainfall interval, continuity and native diagnostics.
+- **Real-city blocker:** Street maps and global DEM do not provide a hydraulic drainage model or design rainfall.
+- **Native binding:** each input still needs mapping to the selected operation's file/API/argument; this table does not establish that mapping.
+- **Project critique:** Historical neighborhood models and regional hourly rain do not establish current field calibration, 2D inundation or final-product qualification.
 - **Next contribution:** select an operation and permitted asset, pin version/hash/license, document conversion and reproduce the native case before MCP testing.

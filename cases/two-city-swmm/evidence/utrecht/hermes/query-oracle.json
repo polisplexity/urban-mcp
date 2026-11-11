@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "call 32 output_query_series node/j_90679/depth original count",
+      "passed": true
+    },
+    {
+      "name": "call 32 output_query_series node/j_90679/depth returned count",
+      "passed": true
+    },
+    {
+      "name": "call 32 output_query_series node/j_90679/depth every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 32 output_query_series node/j_90679/depth ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 32 output_query_series node/j_90679/depth unit",
+      "passed": true
+    },
+    {
+      "name": "call 33 output_query_series link/c_906791/flow original count",
+      "passed": true
+    },
+    {
+      "name": "call 33 output_query_series link/c_906791/flow returned count",
+      "passed": true
+    },
+    {
+      "name": "call 33 output_query_series link/c_906791/flow every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 33 output_query_series link/c_906791/flow ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 33 output_query_series link/c_906791/flow unit",
+      "passed": true
+    },
+    {
+      "name": "call 34 output_query_series subcatchment/sub_9006F/rainfall original count",
+      "passed": true
+    },
+    {
+      "name": "call 34 output_query_series subcatchment/sub_9006F/rainfall returned count",
+      "passed": true
+    },
+    {
+      "name": "call 34 output_query_series subcatchment/sub_9006F/rainfall every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 34 output_query_series subcatchment/sub_9006F/rainfall ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 34 output_query_series subcatchment/sub_9006F/rainfall unit",
+      "passed": true
+    },
+    {
+      "name": "call 35 output_query_series system/system/outfall_flow original count",
+      "passed": true
+    },
+    {
+      "name": "call 35 output_query_series system/system/outfall_flow returned count",
+      "passed": true
+    },
+    {
+      "name": "call 35 output_query_series system/system/outfall_flow every observed value",
+      "passed": true
+    },
+    {
+      "name": "call 35 output_query_series system/system/outfall_flow ordered endpoints",
+      "passed": true
+    },
+    {
+      "name": "call 35 output_query_series system/system/outfall_flow unit",
+      "passed": true
+    },
+    {
+      "name": "call 36 output_query_snapshot node/j_90679/depth report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 36 output_query_snapshot node/j_90679/depth value",
+      "passed": true
+    },
+    {
+      "name": "call 36 output_query_snapshot node/j_90679/depth unit",
+      "passed": true
+    },
+    {
+      "name": "call 37 output_query_snapshot link/c_906791/flow report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 37 output_query_snapshot link/c_906791/flow value",
+      "passed": true
+    },
+    {
+      "name": "call 37 output_query_snapshot link/c_906791/flow unit",
+      "passed": true
+    },
+    {
+      "name": "call 38 output_query_snapshot subcatchment/sub_9006F/rainfall report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 38 output_query_snapshot subcatchment/sub_9006F/rainfall value",
+      "passed": true
+    },
+    {
+      "name": "call 38 output_query_snapshot subcatchment/sub_9006F/rainfall unit",
+      "passed": true
+    },
+    {
+      "name": "call 39 output_query_snapshot system/system/outfall_flow report timestamp",
+      "passed": true
+    },
+    {
+      "name": "call 39 output_query_snapshot system/system/outfall_flow value",
+      "passed": true
+    },
+    {
+      "name": "call 39 output_query_snapshot system/system/outfall_flow unit",
+      "passed": true
+    },
+    {
+      "name": "all four object types in both query families",
+      "passed": true
+    }
+  ],
+  "check_count": 33,
+  "trace_sha256": "dd5fdd0a66a40d79d1bdb6b0765bac4b6fa5d9a32c11665a11300170230374d7",
+  "native_output_sha256": "2c308a9e829c3fd0af0350982e6e23cd7287b6e026c19440d4eb74b41f4461a9",
+  "scope": "Actual host query responses versus separately compiled EPA native binary; no agent reasoning or expected-answer replay."
+}

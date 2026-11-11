@@ -1,0 +1,14 @@
+{
+  "requests": [
+    {
+      "url": "https://github.com/polisplexity/urban-mcp/releases/download/data-swmm-20261110/odense-swmm-sources.tar.gz",
+      "retrieved_at": "2026-11-10T23:38:46.014882+00:00",
+      "http_status": 200,
+      "bytes": 228152,
+      "sha256": "fee1cf2244abee9d9661507a02db11bf67bf5b6ca1a7143a1998e94f1ad526c6",
+      "etag": "\"0x8DF3F7C3714896E\"",
+      "content_range": null
+    }
+  ],
+  "archive_sha256": "fee1cf2244abee9d9661507a02db11bf67bf5b6ca1a7143a1998e94f1ad526c6"
+}
