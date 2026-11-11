@@ -27,6 +27,8 @@ and the prompt, with 176/160 native/stdio checks. All four recorded hosts
 reproduce numerical artifacts; Hermes' full tasks omit live runoff and their
 prose fails review. Separate live-field probes retain those original verdicts.
 Read the [findings](cases/two-city-swmm/findings.md) and master for exact scope.
+The [integration receipt](docs/integration/2026-11-11-swmm-main.json) binds
+reviewed source/evidence identities and verified `main` CI.
 Field forecasts and final-product qualification remain unadmitted.
 [Issue #46](https://github.com/polisplexity/urban-mcp/issues/46) requests an
 independent person's third-city reproduction.

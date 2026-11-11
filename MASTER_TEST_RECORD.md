@@ -119,8 +119,20 @@ models were uncalibrated; the original Tuindorp study used SWMM 5.1.015.
 false. [Issue #46](https://github.com/polisplexity/urban-mcp/issues/46) and its
 [public checklist](docs/tasks/swmm-third-city.md) require an independent person
 reproducing a third city before final-product promotion. Walking #41 and SUMO
-#44 remain separate. CI evidence is recorded by exact revision in the case;
-metadata validation alone does not establish a working hydraulic capability.
+#44 remain separate. Metadata validation alone does not establish a working
+hydraulic capability.
+
+The [SWMM integration receipt](docs/integration/2026-11-11-swmm-main.json)
+records reviewed head `b151c7f`, merge `27c38c7`, documented main `0999f76`,
+unchanged source/evidence Git objects and verified CI: six workflows on the
+merge, then metadata and both-city SWMM on the documentation revision.
+Integration review also repeated both full Docker/native/stdio city suites,
+the 22 original tests, 12 regressions and seven isolated probes in fresh local
+mounts. All four existing host query traces pass 33 comparisons each against
+fresh independent native binaries. The guides' shell syntax/local links and
+47 metadata/evidence tests pass. No Codex/Hermes experiment was rerun or
+relabeled; original omissions, failed prose, model warnings and all false
+qualification flags remain unchanged.
 
 ## Historical SUMO: integrated two-city experiment, PR #43
 

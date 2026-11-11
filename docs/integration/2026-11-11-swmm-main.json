@@ -1,0 +1,415 @@
+{
+  "observed_at": "2026-11-11T06:22:33.091460+00:00",
+  "repository": "https://github.com/polisplexity/urban-mcp",
+  "reviewed_pr_head": "b151c7f5b93ecd921b75390d8da4bc01e4401017",
+  "integrated_main_commit": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+  "documented_main_commit": "0999f76f1aa5e23872b773eb42950c5b3a41250b",
+  "code_review": {
+    "blocking_findings": [],
+    "scope": [
+      "Source acquisition and licensed/hash-bound snapshot paths",
+      "Observed rainfall interval/timezone/trace and source-area target selection",
+      "Original EPA/PySWMM reuse and marked process/balance/state patches",
+      "27 tools, bounded artifact/resource reads and independent native comparisons",
+      "Host task/source/answer identities and separate negative task/prose verdicts"
+    ],
+    "resolved_documentation_findings": [
+      "Replace development-branch clone/status with main",
+      "Explicit Hermes profile-to-data-mount matching",
+      "Explicit v3 trace export and independent binary query review",
+      "Add original-method audit command and current contribution/agent routes"
+    ]
+  },
+  "protected_git_objects_equal_at_all_three_commits": {
+    "urban_mcp_swmm": "045eb6f997e3e453643a96d8edac6f0686c6ec63",
+    "adapters/swmm": "a697aa2ebfdf82a9930d5458ba1a1606ad0da89e",
+    "compose.yaml": "f65ee50ce7fc41eb080af5db9ebb1e2cd635d58e",
+    "cases/two-city-swmm/evidence": "fb30b85e098fc98ca1bdc5496a2068f013505663",
+    "cases/two-city-swmm/recipe.json": "e94beba9cab46a7b7e73ebbf2c47474c41cee8fd",
+    "cases/two-city-swmm/snapshot.lock.json": "366eae49602118fd43ba769dfca4f84275cd4999",
+    "cases/two-city-swmm/agent-task.md": "423b953429188cc78ece332860789bf2a8bdb6b6",
+    "cases/two-city-swmm/agent-task-v2.md": "818c63a661cc9d54b30e64d4d793bdc8300d818d",
+    "cases/two-city-swmm/agent-task-v3.md": "7c25ef9bfd544afb92083c05bcd01959bac318d4",
+    "cases/two-city-swmm/agent-live-observation-task.md": "1a5063e7e4b24d22ce28d65b07f3182b4cbb570b",
+    "cases/odense-swmm/case.json": "d7412f43fbc1e8343ebe94579add4e0f4434336a",
+    "cases/utrecht-swmm/case.json": "29d928d5c1b41ed26c4bcf35ac94b74dcf9c55c1",
+    "tools": "d1977a19e879fc7326af433165a4ce9554dc4323",
+    "tests": "f126cf45121d9bee2424244d3cf508b59b8d8005",
+    "registry": "f60c0797c3d084c0d662ba3fbebadcb8c11085d8",
+    "planning": "433bf768254eed581d3a8614c27b2d1c08f6d9a4",
+    "cases/two-city-sumo/evidence": "9211c8b310458324bf073d6af824db9495cc16eb",
+    "cases/two-city-vegetation/evidence": "d074677deda9effdc057d3e84eb496d66da09084",
+    "cases/two-city-walking/evidence": "db54b347075b5d2465dc2f5e87c79c168d9b756e",
+    "cases/helsinki-service-inventory/evidence": "9004efe65b30119d45d71829298a62b2280d23fb"
+  },
+  "fresh_local_review": {
+    "launch_commit": "b151c7f5b93ecd921b75390d8da4bc01e4401017",
+    "native_mcp": {
+      "odense": {
+        "passed": true,
+        "checks": 176,
+        "tools": 27,
+        "receipt_sha256": "bbcefa0cf3d6a2439c2620ab1a4d9fa64b37506b1f442abed3ad5fa8fc233519",
+        "source_sha256": {
+          "test_contracts.py": "b7570ecf2bf4844542f0b9439b9774c4ae683b6ee169cb3dd5e87c2eb479025e",
+          "server.py": "cf2c653ad6b74b16bf91884e2fa21ea25e4a8896bb539d73abf1a728847b8f84",
+          "__init__.py": "fb209eca07bf1beebafc70fb210de278f49b7eb6fee7db2fc85044dc4c48ac83",
+          "checks.py": "146bb9b01bd021b1f7108bb68ed72f16afe0cadd695356a3c03cac88eac41b60",
+          "engine.py": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e",
+          "__main__.py": "6be26a9b39dcfbce7a2c3d1835ac7117e584c92b616df991d69318f882e9bd1c",
+          "data.py": "23517e211b32bad9a8cc82cab8488e5d0d4747cbe6dffff6b70f496b6ee5fe2e"
+        },
+        "comparison_csv_sha256": "f510fd2292163995a67bcabee19e948d340fa58884e08d253bdd3ca96d6b7b06",
+        "all_published_node_outfall_csvs_match": true,
+        "quality_equals_published_experiment": true
+      },
+      "utrecht": {
+        "passed": true,
+        "checks": 160,
+        "tools": 27,
+        "receipt_sha256": "038f4cb01fe47c89952618c5075a7241d7fce61a8d30d244635ed0310bd83f50",
+        "source_sha256": {
+          "test_contracts.py": "b7570ecf2bf4844542f0b9439b9774c4ae683b6ee169cb3dd5e87c2eb479025e",
+          "server.py": "cf2c653ad6b74b16bf91884e2fa21ea25e4a8896bb539d73abf1a728847b8f84",
+          "__init__.py": "fb209eca07bf1beebafc70fb210de278f49b7eb6fee7db2fc85044dc4c48ac83",
+          "checks.py": "146bb9b01bd021b1f7108bb68ed72f16afe0cadd695356a3c03cac88eac41b60",
+          "engine.py": "87031ff876e56644082ee7dcd3c911342dbafb63bc534dc24eb85d7efe5add0e",
+          "__main__.py": "6be26a9b39dcfbce7a2c3d1835ac7117e584c92b616df991d69318f882e9bd1c",
+          "data.py": "23517e211b32bad9a8cc82cab8488e5d0d4747cbe6dffff6b70f496b6ee5fe2e"
+        },
+        "comparison_csv_sha256": "7db4337410fbb06d878d6ee6dd20d68321b7c89e57601ee0834355f3fcc767af",
+        "all_published_node_outfall_csvs_match": true,
+        "quality_equals_published_experiment": true
+      }
+    },
+    "regressions": {
+      "contracts.log": {
+        "passed": true,
+        "tests": 12,
+        "sha256": "57e1435b289fc8d388ddcd08eef04a62bceaed46a1964628c33f70c29fa9e10c"
+      },
+      "original-tests.log": {
+        "passed": true,
+        "tests": 22,
+        "sha256": "da72d3a8431e179c7b594f1c3de46f0d5c184065d006af68b99a5c56e396f6cf"
+      }
+    },
+    "isolated_original_method_probes": {
+      "passed": true,
+      "checks": 7
+    },
+    "existing_host_traces_vs_fresh_native": [
+      {
+        "city": "odense",
+        "host": "codex",
+        "checks": 33,
+        "passed": true,
+        "trace_sha256": "dc085b6b90ab380252cd78338ab8c67c677c5ed7c60bef98aba1403dd0b099cd",
+        "native_output_sha256": "8b01f63778f4b0886c9fb668f3a6386dc634538278c6e540fd1f226b8e7bc5bc",
+        "receipt_sha256": "76a71ffc1d124f837a798b841cac548d10479a5a21f411ec9872f128a8dde25c",
+        "scope": "Existing recorded host query responses against fresh independent EPA binary; no new LLM observation."
+      },
+      {
+        "city": "odense",
+        "host": "hermes",
+        "checks": 33,
+        "passed": true,
+        "trace_sha256": "3b58719b97ffdf589918b9162422d1de4f9944ae3f03d42cff8c0af4a05fda7c",
+        "native_output_sha256": "8b01f63778f4b0886c9fb668f3a6386dc634538278c6e540fd1f226b8e7bc5bc",
+        "receipt_sha256": "c2512d85de7c316fc852a75ce056e3322dd13b746c74b0c5f640e31cd70bc336",
+        "scope": "Existing recorded host query responses against fresh independent EPA binary; no new LLM observation."
+      },
+      {
+        "city": "utrecht",
+        "host": "codex",
+        "checks": 33,
+        "passed": true,
+        "trace_sha256": "b06bd39c2aea70314f53cf99ec1767841d3723e62942e4e9463696dc64dd1321",
+        "native_output_sha256": "2c308a9e829c3fd0af0350982e6e23cd7287b6e026c19440d4eb74b41f4461a9",
+        "receipt_sha256": "f2f8a0668605629848fb98e9c671297f1b0443660f47fdfc75681464a351f71c",
+        "scope": "Existing recorded host query responses against fresh independent EPA binary; no new LLM observation."
+      },
+      {
+        "city": "utrecht",
+        "host": "hermes",
+        "checks": 33,
+        "passed": true,
+        "trace_sha256": "dd5fdd0a66a40d79d1bdb6b0765bac4b6fa5d9a32c11665a11300170230374d7",
+        "native_output_sha256": "2c308a9e829c3fd0af0350982e6e23cd7287b6e026c19440d4eb74b41f4461a9",
+        "receipt_sha256": "5004922654b2962efb741b00e8611cb19e66c13dde0c8a52f87307ed0d49b923",
+        "scope": "Existing recorded host query responses against fresh independent EPA binary; no new LLM observation."
+      }
+    ],
+    "runbook": {
+      "shell_blocks_syntax_checked": 8,
+      "updated_guides_local_links_checked": 7
+    }
+  },
+  "host_observations": {
+    "new_llm_runs_during_integration": false,
+    "full_task_source_commit": "f87a41c7fd97c778345c78e88e60771eb37271bb",
+    "supplement_source_commit": "abc6a22698c2edbae22e92eb87c37529546a97ca",
+    "evidence_tree_unchanged": true,
+    "hermes_full_task_live_runoff_omissions_preserved": true,
+    "hermes_negative_prose_verdicts_preserved": true,
+    "supplement_eight_file_hashes_and_two_maps_verified": true
+  },
+  "qualification": {
+    "product_qualified": false,
+    "calibration_revalidated": false,
+    "forecast_admitted": false,
+    "independent_person_third_city_issue": 46,
+    "issue_state_at_review": "open"
+  },
+  "pull_request": {
+    "number": 45,
+    "url": "https://github.com/polisplexity/urban-mcp/pull/45",
+    "reviewed_head": "b151c7f5b93ecd921b75390d8da4bc01e4401017",
+    "base_before_merge": "1f133c4050aecad7c5529468dcbf3d29ba24004a",
+    "merged": true,
+    "merged_at": "2026-11-11T06:03:10Z",
+    "merge_commit": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+    "conflicts_at_review": false,
+    "pending_review_threads": 0,
+    "reviews_at_review": []
+  },
+  "reviewed_head_ci": [
+    {
+      "id": 42929705629,
+      "name": "Two-city walking native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42929705629"
+    },
+    {
+      "id": 42929705527,
+      "name": "Two-city historical SUMO native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42929705527"
+    },
+    {
+      "id": 42929705526,
+      "name": "Two-city historical SWMM native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42929705526"
+    },
+    {
+      "id": 42929705533,
+      "name": "Planning contracts and reference data",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42929705533"
+    },
+    {
+      "id": 42929705523,
+      "name": "Helsinki municipal native and MCP case",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42929705523"
+    },
+    {
+      "id": 42929705595,
+      "name": "Two-city vegetation native and MCP",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42929705595"
+    }
+  ],
+  "reviewed_head_swmm_log_counts": [
+    {
+      "id": 130225054158,
+      "name": "swmm (odense)",
+      "conclusion": "success",
+      "original_and_synthetic": [
+        12,
+        22
+      ],
+      "native_mcp": [
+        176
+      ],
+      "isolated_probes": [
+        7
+      ]
+    },
+    {
+      "id": 130225054443,
+      "name": "swmm (utrecht)",
+      "conclusion": "success",
+      "original_and_synthetic": [
+        12,
+        22
+      ],
+      "native_mcp": [
+        160
+      ],
+      "isolated_probes": [
+        7
+      ]
+    }
+  ],
+  "main_ci": {
+    "merge_main": {
+      "commit": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+      "workflow_runs": [
+        {
+          "id": 42969729524,
+          "name": "Planning contracts and reference data",
+          "event": "push",
+          "head_sha": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42969729524"
+        },
+        {
+          "id": 42969729619,
+          "name": "Helsinki municipal native and MCP case",
+          "event": "push",
+          "head_sha": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42969729619"
+        },
+        {
+          "id": 42969729497,
+          "name": "Two-city vegetation native and MCP",
+          "event": "push",
+          "head_sha": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42969729497"
+        },
+        {
+          "id": 42969729486,
+          "name": "Two-city walking native and MCP",
+          "event": "push",
+          "head_sha": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42969729486"
+        },
+        {
+          "id": 42969729436,
+          "name": "Two-city historical SWMM native and MCP",
+          "event": "push",
+          "head_sha": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42969729436"
+        },
+        {
+          "id": 42969729451,
+          "name": "Two-city historical SUMO native and MCP",
+          "event": "push",
+          "head_sha": "27c38c78125f013c45bbe95e012db9d8bbb25d1e",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42969729451"
+        }
+      ]
+    },
+    "documented_main": {
+      "commit": "0999f76f1aa5e23872b773eb42950c5b3a41250b",
+      "workflow_runs": [
+        {
+          "id": 42970290433,
+          "name": "Planning contracts and reference data",
+          "event": "push",
+          "head_sha": "0999f76f1aa5e23872b773eb42950c5b3a41250b",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42970290433"
+        },
+        {
+          "id": 42970290283,
+          "name": "Two-city historical SWMM native and MCP",
+          "event": "push",
+          "head_sha": "0999f76f1aa5e23872b773eb42950c5b3a41250b",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/polisplexity/urban-mcp/actions/runs/42970290283"
+        }
+      ]
+    },
+    "swmm_and_metadata_log_counts": [
+      {
+        "id": 130355135852,
+        "name": "merge SWMM Odense",
+        "tests": [
+          12,
+          22
+        ],
+        "native": [
+          176
+        ],
+        "isolated": [
+          7
+        ]
+      },
+      {
+        "id": 130355135928,
+        "name": "merge SWMM Utrecht",
+        "tests": [
+          12,
+          22
+        ],
+        "native": [
+          160
+        ],
+        "isolated": [
+          7
+        ]
+      },
+      {
+        "id": 130355135802,
+        "name": "merge metadata",
+        "tests": [
+          47
+        ],
+        "native": [],
+        "isolated": []
+      },
+      {
+        "id": 130356948900,
+        "name": "documentation metadata",
+        "tests": [
+          47
+        ],
+        "native": [],
+        "isolated": []
+      },
+      {
+        "id": 130356943939,
+        "name": "documented main SWMM Odense",
+        "tests": [
+          12,
+          22
+        ],
+        "native": [
+          176
+        ],
+        "isolated": [
+          7
+        ]
+      },
+      {
+        "id": 130356944389,
+        "name": "documented main SWMM Utrecht",
+        "tests": [
+          12,
+          22
+        ],
+        "native": [
+          160
+        ],
+        "isolated": [
+          7
+        ]
+      }
+    ]
+  },
+  "integration_status": "passed",
+  "review_is_independent_person_product_qualification": false,
+  "receipt_scope": "Verified merge/documentation revisions and existing host identities; later receipt-only commits do not create new simulations or agent observations."
+}
